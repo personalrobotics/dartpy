@@ -7,22 +7,20 @@ void python_World()
 {
     using namespace ::boost::python;
     using ::dart::dynamics::Skeleton;
+    using ::dart::dynamics::SkeletonPtr;
     using ::dart::simulation::World;
+    using ::dart::simulation::WorldPtr;
     using ::dart::python::util::collection_from_python;
 
-    collection_from_python<std::vector<World *> >();
+    collection_from_python<std::vector<WorldPtr> >();
 
-    class_<World>("World")
+    class_<World, WorldPtr>("World")
         .def("add_skeleton", &World::addSkeleton)
         .def("get_skeleton",
-            make_function(
-                static_cast<Skeleton *(World::*)(size_t) const>(
-                    &World::getSkeleton),
-                return_value_policy<reference_existing_object>()))
+            static_cast<SkeletonPtr (World::*)(size_t) const>(
+                &World::getSkeleton))
         .def("get_skeleton_by_name",
-            make_function(
-                static_cast<Skeleton *(World::*)(std::string const &) const>(
-                    &World::getSkeleton),
-                return_value_policy<reference_existing_object>()))
+            static_cast<SkeletonPtr (World::*)(std::string const &) const>(
+                &World::getSkeleton))
         ;
 }

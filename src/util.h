@@ -3,40 +3,40 @@
 #include <boost/python.hpp>
 #include <boost/python/stl_iterator.hpp>
 
+// See below. Based off of: http://stackoverflow.com/a/25403872/111426
 #define DISCARD_FUNCTION_RETURN(_FUNC_)\
     ::dart::python::util::discard_function_return<decltype(&_FUNC_), &_FUNC_>
 #define DISCARD_METHOD_RETURN(_CLASS_, _FUNC_)\
     ::dart::python::util::discard_method_return<_CLASS_, decltype(&_FUNC_), &_FUNC_>
 
-namespace boost {
-
-// Enable Boost.Python support for std::shared_ptr.
-// Source: http://stackoverflow.com/a/26572559/111426
-template<typename T>
-T *get_pointer(std::shared_ptr<T> p)
-{
-    return p.get();
-}
-
-}
-
-
 namespace dart {
 namespace python {
 namespace util {
 
+// Define a wrapper function that returns void. This requires variadic
+// templates and C++11 perfect forwarding gymnastics.
+// Source: http://stackoverflow.com/a/25403872/111426
 template <typename Fn, Fn fn, typename... Args>
 void discard_function_return(Args&&... args)
 {
     fn(std::forward<Args>(args)...);
 }
 
+// This is the same as discard_function_return for class methods. It takes an
+// additional template argument (the class) and an additional function argument
+// (the instance). This is compatible with Boost.Python.
 template <typename T, typename Fn, Fn fn, typename... Args>
 void discard_method_return(T *instance, Args&&... args)
 {
     (instance->*fn)(std::forward<Args>(args)...);
 }
 
+// from_python converter for iterable collections. The container_type must
+// have: (1) have a container_type::value_type typedef and (2) a constructor
+// that accepts two forward_iterator<container_type::value_type>.
+// 
+// Source:
+// https://misspent.wordpress.com/2009/09/27/how-to-write-boost-python-converters/
 template <typename container_type>
 struct collection_from_python
 {

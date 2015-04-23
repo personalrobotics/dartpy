@@ -9,10 +9,8 @@ void python_DartLoader()
     using ::dart::utils::DartLoader;
 
     class_<DartLoader>("DartLoader")
-        .def("parse_skeleton", &DartLoader::parseSkeleton,
-             return_value_policy<reference_existing_object>())
-        .def("parse_world", &DartLoader::parseWorld,
-             return_value_policy<manage_new_object>())
+        .def("parse_skeleton", &DartLoader::parseSkeleton)
+        .def("parse_world", &DartLoader::parseWorld)
         .def("add_package_directory", &DartLoader::addPackageDirectory)
         ;
 }

@@ -17,16 +17,12 @@ void python_Skeleton()
     using ::dart::dynamics::Joint;
     using ::dart::dynamics::Marker;
     using ::dart::dynamics::SoftBodyNode;
+    using ::dart::dynamics::SkeletonPtr;
     using ::dart::python::util::collection_from_python;
 
-    DISCARD_FUNCTION_RETURN(Skeleton_getPose)(nullptr);
-    DISCARD_METHOD_RETURN(Skeleton, Skeleton::setName)(
-        nullptr, std::string()
-    );
+    collection_from_python<std::vector<SkeletonPtr> >();
 
-    collection_from_python<std::vector<Skeleton *> >();
-
-    class_<Skeleton, Skeleton *>("Skeleton")
+    class_<Skeleton, SkeletonPtr>("Skeleton")
         .add_property("name",
             make_function(&Skeleton::getName,
                           return_value_policy<copy_const_reference>()),
