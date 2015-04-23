@@ -17,8 +17,12 @@ include_directories(
 
 add_library(${PROJECT_NAME} SHARED
   src/python.cpp
+  src/python_BodyNode.cpp
+  src/python_Constraint.cpp
+  src/python_ConstraintSolver.cpp
   src/python_DartLoader.cpp
   src/python_DegreeOfFreedom.cpp
+  src/python_Joint.cpp
   src/python_SimWindow.cpp
   src/python_Skeleton.cpp
   src/python_World.cpp

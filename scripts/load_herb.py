@@ -24,6 +24,26 @@ world = dartpy.World()
 robot = world.get_skeleton_by_name(world.add_skeleton(robot))
 obj = world.get_skeleton_by_name(world.add_skeleton(obj))
 
+obj_pose = obj.pose
+obj_pose[0, 3] = 0.5
+obj.pose = obj_pose
+
+world.constraint_solver.add_constraint(
+    dartpy.WeldJointConstraint(
+        robot.get_body_node_by_name('base_link'),
+    )
+)
+world.constraint_solver.add_constraint(
+    dartpy.WeldJointConstraint(
+        robot.get_body_node_by_name('Hand_Link'),
+        obj.get_body_node_by_name('fuze_bottle')
+    )
+)
+
+window = dartpy.SimWindow(1600, 1200, 'ADA')
+window.world = world
+
+"""
 dofs = [ robot.get_dof_by_name(name) for name in DOF_NAMES ]
 weights = numpy.ones(6)
 resolutions = numpy.array([ 0.02, 0.02, 0.02, 0.02, 0.02, 0.02 ])
@@ -31,10 +51,7 @@ q_start = numpy.array([[ 1.486,  -1.570,  0.000,  2.034,  4.818,  1.934 ]])
 q_goal = numpy.array([ 0.43135194, -1.25267446,  0.70220488,  0.2222944 ,
                       -0.92543907, -1.33936598 ])
 
-window = dartpy.SimWindow(1600, 1200, 'ADA')
-window.world = world
 
-"""
 for waypoint1, waypoint2 in zip(path[:-1], path[1:]):
     for r in numpy.linspace(0., 1., 200):
         values = (1 - r) * waypoint1 + (r) * waypoint2

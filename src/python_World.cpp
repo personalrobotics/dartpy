@@ -1,4 +1,5 @@
 #include <boost/python.hpp>
+#include <dart/constraint/constraint.h>
 #include <dart/dynamics/dynamics.h>
 #include <dart/simulation/World.h>
 #include "util.h"
@@ -15,6 +16,9 @@ void python_World()
     collection_from_python<std::vector<WorldPtr> >();
 
     class_<World, WorldPtr>("World")
+        .add_property("constraint_solver",
+            make_function(&World::getConstraintSolver,
+                          return_value_policy<reference_existing_object>()))
         .def("add_skeleton", &World::addSkeleton)
         .def("get_skeleton",
             static_cast<SkeletonPtr (World::*)(size_t) const>(
@@ -22,5 +26,6 @@ void python_World()
         .def("get_skeleton_by_name",
             static_cast<SkeletonPtr (World::*)(std::string const &) const>(
                 &World::getSkeleton))
+        .def("step", &World::step)
         ;
 }

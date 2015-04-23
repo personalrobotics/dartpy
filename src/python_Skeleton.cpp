@@ -1,13 +1,45 @@
+#include <boost/format.hpp>
 #include <boost/python.hpp>
 #include <dart/dynamics/dynamics.h>
 #include "util.h"
 
+using ::dart::dynamics::Joint;
 using ::dart::dynamics::Skeleton;
 
-static Eigen::Isometry3d Skeleton_getPose(Skeleton *skeleton)
+static Joint *get_root_joint(Skeleton *skeleton)
 {
-    //FreeJoint::convertToTransform(
+    using ::boost::format;
+    using ::boost::str;
+
+    static std::string const root_joint_name = "rootJoint";
+
+    Joint *root_joint = skeleton->getJoint(root_joint_name);
+    if (root_joint) {
+        return root_joint;
+    } else {
+        throw std::runtime_error(str(
+            format("Skeleton has no joint named '%s'.") % root_joint_name));
+    }
 }
+
+static Eigen::Matrix4d Skeleton_getPose(Skeleton *skeleton)
+{
+    using ::dart::dynamics::FreeJoint;
+
+    Eigen::VectorXd const positions = get_root_joint(skeleton)->getPositions();
+    return FreeJoint::convertToTransform(positions).matrix();
+}
+
+static void Skeleton_setPose(Skeleton *skeleton, Eigen::Matrix4d const &pose)
+{
+    using ::dart::dynamics::FreeJoint;
+
+    Eigen::VectorXd const positions = FreeJoint::convertToPositions(
+        Eigen::Isometry3d(pose));
+    get_root_joint(skeleton)->setPositions(positions);
+}
+
+// ---
 
 void python_Skeleton()
 {
@@ -33,6 +65,7 @@ void python_Skeleton()
             &Skeleton::isEnabledSelfCollisionCheck)
         .add_property("is_enabled_adjacent_body_check",
             &Skeleton::isEnabledAdjacentBodyCheck)
+        .add_property("pose", &Skeleton_getPose, &Skeleton_setPose)
         .add_property("position", &Skeleton::getPositions, &Skeleton::setPositions)
         .add_property("is_mobile", &Skeleton::isMobile, &Skeleton::setMobile)
         .add_property("timestep", &Skeleton::getTimeStep, &Skeleton::setTimeStep)
