@@ -19,13 +19,20 @@ void python_Skeleton()
     using ::dart::dynamics::SoftBodyNode;
     using ::dart::python::util::collection_from_python;
 
+    DISCARD_FUNCTION_RETURN(Skeleton_getPose)(nullptr);
+    DISCARD_METHOD_RETURN(Skeleton, Skeleton::setName)(
+        nullptr, std::string()
+    );
+
     collection_from_python<std::vector<Skeleton *> >();
 
     class_<Skeleton, Skeleton *>("Skeleton")
         .add_property("name",
             make_function(&Skeleton::getName,
                           return_value_policy<copy_const_reference>()),
-            &Skeleton::setName)
+            static_cast<void (*)(Skeleton *, std::string const &)>(
+                &DISCARD_METHOD_RETURN(Skeleton, Skeleton::setName))
+            )
         .add_property("is_enabled_self_collision_check",
             &Skeleton::isEnabledSelfCollisionCheck)
         .add_property("is_enabled_adjacent_body_check",

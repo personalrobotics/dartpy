@@ -3,9 +3,39 @@
 #include <boost/python.hpp>
 #include <boost/python/stl_iterator.hpp>
 
+#define DISCARD_FUNCTION_RETURN(_FUNC_)\
+    ::dart::python::util::discard_function_return<decltype(&_FUNC_), &_FUNC_>
+#define DISCARD_METHOD_RETURN(_CLASS_, _FUNC_)\
+    ::dart::python::util::discard_method_return<_CLASS_, decltype(&_FUNC_), &_FUNC_>
+
+namespace boost {
+
+// Enable Boost.Python support for std::shared_ptr.
+// Source: http://stackoverflow.com/a/26572559/111426
+template<typename T>
+T *get_pointer(std::shared_ptr<T> p)
+{
+    return p.get();
+}
+
+}
+
+
 namespace dart {
 namespace python {
 namespace util {
+
+template <typename Fn, Fn fn, typename... Args>
+void discard_function_return(Args&&... args)
+{
+    fn(std::forward<Args>(args)...);
+}
+
+template <typename T, typename Fn, Fn fn, typename... Args>
+void discard_method_return(T *instance, Args&&... args)
+{
+    (instance->*fn)(std::forward<Args>(args)...);
+}
 
 template <typename container_type>
 struct collection_from_python
