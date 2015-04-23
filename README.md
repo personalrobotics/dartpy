@@ -17,7 +17,7 @@ Then, follow standard `CMake` procedure to build the bindings:
 $ mkdir build && cd build
 $ cmake ..
 $ make
-$ make install
+$ make install (COMING SOON...)
 ```
 
 ### Authors ###
