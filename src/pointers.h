@@ -21,6 +21,12 @@ inline dart::dynamics::DegreeOfFreedom *get_pointer(
     return p.get();
 }
 
+inline dart::dynamics::BodyNode *get_pointer(
+    dart::dynamics::BodyNodePtr const &p)
+{
+    return p.get();
+}
+
 } // namespace boost
 
 // We CANNOT include anything that defines get_pointer() before we define our
@@ -35,6 +41,12 @@ template <>
 struct pointee<dart::dynamics::DegreeOfFreedomPtr>
 {
     typedef dart::dynamics::DegreeOfFreedom type;
+};
+
+template <>
+struct pointee<dart::dynamics::BodyNodePtr>
+{
+    typedef dart::dynamics::BodyNode type;
 };
 
 struct DegreeOfFreedomRawPtr_to_python
