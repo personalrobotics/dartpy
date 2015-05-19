@@ -20,28 +20,19 @@ urdf_loader.add_package_directory(PACKAGE_NAME, PACKAGE_PATH)
 robot = urdf_loader.parse_skeleton(URDF_PATH)
 obj = urdf_loader.parse_skeleton(OBJECT_PATH)
 
-world = dartpy.World()
-robot = world.get_skeleton_by_name(world.add_skeleton(robot))
-obj = world.get_skeleton_by_name(world.add_skeleton(obj))
-
 obj_pose = obj.pose
 obj_pose[0, 3] = 0.5
 obj.pose = obj_pose
 
-world.constraint_solver.add_constraint(
-    dartpy.WeldJointConstraint(
-        robot.get_body_node_by_name('base_link'),
-    )
-)
-world.constraint_solver.add_constraint(
-    dartpy.WeldJointConstraint(
-        robot.get_body_node_by_name('Hand_Link'),
-        obj.get_body_node_by_name('fuze_bottle')
-    )
-)
+
+"""
+world = dartpy.World()
+robot = world.get_skeleton_by_name(world.add_skeleton(robot))
+obj = world.get_skeleton_by_name(world.add_skeleton(obj))
 
 window = dartpy.SimWindow(1600, 1200, 'ADA')
 window.world = world
+"""
 
 """
 dofs = [ robot.get_dof_by_name(name) for name in DOF_NAMES ]

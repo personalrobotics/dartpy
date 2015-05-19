@@ -1,3 +1,4 @@
+#include "pointers.h"
 #include <boost/python.hpp>
 #include <dart/constraint/constraint.h>
 #include <dart/dynamics/dynamics.h>

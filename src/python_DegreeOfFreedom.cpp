@@ -1,12 +1,14 @@
-#include <boost/python.hpp>
+#include "pointers.h"
 #include <dart/dynamics/dynamics.h>
+#include <boost/python.hpp>
 #include "util.h"
 
-using ::dart::dynamics::DegreeOfFreedom;
 using ::boost::python::object;
+using ::dart::dynamics::DegreeOfFreedom;
+using ::dart::dynamics::DegreeOfFreedomPtr;
 
 template <void (DegreeOfFreedom::*Setter)(double, double)>
-object DegreeOfFreedom_SetLimits(DegreeOfFreedom *self, object limits)
+void DegreeOfFreedom_SetLimits(DegreeOfFreedom *self, object limits)
 {
     using ::boost::python::extract;
 
@@ -29,13 +31,15 @@ void python_DegreeOfFreedom()
 {
     using namespace ::boost::python;
     using ::dart::dynamics::BodyNode;
+    using ::dart::dynamics::DegreeOfFreedomPtr;
     using ::dart::dynamics::Joint;
     using ::dart::dynamics::Skeleton;
+    using ::dart::dynamics::SkeletonPtr;
     using ::dart::python::util::collection_from_python;
-    
+
     collection_from_python<std::vector<DegreeOfFreedom *> >();
 
-    class_<DegreeOfFreedom, DegreeOfFreedom *>("DegreeOfFreedom", no_init)
+    class_<DegreeOfFreedom, DegreeOfFreedomPtr>("DegreeOfFreedom", no_init)
         .add_property("name",
             make_function(&DegreeOfFreedom::getName,
                           return_value_policy<copy_const_reference>()))
@@ -100,10 +104,8 @@ void python_DegreeOfFreedom()
                     &DegreeOfFreedom::getJoint),
                 return_value_policy<reference_existing_object>()))
         .add_property("skeleton",
-            make_function(
-                static_cast<Skeleton *(DegreeOfFreedom::*)()>(
-                    &DegreeOfFreedom::getSkeleton),
-                return_value_policy<reference_existing_object>()))
+            static_cast<SkeletonPtr (DegreeOfFreedom::*)()>(
+                &DegreeOfFreedom::getSkeleton))
         .add_property("child_body_node",
             make_function(
                 static_cast<BodyNode *(DegreeOfFreedom::*)()>(
