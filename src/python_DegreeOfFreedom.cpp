@@ -39,7 +39,7 @@ void python_DegreeOfFreedom()
 
     collection_from_python<std::vector<DegreeOfFreedom *> >();
 
-    class_<DegreeOfFreedom, DegreeOfFreedomPtr>("DegreeOfFreedom", no_init)
+    class_<DegreeOfFreedom>("DegreeOfFreedom", no_init)
         .add_property("name",
             make_function(&DegreeOfFreedom::getName,
                           return_value_policy<copy_const_reference>()))

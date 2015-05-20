@@ -18,11 +18,17 @@ DOF_NAMES = [ 'j1', 'j2', 'j3', 'j4', 'j5', 'j6' ]
 urdf_loader = dartpy.DartLoader()
 urdf_loader.add_package_directory(PACKAGE_NAME, PACKAGE_PATH)
 robot = urdf_loader.parse_skeleton(URDF_PATH)
-obj = urdf_loader.parse_skeleton(OBJECT_PATH)
 
-obj_pose = obj.pose
-obj_pose[0, 3] = 0.5
-obj.pose = obj_pose
+#obj = urdf_loader.parse_skeleton(OBJECT_PATH)
+#obj_pose = obj.pose
+#obj_pose[0, 3] = 0.5
+#obj.pose = obj_pose
+
+x = robot.get_dof_by_name('j1')
+print 'del robot'
+del robot
+print 'del x'
+del x
 
 
 """

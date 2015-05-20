@@ -40,6 +40,12 @@ static void Skeleton_setPose(Skeleton *skeleton, Eigen::Matrix4d const &pose)
     get_root_joint(skeleton)->setPositions(positions);
 }
 
+static dart::dynamics::DegreeOfFreedomPtr Skeleton_getDofByName(Skeleton *skeleton,
+        std::string const &name)
+{
+    return dart::dynamics::DegreeOfFreedomPtr(skeleton->getDof(name));
+}
+
 // ---
 
 void python_Skeleton()
@@ -114,10 +120,10 @@ void python_Skeleton()
                     &Skeleton::getJoint),
                 return_value_policy<reference_existing_object>()))
         .def("get_dof_by_name",
-            make_function(
                 static_cast<DegreeOfFreedom *(Skeleton::*)(std::string const &)>(
-                    &Skeleton::getDof),
-                return_value_policy<reference_existing_object>()))
+                    &Skeleton::getDof
+                ),
+                return_value_policy<return_by_smart_ptr>())
         .def("get_body_node_by_name",
             make_function(
                 static_cast<BodyNode *(Skeleton::*)(std::string const &)>(
