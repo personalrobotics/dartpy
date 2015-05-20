@@ -7,40 +7,6 @@
 #error "pointers.h must be included before any Boost headers"
 #endif
 
-struct TestPtr {
-    TestPtr()
-    {
-        p_ = nullptr;
-        std::cout << "+TestPtr<" << this << ">(" << p_ << ")" << std::endl;
-    }
-
-    explicit TestPtr(dart::dynamics::DegreeOfFreedom *p)
-        : p_(p)
-    {
-        std::cout << "+TestPtr<" << this << ">(" << p_ << ")" << std::endl;
-    }
-
-    TestPtr(TestPtr const &other)
-    {
-        p_ = other.p_;
-        std::cout << "+TestPtr<" << this << ">(" << p_ << ")" << std::endl;
-    }
-
-    ~TestPtr()
-    {
-        std::cout << "-TestPtr<" << this << ">(" << p_ << ")" << std::endl;
-    }
-
-    TestPtr &operator=(TestPtr const &other)
-    {
-        p_ = other.p_;
-        std::cout << "=TestPtr<" << this << ">(" << p_ << ")" << std::endl;
-        return *this;
-    }
-
-    dart::dynamics::DegreeOfFreedom *p_;
-};
-
 namespace boost {
 
 template <class T>
@@ -49,21 +15,22 @@ T *get_pointer(std::shared_ptr<T> const &ptr)
     return ptr.get();
 }
 
-inline dart::dynamics::DegreeOfFreedom *get_pointer(
-    dart::dynamics::DegreeOfFreedomPtr const &p)
-{
-    return p.get();
-}
-
 inline dart::dynamics::BodyNode *get_pointer(
     dart::dynamics::BodyNodePtr const &p)
 {
     return p.get();
 }
 
-inline dart::dynamics::DegreeOfFreedom *get_pointer(TestPtr const &p)
+inline dart::dynamics::DegreeOfFreedom *get_pointer(
+    dart::dynamics::DegreeOfFreedomPtr const &p)
 {
-    return p.p_;
+    return p.get();
+}
+
+inline dart::dynamics::Joint *get_pointer(
+    dart::dynamics::JointPtr const &p)
+{
+    return p.get();
 }
 
 } // namespace boost
@@ -77,9 +44,9 @@ namespace boost {
 namespace python {
 
 template <>
-struct pointee<TestPtr>
+struct pointee<dart::dynamics::BodyNodePtr>
 {
-    typedef dart::dynamics::DegreeOfFreedom type;
+    typedef dart::dynamics::BodyNode type;
 };
 
 template <>
@@ -89,18 +56,13 @@ struct pointee<dart::dynamics::DegreeOfFreedomPtr>
 };
 
 template <>
-struct pointee<dart::dynamics::BodyNodePtr>
+struct pointee<dart::dynamics::JointPtr>
 {
-    typedef dart::dynamics::BodyNode type;
+    typedef dart::dynamics::Joint type;
 };
 
 }
 }
-
-//
-//
-//
-//
 
 namespace boost {
 namespace python {
@@ -120,33 +82,22 @@ struct return_by_smart_ptr_requires_a_pointer_return_type
 // this is where all the work is done, first the plain pointer is
 // converted to a smart pointer, and then the smart pointer is embedded
 // in a Python object
+template <class Ptr>
 struct make_owning_smart_ptr_holder
 {
     template <class T>
     static PyObject *execute(T* p)
     {
-        dart::dynamics::DegreeOfFreedomPtr ptr(p);
-
-#if 0
-        std::cout << ">object" << std::endl;
-        boost::python::object pyptr(ptr);
-        std::cout << "<object" << std::endl;
-
-        std::cout << ">make_owning_smart_ptr_holder<" << p << ">" << std::endl;
-        PyObject *x = boost::python::incref(pyptr.ptr());
-        std::cout << "<make_owning_smart_ptr_holder<" << p << ">" << std::endl;
-        return x;
-#endif
-
+        Ptr ptr(p);
         return objects::make_ptr_instance<T,
-                objects::pointer_holder<
-                    dart::dynamics::DegreeOfFreedomPtr, T>
+                objects::pointer_holder<Ptr, T>
             >::execute(ptr);
     }
 };
 
 } // namespace detail
 
+template <class Ptr>
 struct return_by_smart_ptr
 {
     template <class T>
@@ -154,12 +105,61 @@ struct return_by_smart_ptr
     {
         typedef typename mpl::if_c<
             boost::is_pointer<T>::value,
-            to_python_indirect<T, detail::make_owning_smart_ptr_holder>,
+            to_python_indirect<T,
+                detail::make_owning_smart_ptr_holder<Ptr> >,
             detail::return_by_smart_ptr_requires_a_pointer_return_type<T>
         >::type type;
     };
 };
 
+template <class T, class Ptr>
+struct smart_ptr_from_python
+{
+    smart_ptr_from_python()
+    {
+        converter::registry::insert(&convertible, &construct, type_id<Ptr>()
+#ifndef BOOST_PYTHON_NO_PY_SIGNATURES
+            , &converter::expected_from_python_type_direct<T>::get_pytype
+#endif
+        );
+    }
+
+private:
+    static void *convertible(PyObject *p)
+    {
+        if (p == Py_None) {
+            return p;
+        }
+        return converter::get_lvalue_from_python(p,
+            converter::registered<T>::converters);
+    }
+    
+    static void construct(PyObject* source,
+                          converter::rvalue_from_python_stage1_data* data)
+    {
+        void *const storage
+            = ((converter::rvalue_from_python_storage<Ptr>*)data)->storage.bytes;
+
+        // Deal with the "None" case.
+        if (data->convertible == source) {
+            new (storage) Ptr();
+        } else {
+#if 0
+            boost::shared_ptr<void> hold_convertible_ref_count(
+              (void*)0, shared_ptr_deleter(handle<>(borrowed(source))) );
+            // use aliasing constructor
+            new (storage) Ptr(
+                hold_convertible_ref_count,
+                static_cast<T*>(data->convertible));
+#endif
+            new (storage) Ptr(static_cast<T *>(data->convertible));
+        }
+        
+        data->convertible = storage;
+    }
+};
+
 }} // namespace boost::python
+
 
 #endif

@@ -53,14 +53,21 @@ void python_Skeleton()
     using namespace ::boost::python;
     using ::boost::noncopyable;
     using ::dart::dynamics::BodyNode;
+    using ::dart::dynamics::BodyNodePtr;
     using ::dart::dynamics::DegreeOfFreedom;
+    using ::dart::dynamics::DegreeOfFreedomPtr;
     using ::dart::dynamics::Joint;
+    using ::dart::dynamics::JointPtr;
     using ::dart::dynamics::Marker;
     using ::dart::dynamics::MetaSkeleton;
     using ::dart::dynamics::MetaSkeletonPtr;
     using ::dart::dynamics::SoftBodyNode;
     using ::dart::dynamics::SkeletonPtr;
     using ::dart::python::util::collection_from_python;
+
+    typedef return_by_smart_ptr<BodyNodePtr> return_BodyNodePtr;
+    typedef return_by_smart_ptr<DegreeOfFreedomPtr> return_DegreeOfFredomPtr;
+    typedef return_by_smart_ptr<JointPtr> return_JointPtr;
 
     collection_from_python<std::vector<SkeletonPtr> >();
 
@@ -75,20 +82,17 @@ void python_Skeleton()
         .add_property("num_body_nodes", &MetaSkeleton::getNumBodyNodes)
         .add_property("num_dofs", &MetaSkeleton::getNumDofs)
         .def("get_dof",
-            make_function(
-                static_cast<DegreeOfFreedom *(MetaSkeleton::*)(size_t)>(
-                    &MetaSkeleton::getDof),
-                return_value_policy<reference_existing_object>()))
+            static_cast<DegreeOfFreedom *(MetaSkeleton::*)(size_t)>(
+                &MetaSkeleton::getDof),
+            return_value_policy<return_DegreeOfFredomPtr>())
         .def("get_body_node",
-            make_function(
-                static_cast<BodyNode *(MetaSkeleton::*)(size_t)>(
-                    &MetaSkeleton::getBodyNode),
-                return_value_policy<reference_existing_object>()))
+            static_cast<BodyNode *(MetaSkeleton::*)(size_t)>(
+                &MetaSkeleton::getBodyNode),
+            return_value_policy<return_BodyNodePtr>())
         .def("get_joint",
-            make_function(
-                static_cast<Joint *(MetaSkeleton::*)(size_t)>(
-                    &MetaSkeleton::getJoint),
-                return_value_policy<reference_existing_object>()))
+            static_cast<Joint *(MetaSkeleton::*)(size_t)>(
+                &MetaSkeleton::getJoint),
+            return_value_policy<return_JointPtr>())
         ;
 
     class_<Skeleton, SkeletonPtr, bases<MetaSkeleton> >("Skeleton", no_init)
@@ -100,40 +104,33 @@ void python_Skeleton()
         .add_property("num_rigid_body_nodes", &Skeleton::getNumRigidBodyNodes)
         .add_property("num_soft_body_nodes", &Skeleton::getNumSoftBodyNodes)
         .def("get_root_body_node",
-            make_function(
-                static_cast<BodyNode *(Skeleton::*)(size_t)>(
-                    &Skeleton::getRootBodyNode),
-                return_value_policy<reference_existing_object>()))
+            static_cast<BodyNode *(Skeleton::*)(size_t)>(
+                &Skeleton::getRootBodyNode),
+            return_value_policy<return_BodyNodePtr>())
         .def("get_soft_body_node",
-            make_function(
-                static_cast<BodyNode *(Skeleton::*)(size_t)>(
-                    &Skeleton::getBodyNode),
-                return_value_policy<reference_existing_object>()))
+            static_cast<BodyNode *(Skeleton::*)(size_t)>(
+                &Skeleton::getBodyNode),
+            return_value_policy<return_BodyNodePtr>())
         .def("get_soft_body_node_by_name",
-            make_function(
-                static_cast<SoftBodyNode *(Skeleton::*)(std::string const &)>(
-                    &Skeleton::getSoftBodyNode),
-                return_value_policy<reference_existing_object>()))
+            static_cast<SoftBodyNode *(Skeleton::*)(std::string const &)>(
+                &Skeleton::getSoftBodyNode),
+            return_value_policy<reference_existing_object>())
         .def("get_joint_by_name",
-            make_function(
-                static_cast<Joint *(Skeleton::*)(std::string const &)>(
-                    &Skeleton::getJoint),
-                return_value_policy<reference_existing_object>()))
+            static_cast<Joint *(Skeleton::*)(std::string const &)>(
+                &Skeleton::getJoint),
+            return_value_policy<return_JointPtr>())
         .def("get_dof_by_name",
-                static_cast<DegreeOfFreedom *(Skeleton::*)(std::string const &)>(
-                    &Skeleton::getDof
-                ),
-                return_value_policy<return_by_smart_ptr>())
+            static_cast<DegreeOfFreedom *(Skeleton::*)(std::string const &)>(
+                &Skeleton::getDof),
+            return_value_policy<return_DegreeOfFredomPtr>())
         .def("get_body_node_by_name",
-            make_function(
-                static_cast<BodyNode *(Skeleton::*)(std::string const &)>(
-                    &Skeleton::getBodyNode),
-                return_value_policy<reference_existing_object>()))
+            static_cast<BodyNode *(Skeleton::*)(std::string const &)>(
+                &Skeleton::getBodyNode),
+            return_value_policy<return_BodyNodePtr>())
         .def("get_marker_by_name",
-            make_function(
-                static_cast<Marker *(Skeleton::*)(std::string const &)>(
-                    &Skeleton::getMarker),
-                return_value_policy<reference_existing_object>()))
+            static_cast<Marker *(Skeleton::*)(std::string const &)>(
+                &Skeleton::getMarker),
+            return_value_policy<reference_existing_object>())
         .add_property("is_mobile", &Skeleton::isMobile, &Skeleton::setMobile)
         .add_property("timestep", &Skeleton::getTimeStep, &Skeleton::setTimeStep)
         .add_property("gravity",
@@ -143,7 +140,6 @@ void python_Skeleton()
         .def("enable_self_collision", &Skeleton::enableSelfCollision)
         .def("disable_self_collision", &Skeleton::disableSelfCollision)
         .def("compute_forward_kinematics", &Skeleton::computeForwardKinematics)
-        .def("add_body_node", &Skeleton::addBodyNode)
         .def("init", &Skeleton::init)
         ;
 }

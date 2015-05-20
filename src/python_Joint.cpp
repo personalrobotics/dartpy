@@ -1,6 +1,8 @@
+#include "pointers.h"
 #include <boost/python.hpp>
 #include <dart/dynamics/dynamics.h>
 #include "util.h"
+#include "types.h"
 
 using ::dart::dynamics::Joint;
 
@@ -14,6 +16,9 @@ void python_Joint()
 {
     using namespace ::boost::python;
 
+    using ::dart::dynamics::JointPtr;
+    using ::dart::python::JointType;
+
     typedef ::dart::dynamics::Joint::ActuatorType ActuatorType;
 
     enum_<ActuatorType>("ActuatorType")
@@ -25,7 +30,20 @@ void python_Joint()
         .value("LOCKED", Joint::LOCKED)
         ;
 
-    class_<Joint, Joint *, boost::noncopyable>("Joint", no_init)
+    enum_<JointType::Enum>("JointType")
+        .value("PRISMATIC", JointType::PRISMATIC)
+        .value("REVOLUTE", JointType::REVOLUTE)
+        .value("SCREW", JointType::SCREW)
+        .value("WELD", JointType::WELD)
+        .value("UNIVERSAL", JointType::UNIVERSAL)
+        .value("BALL", JointType::BALL)
+        .value("EULER", JointType::EULER)
+        .value("PLANAR", JointType::PLANAR)
+        .value("TRANSLATIONAL", JointType::TRANSLATIONAL)
+        .value("FREE", JointType::FREE)
+        ;
+
+    class_<Joint, JointPtr, boost::noncopyable>("Joint", no_init)
         .add_property("name",
             make_function(&Joint::getName,
                           return_value_policy<copy_const_reference>()),
