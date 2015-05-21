@@ -39,6 +39,8 @@ bottle_skel.get_root_body_node(0).moveTo(skel, None, dartpy.JointType.FREE)
 bottle = skel.get_root_body_node(1)
 
 
+
+
 """
 env.pose = ROBOT_POSE
 

@@ -37,7 +37,7 @@ void python_DegreeOfFreedom()
     using ::dart::dynamics::SkeletonPtr;
     using ::dart::python::util::collection_from_python;
 
-    collection_from_python<std::vector<DegreeOfFreedom *> >();
+    collection_from_python<std::vector<DegreeOfFreedomPtr> >();
 
     class_<DegreeOfFreedom>("DegreeOfFreedom", no_init)
         .add_property("name",

@@ -19,6 +19,7 @@ add_library(${PROJECT_NAME} SHARED
   src/python.cpp
   src/python_BodyNode.cpp
   src/python_Constraint.cpp
+  src/python_CollisionDetector.cpp
   src/python_ConstraintSolver.cpp
   src/python_DartLoader.cpp
   src/python_DegreeOfFreedom.cpp

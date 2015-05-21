@@ -71,6 +71,8 @@ void python_Skeleton()
 
     collection_from_python<std::vector<SkeletonPtr> >();
 
+    implicitly_convertible<SkeletonPtr, MetaSkeletonPtr>(); 
+
     class_<MetaSkeleton, MetaSkeletonPtr, noncopyable>("MetaSkeleton", no_init)
         .add_property("name",
             make_function(&MetaSkeleton::getName,

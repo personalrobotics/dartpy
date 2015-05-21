@@ -2,6 +2,7 @@
 #include <boost/eigen_numpy.h>
 
 void python_BodyNode();
+void python_CollisionDetector();
 void python_Constraint();
 void python_ConstraintSolver();
 void python_DartLoader();
@@ -16,6 +17,7 @@ BOOST_PYTHON_MODULE(PROJECT_NAME)
     SetupEigenConverters();
 
     python_BodyNode();
+    python_CollisionDetector();
     python_Constraint();
     python_ConstraintSolver();
     python_DartLoader();
