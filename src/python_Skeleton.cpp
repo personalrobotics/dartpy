@@ -6,6 +6,7 @@
 
 using ::dart::dynamics::Joint;
 using ::dart::dynamics::Skeleton;
+using ::dart::dynamics::SkeletonPtr;
 
 static Joint *get_root_joint(Skeleton *skeleton)
 {
@@ -21,6 +22,11 @@ static Joint *get_root_joint(Skeleton *skeleton)
         throw std::runtime_error(str(
             format("Skeleton has no joint named '%s'.") % root_joint_name));
     }
+}
+
+static SkeletonPtr Skeleton_constructor(std::string const &name)
+{
+    return Skeleton::create(name);
 }
 
 static Eigen::Matrix4d Skeleton_getPose(Skeleton *skeleton)
@@ -105,6 +111,7 @@ void python_Skeleton()
         .add_property("pose", &Skeleton_getPose, &Skeleton_setPose)
         .add_property("num_rigid_body_nodes", &Skeleton::getNumRigidBodyNodes)
         .add_property("num_soft_body_nodes", &Skeleton::getNumSoftBodyNodes)
+        .def("__init__", make_constructor(&Skeleton_constructor))
         .def("get_root_body_node",
             static_cast<BodyNode *(Skeleton::*)(size_t)>(
                 &Skeleton::getRootBodyNode),
