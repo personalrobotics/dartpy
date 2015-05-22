@@ -40,6 +40,7 @@ T const &convert_properties(Joint::Properties const *properties)
     }
 }
 
+#if 0
 template <class T>
 T *moveTo_impl(BodyNode *node, SkeletonPtr newSkeleton,
                  BodyNodePtr newParent, Joint::Properties const *props)
@@ -53,7 +54,49 @@ T *moveTo_impl(BodyNode *node, SkeletonPtr newSkeleton,
     return node->moveTo<T>(newSkeleton, newParent.get(),
         convert_properties<typename T::Properties>(props));
 }
+#endif
 
+template <typename T>
+struct moveTo3_wrapper
+{
+    static void call(BodyNode *node, SkeletonPtr newSkeleton,
+                     BodyNodePtr newParent, Joint::Properties const *props)
+    {
+        if (!newParent) {
+            PyErr_SetString(PyExc_ValueError, "Parent BodyNode is None.");
+            throw_error_already_set();
+            //return nullptr;
+        }
+
+        node->moveTo<T>(newSkeleton, newParent.get(),
+            convert_properties<typename T::Properties>(props));
+    }
+};
+
+template <typename T>
+struct test_wrapper 
+{
+    static void call(int x)
+    {
+    }
+};
+
+//
+template <template <typename T> class Fn, typename... Args>
+void Joint_unpack(JointType::Enum joint_type, Args&&... args)
+{
+    switch (joint_type) {
+    case JointType::PRISMATIC:
+        Fn<PrismaticJoint>::call(std::forward<Args>(args)...);
+        break;
+
+    default:
+        PyErr_SetString(PyExc_ValueError, "Invalid joint type.");
+        throw_error_already_set();
+    };
+}
+
+#if 0
 static Joint *BodyNode_moveTo4(
     BodyNode *node, SkeletonPtr newSkeleton, BodyNodePtr newParent,
     JointType::Enum joint_type, Joint::Properties const *props)
@@ -117,6 +160,7 @@ static Joint *BodyNode_moveTo2(
 {
     return BodyNode_moveTo3(node, newParent, joint_type, nullptr);
 }
+#endif
 
 void python_BodyNode()
 {
@@ -126,6 +170,10 @@ void python_BodyNode()
     using ::dart::dynamics::SkeletonPtr;
 
     smart_ptr_from_python<BodyNode, BodyNodePtr>();
+
+    &Joint_unpack<moveTo3_wrapper,
+        BodyNode *, SkeletonPtr,
+        BodyNodePtr, Joint::Properties const *>;
 
     class_<BodyNode, BodyNodePtr, boost::noncopyable>("BodyNode", no_init)
         .add_property("name",
@@ -140,12 +188,14 @@ void python_BodyNode()
             &BodyNode::moveTo))
         .def("moveTo", static_cast<void (BodyNode::*)(SkeletonPtr, BodyNode *)>(
             &BodyNode::moveTo))
+#if 0
         .def("moveTo", &BodyNode_moveTo2,
              return_value_policy<reference_existing_object>())
         .def("moveTo", &BodyNode_moveTo3,
              return_value_policy<reference_existing_object>())
         .def("moveTo", &BodyNode_moveTo4,
              return_value_policy<reference_existing_object>())
+#endif
         .def("split", static_cast<SkeletonPtr (BodyNode::*)(std::string const &)>(
             &BodyNode::split))
         ;
