@@ -6,6 +6,7 @@
 
 using ::boost::python::object;
 using ::boost::python::throw_error_already_set;
+using ::dart::dynamics::Joint;
 using ::dart::dynamics::BodyNode;
 using ::dart::dynamics::BodyNodePtr;
 using ::dart::dynamics::BallJoint;
@@ -21,78 +22,100 @@ using ::dart::dynamics::WeldJoint;
 using ::dart::dynamics::SkeletonPtr;
 using ::dart::python::JointType;
 
-static object BodyNode_moveTo1(BodyNode *node, SkeletonPtr newSkeleton,
-                               BodyNodePtr newParent,
-                               JointType::Enum joint_type)
+template <class T>
+T const &convert_properties(Joint::Properties const *properties)
 {
-    if (!node) {
-        PyErr_SetString(PyExc_ValueError, "BodyNode is None.");
+    static T const default_properties;
+
+    auto cast_properties = dynamic_cast<T const *>(properties);
+    if (properties && !cast_properties) {
+        PyErr_SetString(PyExc_ValueError, "Properties has incorrect type.");
         throw_error_already_set();
-        return object();
     }
+
+    if (cast_properties) {
+        return *cast_properties;
+    } else {
+        return default_properties;
+    }
+}
+
+template <class T>
+T *moveTo_impl(BodyNode *node, SkeletonPtr newSkeleton,
+                 BodyNodePtr newParent, Joint::Properties const *props)
+{
+    if (!newParent) {
+        PyErr_SetString(PyExc_ValueError, "Parent BodyNode is None.");
+        throw_error_already_set();
+        return nullptr;
+    }
+
+    return node->moveTo<T>(newSkeleton, newParent.get(),
+        convert_properties<typename T::Properties>(props));
+}
+
+static Joint *BodyNode_moveTo4(
+    BodyNode *node, SkeletonPtr newSkeleton, BodyNodePtr newParent,
+    JointType::Enum joint_type, Joint::Properties const *props)
+{
+    using boost::python::extract;
 
     switch (joint_type) {
     case JointType::PRISMATIC:
-       node->moveTo<PrismaticJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<PrismaticJoint>(node, newSkeleton, newParent, props);
 
     case JointType::REVOLUTE:
-       node->moveTo<RevoluteJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<RevoluteJoint>(node, newSkeleton, newParent, props);
 
     case JointType::SCREW:
-       node->moveTo<ScrewJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<ScrewJoint>(node, newSkeleton, newParent, props);
 
     case JointType::WELD:
-       node->moveTo<WeldJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<WeldJoint>(node, newSkeleton, newParent, props);
 
     case JointType::UNIVERSAL:
-       node->moveTo<UniversalJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<UniversalJoint>(node, newSkeleton, newParent, props);
 
     case JointType::BALL:
-       node->moveTo<BallJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<BallJoint>(node, newSkeleton, newParent, props);
 
     case JointType::EULER:
-       node->moveTo<EulerJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<EulerJoint>(node, newSkeleton, newParent, props);
 
     case JointType::PLANAR:
-       node->moveTo<PlanarJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<PlanarJoint>(node, newSkeleton, newParent, props);
 
     case JointType::TRANSLATIONAL:
-       node->moveTo<TranslationalJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<TranslationalJoint>(node, newSkeleton, newParent, props);
 
     case JointType::FREE:
-       node->moveTo<FreeJoint>(newSkeleton, newParent.get());
-       break;
+        return moveTo_impl<FreeJoint>(node, newSkeleton, newParent, props);
 
     default:
         PyErr_SetString(PyExc_ValueError, "Invalid joint type.");
         throw_error_already_set();
-        return object();
+        return nullptr;
     };
-
-    // TODO: How do we handle the return value here?
-    return object();
 }
 
-static object BodyNode_moveTo2(BodyNode *node, BodyNodePtr newParent,
-                               JointType::Enum joint_type)
+static Joint *BodyNode_moveTo3(
+    BodyNode *node, BodyNodePtr newParent,
+    JointType::Enum joint_type, Joint::Properties const *props)
 {
-    if (!node) {
-        PyErr_SetString(PyExc_ValueError, "BodyNode is None.");
+    if (!newParent) {
+        PyErr_SetString(PyExc_ValueError, "Parent BodyNode is None.");
         throw_error_already_set();
-        return object();
+        return nullptr;
     }
 
-    return BodyNode_moveTo1(node, newParent->getSkeleton(), newParent,
-                            joint_type);
+    return BodyNode_moveTo4(node, newParent->getSkeleton(), newParent,
+                            joint_type, props);
+}
+
+static Joint *BodyNode_moveTo2(
+    BodyNode *node, BodyNodePtr newParent, JointType::Enum joint_type)
+{
+    return BodyNode_moveTo3(node, newParent, joint_type, nullptr);
 }
 
 void python_BodyNode()
@@ -117,8 +140,12 @@ void python_BodyNode()
             &BodyNode::moveTo))
         .def("moveTo", static_cast<void (BodyNode::*)(SkeletonPtr, BodyNode *)>(
             &BodyNode::moveTo))
-        .def("moveTo", &BodyNode_moveTo1)
-        .def("moveTo", &BodyNode_moveTo2)
+        .def("moveTo", &BodyNode_moveTo2,
+             return_value_policy<reference_existing_object>())
+        .def("moveTo", &BodyNode_moveTo3,
+             return_value_policy<reference_existing_object>())
+        .def("moveTo", &BodyNode_moveTo4,
+             return_value_policy<reference_existing_object>())
         .def("split", static_cast<SkeletonPtr (BodyNode::*)(std::string const &)>(
             &BodyNode::split))
         ;
