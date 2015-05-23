@@ -17,6 +17,9 @@ void python_ZeroDofJoint()
         class_<ZeroDofJoint, bases<Joint>,
                noncopyable>("ZeroDofJoint", no_init)
     );
+
+    class_<ZeroDofJoint::Properties, bases<Joint::Properties> >("Properties")
+        ;
 }
 
 } // namespace python

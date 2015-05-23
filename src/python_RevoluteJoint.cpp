@@ -15,7 +15,7 @@ void python_RevoluteJoint()
     using dart::dynamics::SingleDofJoint;
 
     scope joint_class(
-        class_<RevoluteJoint, bases<Joint>,
+        class_<RevoluteJoint, bases<SingleDofJoint>,
                noncopyable>("RevoluteJoint", no_init)
     );
 

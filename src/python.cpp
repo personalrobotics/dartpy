@@ -11,13 +11,20 @@ void python_ConstraintSolver();
 void python_DartLoader();
 void python_DegreeOfFreedom();
 
-void python_Joint();
-void python_FreeJoint();
-void python_MultiDofJoint();
+void python_Joint(); // base class
+void python_FreeJoint(); // base class
+void python_MultiDofJoint(); // base class
+void python_ZeroDofJoint(); // base class
+void python_BallJoint();
+void python_EulerJoint();
+void python_PlanarJoint();
+void python_PrismaticJoint();
 void python_RevoluteJoint();
+void python_ScrewJoint();
 void python_SingleDofJoint();
+void python_TranslationalJoint();
+void python_UniversalJoint();
 void python_WeldJoint();
-void python_ZeroDofJoint();
 
 void python_SimWindow();
 void python_Skeleton();
@@ -39,13 +46,19 @@ BOOST_PYTHON_MODULE(PROJECT_NAME)
     python_DartLoader();
     python_DegreeOfFreedom();
 
-    // Must register base classes before derived classes.
-    python_Joint();
-    python_MultiDofJoint();
-    python_SingleDofJoint();
-    python_ZeroDofJoint();
-    python_FreeJoint();
+    python_Joint(); // base class
+    python_FreeJoint(); // base class
+    python_MultiDofJoint(); // base class
+    python_ZeroDofJoint(); // base class
+    python_BallJoint();
+    python_EulerJoint();
+    python_PlanarJoint();
+    python_PrismaticJoint();
     python_RevoluteJoint();
+    python_ScrewJoint();
+    python_SingleDofJoint();
+    python_TranslationalJoint();
+    python_UniversalJoint();
     python_WeldJoint();
 
     python_SimWindow();

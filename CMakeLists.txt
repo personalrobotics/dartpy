@@ -27,13 +27,20 @@ add_library(${PROJECT_NAME} SHARED
   src/python_Skeleton.cpp
   src/python_World.cpp
   # Joints
-  src/python_Joint.cpp
+  src/python_BallJoint.cpp
+  src/python_EulerJoint.cpp
   src/python_FreeJoint.cpp
+  src/python_Joint.cpp
+  src/python_MultiDofJoint.cpp
+  src/python_PlanarJoint.cpp
+  src/python_PrismaticJoint.cpp
+  src/python_RevoluteJoint.cpp
+  src/python_ScrewJoint.cpp
+  src/python_SingleDofJoint.cpp
+  src/python_TranslationalJoint.cpp
+  src/python_UniversalJoint.cpp
   src/python_WeldJoint.cpp
   src/python_ZeroDofJoint.cpp
-  src/python_MultiDofJoint.cpp
-  src/python_SingleDofJoint.cpp
-  src/python_RevoluteJoint.cpp
 )
 target_link_libraries(${PROJECT_NAME}
   ${PROJECT_NAME}

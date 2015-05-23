@@ -18,6 +18,9 @@ void python_WeldJoint()
                noncopyable>("WeldJoint", no_init)
     );
 
+    class_<WeldJoint::Properties, bases<
+            ZeroDofJoint::Properties> >("Properties")
+        ;
 }
 
 } // namespace python

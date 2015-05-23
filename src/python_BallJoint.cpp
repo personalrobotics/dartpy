@@ -5,21 +5,22 @@
 namespace dart {
 namespace python {
 
-void python_FreeJoint()
+void python_BallJoint()
 {
     using namespace boost::python;
 
     using boost::noncopyable;
+    using dart::dynamics::BallJoint;
     using dart::dynamics::MultiDofJoint;
-    using dart::dynamics::FreeJoint;
 
     scope joint_class(
-        class_<FreeJoint, bases<MultiDofJoint<6> >,
-               noncopyable>("FreeJoint", no_init)
+        class_<BallJoint, bases<MultiDofJoint<3> >,
+               noncopyable>("BallJoint", no_init)
     );
 
-    class_<FreeJoint::Properties, bases<
-            MultiDofJoint<6>::Properties> >("Properties")
+    class_<BallJoint::Properties, bases<
+            MultiDofJoint<3>::Properties>
+          >("Properties")
         ;
 }
 
