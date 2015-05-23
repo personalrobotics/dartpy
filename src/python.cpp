@@ -4,6 +4,7 @@
 namespace dart {
 namespace python {
 
+void python_Frame();
 void python_BodyNode();
 void python_CollisionDetector();
 void python_Constraint();
@@ -39,6 +40,7 @@ BOOST_PYTHON_MODULE(PROJECT_NAME)
 
     SetupEigenConverters();
 
+    python_Frame();
     python_BodyNode();
     python_CollisionDetector();
     python_Constraint();

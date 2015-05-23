@@ -26,6 +26,7 @@ add_library(${PROJECT_NAME} SHARED
   src/python_SimWindow.cpp
   src/python_Skeleton.cpp
   src/python_World.cpp
+  src/python_Frame.cpp
   # Joints
   src/python_BallJoint.cpp
   src/python_EulerJoint.cpp

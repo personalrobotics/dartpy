@@ -136,15 +136,19 @@ namespace python {
 void python_BodyNode()
 {
     using namespace ::boost::python;
-    using ::dart::dynamics::BodyNode;
-    using ::dart::dynamics::BodyNodePtr;
-    using ::dart::dynamics::SkeletonPtr;
+
+    using boost::noncopyable;
+    using dart::dynamics::BodyNode;
+    using dart::dynamics::BodyNodePtr;
+    using dart::dynamics::Frame;
+    using dart::dynamics::SkeletonPtr;
 
     typedef return_by_smart_ptr<BodyNodePtr> return_BodyNodePtr;
 
     smart_ptr_from_python<BodyNode, BodyNodePtr>();
 
-    class_<BodyNode, BodyNodePtr, boost::noncopyable>("BodyNode", no_init)
+    class_<BodyNode, BodyNodePtr, bases<Frame>, noncopyable>("BodyNode",
+         no_init)
         .add_property("name",
             make_function(&BodyNode::getName,
                           return_value_policy<copy_const_reference>()),
