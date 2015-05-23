@@ -2,10 +2,104 @@
 #define DART_PYTHON_POINTERS_H_
 #include <memory>
 #include <dart/dynamics/dynamics.h>
+#include "types.h"
 
 #ifdef BOOST_CONFIG_HPP
 #error "pointers.h must be included before any Boost headers"
 #endif
+
+namespace dart {
+namespace python {
+
+class JointPtr_wrapper_base {
+public:
+    JointPtr_wrapper_base()
+        : mIsGeneric(true)
+    {
+    }
+
+    JointPtr_wrapper_base(dart::dynamics::JointPtr const &joint)
+        : mIsGeneric(true)
+        , mJoint(joint)
+    {
+    }
+
+    dart::dynamics::Joint *get_base() const
+    {
+        return mJoint.get();
+    }
+
+    virtual ~JointPtr_wrapper_base() = default;
+
+protected:
+    bool mIsGeneric;
+    JointType::Enum mType;
+    dart::dynamics::JointPtr mJoint;
+};
+
+template <class T, dart::python::JointType::Enum TEnum>
+class JointPtr_wrapper : public JointPtr_wrapper_base {
+public:
+    JointPtr_wrapper(dart::dynamics::JointPtr const &joint)
+        : JointPtr_wrapper_base(joint)
+    {
+        assert(dynamic_cast<T *>(joint.get()));
+        mType = TEnum;
+    }
+
+    virtual ~JointPtr_wrapper() = default;
+
+    T *get() const
+    {
+        if (mType == TEnum) {
+            return dynamic_cast<T>(mJoint.get());
+        } else {
+            return nullptr;
+        }
+    }
+};
+
+inline JointPtr_wrapper_base JointPtr_wrapper_create(
+        dart::dynamics::JointPtr const &joint)
+{
+    if (dynamic_cast<dart::dynamics::RevoluteJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::RevoluteJoint,
+                                JointType::REVOLUTE>(joint);
+    } else if (dynamic_cast<dart::dynamics::PrismaticJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::PrismaticJoint,
+                                JointType::PRISMATIC>(joint);
+    } else if (dynamic_cast<dart::dynamics::ScrewJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::ScrewJoint,
+                                JointType::SCREW>(joint);
+    } else if (dynamic_cast<dart::dynamics::WeldJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::WeldJoint,
+                                JointType::WELD>(joint);
+    } else if (dynamic_cast<dart::dynamics::UniversalJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::UniversalJoint,
+                                JointType::UNIVERSAL>(joint);
+    } else if (dynamic_cast<dart::dynamics::BallJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::BallJoint,
+                                JointType::BALL>(joint);
+    } else if (dynamic_cast<dart::dynamics::EulerJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::EulerJoint,
+                                JointType::EULER>(joint);
+    } else if (dynamic_cast<dart::dynamics::PlanarJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::PlanarJoint,
+                                JointType::PLANAR>(joint);
+    } else if (dynamic_cast<dart::dynamics::TranslationalJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::TranslationalJoint,
+                                JointType::TRANSLATIONAL>(joint);
+    } else if (dynamic_cast<dart::dynamics::FreeJoint *>(joint.get())) {
+        return JointPtr_wrapper<dart::dynamics::FreeJoint,
+                                JointType::FREE>(joint);
+    } else {
+        return JointPtr_wrapper_base(joint);
+    }
+}
+
+} // namespace python
+} // namespace dart
+
 
 namespace boost {
 
@@ -29,6 +123,19 @@ inline dart::dynamics::DegreeOfFreedom *get_pointer(
 
 inline dart::dynamics::Joint *get_pointer(
     dart::dynamics::JointPtr const &p)
+{
+    return p.get();
+}
+
+inline dart::dynamics::Joint *get_pointer(
+    dart::python::JointPtr_wrapper_base const &p)
+{
+    return p.get_base();
+}
+
+template <class T, dart::python::JointType::Enum TEnum>
+inline dart::dynamics::Joint *get_pointer(
+    dart::python::JointPtr_wrapper<T, TEnum> const &p)
 {
     return p.get();
 }
@@ -60,6 +167,13 @@ struct pointee<dart::dynamics::JointPtr>
 {
     typedef dart::dynamics::Joint type;
 };
+
+template <>
+struct pointee<dart::python::JointPtr_wrapper_base>
+{
+    typedef dart::dynamics::Joint type;
+};
+
 
 }
 }

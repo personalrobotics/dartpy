@@ -4,11 +4,31 @@
 #include "util.h"
 #include "types.h"
 
+using ::boost::python::object;
 using ::dart::dynamics::Joint;
 
-void Joint_setName_default(Joint *joint, std::string const &name)
+static void Joint_setName_default(Joint *joint, std::string const &name)
 {
     joint->setName(name);
+}
+
+static std::string FreeJoint_test(dart::dynamics::FreeJoint *self)
+{
+    return "banana";
+}
+
+static object Joint_getattribute(object self, object name)
+{
+    using ::boost::python::eval;
+    using ::boost::python::import;
+
+    object dartpy = import("dartpy");
+    object Joint_class = dartpy.attr("Joint");
+    object FreeJoint_class = dartpy.attr("FreeJoint");
+
+    self.attr("__class__") = FreeJoint_class;
+
+    return eval("object").attr("__getattribute__")(self, name);
 }
 
 static void python_Joint_base()
@@ -67,6 +87,7 @@ static void python_Joint_base()
             .add_property("num_dofs", &Joint::getNumDofs)
             .add_property("commands", &Joint::getCommands, &Joint::setCommands)
             .add_property("commands", &Joint::getPositions, &Joint::setPositions)
+            .def("__getattribute__", &Joint_getattribute)
             .def("set_name",
                 make_function(&Joint::setName,
                               return_value_policy<copy_const_reference>()))
@@ -111,10 +132,26 @@ static void python_ZeroDofJoint()
     using dart::dynamics::ZeroDofJoint;
 
     scope joint_class(
-        class_<ZeroDofJoint, noncopyable>("ZeroDofJoint", no_init)
+        class_<ZeroDofJoint, bases<Joint>,
+               noncopyable>("ZeroDofJoint", no_init)
+
     );
 
     class_<ZeroDofJoint::Properties>("Properties");
+}
+
+static void python_FreeJoint()
+{
+    using namespace boost::python;
+
+    using boost::noncopyable;
+    using dart::dynamics::FreeJoint;
+
+    scope joint_class(
+        class_<FreeJoint, bases<Joint>,
+               noncopyable>("FreeJoint", no_init)
+            .def("test", &FreeJoint_test)
+    );
 }
 
 static void python_SingleDofJoint()
@@ -212,6 +249,7 @@ void python_Joint()
 
     typedef ::dart::dynamics::Joint::ActuatorType ActuatorType;
 
+
     enum_<ActuatorType>("ActuatorType")
         .value("FORCE", Joint::FORCE)
         .value("PASSIVE", Joint::PASSIVE)
@@ -238,5 +276,6 @@ void python_Joint()
     python_ZeroDofJoint();
     python_SingleDofJoint();
     python_RevoluteJoint();
+    python_FreeJoint();
     python_WeldJoint();
 }

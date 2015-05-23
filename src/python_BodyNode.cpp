@@ -86,7 +86,8 @@ Return Joint_unpack(Class *self, JointType::Enum joint_type, Args... args)
 template <typename T>
 struct moveTo3_wrapper {
     static Joint *call(BodyNode *self, SkeletonPtr newSkeleton,
-                       BodyNodePtr newParent, Joint::Properties const *props)
+                       BodyNodePtr newParent,
+                       Joint::Properties const *props = nullptr)
     {
         return self->moveTo<T>(newSkeleton, newParent.get(),
             convert_properties<typename T::Properties>(props));
@@ -147,8 +148,9 @@ void python_BodyNode()
             static_cast<void (*)(BodyNode *, std::string const &)>(
                 &DISCARD_METHOD_RETURN(BodyNode, BodyNode::setName))
             )
-        .add_property("skeleton", static_cast<SkeletonPtr (BodyNode::*)()>(
-            &BodyNode::getSkeleton))
+        .add_property("skeleton",
+            static_cast<SkeletonPtr (BodyNode::*)()>(
+                &BodyNode::getSkeleton))
         .add_property("parent_joint", make_function(
             static_cast<Joint *(BodyNode::*)()>(
                 &BodyNode::getParentJoint),
@@ -159,10 +161,14 @@ void python_BodyNode()
             return_value_policy<return_BodyNodePtr>()))
         .add_property("num_child_bodynodes",
             &BodyNode::getNumChildBodyNodes)
-        .def("moveTo", static_cast<void (BodyNode::*)(BodyNode *)>(
-            &BodyNode::moveTo))
-        .def("moveTo", static_cast<void (BodyNode::*)(SkeletonPtr, BodyNode *)>(
-            &BodyNode::moveTo))
+#if 0
+        .def("moveTo",
+            static_cast<void (BodyNode::*)(BodyNode *)>(
+                &BodyNode::moveTo))
+        .def("moveTo",
+            static_cast<void (BodyNode::*)(SkeletonPtr, BodyNode *)>(
+                &BodyNode::moveTo))
+#endif
         .def("moveTo", 
             static_cast<Joint *(*)(BodyNode *, JointType::Enum, BodyNodePtr)>(
                 &Joint_unpack<Joint *, BodyNode, moveTo2_wrapper>),
@@ -171,6 +177,11 @@ void python_BodyNode()
             static_cast<Joint *(*)(BodyNode *, JointType::Enum, BodyNodePtr,
                                    Joint::Properties const *)>(
                 &Joint_unpack<Joint *, BodyNode, moveTo2_wrapper>),
+            return_value_policy<reference_existing_object>())
+        .def("moveTo", 
+            static_cast<Joint *(*)(BodyNode *, JointType::Enum, SkeletonPtr,
+                                   BodyNodePtr)>(
+                &Joint_unpack<Joint *, BodyNode, moveTo3_wrapper>),
             return_value_policy<reference_existing_object>())
         .def("moveTo", 
             static_cast<Joint *(*)(BodyNode *, JointType::Enum, SkeletonPtr,
