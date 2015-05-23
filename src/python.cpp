@@ -12,16 +12,16 @@ void python_DartLoader();
 void python_DegreeOfFreedom();
 
 void python_Joint(); // base class
-void python_FreeJoint(); // base class
 void python_MultiDofJoint(); // base class
+void python_SingleDofJoint(); // base class
 void python_ZeroDofJoint(); // base class
 void python_BallJoint();
 void python_EulerJoint();
+void python_FreeJoint();
 void python_PlanarJoint();
 void python_PrismaticJoint();
 void python_RevoluteJoint();
 void python_ScrewJoint();
-void python_SingleDofJoint();
 void python_TranslationalJoint();
 void python_UniversalJoint();
 void python_WeldJoint();
@@ -47,16 +47,16 @@ BOOST_PYTHON_MODULE(PROJECT_NAME)
     python_DegreeOfFreedom();
 
     python_Joint(); // base class
-    python_FreeJoint(); // base class
     python_MultiDofJoint(); // base class
+    python_SingleDofJoint(); // base class
     python_ZeroDofJoint(); // base class
     python_BallJoint();
     python_EulerJoint();
+    python_FreeJoint();
     python_PlanarJoint();
     python_PrismaticJoint();
     python_RevoluteJoint();
     python_ScrewJoint();
-    python_SingleDofJoint();
     python_TranslationalJoint();
     python_UniversalJoint();
     python_WeldJoint();
