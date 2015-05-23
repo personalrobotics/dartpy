@@ -63,19 +63,6 @@ static void Joint_setName_default(Joint *joint, std::string const &name)
     joint->setName(name);
 }
 
-static std::string FreeJoint_test(dart::dynamics::FreeJoint *self)
-{
-    return "banana";
-}
-
-static object Joint_getattribute(object self, object name)
-{
-    using ::boost::python::eval;
-    using ::boost::python::import;
-
-    return eval("object").attr("__getattribute__")(self, name);
-}
-
 static void python_Joint_base()
 {
     using namespace boost::python;
@@ -135,7 +122,6 @@ static void python_Joint_base()
             .add_property("num_dofs", &Joint::getNumDofs)
             .add_property("commands", &Joint::getCommands, &Joint::setCommands)
             .add_property("commands", &Joint::getPositions, &Joint::setPositions)
-            .def("__getattribute__", &Joint_getattribute)
             .def("set_name",
                 make_function(&Joint::setName,
                               return_value_policy<copy_const_reference>()))
@@ -200,7 +186,6 @@ static void python_FreeJoint()
         class_<FreeJoint, bases<Joint>, noncopyable>(
                JointMap::instance().getPythonName<FreeJoint>().c_str(),
                no_init)
-            .def("test", &FreeJoint_test)
     );
 }
 
@@ -212,7 +197,7 @@ static void python_SingleDofJoint()
     using dart::dynamics::SingleDofJoint;
 
     scope joint_class(
-        class_<SingleDofJoint, noncopyable>(
+        class_<SingleDofJoint, bases<Joint>, noncopyable>(
             JointMap::instance().getPythonName<SingleDofJoint>().c_str(),
             no_init)
     );
@@ -259,11 +244,12 @@ static void python_RevoluteJoint()
     using namespace boost::python;
 
     using boost::noncopyable;
+    using dart::dynamics::Joint;
     using dart::dynamics::RevoluteJoint;
     using dart::dynamics::SingleDofJoint;
 
     scope joint_class(
-        class_<RevoluteJoint, noncopyable>(
+        class_<RevoluteJoint, bases<Joint>, noncopyable>(
                 JointMap::instance().getPythonName<RevoluteJoint>().c_str(),
                 no_init)
     );
