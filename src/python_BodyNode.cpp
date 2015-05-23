@@ -40,127 +40,94 @@ T const &convert_properties(Joint::Properties const *properties)
     }
 }
 
-#if 0
-template <class T>
-T *moveTo_impl(BodyNode *node, SkeletonPtr newSkeleton,
-                 BodyNodePtr newParent, Joint::Properties const *props)
+template <class Return, class Class, template <typename T> class Fn,
+          typename... Args>
+Return Joint_unpack(Class *self, JointType::Enum joint_type, Args... args)
 {
-    if (!newParent) {
-        PyErr_SetString(PyExc_ValueError, "Parent BodyNode is None.");
-        throw_error_already_set();
-        return nullptr;
-    }
+    switch (joint_type) {
+    case JointType::PRISMATIC:
+        return Fn<PrismaticJoint>::call(self, args...);
 
-    return node->moveTo<T>(newSkeleton, newParent.get(),
-        convert_properties<typename T::Properties>(props));
+    case JointType::REVOLUTE:
+        return Fn<RevoluteJoint>::call(self, args...);
+
+    case JointType::SCREW:
+        return Fn<ScrewJoint>::call(self, args...);
+
+    case JointType::WELD:
+        return Fn<WeldJoint>::call(self, args...);
+
+    case JointType::UNIVERSAL:
+        return Fn<UniversalJoint>::call(self, args...);
+
+    case JointType::BALL:
+        return Fn<BallJoint>::call(self, args...);
+
+    case JointType::EULER:
+        return Fn<EulerJoint>::call(self, args...);
+
+    case JointType::PLANAR:
+        return Fn<PlanarJoint>::call(self, args...);
+
+    case JointType::TRANSLATIONAL:
+        return Fn<TranslationalJoint>::call(self, args...);
+
+    case JointType::FREE:
+        return Fn<FreeJoint>::call(self, args...);
+
+    default:
+        PyErr_SetString(PyExc_ValueError, "Invalid joint type.");
+        throw_error_already_set();
+    };
+
+    return Return();
 }
-#endif
 
 template <typename T>
-struct moveTo3_wrapper
-{
-    static void call(BodyNode *node, SkeletonPtr newSkeleton,
-                     BodyNodePtr newParent, Joint::Properties const *props)
+struct moveTo3_wrapper {
+    static Joint *call(BodyNode *self, SkeletonPtr newSkeleton,
+                       BodyNodePtr newParent, Joint::Properties const *props)
     {
-        if (!newParent) {
-            PyErr_SetString(PyExc_ValueError, "Parent BodyNode is None.");
-            throw_error_already_set();
-            //return nullptr;
-        }
-
-        node->moveTo<T>(newSkeleton, newParent.get(),
+        return self->moveTo<T>(newSkeleton, newParent.get(),
             convert_properties<typename T::Properties>(props));
     }
 };
 
 template <typename T>
-struct test_wrapper 
-{
-    static void call(int x)
+struct moveTo2_wrapper {
+    static Joint *call(BodyNode *self, BodyNodePtr newParent,
+                       Joint::Properties const *props = nullptr)
     {
+        if (!newParent) {
+            PyErr_SetString(PyExc_ValueError, "Parent BodyNode is None.");
+            throw_error_already_set();
+            return nullptr;
+        }
+
+        return moveTo3_wrapper<T>::call(
+            self, newParent->getSkeleton(), newParent, props);
     }
 };
 
-//
-template <template <typename T> class Fn, typename... Args>
-void Joint_unpack(JointType::Enum joint_type, Args&&... args)
-{
-    switch (joint_type) {
-    case JointType::PRISMATIC:
-        Fn<PrismaticJoint>::call(std::forward<Args>(args)...);
-        break;
-
-    default:
-        PyErr_SetString(PyExc_ValueError, "Invalid joint type.");
-        throw_error_already_set();
-    };
-}
-
-#if 0
-static Joint *BodyNode_moveTo4(
-    BodyNode *node, SkeletonPtr newSkeleton, BodyNodePtr newParent,
-    JointType::Enum joint_type, Joint::Properties const *props)
-{
-    using boost::python::extract;
-
-    switch (joint_type) {
-    case JointType::PRISMATIC:
-        return moveTo_impl<PrismaticJoint>(node, newSkeleton, newParent, props);
-
-    case JointType::REVOLUTE:
-        return moveTo_impl<RevoluteJoint>(node, newSkeleton, newParent, props);
-
-    case JointType::SCREW:
-        return moveTo_impl<ScrewJoint>(node, newSkeleton, newParent, props);
-
-    case JointType::WELD:
-        return moveTo_impl<WeldJoint>(node, newSkeleton, newParent, props);
-
-    case JointType::UNIVERSAL:
-        return moveTo_impl<UniversalJoint>(node, newSkeleton, newParent, props);
-
-    case JointType::BALL:
-        return moveTo_impl<BallJoint>(node, newSkeleton, newParent, props);
-
-    case JointType::EULER:
-        return moveTo_impl<EulerJoint>(node, newSkeleton, newParent, props);
-
-    case JointType::PLANAR:
-        return moveTo_impl<PlanarJoint>(node, newSkeleton, newParent, props);
-
-    case JointType::TRANSLATIONAL:
-        return moveTo_impl<TranslationalJoint>(node, newSkeleton, newParent, props);
-
-    case JointType::FREE:
-        return moveTo_impl<FreeJoint>(node, newSkeleton, newParent, props);
-
-    default:
-        PyErr_SetString(PyExc_ValueError, "Invalid joint type.");
-        throw_error_already_set();
-        return nullptr;
-    };
-}
-
-static Joint *BodyNode_moveTo3(
-    BodyNode *node, BodyNodePtr newParent,
-    JointType::Enum joint_type, Joint::Properties const *props)
-{
-    if (!newParent) {
-        PyErr_SetString(PyExc_ValueError, "Parent BodyNode is None.");
-        throw_error_already_set();
-        return nullptr;
+template <typename T>
+struct split_wrapper {
+    static SkeletonPtr call(BodyNode *self, std::string const &skeletonName,
+                     Joint::Properties const *props = nullptr)
+    {
+        return self->split<T>(skeletonName,
+            convert_properties<typename T::Properties>(props));
     }
+};
 
-    return BodyNode_moveTo4(node, newParent->getSkeleton(), newParent,
-                            joint_type, props);
-}
-
-static Joint *BodyNode_moveTo2(
-    BodyNode *node, BodyNodePtr newParent, JointType::Enum joint_type)
+template <typename T>
+struct changeParentJointType_wrapper
 {
-    return BodyNode_moveTo3(node, newParent, joint_type, nullptr);
-}
-#endif
+    static Joint *call(BodyNode *self, Joint::Properties const *props = nullptr)
+    {
+        return self->changeParentJointType<T>(
+            convert_properties<typename T::Properties>(props));
+    }
+};
 
 void python_BodyNode()
 {
@@ -169,11 +136,9 @@ void python_BodyNode()
     using ::dart::dynamics::BodyNodePtr;
     using ::dart::dynamics::SkeletonPtr;
 
-    smart_ptr_from_python<BodyNode, BodyNodePtr>();
+    typedef return_by_smart_ptr<BodyNodePtr> return_BodyNodePtr;
 
-    &Joint_unpack<moveTo3_wrapper,
-        BodyNode *, SkeletonPtr,
-        BodyNodePtr, Joint::Properties const *>;
+    smart_ptr_from_python<BodyNode, BodyNodePtr>();
 
     class_<BodyNode, BodyNodePtr, boost::noncopyable>("BodyNode", no_init)
         .add_property("name",
@@ -184,19 +149,58 @@ void python_BodyNode()
             )
         .add_property("skeleton", static_cast<SkeletonPtr (BodyNode::*)()>(
             &BodyNode::getSkeleton))
+        .add_property("parent_joint", make_function(
+            static_cast<Joint *(BodyNode::*)()>(
+                &BodyNode::getParentJoint),
+            return_value_policy<reference_existing_object>()))
+        .add_property("parent_bodynode", make_function(
+            static_cast<BodyNode *(BodyNode::*)()>(
+                &BodyNode::getParentBodyNode),
+            return_value_policy<return_BodyNodePtr>()))
+        .add_property("num_child_bodynodes",
+            &BodyNode::getNumChildBodyNodes)
         .def("moveTo", static_cast<void (BodyNode::*)(BodyNode *)>(
             &BodyNode::moveTo))
         .def("moveTo", static_cast<void (BodyNode::*)(SkeletonPtr, BodyNode *)>(
             &BodyNode::moveTo))
-#if 0
-        .def("moveTo", &BodyNode_moveTo2,
-             return_value_policy<reference_existing_object>())
-        .def("moveTo", &BodyNode_moveTo3,
-             return_value_policy<reference_existing_object>())
-        .def("moveTo", &BodyNode_moveTo4,
-             return_value_policy<reference_existing_object>())
-#endif
-        .def("split", static_cast<SkeletonPtr (BodyNode::*)(std::string const &)>(
-            &BodyNode::split))
+        .def("moveTo", 
+            static_cast<Joint *(*)(BodyNode *, JointType::Enum, BodyNodePtr)>(
+                &Joint_unpack<Joint *, BodyNode, moveTo2_wrapper>),
+            return_value_policy<reference_existing_object>())
+        .def("moveTo", 
+            static_cast<Joint *(*)(BodyNode *, JointType::Enum, BodyNodePtr,
+                                   Joint::Properties const *)>(
+                &Joint_unpack<Joint *, BodyNode, moveTo2_wrapper>),
+            return_value_policy<reference_existing_object>())
+        .def("moveTo", 
+            static_cast<Joint *(*)(BodyNode *, JointType::Enum, SkeletonPtr,
+                                   BodyNodePtr, Joint::Properties const *)>(
+                &Joint_unpack<Joint *, BodyNode, moveTo3_wrapper>),
+            return_value_policy<reference_existing_object>())
+        .def("split",
+            static_cast<SkeletonPtr (BodyNode::*)(std::string const &)>(
+                &BodyNode::split))
+        .def("split", 
+            static_cast<SkeletonPtr (*)(BodyNode *, JointType::Enum,
+                                        std::string const &)>(
+                &Joint_unpack<SkeletonPtr, BodyNode, split_wrapper>))
+        .def("split", 
+            static_cast<SkeletonPtr (*)(BodyNode *, JointType::Enum,
+                                        std::string const &,
+                                        Joint::Properties const *)>(
+                &Joint_unpack<SkeletonPtr, BodyNode, split_wrapper>))
+        .def("change_parent_joint_type",
+            static_cast<Joint *(*)(BodyNode *, JointType::Enum)>(
+                &Joint_unpack<Joint *, BodyNode, changeParentJointType_wrapper>),
+            return_value_policy<reference_existing_object>())
+        .def("change_parent_joint_type",
+            static_cast<Joint *(*)(BodyNode *, JointType::Enum, 
+                                   Joint::Properties const *)>(
+                &Joint_unpack<Joint *, BodyNode, changeParentJointType_wrapper>),
+            return_value_policy<reference_existing_object>())
+        .def("get_child_bodynode",
+            static_cast<BodyNode *(BodyNode::*)(size_t)>(
+                &BodyNode::getChildBodyNode),
+            return_value_policy<return_BodyNodePtr>())
         ;
 }
