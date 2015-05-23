@@ -1,3 +1,4 @@
+#include <unordered_map>
 #include "pointers.h"
 #include <boost/python.hpp>
 #include <dart/dynamics/dynamics.h>
@@ -6,6 +7,56 @@
 
 using ::boost::python::object;
 using ::dart::dynamics::Joint;
+
+namespace dart {
+namespace python {
+
+class JointMap {
+public:
+    void addOverride(std::string const &jointType,
+                     std::string const &className)
+    {
+        m_jointTypeOverrides[jointType] = className;
+    }
+
+    template <class JointT>
+    std::string const &getPythonName() const
+    {
+        return getPythonName(JointT::getStaticType());
+    }
+
+    /// Maps from Joint::getType() to the Python class name.
+    std::string const &getPythonName(std::string const &jointType) const
+    {
+        auto const it = m_jointTypeOverrides.find(jointType);
+
+        if (it != std::end(m_jointTypeOverrides)) {
+            return it->second;
+        } else {
+            return jointType;
+        }
+    }
+
+    static JointMap &instance()
+    {
+        if (!m_instance) {
+            m_instance.reset(new JointMap);
+        }
+        return *m_instance;
+    }
+
+private:
+    static std::shared_ptr<JointMap> m_instance;
+
+    std::unordered_map<std::string, std::string> m_jointTypeOverrides;
+
+    JointMap() = default;
+    JointMap(JointMap const &) = delete;
+    JointMap &operator=(JointMap const &) = delete;
+};
+
+std::shared_ptr<JointMap> JointMap::m_instance;
+
 
 static void Joint_setName_default(Joint *joint, std::string const &name)
 {
@@ -22,12 +73,6 @@ static object Joint_getattribute(object self, object name)
     using ::boost::python::eval;
     using ::boost::python::import;
 
-    object dartpy = import("dartpy");
-    object Joint_class = dartpy.attr("Joint");
-    object FreeJoint_class = dartpy.attr("FreeJoint");
-
-    self.attr("__class__") = FreeJoint_class;
-
     return eval("object").attr("__getattribute__")(self, name);
 }
 
@@ -42,12 +87,15 @@ static void python_Joint_base()
     using dart::dynamics::DegreeOfFreedomPtr;
     using dart::dynamics::JointPtr;
     using dart::dynamics::SkeletonPtr;
+    using dart::python::JointMap;
 
     typedef return_by_smart_ptr<BodyNodePtr> return_BodyNodePtr;
     typedef return_by_smart_ptr<DegreeOfFreedomPtr> return_DegreeOfFredomPtr;
 
     scope joint_class(
-        class_<Joint, JointPtr, noncopyable>("Joint", no_init)
+        class_<Joint, JointPtr, noncopyable>(
+                JointMap::instance().getPythonName<Joint>().c_str(),
+                no_init)
             .add_property("name",
                 make_function(&Joint::getName,
                               return_value_policy<copy_const_reference>()),
@@ -132,8 +180,9 @@ static void python_ZeroDofJoint()
     using dart::dynamics::ZeroDofJoint;
 
     scope joint_class(
-        class_<ZeroDofJoint, bases<Joint>,
-               noncopyable>("ZeroDofJoint", no_init)
+        class_<ZeroDofJoint, bases<Joint>, noncopyable>(
+               JointMap::instance().getPythonName<ZeroDofJoint>().c_str(),
+               no_init)
 
     );
 
@@ -148,8 +197,9 @@ static void python_FreeJoint()
     using dart::dynamics::FreeJoint;
 
     scope joint_class(
-        class_<FreeJoint, bases<Joint>,
-               noncopyable>("FreeJoint", no_init)
+        class_<FreeJoint, bases<Joint>, noncopyable>(
+               JointMap::instance().getPythonName<FreeJoint>().c_str(),
+               no_init)
             .def("test", &FreeJoint_test)
     );
 }
@@ -162,7 +212,9 @@ static void python_SingleDofJoint()
     using dart::dynamics::SingleDofJoint;
 
     scope joint_class(
-        class_<SingleDofJoint, noncopyable>("SingleDofJoint", no_init)
+        class_<SingleDofJoint, noncopyable>(
+            JointMap::instance().getPythonName<SingleDofJoint>().c_str(),
+            no_init)
     );
 
     class_<SingleDofJoint::UniqueProperties>("UniqueProperties")
@@ -211,7 +263,9 @@ static void python_RevoluteJoint()
     using dart::dynamics::SingleDofJoint;
 
     scope joint_class(
-        class_<RevoluteJoint, noncopyable>("RevoluteJoint", no_init)
+        class_<RevoluteJoint, noncopyable>(
+                JointMap::instance().getPythonName<RevoluteJoint>().c_str(),
+                no_init)
     );
 
     class_<RevoluteJoint::UniqueProperties>("UniqueProperties")
@@ -233,7 +287,9 @@ static void python_WeldJoint()
     using dart::dynamics::ZeroDofJoint;
 
     scope joint_class(
-        class_<WeldJoint, noncopyable>("WeldJoint", no_init)
+        class_<WeldJoint, noncopyable>(
+                JointMap::instance().getPythonName<WeldJoint>().c_str(),
+                no_init)
     );
 
     class_<WeldJoint::Properties,
@@ -241,9 +297,13 @@ static void python_WeldJoint()
         ;
 }
 
+} // namespace python
+} // namespace dart
+
 void python_Joint()
 {
     using namespace ::boost::python;
+    using namespace ::dart::python;
 
     using ::dart::python::JointType;
 
