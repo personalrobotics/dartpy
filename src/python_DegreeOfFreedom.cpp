@@ -27,6 +27,9 @@ object DegreeOfFreedom_GetLimits(DegreeOfFreedom *self)
     return make_tuple(limits.first, limits.second);
 }
 
+namespace dart {
+namespace python {
+
 void python_DegreeOfFreedom()
 {
     using namespace ::boost::python;
@@ -120,3 +123,6 @@ void python_DegreeOfFreedom()
             return_value_policy<copy_const_reference>())
         ;
 }
+
+} // namespace python
+} // namespace dart

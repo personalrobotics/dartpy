@@ -5,6 +5,9 @@
 #include <dart/collision/fcl/FCLCollisionDetector.h>
 #include <dart/dynamics/dynamics.h>
 
+namespace dart {
+namespace python {
+
 void python_CollisionDetector()
 {
     using namespace ::boost::python;
@@ -52,3 +55,6 @@ void python_CollisionDetector()
            bases<CollisionDetector> >("DARTCollisionDetector")
         ;
 }
+
+} // namespace python
+} // namespace dart

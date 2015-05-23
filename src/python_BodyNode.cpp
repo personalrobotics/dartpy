@@ -130,6 +130,9 @@ struct changeParentJointType_wrapper
     }
 };
 
+namespace dart {
+namespace python {
+
 void python_BodyNode()
 {
     using namespace ::boost::python;
@@ -215,3 +218,6 @@ void python_BodyNode()
             return_value_policy<return_BodyNodePtr>())
         ;
 }
+
+} // namespace python
+} // namespace dart

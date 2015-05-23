@@ -3,6 +3,9 @@
 #include <dart/simulation/simulation.h>
 #include <dart/utils/urdf/urdf.h>
 
+namespace dart {
+namespace python {
+
 void python_DartLoader()
 {
     using namespace ::boost::python;
@@ -14,3 +17,6 @@ void python_DartLoader()
         .def("add_package_directory", &DartLoader::addPackageDirectory)
         ;
 }
+
+} // namespace python
+} // namespace dart

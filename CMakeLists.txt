@@ -23,10 +23,17 @@ add_library(${PROJECT_NAME} SHARED
   src/python_ConstraintSolver.cpp
   src/python_DartLoader.cpp
   src/python_DegreeOfFreedom.cpp
-  src/python_Joint.cpp
   src/python_SimWindow.cpp
   src/python_Skeleton.cpp
   src/python_World.cpp
+  # Joints
+  src/python_Joint.cpp
+  src/python_FreeJoint.cpp
+  src/python_WeldJoint.cpp
+  src/python_ZeroDofJoint.cpp
+  src/python_MultiDofJoint.cpp
+  src/python_SingleDofJoint.cpp
+  src/python_RevoluteJoint.cpp
 )
 target_link_libraries(${PROJECT_NAME}
   ${PROJECT_NAME}

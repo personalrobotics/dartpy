@@ -52,7 +52,8 @@ static dart::dynamics::DegreeOfFreedomPtr Skeleton_getDofByName(Skeleton *skelet
     return dart::dynamics::DegreeOfFreedomPtr(skeleton->getDof(name));
 }
 
-// ---
+namespace dart {
+namespace python {
 
 void python_Skeleton()
 {
@@ -152,3 +153,6 @@ void python_Skeleton()
         .def("init", &Skeleton::init)
         ;
 }
+
+} // namespace python
+} // namespace dart

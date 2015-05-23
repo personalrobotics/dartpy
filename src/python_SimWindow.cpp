@@ -60,6 +60,9 @@ static World *SimWindow_get_world(SimWindow *window)
     throw std::runtime_error("get_world() is not implemented.");
 }
 
+namespace dart {
+namespace python {
+
 void python_SimWindow()
 {
     using namespace ::boost::python;
@@ -75,4 +78,7 @@ void python_SimWindow()
         .def("draw_arrow_3d", &::dart::gui::drawArrow3D)
         .staticmethod("draw_arrow_3d")
         ;
+}
+
+}
 }

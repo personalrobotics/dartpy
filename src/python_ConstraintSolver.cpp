@@ -3,6 +3,9 @@
 #include <dart/constraint/constraint.h>
 #include "util.h"
 
+namespace dart {
+namespace python {
+
 void python_ConstraintSolver()
 {
     using namespace ::boost::python;
@@ -22,4 +25,7 @@ void python_ConstraintSolver()
         .def("remove_constraint", &ConstraintSolver::removeConstraint)
         .def("remove_all_constraints", &ConstraintSolver::removeAllConstraints)
         ;
+}
+
+}
 }

@@ -63,9 +63,10 @@ static void Joint_setName_default(Joint *joint, std::string const &name)
     joint->setName(name);
 }
 
-static void python_Joint_base()
+void python_Joint()
 {
-    using namespace boost::python;
+    using namespace ::boost::python;
+    using namespace ::dart::python;
 
     using boost::noncopyable;
     using dart::dynamics::BodyNode;
@@ -74,15 +75,36 @@ static void python_Joint_base()
     using dart::dynamics::DegreeOfFreedomPtr;
     using dart::dynamics::JointPtr;
     using dart::dynamics::SkeletonPtr;
-    using dart::python::JointMap;
+    using dart::python::JointType;
 
+    typedef ::dart::dynamics::Joint::ActuatorType ActuatorType;
     typedef return_by_smart_ptr<BodyNodePtr> return_BodyNodePtr;
     typedef return_by_smart_ptr<DegreeOfFreedomPtr> return_DegreeOfFredomPtr;
 
+    enum_<ActuatorType>("ActuatorType")
+        .value("FORCE", Joint::FORCE)
+        .value("PASSIVE", Joint::PASSIVE)
+        .value("SERVO", Joint::SERVO)
+        .value("ACCELERATION", Joint::ACCELERATION)
+        .value("VELOCITY", Joint::VELOCITY)
+        .value("LOCKED", Joint::LOCKED)
+        ;
+
+    enum_<JointType::Enum>("JointType")
+        .value("PRISMATIC", JointType::PRISMATIC)
+        .value("REVOLUTE", JointType::REVOLUTE)
+        .value("SCREW", JointType::SCREW)
+        .value("WELD", JointType::WELD)
+        .value("UNIVERSAL", JointType::UNIVERSAL)
+        .value("BALL", JointType::BALL)
+        .value("EULER", JointType::EULER)
+        .value("PLANAR", JointType::PLANAR)
+        .value("TRANSLATIONAL", JointType::TRANSLATIONAL)
+        .value("FREE", JointType::FREE)
+        ;
+
     scope joint_class(
-        class_<Joint, JointPtr, noncopyable>(
-                JointMap::instance().getPythonName<Joint>().c_str(),
-                no_init)
+        class_<Joint, JointPtr, noncopyable>("Joint", no_init)
             .add_property("name",
                 make_function(&Joint::getName,
                               return_value_policy<copy_const_reference>()),
@@ -158,170 +180,5 @@ static void python_Joint_base()
         ;
 }
 
-static void python_ZeroDofJoint()
-{
-    using namespace boost::python;
-
-    using boost::noncopyable;
-    using dart::dynamics::ZeroDofJoint;
-
-    scope joint_class(
-        class_<ZeroDofJoint, bases<Joint>, noncopyable>(
-               JointMap::instance().getPythonName<ZeroDofJoint>().c_str(),
-               no_init)
-
-    );
-
-    class_<ZeroDofJoint::Properties>("Properties");
-}
-
-static void python_FreeJoint()
-{
-    using namespace boost::python;
-
-    using boost::noncopyable;
-    using dart::dynamics::FreeJoint;
-
-    scope joint_class(
-        class_<FreeJoint, bases<Joint>, noncopyable>(
-               JointMap::instance().getPythonName<FreeJoint>().c_str(),
-               no_init)
-    );
-}
-
-static void python_SingleDofJoint()
-{
-    using namespace boost::python;
-
-    using boost::noncopyable;
-    using dart::dynamics::SingleDofJoint;
-
-    scope joint_class(
-        class_<SingleDofJoint, bases<Joint>, noncopyable>(
-            JointMap::instance().getPythonName<SingleDofJoint>().c_str(),
-            no_init)
-    );
-
-    class_<SingleDofJoint::UniqueProperties>("UniqueProperties")
-        .def_readwrite("position_lower_limit",
-            &SingleDofJoint::UniqueProperties::mPositionLowerLimit)
-        .def_readwrite("position_upper_limit",
-            &SingleDofJoint::UniqueProperties::mPositionUpperLimit)
-        .def_readwrite("velocity_lower_limit",
-            &SingleDofJoint::UniqueProperties::mVelocityLowerLimit)
-        .def_readwrite("velocity_upper_limit",
-            &SingleDofJoint::UniqueProperties::mVelocityUpperLimit)
-        .def_readwrite("acceleration_lower_limit",
-            &SingleDofJoint::UniqueProperties::mAccelerationLowerLimit)
-        .def_readwrite("acceleration_upper_limit",
-            &SingleDofJoint::UniqueProperties::mAccelerationUpperLimit)
-        .def_readwrite("force_lower_limit",
-            &SingleDofJoint::UniqueProperties::mForceLowerLimit)
-        .def_readwrite("force_upper_limit",
-            &SingleDofJoint::UniqueProperties::mForceUpperLimit)
-        .def_readwrite("spring_stiffness",
-            &SingleDofJoint::UniqueProperties::mSpringStiffness)
-        .def_readwrite("rest_position",
-            &SingleDofJoint::UniqueProperties::mRestPosition)
-        .def_readwrite("damping_coefficient",
-            &SingleDofJoint::UniqueProperties::mDampingCoefficient)
-        .def_readwrite("friction",
-            &SingleDofJoint::UniqueProperties::mFriction)
-        .def_readwrite("preserve_dof_name",
-            &SingleDofJoint::UniqueProperties::mPreserveDofName)
-        .def_readwrite("dof_name",
-            &SingleDofJoint::UniqueProperties::mDofName)
-        ;
-
-    class_<SingleDofJoint::Properties, bases<
-                Joint::Properties, SingleDofJoint::UniqueProperties>
-            >("Properties")
-        ;
-}
-
-static void python_RevoluteJoint()
-{
-    using namespace boost::python;
-
-    using boost::noncopyable;
-    using dart::dynamics::Joint;
-    using dart::dynamics::RevoluteJoint;
-    using dart::dynamics::SingleDofJoint;
-
-    scope joint_class(
-        class_<RevoluteJoint, bases<Joint>, noncopyable>(
-                JointMap::instance().getPythonName<RevoluteJoint>().c_str(),
-                no_init)
-    );
-
-    class_<RevoluteJoint::UniqueProperties>("UniqueProperties")
-        .def_readwrite("axis", &RevoluteJoint::UniqueProperties::mAxis)
-        ;
-
-    class_<RevoluteJoint::Properties, bases<
-            SingleDofJoint::Properties, RevoluteJoint::UniqueProperties>
-          >("Properties")
-        ;
-}
-
-static void python_WeldJoint()
-{
-    using namespace boost::python;
-
-    using boost::noncopyable;
-    using dart::dynamics::WeldJoint;
-    using dart::dynamics::ZeroDofJoint;
-
-    scope joint_class(
-        class_<WeldJoint, noncopyable>(
-                JointMap::instance().getPythonName<WeldJoint>().c_str(),
-                no_init)
-    );
-
-    class_<WeldJoint::Properties,
-           bases<ZeroDofJoint::Properties> >("Properties")
-        ;
-}
-
 } // namespace python
 } // namespace dart
-
-void python_Joint()
-{
-    using namespace ::boost::python;
-    using namespace ::dart::python;
-
-    using ::dart::python::JointType;
-
-    typedef ::dart::dynamics::Joint::ActuatorType ActuatorType;
-
-
-    enum_<ActuatorType>("ActuatorType")
-        .value("FORCE", Joint::FORCE)
-        .value("PASSIVE", Joint::PASSIVE)
-        .value("SERVO", Joint::SERVO)
-        .value("ACCELERATION", Joint::ACCELERATION)
-        .value("VELOCITY", Joint::VELOCITY)
-        .value("LOCKED", Joint::LOCKED)
-        ;
-
-    enum_<JointType::Enum>("JointType")
-        .value("PRISMATIC", JointType::PRISMATIC)
-        .value("REVOLUTE", JointType::REVOLUTE)
-        .value("SCREW", JointType::SCREW)
-        .value("WELD", JointType::WELD)
-        .value("UNIVERSAL", JointType::UNIVERSAL)
-        .value("BALL", JointType::BALL)
-        .value("EULER", JointType::EULER)
-        .value("PLANAR", JointType::PLANAR)
-        .value("TRANSLATIONAL", JointType::TRANSLATIONAL)
-        .value("FREE", JointType::FREE)
-        ;
-
-    python_Joint_base();
-    python_ZeroDofJoint();
-    python_SingleDofJoint();
-    python_RevoluteJoint();
-    python_FreeJoint();
-    python_WeldJoint();
-}

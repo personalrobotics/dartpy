@@ -5,6 +5,9 @@
 #include <dart/simulation/World.h>
 #include "util.h"
 
+namespace dart {
+namespace python {
+
 void python_World()
 {
     using namespace ::boost::python;
@@ -30,3 +33,6 @@ void python_World()
         .def("step", &World::step)
         ;
 }
+
+} // namespace python
+} // namespace dart

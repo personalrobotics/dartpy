@@ -1,6 +1,9 @@
 #include <boost/python.hpp>
 #include <dart/constraint/constraint.h>
 
+namespace dart {
+namespace python {
+
 void python_Constraint()
 {
     using namespace ::boost::python;
@@ -21,4 +24,7 @@ void python_Constraint()
          init<BodyNode *>())
         .def(init<BodyNode *, BodyNode *>())
         ;
+}
+
+}
 }
