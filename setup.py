@@ -16,6 +16,7 @@ description = 'dartpy provides python bindings for DART.'
 class cmake_build_ext(build_ext):
     """ Wrapper class that builds the extension using CMake. """
     def build_extension(self, ext):
+        # TODO: add CMake build commands here.
         build_ext.build_extension(self, ext)
 
 # Set up the python package wrapping this extension.
