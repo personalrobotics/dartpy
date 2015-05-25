@@ -1,3 +1,4 @@
+import contextlib
 import os
 from codecs import open  # To use a consistent encoding
 from setuptools import setup, Extension
@@ -12,12 +13,30 @@ with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
 description = 'dartpy provides python bindings for DART.'
 
 
-# Build extension library using CMake.
+# See: http://www.astropython.org/snippet/2009/10/chdir-context-manager
+@contextlib.contextmanager
+def chdir(dirname=None):
+    """ Context manager for changing directories. """
+    curdir = os.getcwd()
+    try:
+        if dirname is not None:
+            os.chdir(dirname)
+        yield
+    finally:
+        os.chdir(curdir)
+
+
+# See: https://github.com/libdynd/dynd-python/blob/master/setup.py
 class cmake_build_ext(build_ext):
     """ Wrapper class that builds the extension using CMake. """
-    def build_extension(self, ext):
-        # TODO: add CMake build commands here.
-        build_ext.build_extension(self, ext)
+    def run(self):
+        # The directory containing this setup.py
+        source_path = os.dirname(os.abspath(__file__))
+
+        # Build using CMake from the specified build directory.
+        with chdir(self.build_temp):
+            self.spawn(['cmake', source_path])
+            self.spawn(['make'])
 
 # Set up the python package wrapping this extension.
 setup(
@@ -25,7 +44,7 @@ setup(
     version='0.0.1',
     description=description,
     long_description=long_description,
-    ext_modules=[Extension('dartpy')],
+    ext_modules=[Extension('dartpy', sources=[])],
     url='https://github.com/personalrobotics/dartpy',
     author='Michael Koval',
     author_email='mkoval@cs.cmu.edu',
