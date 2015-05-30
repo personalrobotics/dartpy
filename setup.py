@@ -30,12 +30,10 @@ def chdir(dirname=None):
 class cmake_build_ext(build_ext):
     """ Wrapper class that builds the extension using CMake. """
     def run(self):
-        # The directory containing this setup.py
-        source_path = os.dirname(os.abspath(__file__))
-
-        # Build using CMake from the specified build directory.
+        """ Build using CMake from the specified build directory. """
+        self.mkpath(self.build_temp)
         with chdir(self.build_temp):
-            self.spawn(['cmake', source_path])
+            self.spawn(['cmake', here])
             self.spawn(['make'])
 
 # Set up the python package wrapping this extension.
@@ -54,9 +52,6 @@ setup(
         'Development Status :: 1 - Planning',
         'License :: BSD',
         'Intended Audience :: Developers',
-    ],
-    install_requires=[
-        'boost_python',
     ],
     cmdclass={'build_ext': cmake_build_ext},
 )
