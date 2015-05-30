@@ -18,6 +18,29 @@ include_directories(
   ${PYTHON_INCLUDE_DIRS}
 )
 
+# Check whether the CXX compiler and boost::python support get_pointer for
+# std::shared_ptr<T> references.
+include(CheckCXXSourceCompiles)
+set(CMAKE_REQUIRED_INCLUDES
+  ${Boost_INCLUDE_DIRS}
+  ${PYTHON_INCLUDE_DIRS}
+)
+set(CMAKE_REQUIRED_LIBRARIES
+  ${Boost_LIBRARIES}
+  ${PYTHON_LIBRARIES}
+)
+check_cxx_source_compiles(
+  "
+  #include <memory>
+  #include <boost/python.hpp>
+  int main() { std::shared_ptr<int> ptr; int *p = boost::get_pointer(ptr); }
+  "
+  HAS_STD_SHARED_GET_POINTER
+)
+if(HAS_STD_SHARED_GET_POINTER)
+  add_definitions(-DHAS_STD_SHARED_GET_POINTER)
+endif(HAS_STD_SHARED_GET_POINTER)
+
 add_library(${PROJECT_NAME} SHARED
   src/python.cpp
   src/python_BodyNode.cpp
