@@ -85,7 +85,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 # Install the python extension using setuputils.
 install(CODE
   "
-  execute_process(COMMAND python setup.py install -f
+  execute_process(COMMAND python setup.py
+                          build_ext
+                          --build-temp=${PROJECT_BINARY_DIR}
+                          install
+                          --force
                           --prefix=${CMAKE_INSTALL_PREFIX}
                   WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
   )
