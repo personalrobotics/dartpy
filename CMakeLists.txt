@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 project(dartpy)
 
+# Use MACOSX_RPATH by default on OS X. This was added in CMake 2.8.12 and
+# became default in CMake 3.0. Explicitly setting this policy is necessary to
+# suppress a warning in CMake 3.0 and above.
+if(POLICY CMP0042)
+  cmake_policy(SET CMP0042 NEW)
+endif()
+
+# Enable C++11. This is necessary to use DART.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE "RELWITHDEBINFO")
