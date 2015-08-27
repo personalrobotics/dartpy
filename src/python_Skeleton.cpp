@@ -59,6 +59,7 @@ void python_Skeleton()
 {
     using namespace ::boost::python;
     using ::boost::noncopyable;
+    using ::dart::common::Subject;
     using ::dart::dynamics::BodyNode;
     using ::dart::dynamics::BodyNodePtr;
     using ::dart::dynamics::DegreeOfFreedom;
@@ -80,7 +81,8 @@ void python_Skeleton()
 
     implicitly_convertible<SkeletonPtr, MetaSkeletonPtr>(); 
 
-    class_<MetaSkeleton, MetaSkeletonPtr, noncopyable>("MetaSkeleton", no_init)
+    class_<MetaSkeleton, MetaSkeletonPtr, bases<Subject>, noncopyable>(
+            "MetaSkeleton", no_init)
         .add_property("name",
             make_function(&MetaSkeleton::getName,
                           return_value_policy<copy_const_reference>()),

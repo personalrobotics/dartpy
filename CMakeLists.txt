@@ -59,6 +59,7 @@ add_library(${PROJECT_NAME} SHARED
   src/python_DegreeOfFreedom.cpp
   src/python_SimWindow.cpp
   src/python_Skeleton.cpp
+  src/python_Subject.cpp
   src/python_World.cpp
   src/python_Frame.cpp
   # Joints
