@@ -104,7 +104,8 @@ void python_Skeleton()
             return_value_policy<return_JointPtr>())
         ;
 
-    class_<Skeleton, SkeletonPtr, bases<MetaSkeleton> >("Skeleton", no_init)
+    class_<Skeleton, SkeletonPtr, bases<MetaSkeleton>, noncopyable>(
+            "Skeleton", no_init)
         .add_property("is_enabled_self_collision_check",
             &Skeleton::isEnabledSelfCollisionCheck)
         .add_property("is_enabled_adjacent_body_check",
@@ -150,7 +151,6 @@ void python_Skeleton()
         .def("enable_self_collision", &Skeleton::enableSelfCollision)
         .def("disable_self_collision", &Skeleton::disableSelfCollision)
         .def("compute_forward_kinematics", &Skeleton::computeForwardKinematics)
-        .def("init", &Skeleton::init)
         ;
 }
 
