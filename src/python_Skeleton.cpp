@@ -73,10 +73,21 @@ namespace python {
 
 namespace {
 
-#if 0
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
-    setCommands_overloads, dart::dynamics::MetaSkeleton::setCommands, 1, 2)
-#endif
+    getLinearJacobian_overloads2, MetaSkeleton::getLinearJacobian, 1, 2)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
+    getLinearJacobian_overloads3, MetaSkeleton::getLinearJacobian, 2, 3)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
+    getAngularJacobian_overloads2, MetaSkeleton::getAngularJacobian, 1, 2)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
+    getJacobianClassicDeriv_overloads3,
+    MetaSkeleton::getJacobianClassicDeriv, 2, 3)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
+    getLinearJacobianDeriv_overloads3,
+    MetaSkeleton::getLinearJacobianDeriv, 2, 3)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
+    getAngularJacobianDeriv_overloads2,
+    MetaSkeleton::getAngularJacobianDeriv, 1, 2)
 
 } // namespace
 
@@ -263,7 +274,6 @@ void python_Skeleton()
             &MetaSkeleton::getJointConstraintImpulses)
 
         // Jacobians
-        // TODO: Many of these Frame's should be optional.
         .def("getJacobian",
             static_cast<Jacobian (MetaSkeleton::*)(const JacobianNode*) const>(
                 &MetaSkeleton::getJacobian))
@@ -289,15 +299,18 @@ void python_Skeleton()
         .def("getLinearJacobian",
             static_cast<LinearJacobian (MetaSkeleton::*)(
                     const JacobianNode*, const Frame*) const>(
-                &MetaSkeleton::getLinearJacobian))
+                &MetaSkeleton::getLinearJacobian),
+            getLinearJacobian_overloads2())
         .def("getLinearJacobian",
             static_cast<LinearJacobian (MetaSkeleton::*)(const JacobianNode*,
                     const Eigen::Vector3d&, const Frame*) const>(
-                &MetaSkeleton::getLinearJacobian))
+                &MetaSkeleton::getLinearJacobian),
+            getLinearJacobian_overloads3())
         .def("getAngularJacobian",
             static_cast<AngularJacobian (MetaSkeleton::*)(
                     const JacobianNode*, const Frame*) const>(
-                &MetaSkeleton::getAngularJacobian))
+                &MetaSkeleton::getAngularJacobian),
+            getAngularJacobian_overloads2())
         .def("getJacobianSpatialDeriv",
             static_cast<Jacobian (MetaSkeleton::*)(const JacobianNode*) const>(
                 &MetaSkeleton::getJacobianSpatialDeriv))
@@ -323,19 +336,23 @@ void python_Skeleton()
         .def("getJacobianClassicDeriv",
             static_cast<Jacobian (MetaSkeleton::*)(const JacobianNode*,
                     const Eigen::Vector3d&, const Frame*) const>(
-                &MetaSkeleton::getJacobianClassicDeriv))
+                &MetaSkeleton::getJacobianClassicDeriv),
+            getJacobianClassicDeriv_overloads3())
         .def("getLinearJacobianDeriv",
             static_cast<LinearJacobian (MetaSkeleton::*)(const JacobianNode*,
                     const Frame*) const>(
                 &MetaSkeleton::getLinearJacobianDeriv))
+            // TODO: Add support for default arguments.
         .def("getLinearJacobianDeriv",
             static_cast<LinearJacobian (MetaSkeleton::*)(const JacobianNode*,
                     const Eigen::Vector3d&, const Frame*) const>(
-                &MetaSkeleton::getLinearJacobianDeriv))
+                &MetaSkeleton::getLinearJacobianDeriv),
+            getLinearJacobianDeriv_overloads3())
         .def("getAngularJacobianDeriv",
             static_cast<AngularJacobian (MetaSkeleton::*)(const JacobianNode*,
                     const Frame*) const>(
-                &MetaSkeleton::getAngularJacobianDeriv))
+                &MetaSkeleton::getAngularJacobianDeriv),
+            getAngularJacobianDeriv_overloads2())
 
         // Equations of Motion
         .def("getMass", &MetaSkeleton::getMass)
