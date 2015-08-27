@@ -68,9 +68,6 @@ static dart::dynamics::DegreeOfFreedomPtr Skeleton_getDofByName(Skeleton *skelet
     return dart::dynamics::DegreeOfFreedomPtr(skeleton->getDof(name));
 }
 
-namespace dart {
-namespace python {
-
 namespace {
 
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
@@ -79,17 +76,21 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
     getLinearJacobian_overloads3, MetaSkeleton::getLinearJacobian, 2, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
     getAngularJacobian_overloads2, MetaSkeleton::getAngularJacobian, 1, 2)
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
-    getJacobianClassicDeriv_overloads3,
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(getJacobianClassicDeriv_overloads3,
     MetaSkeleton::getJacobianClassicDeriv, 2, 3)
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
-    getLinearJacobianDeriv_overloads3,
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(getLinearJacobianDeriv_overloads2,
+    MetaSkeleton::getLinearJacobianDeriv, 1, 2)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(getLinearJacobianDeriv_overloads3,
     MetaSkeleton::getLinearJacobianDeriv, 2, 3)
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(
-    getAngularJacobianDeriv_overloads2,
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(getAngularJacobianDeriv_overloads2,
     MetaSkeleton::getAngularJacobianDeriv, 1, 2)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(getIndexOf_overloads,
+    MetaSkeleton::getIndexOf, 1, 2);
 
 } // namespace
+
+namespace dart {
+namespace python {
 
 void python_Skeleton()
 {
@@ -126,8 +127,8 @@ void python_Skeleton()
             // TODO: Convert the output to a list of BodyNodePtrs.
         .def("getIndexOf",
             static_cast<size_t (MetaSkeleton::*)(const BodyNode*, bool) const>(
-                &MetaSkeleton::getIndexOf))
-            // TODO: Make the 'bool' argument optional.
+                &MetaSkeleton::getIndexOf),
+            getIndexOf_overloads())
         .def("getNumJoints", &MetaSkeleton::getNumJoints)
         .def("getJoint",
             static_cast<Joint* (MetaSkeleton::*)(size_t)>(
@@ -135,8 +136,8 @@ void python_Skeleton()
             return_value_policy<return_JointPtr>())
         .def("getIndexOf",
             static_cast<size_t (MetaSkeleton::*)(const Joint*, bool) const>(
-                &MetaSkeleton::getIndexOf))
-            // TODO: Make the 'bool' argument optional.
+                &MetaSkeleton::getIndexOf),
+            getIndexOf_overloads())
         .def("getNumDofs", &MetaSkeleton::getNumDofs)
         .def("getDof",
             static_cast<DegreeOfFreedom* (MetaSkeleton::*)(size_t)>(
@@ -150,8 +151,8 @@ void python_Skeleton()
         .def("getIndexOf",
             static_cast<size_t (MetaSkeleton::*)(
                     const DegreeOfFreedom*, bool) const>(
-                &MetaSkeleton::getIndexOf))
-            // TODO: Make the 'bool' argument optional.
+                &MetaSkeleton::getIndexOf),
+            getIndexOf_overloads())
 
         // Command
         .def("setCommand", &MetaSkeleton::setCommand)
