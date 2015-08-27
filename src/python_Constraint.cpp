@@ -1,4 +1,5 @@
 #include <boost/python.hpp>
+#include <dart/dynamics/dynamics.h>
 #include <dart/constraint/constraint.h>
 
 namespace dart {
