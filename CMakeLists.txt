@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 2.8)
 project(dartpy)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE "RELWITHDEBINFO")
+endif()
 
 add_definitions(-DPROJECT_NAME=${PROJECT_NAME})
 
@@ -77,4 +80,18 @@ target_link_libraries(${PROJECT_NAME}
 set_target_properties(${PROJECT_NAME} PROPERTIES
   PREFIX ""
   SUFFIX ".so"
+)
+
+# Install the python extension using setuputils.
+install(CODE
+  "
+  execute_process(COMMAND python setup.py
+                          build_ext
+                          --build-temp=${PROJECT_BINARY_DIR}
+                          install
+                          --force
+                          --prefix=${CMAKE_INSTALL_PREFIX}
+                  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+  )
+  "
 )
