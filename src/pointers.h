@@ -103,11 +103,13 @@ inline JointPtr_wrapper_base JointPtr_wrapper_create(
 
 namespace boost {
 
+#ifndef HAS_STD_SHARED_GET_POINTER
 template <class T>
 T *get_pointer(std::shared_ptr<T> const &ptr) 
 {
     return ptr.get();
 }
+#endif // ifndef HAS_STD_SHARED_GET_POINTER
 
 inline dart::dynamics::BodyNode *get_pointer(
     dart::dynamics::BodyNodePtr const &p)
