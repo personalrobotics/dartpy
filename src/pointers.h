@@ -111,8 +111,20 @@ T *get_pointer(std::shared_ptr<T> const &ptr)
 }
 #endif // ifndef HAS_STD_SHARED_GET_POINTER
 
-inline dart::dynamics::BodyNode *get_pointer(
-    dart::dynamics::BodyNodePtr const &p)
+template <class T>
+T *get_pointer(dart::dynamics::TemplateBodyNodePtr<T> const &p)
+{
+    return p.get();
+}
+
+template <class T, class U>
+T *get_pointer(dart::dynamics::TemplateNodePtr<T, U> const &p)
+{
+    return p.get();
+}
+
+template <class T, class U>
+T *get_pointer(dart::dynamics::TemplateDegreeOfFreedomPtr<T, U> const &p)
 {
     return p.get();
 }
