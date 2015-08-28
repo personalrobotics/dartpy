@@ -27,6 +27,7 @@ void python_TranslationalJoint();
 void python_UniversalJoint();
 void python_WeldJoint();
 
+void python_MetaSkeleton();
 void python_SimWindow();
 void python_Skeleton();
 void python_World();
@@ -63,6 +64,7 @@ BOOST_PYTHON_MODULE(PROJECT_NAME)
     python_UniversalJoint();
     python_WeldJoint();
 
+    python_MetaSkeleton();
     python_SimWindow();
     python_Skeleton();
     python_World();
