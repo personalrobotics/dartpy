@@ -7,6 +7,7 @@
 #include "types.h"
 
 using boost::python::object;
+using dart::common::Subject;
 using dart::dynamics::BodyNode;
 using dart::dynamics::BodyNodePtr;
 using dart::dynamics::DegreeOfFreedom;
@@ -99,7 +100,7 @@ void python_Joint()
         ;
 
     scope joint_class(
-        class_<Joint, JointPtr, noncopyable>("Joint", no_init)
+        class_<Joint, JointPtr, bases<Subject>, noncopyable>("Joint", no_init)
             .def("setProperties", &Joint::setProperties)
             .def("getProperties", &Joint::getJointProperties,
                 return_value_policy<copy_const_reference>())
