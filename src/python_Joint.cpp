@@ -74,12 +74,6 @@ private:
 
 std::shared_ptr<JointMap> JointMap::m_instance;
 
-
-static void Joint_setName_default(Joint *joint, std::string const &name)
-{
-    joint->setName(name);
-}
-
 void python_Joint()
 {
     using namespace ::boost::python;
@@ -106,7 +100,6 @@ void python_Joint()
 
     scope joint_class(
         class_<Joint, JointPtr, noncopyable>("Joint", no_init)
-            // TODO: Expose DefaultActuatorType
             .def("setProperties", &Joint::setProperties)
             .def("getProperties", &Joint::getJointProperties,
                 return_value_policy<copy_const_reference>())
@@ -283,6 +276,8 @@ void python_Joint()
             // Rendering
             .def("applyGLTransform", &Joint::applyGLTransform)
     );
+
+    joint_class.attr("DefaultActuatorType") = Joint::DefaultActuatorType;
 
     enum_<ActuatorType>("ActuatorType")
         .value("FORCE", Joint::FORCE)
