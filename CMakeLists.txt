@@ -16,14 +16,17 @@ endif()
 
 add_definitions(-DPROJECT_NAME=${PROJECT_NAME})
 
-find_package(Boost REQUIRED COMPONENTS python thread)
-find_package(DART REQUIRED)
+find_package(Boost REQUIRED COMPONENTS python system thread)
+find_package(DART REQUIRED COMPONENTS core)
 find_package(PythonLibs REQUIRED)
 
 include_directories(
   ${Boost_INCLUDE_DIRS}
   ${DART_INCLUDE_DIRS}
   ${PYTHON_INCLUDE_DIRS}
+)
+link_directories(
+  /Users/mkoval/ros-dart/devel/lib
 )
 
 # Check whether the CXX compiler and boost::python support get_pointer for
@@ -57,12 +60,14 @@ add_library(${PROJECT_NAME} SHARED
   src/python_ConstraintSolver.cpp
   src/python_DartLoader.cpp
   src/python_DegreeOfFreedom.cpp
-  src/python_SimWindow.cpp
+  #src/python_SimWindow.cpp
   src/python_Skeleton.cpp
   src/python_MetaSkeleton.cpp
   src/python_Subject.cpp
   src/python_World.cpp
   src/python_Frame.cpp
+  src/python_Entity.cpp
+  src/python_Detachable.cpp
   # Joints
   src/python_BallJoint.cpp
   src/python_EulerJoint.cpp

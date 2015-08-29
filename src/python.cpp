@@ -65,7 +65,7 @@ BOOST_PYTHON_MODULE(PROJECT_NAME)
     python_WeldJoint();
 
     python_MetaSkeleton();
-    python_SimWindow();
+    //python_SimWindow();
     python_Skeleton();
     python_World();
 }
