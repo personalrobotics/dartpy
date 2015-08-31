@@ -41,24 +41,16 @@ class Method(object):
             self.__class__.__name__, self.field_name, self.is_static)
 
     @property
+    def is_static(self):
+        return self.method_node.is_static_method()
+
+    @property
     def has_defaults(self):
         return self.num_required_arguments < self.num_arguments
 
     @property
     def method_name(self):
         return self.method_node.spelling
-
-    @property
-    def method_type(self):
-        return self.method_node.type.spelling
-
-    @property
-    def return_name(self):
-        return self.method_node.type.get_result().spelling
-
-    @property
-    def is_static(self):
-        return self.method_node.is_static_method()
 
     def export(self, fully_qualified):
         # Check if we need a return_value_policy.
@@ -134,9 +126,17 @@ class Method(object):
             return []
 
 
-class Constructor(Method):
+class Constructor(object):
+    unique_id_seq = 0
+
     def __init__(self, class_object, constructor_node):
-        super(Constructor, self).__init__(class_object, constructor_node)
+        self.parent_class = class_object
+        self.constructor_node = constructor_node
+        
+        # Generate a unique ID to disambiguate headers.
+        cls = self.__class__
+        self.unique_id = cls.unique_id_seq
+        cls.unique_id_seq += 1
 
     def __repr__(self):
         return '{:s}({:s})'.format(
@@ -144,8 +144,47 @@ class Constructor(Method):
             self.parent_class.class_name
         )
 
-    def export(self, fully_qualified):
-        pass # TODO: not implemented
+    def export(self):
+        params = dict(
+            unique_id=self.unique_id,
+            class_name=self.parent_class.class_name,
+        )
+
+        return [
+            '.def("__init__", boost::python::make_constructor('
+            '&{class_name:s}_constructor{unique_id:d}))'.format(**params)
+        ]
+
+    def export_header(self):
+        # TODO: This doesn't support default arguments.
+        # TODO: Type names in argument_types are not fully qualified.
+        # TODO: Add support for pointer holders.
+
+        argument_types = ', '.join(
+            '{:s} {:s}'.format(argument.type.spelling, argument.spelling)
+            for argument in self.constructor_node.get_arguments()
+        )
+        argument_names = ', '.join(
+            argument.spelling
+            for argument in self.constructor_node.get_arguments()
+        )
+
+        params = dict(
+            unique_id=self.unique_id,
+            argument_types=argument_types,
+            argument_names=argument_names,
+            class_name=self.parent_class.class_name,
+            class_name_fq=self.parent_class.qualified_class_name,
+        )
+
+
+        return [
+            '{class_name:s}* {class_name:s}_constructor{unique_id:d}'
+            '({argument_types:s})'
+            ' {{'
+            ' return new {class_name_fq:s}({argument_names:s});'
+            ' }}'.format(**params)
+        ]
 
 
 class Field(object):
@@ -176,6 +215,8 @@ class Field(object):
             '&{class_name_fq:s}::{field_name:s})'.format(**params)
         ]
 
+    def export_header(self):
+        return []
 
 class Class(object):
     def __init__(self, class_node, outer_classes, namespaces):
@@ -247,7 +288,11 @@ class Class(object):
         return output
 
     def export_header(self):
-        return sum((method.export_header() for method in self.methods), [])
+        return (
+              sum((c.export_header() for c in self.constructors), [])
+            + sum((m.export_header() for m in self.methods), [])
+            + sum((f.export_header() for f in self.fields), [])
+        )
 
 
 def find_classes(node, source_files, classes=None, namespaces=None):
