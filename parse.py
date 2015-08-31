@@ -65,6 +65,8 @@ class Method(object):
             print 'Warning: Returns pointer'
 
         # Generate the pointer-to-member type for this method.
+        # TODO: This does not include const-qualification.
+        # TODO: Why does self.method_node.type.is_const_qualified() return False?
         method_type = (
               self.method_node.type.get_result().spelling
             + ' (' + self.parent_class.qualified_class_name + '::*)('
@@ -275,11 +277,13 @@ class Class(object):
         # TODO: Add support for pointer holders.
         class_def  = 'boost::python::class_<{class_name_fq:s}'.format(**params)
 
+        # TODO: Add support for noncopyable.
+        #class_def += ', boost::noncopyable'
+
         if self.base_classes:
-            class_def += ', boost::python::bases< {:s} >'.format(
+            class_def += ', boost::python::bases<{:s} > '.format(
                 ', '.join(self.base_classes))
 
-        class_def += ', boost::noncopyable'
         class_def += '>("{class_name:s}", no_init)'.format(**params)
         output.append(class_def)
 
@@ -353,7 +357,7 @@ def find_classes(node, source_files, classes=None, namespaces=None):
     return output
 
 #input_path = 'test.cpp'
-input_path = '/Users/mkoval/ros-dart/devel/include/dart/dynamics/BodyNode.h'
+input_path = '/Users/mkoval/ros-dart/devel/include/dart/dynamics/Shape.h'
 
 ci.Config.set_library_path('/usr/local/opt/llvm/lib')
 
