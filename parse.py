@@ -53,6 +53,8 @@ class Method(object):
         return self.method_node.spelling
 
     def export(self, fully_qualified):
+        arguments = list(self.method_node.get_arguments())
+
         # Check if we need a return_value_policy.
         return_kind = self.method_node.type.get_result().kind
         if return_kind == ci.TypeKind.LVALUEREFERENCE:
@@ -66,9 +68,7 @@ class Method(object):
         method_type = (
               self.method_node.type.get_result().spelling
             + ' (' + self.parent_class.qualified_class_name + '::*)('
-            + ', '.join(
-                argument.type.spelling
-                for argument in self.method_node.get_arguments())
+            + ', '.join(argument.type.spelling for argument in arguments)
             + ')'
         )
 
@@ -97,6 +97,19 @@ class Method(object):
         if self.has_defaults:
             def_params.append(
                 '{method_name:s}_overloads{unique_id:d}()'.format(**params))
+
+        # Annotate argument names.
+        # TODO: How does this play with BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS?
+        # TODO: Should we specify default values here?
+        if arguments:
+            argument_params = [
+                'boost::python::arg("{:s}")'.format(argument.spelling)
+                for argument in arguments
+            ]
+
+            def_params.append('(' + ', '.join(argument_params) + ')')
+
+        # TODO: Serialize the docstring.
 
         output.append('.def(' + ', '.join(def_params) + ')')
 
@@ -258,8 +271,8 @@ class Class(object):
             class_name_fq=self.qualified_class_name,
         )
 
-        # Class
-        # TODO: Add support for a pointer holder.
+        # Class declaration
+        # TODO: Add support for pointer holders.
         class_def  = 'boost::python::class_<{class_name_fq:s}'.format(**params)
 
         if self.base_classes:
