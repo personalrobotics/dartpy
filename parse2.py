@@ -8,8 +8,6 @@ import os.path
 import yaml
 import sys
 
-# TODO: computeInertia, setDataVariance, addDataVariance, and removeDataVariance are incorrectly being labeled as 'const'
-# TODO: draw is being incorrectly labeled as 'const'
 # TODO: function arguments for user-defined types are not being fully qualified
 # TODO: recursive property parsing is a bit of a mess
 
@@ -24,9 +22,10 @@ def parse_usr(usr):
     Source: http://stackoverflow.com/a/12131083/111426
     """
 
-    index = usr.find('#')
+    index = usr.rfind('#')
+
     if 0 <= index < len(usr) - 1:
-        byte = ord(usr[index + 1])
+        byte = ord(usr[index + 1]) - ord('0')
         return bool(byte & 0x01), bool(byte & 0x02), bool(byte & 0x04)
     else:
         return False, False, False
@@ -219,6 +218,9 @@ class Function(Declaration):
 
         # TODO: Add support for default arguments.
         argument_names = self.argument_names
+        if self.is_member:
+            argument_names.insert(0, 'self')
+
         if argument_names:
             def_args.append(
                 '({:s})'.format(', '.join(
