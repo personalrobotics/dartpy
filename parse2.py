@@ -2,10 +2,21 @@
 from __future__ import print_function
 from collections import namedtuple
 import argparse
+import logging
 import clang.cindex as ci
 import os.path
 import yaml
 import sys
+
+# TODO: computeInertia, setDataVariance, addDataVariance, and removeDataVariance are incorrectly being labeled as 'const'
+# TODO: draw is being incorrectly labeled as 'const'
+# TODO: function arguments for user-defined types are not being fully qualified
+# TODO: recursive property parsing is a bit of a mess
+
+# c++ -fPIC -rdynamic -shared $(pkg-config --cflags --libs dart python) -I/Users/mkoval/ros-dart/devel/include -I/usr/local/include/eigen3 -lboost_python -ldart -ldart-core -lassimp -o module.so module.cpp
+
+logger = logging.getLogger()
+logging.basicConfig()
 
 def parse_usr(usr):
     """ Return (is_const, is_restrict, is_volatile) from a usr string.
@@ -71,18 +82,37 @@ class Class(Declaration):
         if self.properties.held_type:
             class_args.append(self.properties.held_type)
         if self.properties.noncopyable:
-            class_args.append('boost::noncopyable')
-        if self.properties.bases:
-            class_args.append('boost::python::bases<{:s}>'.format(
-                ', '.join(self.properties.bases)))
+            class_args.append('::boost::noncopyable')
 
-        file.write('boost::python::class_<{:s}>({:s}, no_init)'.format(
-                   ', '.join(class_args), self.name))
+        # Default to the C++ classes base classes.
+        if self.properties.bases is not None:
+            bases = self.properties.bases
+        else:
+            bases = self.base_classes
+
+        if bases:
+            class_args.append('::boost::python::bases<{:s}>'.format(
+                ', '.join(bases)))
+
+        file.write(
+            '{{\n'
+            '::boost::python::scope class_scope'
+            ' = boost::python::class_<{args:s}>("{name:s}",'
+            ' ::boost::python::no_init)\n'.format(
+                args=', '.join(class_args),
+                name=self.name))
 
         for child in self.children:
-            child.emit(file)
+            if isinstance(child, (Function, Variable)):
+                child.emit(file)
 
-        file.write(';')
+        file.write(';\n')
+
+        for child in self.children:
+            if isinstance(child, (Class, Enum)):
+                child.emit(file)
+
+        file.write('}\n')
 
 
 class Enum(Declaration):
@@ -99,7 +129,23 @@ class Enum(Declaration):
 
     def emit(self, file):
         # TODO: Implement this.
-        file.write('// Enum.emit() is not implemented.\n')
+        # TODO: This will not work on C++-style Enum classes.
+
+        file.write(
+            '{{\n'
+            '::boost::python::scope enum_scope = '
+            '::boost::python::enum_<{qualified_name:s}>("{name:s}")\n'.format(
+                name=self.name,
+                qualified_name=self.qualified_name))
+
+        for value in self.values:
+            file.write('.value("{name:s}", {qualified_name:s})\n'.format(
+                name=value,
+                qualified_name=self.parent.qualified_name + '::' + value))
+
+        file.write(
+            ';\n'
+            '}\n')
 
 
 class Function(Declaration):
@@ -109,6 +155,14 @@ class Function(Declaration):
     @property
     def is_static(self):
         return self.cursor.is_static_method()
+
+    @property
+    def is_member(self):
+        return self.parent is not None and isinstance(self.parent, Class)
+
+    @property
+    def is_public(self):
+        return self.cursor.access_specifier == ci.AccessSpecifier.PUBLIC
 
     @property
     def argument_names(self):
@@ -123,12 +177,11 @@ class Function(Declaration):
                 argument.type.spelling
                 for argument in self.cursor.get_arguments()
             ),
-            attributes=' const' if self.is_const else ''
-        )
+            attributes=' const' if self.is_const else '')
 
     @property
     def pointer_signature(self):
-        if self.parent is not None and isinstance(self.parent, Class):
+        if self.is_member:
             pointer_name = '({:s}::*)'.format(self.parent.qualified_name)
         else:
             pointer_name = '(*)'
@@ -144,8 +197,40 @@ class Function(Declaration):
         )
 
     def emit(self, file):
-        # TODO: Implement this.
-        file.write('// Function.emit() is not implemented.\n')
+        # TODO: Why does get_ref_qualifier always return False?
+        # TODO: Why does get_pointee() not return INVALID on references?
+        returns_reference = (self.cursor.result_type.kind in [
+            ci.TypeKind.LVALUEREFERENCE, ci.TypeKind.RVALUEREFERENCE])
+
+        def_args = [
+            '"{:s}"'.format(self.name),
+            'static_cast<{:s}>(&{:s})'.format(
+                self.pointer_signature, self.qualified_name)]
+
+        if self.properties.return_value_policy is not None:
+            def_args.append(
+                'boost::python::return_value_policy<{:s}>()'.format(
+                    self.properties.return_value_policy))
+        elif returns_reference:
+            logger.warning(
+                'Function "%s" with signature "%s" requires a'
+                ' "return_value_policy" to be specified because it returns a'
+                ' reference.', self.qualified_name, self.signature)
+
+        # TODO: Add support for default arguments.
+        argument_names = self.argument_names
+        if argument_names:
+            def_args.append(
+                '({:s})'.format(', '.join(
+                    'boost::python::arg("{:s}")'.format(x)
+                    for x in argument_names)))
+
+        def_statement = 'def({:s})'.format(', '.join(def_args))
+
+        if self.is_member:
+            file.write('.' + def_statement + '\n')
+        else:
+            file.write('::boost::python::' + def_statement + ';\n')
 
 
 class Variable(Declaration):
@@ -158,6 +243,21 @@ class RootNamespace(Declaration):
     @property
     def name(self):
         return ''
+
+    def emit(self, file):
+        # TODO: Don't hard-code the name root_namespace.
+        # TODO: Don't hard-code the header path.
+        file.write(
+            '#include <boost/python.hpp>\n'
+            '#include <dart/dynamics/dynamics.h>\n'
+            '#include <dart/renderer/renderer.h>\n'
+            'BOOST_PYTHON_MODULE(module)\n'
+            '{\n')
+
+        for child in self.children:
+            child.emit(file)
+
+        file.write('}\n')
 
 
 class Namespace(Declaration):
@@ -178,7 +278,7 @@ class Namespace(Declaration):
         for child in self.children:
             child.emit(file)
 
-        file.write('}}\n')
+        file.write('}\n')
 
 
 class ParserError(Exception):
@@ -231,6 +331,27 @@ def coalesce(declaration):
         coalesce(canonical_namespace)
 
         declaration.children.append(canonical_namespace)
+
+
+def remove_hidden(declaration):
+    declaration.children = [
+        child for child in declaration.children 
+        if child.cursor.access_specifier in [ ci.AccessSpecifier.INVALID,
+                                              ci.AccessSpecifier.PUBLIC]
+    ]
+
+    for child in declaration.children:
+        remove_hidden(child)
+
+def remove_operators(declaration):
+    declaration.children = [
+        child for child in declaration.children
+        if not (isinstance(child, Function)
+                and child.name.startswith('operator '))
+    ]
+
+    for child in declaration.children:
+        remove_operators(child)
 
 
 def get_root_declaration(cursor):
@@ -298,7 +419,7 @@ def attach_variable_properties(declaration, properties):
     declaration.properties = object()
 
 def attach_function_properties(declaration, properties):
-    o = Function.Properties(
+    declaration.properties = Function.Properties(
         return_value_policy = properties.get('return_value_policy', None),
     )
 
@@ -308,7 +429,7 @@ def attach_class_properties(declaration, properties):
     declaration.properties = Class.Properties(
         name = properties.get('name', declaration.name),
         held_type = properties.get('held_type', None),
-        bases = properties.get('bases', []),
+        bases = properties.get('bases', None),
         noncopyable = properties.get('noncopyable', False),
     )
 
@@ -346,6 +467,13 @@ def attach_properties(declaration, properties):
     for child in declaration.children:
         if isinstance(child, Class):
             attach_class_properties(child, child.properties)
+        elif isinstance(child, Function):
+            attach_function_properties(child, child.properties)
+        #elif isinstance(child, Variable):
+        #    child.properties = field_properties.get(child.name, dict())
+        #    if child.properties is not None:
+        #        attach_variable_properties(child, child.properties)
+        #        filtered_children.append(child)
         else:
             attach_properties(child, properties)
 
@@ -379,6 +507,8 @@ def main():
         return 1
 
     root_declaration = get_root_declaration(translation_unit.cursor)
+    remove_hidden(root_declaration)
+    remove_operators(root_declaration)
 
     # Only emit the specified namespace.
     root_namespace = None
@@ -392,95 +522,13 @@ def main():
             metadata['namespace']))
         return 1
 
+    root_declaration.children = [root_namespace]
+
     # Attach user properties to the tree.
-    attach_properties(root_namespace, metadata['properties'])
+    attach_properties(root_declaration, metadata['properties'])
 
     # Generate Boost.Python bindings.
-    root_namespace.emit(sys.stdout)
-
-    import IPython; IPython.embed()
-
-    """
-    # Parse the source code into an in-memory data structure.
-    parser = Parser()
-    try:
-        parser.parse(translation_unit.cursor)
-    except ParserError as e:
-        for i, cursor in enumerate(e.lexical_trace):
-            print '{:d}: [{:s}] {:s}'.format(
-                i, cursor.kind.name, cursor.displayname)
-
-        raise
-
-    # Load the metadata.
-    with open(METADATA_PATH, 'r') as metadata_file:
-        metadata = yaml.load(metadata_file)
-
-    # Generate the Boost.Python bindings.
-    for class_metadata in metadata['classes']:
-        print 'Processing class "{:s}".'.format(class_metadata['name'])
-        try:
-            class_obj = parser.get_class(class_metadata['name'])
-        except KeyError as e:
-            candidates = list(set(x.qualified_name for x in parser.classes))
-            candidates.sort()
-            print 'error:', e.message
-            print 'candidates:', candidates
-            raise
-
-        # Build the Boost.Python wrapper for the class.
-        class_args = [class_obj.qualified_name]
-        if class_metadata.get('held_type'):
-            class_args.append(class_metadata['held_type'])
-        if class_metadata.get('noncopyable', False):
-            class_args.append('boost::noncopyable')
-        if class_obj.base_classes:
-            class_args.append('boost::python::bases<{:s}>'.format(
-                ', '.join(class_obj.base_classes)))
-
-        class_output = 'boost::python::class_<{:s}>({:s}, no_init)'.format(
-            ', '.join(class_args), class_obj.name)
-        print class_output
-
-        # Generate Boost.Python bindings for methods in the class.
-        for function_metadata in class_metadata['functions']:
-            try:
-                signature = function_metadata['signature']
-            except KeyError as e:
-                print 'error: function is missing "{:s}".'.format(signature)
-
-            try:
-                function_obj = parser.get_function(class_obj, signature)
-            except KeyError as e:
-                print 'error:', e.message
-                print 'candidates:', '\n'.join(
-                    x.signature for x in parser.get_functions(class_obj))
-                raise
-
-            def_args = [
-                '"{:s}"'.format(function_obj.name),
-                'static_cast<{:s}>(&{:s})'.format(
-                    function_obj.pointer_signature,
-                    function_obj.qualified_name)
-            ]
-
-            try:
-                def_args.append(
-                    'boost::python::return_value_policy<{:s}>()'.format(
-                        function_metadata['return_value_policy']))
-            except KeyError:
-                pass
-
-            argument_names = function_obj.argument_names
-            if argument_names:
-                def_args.append(
-                    '({:s})'.format(', '.join(
-                        'boost::python::arg("{:s}")'.format(x)
-                        for x in argument_names)))
-
-            def_output = '.def({:s})'.format(', '.join(def_args))
-            print def_output
-    """
+    root_declaration.emit(sys.stdout)
 
 if __name__ == '__main__':
     main()
