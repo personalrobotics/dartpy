@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
+from collections import namedtuple
 import argparse
 import clang.cindex as ci
 import os.path
@@ -21,6 +22,8 @@ def parse_usr(usr):
 
 
 class Declaration(object):
+    Properties = namedtuple('Properties', ['return_value_policy'])
+
     def __init__(self, cursor, parent=None):
         self.cursor = cursor
         self.parent = parent
@@ -57,9 +60,29 @@ class Declaration(object):
 
 
 class Class(Declaration):
+    Properties = namedtuple('Properties', ['name', 'held_type', 'bases', 'noncopyable'])
+
     def __init__(self, cursor, parent):
         super(Class, self).__init__(cursor, parent)
         self.base_classes = []
+
+    def emit(self, file):
+        class_args = [self.qualified_name]
+        if self.properties.held_type:
+            class_args.append(self.properties.held_type)
+        if self.properties.noncopyable:
+            class_args.append('boost::noncopyable')
+        if self.properties.bases:
+            class_args.append('boost::python::bases<{:s}>'.format(
+                ', '.join(self.properties.bases)))
+
+        file.write('boost::python::class_<{:s}>({:s}, no_init)'.format(
+                   ', '.join(class_args), self.name))
+
+        for child in self.children:
+            child.emit(file)
+
+        file.write(';')
 
 
 class Enum(Declaration):
@@ -73,6 +96,10 @@ class Enum(Declaration):
             self.name or '<none>',
             list(self.values)
         )
+
+    def emit(self, file):
+        # TODO: Implement this.
+        file.write('// Enum.emit() is not implemented.\n')
 
 
 class Function(Declaration):
@@ -116,21 +143,42 @@ class Function(Declaration):
             attributes=' const' if self.is_const else ''
         )
 
-class BindingsSpecification(object):
-    def __init__(self, data):
-        self.properties = data.get('properties', dict())
+    def emit(self, file):
+        # TODO: Implement this.
+        file.write('// Function.emit() is not implemented.\n')
 
 
 class Variable(Declaration):
-    pass
+    def emit(self, file):
+        # TODO: Implement this.
+        file.write('// Variable.emit() is not implemented.\n')
 
 
 class RootNamespace(Declaration):
-    pass
+    @property
+    def name(self):
+        return ''
 
 
 class Namespace(Declaration):
-    pass
+    def emit(self, file):
+        file.write(
+            '{{\n'
+            'const ::std::string nested_name = ::boost::python::extract<'
+                '::std::string>(boost::python::scope().attr("__name__")'
+                    ' + ".{name:s}");\n'
+            '::boost::python::object nested_module(boost::python::handle<>('
+                'boost::python::borrowed(::PyImport_AddModule('
+                    'nested_name.c_str()))));\n'
+            '::boost::python::scope().attr("{name:s}") = nested_module;\n'
+            '::boost::python::scope nested_scope = nested_module;\n'
+            .format(name=self.name)
+        )
+
+        for child in self.children:
+            child.emit(file)
+
+        file.write('}}\n')
 
 
 class ParserError(Exception):
@@ -155,35 +203,8 @@ class ParserError(Exception):
             trace.append(cursor)
             cursor = cursor.lexical_parent
 
-        return trace 
+        return trace
 
-
-class Parser(object):
-    def __init__(self):
-        self.classes = []
-        self.enums = []
-        self.functions = []
-        self.variables = []
-
-    def get_class(self, class_name):
-        for class_obj in self.classes:
-            if class_name == class_obj.qualified_name:
-                return class_obj
-
-        raise KeyError('There is no class named "{:s}".'.format(class_name))
-
-    def get_functions(self, parent):
-        for function_obj in self.functions:
-            if function_obj.parent == parent:
-                yield function_obj
-
-    def get_function(self, parent, signature):
-        # TODO: Check equality of the underlying types, not the strings.
-        for function_obj in self.get_functions(parent):
-            if function_obj.signature == signature:
-                return function_obj
-
-        raise KeyError('There is no function on "{:s}" with signature "{:s}".'.format(parent, signature))
 
 def coalesce(declaration):
     from collections import defaultdict
@@ -212,20 +233,20 @@ def coalesce(declaration):
         declaration.children.append(canonical_namespace)
 
 
-def get_root_declaration(cursor, properties):
+def get_root_declaration(cursor):
     root_declaration = RootNamespace(cursor, parent=None)
-    get_declarations_impl(cursor, properties, root_declaration, 0)
+    get_declarations_impl(cursor, root_declaration, 0)
     coalesce(root_declaration)
     return root_declaration
 
-def get_declarations_impl(cursor, properties, parent, depth):
+
+def get_declarations_impl(cursor, parent, depth):
     def recurse(child):
         if child is not parent:
             parent.children.append(child)
 
         for child_cursor in cursor.get_children():
-            get_declarations_impl(child_cursor, properties,
-                                  parent=child, depth=depth + 1)
+            get_declarations_impl(child_cursor, parent=child, depth=depth + 1)
 
     if cursor.kind == ci.CursorKind.TRANSLATION_UNIT:
         recurse(parent)
@@ -254,13 +275,80 @@ def get_declarations_impl(cursor, properties, parent, depth):
         parent.values.append(cursor.spelling)
     elif cursor.kind in [ci.CursorKind.FIELD_DECL,
                          ci.CursorKind.VAR_DECL]:
-        pass # TODO: Support for variables.
+        recurse(Variable(cursor, parent=parent))
     elif cursor.kind == ci.CursorKind.CLASS_TEMPLATE:
         return # TODO: Support template class.
     elif cursor.kind == ci.CursorKind.CLASS_TEMPLATE_PARTIAL_SPECIALIZATION:
         return # TODO: Support template functions.
     elif cursor.kind == ci.CursorKind.FUNCTION_TEMPLATE:
         return # TODO: Support function templates.
+
+def attach_default_properties(declaration, properties):
+    filtered_children = []
+
+    for child in declaration.children:
+        child.properties = properties.get(child.qualified_name, dict())
+        if child.properties is not None:
+            filtered_children.append(child)
+
+    declaration.children = filtered_children
+
+def attach_variable_properties(declaration, properties):
+    # There are currently no properties supported for variables.
+    declaration.properties = object()
+
+def attach_function_properties(declaration, properties):
+    o = Function.Properties(
+        return_value_policy = properties.get('return_value_policy', None),
+    )
+
+    # TODO: Check for extraneous keys.
+
+def attach_class_properties(declaration, properties):
+    declaration.properties = Class.Properties(
+        name = properties.get('name', declaration.name),
+        held_type = properties.get('held_type', None),
+        bases = properties.get('bases', []),
+        noncopyable = properties.get('noncopyable', False),
+    )
+
+    # TODO: Check for extraneous keys.
+
+    method_properties = properties.get('methods', dict())
+    field_properties = properties.get('fields', dict())
+    filtered_children = []
+
+    for child in declaration.children:
+        if isinstance(child, (Class, Enum)):
+            filtered_children.append(child)
+            pass # TODO: Handle inner classes and enums.
+        elif isinstance(child, Function):
+            child.properties = method_properties.get(child.signature, dict())
+            if child.properties is not None:
+                attach_function_properties(child, child.properties)
+                filtered_children.append(child)
+        elif isinstance(child, Variable):
+            child.properties = field_properties.get(child.name, dict())
+            if child.properties is not None:
+                attach_variable_properties(child, child.properties)
+                filtered_children.append(child)
+        else:
+            raise ValueError(
+                'Unknown child "{:s}" of type "{:s}" on a Class.'.format(
+                    child, child.__class__.__name__))
+
+    declaration.children = filtered_children
+
+
+def attach_properties(declaration, properties):
+    attach_default_properties(declaration, properties)
+
+    for child in declaration.children:
+        if isinstance(child, Class):
+            attach_class_properties(child, child.properties)
+        else:
+            attach_properties(child, properties)
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -290,8 +378,25 @@ def main():
               'to specify the path to the directory containing libclang.')
         return 1
 
-    properties = BindingsSpecification(metadata['properties'])
-    root_declaration = get_root_declaration(translation_unit.cursor, properties)
+    root_declaration = get_root_declaration(translation_unit.cursor)
+
+    # Only emit the specified namespace.
+    root_namespace = None
+    for child in root_declaration.children:
+        if isinstance(child, Namespace) and child.name == metadata['namespace']:
+            root_namespace = child
+            break
+
+    if root_namespace is None:
+        print('Unable to find root namespace "{:s}".'.format(
+            metadata['namespace']))
+        return 1
+
+    # Attach user properties to the tree.
+    attach_properties(root_namespace, metadata['properties'])
+
+    # Generate Boost.Python bindings.
+    root_namespace.emit(sys.stdout)
 
     import IPython; IPython.embed()
 
