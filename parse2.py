@@ -10,6 +10,8 @@ import sys
 
 # TODO: function arguments for user-defined types are not being fully qualified
 # TODO: recursive property parsing is a bit of a mess
+# TODO: default arguments
+# TODO: docstrings
 
 # c++ -fPIC -rdynamic -shared $(pkg-config --cflags --libs dart python) -I/Users/mkoval/ros-dart/devel/include -I/usr/local/include/eigen3 -lboost_python -ldart -ldart-core -lassimp -o module.so module.cpp
 
@@ -471,11 +473,8 @@ def attach_properties(declaration, properties):
             attach_class_properties(child, child.properties)
         elif isinstance(child, Function):
             attach_function_properties(child, child.properties)
-        #elif isinstance(child, Variable):
-        #    child.properties = field_properties.get(child.name, dict())
-        #    if child.properties is not None:
-        #        attach_variable_properties(child, child.properties)
-        #        filtered_children.append(child)
+        elif isinstance(child, Variable):
+            attach_variable_properties(child, child.properties)
         else:
             attach_properties(child, properties)
 
@@ -486,8 +485,14 @@ def main():
     parser.add_argument('input_file', type=str)
     args = parser.parse_args()
 
-    with open(args.input_file, 'r') as input_file:
-        metadata = yaml.load(input_file)
+    # Load metadata from disk.
+    try:
+        with open(args.input_file, 'r') as input_file:
+            metadata = yaml.load(input_file)
+    except IOError as e:
+        logger.fatal('Failed loading configuration file "%s": %s.',
+            args.input_file, e.message)
+        return 1
 
     if 'compiler' in metadata:
         llvm_flags = metadata['compiler'].get('llvm_flags', ['-x', 'c++'])
@@ -500,28 +505,38 @@ def main():
     else:
         header_path = metadata['header']
 
+    # Parse the header file.
     try:
         index = ci.Index.create()
         translation_unit = index.parse(header_path, llvm_flags)
     except ci.LibclangError as e:
-        print('Failed loading libclang. Use the "compiler.llvm_flags" option'
-              'to specify the path to the directory containing libclang.')
+        logger.fatal(
+            'Failed loading libclang. Use the "compiler.llvm_flags" option'
+            'to specify the path to the directory containing libclang.')
+        return 1
+    except ci.TranslationUnitLoadError as e:
+        logger.fatal('Failed loading file "%s" using Clang: %s',
+            header_path, e.message)
         return 1
 
     root_declaration = get_root_declaration(translation_unit.cursor)
+
+    # Remove private members, protected members, and overloaded operators.
     remove_hidden(root_declaration)
     remove_operators(root_declaration)
 
     # Only emit the specified namespace.
+    # TODO: This is a bit of a hack. How should we handle this?
     root_namespace = None
     for child in root_declaration.children:
-        if isinstance(child, Namespace) and child.name == metadata['namespace']:
-            root_namespace = child
-            break
+        if isinstance(child, Namespace):
+            if child.name == metadata['namespace']:
+                root_namespace = child
+                break
 
     if root_namespace is None:
-        print('Unable to find root namespace "{:s}".'.format(
-            metadata['namespace']))
+        logger.fatal('Unable to find root namespace "%s".',
+            metadata['namespace'])
         return 1
 
     root_declaration.children = [root_namespace]
