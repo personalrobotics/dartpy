@@ -1,0 +1,562 @@
+header: all_dart.h
+namespace: dart
+compiler:
+  llvm_path: /usr/local/opt/llvm/lib
+  llvm_flags:
+  - '-std=c++11'
+  - '-stdlib=libc++'
+  - '-msse2'
+  - '-fPIC'
+  - '-I/usr/local/Cellar/flann/1.8.4_1/include'
+  - '-I/usr/local/Cellar/libccd/2.0/include'
+  - '-I/usr/local/Cellar/fcl/0.3.2/include'
+  - '-I/usr/local/include/eigen3'
+  - '-I/Users/mkoval/ros-dart/devel/include'
+properties:
+  '::dart::dynamics::Shape':
+    name: Shape
+    bases: []
+    noncopyable: true
+  'const Eigen::Vector4d & ::dart::dynamics::Shape::getRGBA() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::Shape::getBoundingBoxDim() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Isometry3d & ::dart::dynamics::Shape::getLocalTransform() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const dart::optimizer::Solver::Properties & ::dart::optimizer::Solver::getSolverProperties()':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::optimizer::Solver::getResultFileName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'Eigen::VectorXd & ::dart::optimizer::GradientDescentSolver::getEqConstraintWeights()': ~
+    # TODO: Implement this.
+  'const Eigen::VectorXd & ::dart::optimizer::GradientDescentSolver::getEqConstraintWeights() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'Eigen::VectorXd & ::dart::optimizer::GradientDescentSolver::getIneqConstraintWeights()': ~
+    # TODO: Implement this.
+  'const Eigen::VectorXd & ::dart::optimizer::GradientDescentSolver::getIneqConstraintWeights() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::optimizer::Function::getName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::optimizer::Problem::getInitialGuess() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'Eigen::VectorXd & ::dart::optimizer::Problem::getSeed(size_t)':
+    return_value_policy: ::boost::python::copy_non_const_reference
+    # TODO: Why does this return a non-const reference.
+  'const Eigen::VectorXd & ::dart::optimizer::Problem::getSeed(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'std::vector<Eigen::VectorXd> & ::dart::optimizer::Problem::getAllSeeds()': ~
+    # TODO: Implement this.
+  'const std::vector<Eigen::VectorXd> & ::dart::optimizer::Problem::getAllSeeds() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::optimizer::Problem::getLowerBounds() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::optimizer::Problem::getUpperBounds() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::optimizer::Problem::getOptimalSolution()':
+    return_value_policy: ::boost::python::copy_const_reference
+  'std::ostream & ::dart::common::colorMsg(const std::string &, int)': ~
+  'std::ostream & ::dart::common::colorErr(const std::string &, const std::string &, unsigned int, int)': ~
+  'const std::string & ::dart::common::getDefaultName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::common::getManagerName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const SlotType & ::dart::common::signal::detail::getSlot()': ~
+    # TODO: How should we return this?
+  'const std::string & ::dart::dynamics::MeshShape::getMeshUri() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::MeshShape::getMeshPath() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::MeshShape::getScale() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::ArrowShape::getTail() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::ArrowShape::getHead() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const dart::dynamics::ArrowShape::Properties & ::dart::dynamics::ArrowShape::getProperties() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const dart::dynamics::Entity::Properties & ::dart::dynamics::Entity::getEntityProperties() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Entity::setName(const std::string &)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Entity::getName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const int & ::dart::dynamics::Entity::getVisualizationShapes() const': ~
+    # TODO: Missing return value type.
+  'const Eigen::Isometry3d & ::dart::dynamics::Frame::getRelativeTransform() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Isometry3d & ::dart::dynamics::Frame::getWorldTransform() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::Frame::getRelativeSpatialVelocity() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::Frame::getSpatialVelocity() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::Frame::getRelativeSpatialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::Frame::getPrimaryRelativeAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::Frame::getPartialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::Frame::getSpatialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::set<Entity *> & ::dart::dynamics::Frame::getChildEntities()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::set<Frame *> & ::dart::dynamics::Frame::getChildFrames()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const Eigen::Isometry3d & ::dart::dynamics::WorldFrame::getRelativeTransform() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::WorldFrame::getRelativeSpatialVelocity() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::WorldFrame::getRelativeSpatialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::WorldFrame::getPrimaryRelativeAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::WorldFrame::getPartialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::Inertia::getLocalCOM() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Matrix6d & ::dart::dynamics::Inertia::getSpatialTensor() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::MetaSkeleton::setName(const std::string &)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::MetaSkeleton::getName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<BodyNode *> & ::dart::dynamics::MetaSkeleton::getBodyNodes()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<const BodyNode *> & ::dart::dynamics::MetaSkeleton::getBodyNodes() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<DegreeOfFreedom *> & ::dart::dynamics::MetaSkeleton::getDofs()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const Eigen::MatrixXd & ::dart::dynamics::MetaSkeleton::getMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::MetaSkeleton::getAugMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::MetaSkeleton::getInvMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::MetaSkeleton::getInvAugMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::MetaSkeleton::getCoriolisForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::MetaSkeleton::getGravityForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::MetaSkeleton::getCoriolisAndGravityForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::MetaSkeleton::getExternalForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::MetaSkeleton::getConstraintForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<size_t> & ::dart::dynamics::JacobianNode::getDependentGenCoordIndices() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<DegreeOfFreedom *> & ::dart::dynamics::JacobianNode::getDependentDofs()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<const DegreeOfFreedom *> & ::dart::dynamics::JacobianNode::getDependentDofs() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const math::Jacobian & ::dart::dynamics::JacobianNode::getJacobian() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::JacobianNode::getWorldJacobian() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::JacobianNode::getJacobianSpatialDeriv() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::JacobianNode::getJacobianClassicDeriv() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<size_t> & ::dart::dynamics::InverseKinematics::getDofs() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<int> & ::dart::dynamics::InverseKinematics::getDofMap() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'dart::dynamics::InverseKinematics::ErrorMethod & ::dart::dynamics::InverseKinematics::getErrorMethod()': ~
+    # TODO: Implement this.
+  'const dart::dynamics::InverseKinematics::ErrorMethod & ::dart::dynamics::InverseKinematics::getErrorMethod() const': ~
+    # TODO: Implement this.
+  'dart::dynamics::InverseKinematics::GradientMethod & ::dart::dynamics::InverseKinematics::getGradientMethod()': ~
+    # TODO: Implement this.
+  'const dart::dynamics::InverseKinematics::GradientMethod & ::dart::dynamics::InverseKinematics::getGradientMethod() const': ~
+    # TODO: Implement this.
+  'const Eigen::Vector3d & ::dart::dynamics::InverseKinematics::getOffset() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::InverseKinematics::computeJacobian() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::InverseKinematics::ErrorMethod::evalError(const Eigen::VectorXd &)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::InverseKinematics::ErrorMethod::getMethodName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::pair<Eigen::Vector6d, Eigen::Vector6d> & ::dart::dynamics::InverseKinematics::ErrorMethod::getBounds() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python tuple.
+  'const Eigen::Vector6d & ::dart::dynamics::InverseKinematics::ErrorMethod::getErrorWeights() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::InverseKinematics::GradientMethod::getMethodName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::InverseKinematics::GradientMethod::getComponentWeights() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const int & ::dart::dynamics::HierarchicalIK::getIKHierarchy() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<Eigen::MatrixXd> & ::dart::dynamics::HierarchicalIK::computeNullSpaces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const int & ::dart::dynamics::CompositeIK::getModuleSet()': ~
+    # TODO: Missing return value.
+  'int & ::dart::dynamics::Skeleton::getMutex() const': ~
+    # TODO: Missing return value.
+  'const dart::dynamics::Skeleton::Properties & ::dart::dynamics::Skeleton::getSkeletonProperties() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Skeleton::setName(const std::string &)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Skeleton::getName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::Skeleton::getGravity() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<BodyNode *> & ::dart::dynamics::Skeleton::getBodyNodes()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<const BodyNode *> & ::dart::dynamics::Skeleton::getBodyNodes() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<BodyNode *> & ::dart::dynamics::Skeleton::getTreeBodyNodes(size_t)':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<DegreeOfFreedom *> & ::dart::dynamics::Skeleton::getDofs()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<DegreeOfFreedom *> & ::dart::dynamics::Skeleton::getTreeDofs(size_t)':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<const DegreeOfFreedom *> & ::dart::dynamics::Skeleton::getTreeDofs(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const math::SupportPolygon & ::dart::dynamics::Skeleton::getSupportPolygon() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::SupportPolygon & ::dart::dynamics::Skeleton::getSupportPolygon(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<size_t> & ::dart::dynamics::Skeleton::getSupportIndices() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<size_t> & ::dart::dynamics::Skeleton::getSupportIndices(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::pair<Eigen::Vector3d, Eigen::Vector3d> & ::dart::dynamics::Skeleton::getSupportAxes() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python tuple.
+  'const std::pair<Eigen::Vector3d, Eigen::Vector3d> & ::dart::dynamics::Skeleton::getSupportAxes(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python tuple.
+  'const Eigen::Vector2d & ::dart::dynamics::Skeleton::getSupportCentroid() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector2d & ::dart::dynamics::Skeleton::getSupportCentroid(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::Skeleton::getMassMatrix(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::Skeleton::getMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::Skeleton::getAugMassMatrix(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::Skeleton::getAugMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::Skeleton::getInvMassMatrix(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::Skeleton::getInvMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::Skeleton::getInvAugMassMatrix(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::Skeleton::getInvAugMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getCoriolisForces(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getCoriolisForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getGravityForces(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getGravityForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getCoriolisAndGravityForces(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getCoriolisAndGravityForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getExternalForces(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getExternalForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getConstraintForces(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::Skeleton::getConstraintForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::Marker::getLocalPosition() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Marker::getName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::BodyNode::setName(const std::string &)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Matrix6d & ::dart::dynamics::BodyNode::getSpatialInertia() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const dart::dynamics::Inertia & ::dart::dynamics::BodyNode::getInertia() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Inertia & ::dart::dynamics::BodyNode::getArticulatedInertia() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Inertia & ::dart::dynamics::BodyNode::getArticulatedInertiaImplicit() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::BodyNode::getLocalCOM() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<size_t> & ::dart::dynamics::BodyNode::getDependentGenCoordIndices() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<DegreeOfFreedom *> & ::dart::dynamics::BodyNode::getDependentDofs()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<const DegreeOfFreedom *> & ::dart::dynamics::BodyNode::getDependentDofs() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const Eigen::Isometry3d & ::dart::dynamics::BodyNode::getRelativeTransform() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::BodyNode::getRelativeSpatialVelocity() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::BodyNode::getRelativeSpatialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::BodyNode::getPrimaryRelativeAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::BodyNode::getPartialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::BodyNode::getJacobian() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::BodyNode::getWorldJacobian() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::BodyNode::getJacobianSpatialDeriv() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::BodyNode::getJacobianClassicDeriv() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::BodyNode::getBodyVelocityChange() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::BodyNode::getExternalForceLocal() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::BodyNode::getBodyForce() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::BodyNode::getConstraintImpulse() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const dart::dynamics::Joint::Properties & ::dart::dynamics::Joint::getJointProperties() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Joint::setName(const std::string &, bool)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Joint::getName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Joint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Isometry3d & ::dart::dynamics::Joint::getTransformFromParentBodyNode() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Isometry3d & ::dart::dynamics::Joint::getTransformFromChildBodyNode() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Joint::setDofName(size_t, const std::string &, bool)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::Joint::getDofName(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Isometry3d & ::dart::dynamics::Joint::getLocalTransform() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::Joint::getLocalSpatialVelocity() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::Joint::getLocalSpatialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::Joint::getLocalPrimaryAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::DegreeOfFreedom::setName(const std::string &, bool)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::DegreeOfFreedom::getName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::setDofName(size_t, const std::string &, bool)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::getDofName(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const typename MultiDofJoint<DOF>::Vector & ::dart::dynamics::getPositionsStatic() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const typename MultiDofJoint<DOF>::Vector & ::dart::dynamics::getVelocitiesStatic() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const typename MultiDofJoint<DOF>::Vector & ::dart::dynamics::getAccelerationsStatic() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::BallJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::BallJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::BoxShape::getSize() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::ReferentialSkeleton::setName(const std::string &)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::ReferentialSkeleton::getName() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<BodyNode *> & ::dart::dynamics::ReferentialSkeleton::getBodyNodes()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<const BodyNode *> & ::dart::dynamics::ReferentialSkeleton::getBodyNodes() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<DegreeOfFreedom *> & ::dart::dynamics::ReferentialSkeleton::getDofs()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const Eigen::MatrixXd & ::dart::dynamics::ReferentialSkeleton::getMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::ReferentialSkeleton::getAugMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::ReferentialSkeleton::getInvMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::MatrixXd & ::dart::dynamics::ReferentialSkeleton::getInvAugMassMatrix() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::ReferentialSkeleton::getCoriolisForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::ReferentialSkeleton::getGravityForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::ReferentialSkeleton::getCoriolisAndGravityForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::ReferentialSkeleton::getExternalForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::VectorXd & ::dart::dynamics::ReferentialSkeleton::getConstraintForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::EllipsoidShape::getSize() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Isometry3d & ::dart::dynamics::FixedFrame::getRelativeTransform() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::FixedFrame::getRelativeSpatialVelocity() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::FixedFrame::getRelativeSpatialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::FixedFrame::getPrimaryRelativeAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::FixedFrame::getPartialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::SupportGeometry & ::dart::dynamics::Support::getGeometry() const': ~
+    # TODO: Wrap this.
+  'const std::string & ::dart::dynamics::EndEffector::setName(const std::string &)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<size_t> & ::dart::dynamics::EndEffector::getDependentGenCoordIndices() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<DegreeOfFreedom *> & ::dart::dynamics::EndEffector::getDependentDofs()':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const std::vector<const DegreeOfFreedom *> & ::dart::dynamics::EndEffector::getDependentDofs() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Convert the return value to a Python list.
+  'const math::Jacobian & ::dart::dynamics::EndEffector::getJacobian() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::EndEffector::getWorldJacobian() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::EndEffector::getJacobianSpatialDeriv() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const math::Jacobian & ::dart::dynamics::EndEffector::getJacobianClassicDeriv() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::EulerJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::EulerJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::FreeJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::FreeJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::LineSegmentShape::getVertex(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::vector<Eigen::Vector3d> & ::dart::dynamics::LineSegmentShape::getVertices() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::aligned_vector<Eigen::Vector2i> & ::dart::dynamics::LineSegmentShape::getConnections() const':
+    return_value_policy: ::boost::python::copy_const_reference
+    # TODO: Return a Python tuple instead of an Eigen matrix.
+  'const std::string & ::dart::dynamics::PlanarJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::PlanarJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PlanarJoint::getRotationalAxis() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PlanarJoint::getTranslationalAxis1() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PlanarJoint::getTranslationalAxis2() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PlaneShape::getNormal() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getPositions() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getVelocities() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getAccelerations() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getPartialAccelerations() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getForces() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getRestingPosition() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getLocalPosition() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getWorldPosition() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getBodyVelocityChange() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getBodyVelocity() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PointMass::getBodyAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::SingleDofJoint::setDofName(size_t, const std::string &, bool)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::SingleDofJoint::getDofName(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const double & ::dart::dynamics::SingleDofJoint::getPositionStatic() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const double & ::dart::dynamics::SingleDofJoint::getVelocityStatic() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const double & ::dart::dynamics::SingleDofJoint::getAccelerationStatic() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::PrismaticJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::PrismaticJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::PrismaticJoint::getAxis() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::RevoluteJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::RevoluteJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::RevoluteJoint::getAxis() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::ScrewJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::ScrewJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::ScrewJoint::getAxis() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Isometry3d & ::dart::dynamics::SimpleFrame::getRelativeTransform() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::SimpleFrame::getRelativeSpatialVelocity() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::SimpleFrame::getRelativeSpatialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::SimpleFrame::getPrimaryRelativeAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector6d & ::dart::dynamics::SimpleFrame::getPartialAcceleration() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3i & ::dart::dynamics::SoftBodyNode::getFace(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::TranslationalJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::TranslationalJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::UniversalJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::UniversalJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::UniversalJoint::getAxis1() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const Eigen::Vector3d & ::dart::dynamics::UniversalJoint::getAxis2() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::ZeroDofJoint::setDofName(size_t, const std::string &, bool)':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::ZeroDofJoint::getDofName(size_t) const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::WeldJoint::getType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const std::string & ::dart::dynamics::WeldJoint::getStaticType() const':
+    return_value_policy: ::boost::python::copy_const_reference
+  'const dart::optimizer::Solver::Properties & ::dart::optimizer::Solver::getSolverProperties() const':
+    return_value_policy: ::boost::python::copy_const_reference
+        
+
