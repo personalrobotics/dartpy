@@ -8,8 +8,10 @@ import os.path
 import yaml
 import sys
 
-# TODO: function arguments for user-defined types are not being fully qualified
 # TODO: recursive property parsing is a bit of a mess
+# TODO: always pass down the root "properties" map and perform a full lookup
+
+# TODO: function arguments for user-defined types are not being fully qualified
 # TODO: default arguments
 # TODO: docstrings
 
@@ -18,7 +20,11 @@ import sys
 logger = logging.getLogger()
 logging.basicConfig()
 
-def parse_usr(usr):
+Qualifiers = namedtuple('Qualifiers',
+    ['is_const', 'is_restrict', 'is_volatile'])
+
+
+def get_qualifiers(usr):
     """ Return (is_const, is_restrict, is_volatile) from a usr string.
 
     Source: http://stackoverflow.com/a/12131083/111426
@@ -28,9 +34,13 @@ def parse_usr(usr):
 
     if 0 <= index < len(usr) - 1:
         byte = ord(usr[index + 1]) - ord('0')
-        return bool(byte & 0x01), bool(byte & 0x02), bool(byte & 0x04)
+        return Qualifiers(
+            is_const=bool(byte & 0x01),
+            is_restrict=bool(byte & 0x02),
+            is_volatile=bool(byte & 0x04)
+        )
     else:
-        return False, False, False
+        return Qualifiers(False, False, False)
 
 
 class Declaration(object):
@@ -42,10 +52,9 @@ class Declaration(object):
         self.children = []
 
     def __repr__(self):
-        return '{:s}({:s})'.format(
-            self.__class__.__name__,
-            self.name or '<none>',
-        )
+        return '{declaration_name:s}({name:s})'.format(
+            declaration_name=self.__class__.__name__,
+            name=(self.name or '<none>'))
 
     @property
     def name(self):
@@ -60,15 +69,15 @@ class Declaration(object):
 
     @property
     def is_const(self):
-        return parse_usr(self.cursor.get_usr())[0]
+        return get_qualifiers(self.cursor.get_usr()).is_const
 
     @property
     def is_restrict(self):
-        return parse_usr(self.cursor.get_usr())[0]
+        return get_qualifiers(self.cursor.get_usr()).is_restrict
 
     @property
     def is_volatile(self):
-        return parse_usr(self.cursor.get_usr())[0]
+        return get_qualifiers(self.cursor.get_usr()).is_volatile
 
 
 class Class(Declaration):
@@ -350,8 +359,10 @@ def remove_hidden(declaration):
 def remove_operators(declaration):
     declaration.children = [
         child for child in declaration.children
+        # TODO: This may match a function that starts with "operator", even if
+        # it is not an overloaded operator
         if not (isinstance(child, Function)
-                and child.name.startswith('operator '))
+                and child.name.startswith('operator'))
     ]
 
     for child in declaration.children:
@@ -504,6 +515,9 @@ def main():
         header_path = os.path.join(args.base_path, metadata['header'])
     else:
         header_path = metadata['header']
+
+    if not os.path.exists(header_path):
+        logger.warning('Header file "%s" does not exist.', header_path)
 
     # Parse the header file.
     try:
