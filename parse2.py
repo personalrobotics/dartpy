@@ -10,14 +10,33 @@ import tempfile
 import yaml
 import sys
 
+LOG_SEVERITY_MAP = {
+    ci.Diagnostic.Ignored: logging.INFO,
+    ci.Diagnostic.Note: logging.INFO,
+    ci.Diagnostic.Warning: logging.WARNING,
+    ci.Diagnostic.Error: logging.ERROR,
+    ci.Diagnostic.Fatal: logging.FATAL,
+}
+
+# TODO: Template classes 
+
 # TODO: constructors
 # TODO: default arguments
 # TODO: docstrings
+
+# TODO: Why does get_ref_qualifier always return False?
+# TODO: Why does get_pointee() not return INVALID on references?
 
 # c++ -fPIC -rdynamic -shared $(pkg-config --cflags --libs dart python) -I/Users/mkoval/ros-dart/devel/include -I/usr/local/include/eigen3 -lboost_python -ldart -ldart-core -lassimp -o module.so module.cpp
 
 logger = logging.getLogger()
 logging.basicConfig()
+
+try:
+    from colorlog import ColoredFormatter
+    logging.getLogger().handlers[0].setFormatter(ColoredFormatter())
+except ImportError:
+    logger.warning('Install "colorlog" to colorize log output.')
 
 Qualifiers = namedtuple('Qualifiers',
     ['is_const', 'is_restrict', 'is_volatile'])
@@ -187,6 +206,10 @@ class Function(Declaration):
     def __init__(self, cursor, parent):
         super(Function, self).__init__(cursor, parent)
 
+        if self.name == 'setPattern':
+            import IPython; IPython.embed()
+            pass
+
     @property
     def is_static(self):
         return self.cursor.is_static_method()
@@ -247,8 +270,10 @@ class Function(Declaration):
         if self.properties is None:
             return
 
-        # TODO: Why does get_ref_qualifier always return False?
-        # TODO: Why does get_pointee() not return INVALID on references?
+        # TODO: Temporarily disable non-member methods.
+        if self.is_member:
+            return
+
         returns_reference = (self.cursor.result_type.kind in [
             ci.TypeKind.LVALUEREFERENCE, ci.TypeKind.RVALUEREFERENCE])
 
@@ -310,8 +335,11 @@ class RootNamespace(Declaration):
         # TODO: Don't hard-code the header path.
         file.write(
             '#include <boost/python.hpp>\n'
+            '#include <dart/config.h>\n'
+            '#include <dart/common/common.h>\n'
             '#include <dart/dynamics/dynamics.h>\n'
-            '#include <dart/renderer/renderer.h>\n'
+            '#include <dart/math/math.h>\n'
+            '#include <dart/optimizer/optimizer.h>\n'
             'BOOST_PYTHON_MODULE(module)\n'
             '{\n')
 
@@ -362,7 +390,7 @@ class ParserError(Exception):
 
         while cursor is not None:
             trace.append(cursor)
-            cursor = cursor.lexical_parent
+            cursor = cursor.semantic_parent
 
         return trace
 
@@ -516,8 +544,7 @@ def main():
 
     # Parse the header file.
     try:
-        index = ci.Index.create()
-        translation_unit = index.parse(header_path, llvm_flags)
+        tu = ci.TranslationUnit.from_source(header_path, llvm_flags)
     except ci.LibclangError as e:
         logger.fatal(
             'Failed loading libclang. Use the "compiler.llvm_flags" option'
@@ -528,7 +555,17 @@ def main():
             header_path, e.message)
         return 1
 
-    root_declaration = get_root_declaration(translation_unit.cursor)
+    for diag in tu.diagnostics:
+        level = LOG_SEVERITY_MAP.get(diag.severity, logging.WARNING)
+        if diag.location.file is not None:
+            logger.log(level, '%s:%d:%d: %s',
+                os.path.basename(diag.location.file.name),
+                diag.location.line, diag.location.column,
+                diag.spelling)
+        else:
+            logger.log(level, '<unknown>: %s', diag.spelling)
+
+    root_declaration = get_root_declaration(tu.cursor)
 
     # Remove private members, protected members, and overloaded operators.
     remove_hidden(root_declaration)
@@ -555,6 +592,17 @@ def main():
 
     # Generate Boost.Python bindings.
     root_declaration.emit(sys.stdout)
+
+    logger.error('Compile manually using the command:\n%s',
+        ' '.join(['c++'] +  llvm_flags + [
+            '-fPIC',
+            '-rdynamic',
+            '-shared',
+            '-I/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/include/python2.7',
+            '-L/usr/local/Cellar/python/2.7.10_2/Frameworks/Python.framework/Versions/2.7/lib',
+            '-lpython2.7',
+            '-o', 'module.so', 'module.cpp'])
+    )
 
 if __name__ == '__main__':
     main()
