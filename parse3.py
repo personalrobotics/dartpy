@@ -20,6 +20,35 @@ logger = logging.getLogger()
 logging.basicConfig()
 
 
+def get_qualifiers(cursor):
+    """ Return (is_const, is_restrict, is_volatile) from a usr string.
+
+    Source: http://stackoverflow.com/a/12131083/111426
+    """
+    from collections import namedtuple
+
+    Qualifiers = namedtuple('Qualifiers',
+        ['is_const', 'is_restrict', 'is_volatile'])
+
+
+    usr = cursor.get_usr()
+    index = usr.rfind('#')
+
+    if 0 <= index < len(usr) - 1:
+        byte = ord(usr[index + 1]) - ord('0')
+        return Qualifiers(
+            is_const=bool(byte & 0x01),
+            is_restrict=bool(byte & 0x02),
+            is_volatile=bool(byte & 0x04)
+        )
+    else:
+        return Qualifiers(False, False, False)
+
+
+def get_key(cursor):
+    return convert(cursor).get_key(cursor)
+
+
 class Entity(object):
     def __init__(self, cursor):
         self.cursor = cursor
@@ -29,6 +58,10 @@ class Entity(object):
     def __repr__(self):
         return '{:s}({:s})'.format(
             self.__class__.__name__, self.cursor.spelling)
+
+    @property
+    def key(self):
+        return self.get_key(self.cursor)
 
     def add_child(self, entity):
         assert entity.lexical_parent is None
@@ -40,32 +73,49 @@ class Entity(object):
         self.lexical_children.remove(entity)
         entity.lexical_parent = None
 
-    @property
-    def key(self):
-        return self.cursor.spelling
-
-    @property
-    def qualified_key(self):
-        if self.lexical_parent is not None:
-            return self.lexical_parent.qualified_key + '::' + self.key
-        else:
-            return self.key
 
 
 class Root(Entity):
-    @property
-    def key(self):
+    @classmethod
+    def get_key(cls, cursor):
+        assert cursor.kind == ci.CursorKind.TRANSLATION_UNIT
         return ''
 
 
 class Namespace(Entity):
-    pass
+    @classmethod
+    def get_key(cls, cursor):
+        assert cursor.kind == ci.CursorKind.NAMESPACE
+        parents = []
+
+        while cursor is not None:
+            if cursor.kind == ci.CursorKind.TRANSLATION_UNIT:
+                parents.insert(0, '')
+            elif cursor.kind == ci.CursorKind.NAMESPACE:
+                parents.insert(0, cursor.spelling)
+            else:
+                raise ValueError('Unsupported CursorKind.')
+
+            cursor = cursor.lexical_parent
+
+        return '::'.join(parents)
 
 
 class Class(Entity):
-    @property
-    def key(self):
-        return self.cursor.type.spelling
+    CURSOR_KINDS = [
+        ci.CursorKind.CLASS_DECL,
+        ci.CursorKind.STRUCT_DECL,
+        ci.CursorKind.UNION_DECL,
+    ]
+
+    @classmethod
+    def get_key(cls, cursor):
+        assert cursor.kind in cls.CURSOR_KINDS
+
+        if cursor.lexical_parent is None:
+            return cursor.spelling
+        else:
+            return get_key(cursor.lexical_parent) + '::' + cursor.spelling
 
 
 class ClassTemplate(Entity):
@@ -73,14 +123,15 @@ class ClassTemplate(Entity):
         super(ClassTemplate, self).__init__(cursor)
         self.specializations = set()
 
-    @property
-    def key(self):
-        return self.get_key(self.cursor)
-
     @classmethod
     def get_key(cls, cursor):
         assert cursor.kind == ci.CursorKind.CLASS_TEMPLATE
-        return cursor.displayname
+
+        # TODO: Should we trust displayname here?
+        if cursor.lexical_parent is None:
+            return cursor.displayname
+        else:
+            return get_key(cursor.lexical_parent) + '::' + cursor.displayname
 
     def add_specialization(self, specialization):
         self.specializations.add(specialization)
@@ -96,17 +147,26 @@ class ClassTemplateSpecialization(Entity):
     def template_type(self):
         return ci.conf.lib.clang_getSpecializedCursorTemplate(self.cursor)
 
-    pass
-
 
 class Function(Entity):
-    # TODO: Key should include the function signature.
+    @classmethod
+    def get_key(cls, cursor):
+        if cursor.lexical_parent is None:
+            name = self.cursor.spelling
+        else:
+            name = get_key(cursor.lexical_parent) + '::' + cursor.spelling
 
-    @property
-    def is_member(self):
-        return self.parent is not None and isinstance(self.parent, Class)
+        arguments = [
+            ('{:s} {:s}'.format(arg.type.spelling, arg.spelling)
+             if arg.spelling else arg.type.spelling)
+            for arg in cursor.get_arguments()
+        ]
 
-    # TODO: Key needs to include the signature.
+        return '{return_type:s} {name:s}({arguments:s}){const:s}'.format(
+            return_type=cursor.result_type.spelling,
+            name=name,
+            arguments=', '.join(arguments),
+            const=' const' if get_qualifiers(cursor).is_const else '')
 
 
 class FunctionTemplate(Entity):
@@ -116,13 +176,18 @@ class FunctionTemplate(Entity):
         super(FunctionTemplate, self).__init__(cursor)
         self.specializations = set()
 
-    @property
-    def key(self):
-        return self.get_key(self.cursor)
-
     @classmethod
     def get_key(cls, cursor):
         assert cursor.kind == ci.CursorKind.FUNCTION_TEMPLATE
+
+        # TODO: Is it safe to use displayname here?
+        # TODO: How do I get the template arguments?
+
+        if cursor.lexical_parent is None:
+            return cursor.displayname
+        else:
+            return get_key(cursor.lexical_parent) + '::' + cursor.displayname
+
         return cursor.displayname
 
     def add_specialization(self, specialization):
@@ -198,24 +263,20 @@ def dump_ast(cursor, depth=0):
 
 
 class Parser(object):
-    def __init__(self):
-        self.root_entity = None
-        self.class_templates = dict()
-        self.function_templates = dict()
-
     def parse(self, cursor):
-        self.root_entity = self._parse_impl(cursor, None)
+        root_entity = self._parse_impl(cursor, None)
 
-        self._coalesce_namespaces(self.root_entity)
-        self._filter_access(self.root_entity, [
+        self._coalesce_namespaces(root_entity)
+        self._filter_access(root_entity, [
             ci.AccessSpecifier.INVALID,
             ci.AccessSpecifier.NONE,
-            ci.AccessSpecifier.PUBLIC
-        ])
-        self._collate_specializations(self.root_entity,
+            ci.AccessSpecifier.PUBLIC])
+        self._collate_specializations(root_entity,
             ClassTemplate, ClassTemplateSpecialization)
-        self._collate_specializations(self.root_entity,
+        self._collate_specializations(root_entity,
             FunctionTemplate, FunctionTemplateSpecialization)
+
+        return root_entity
 
     def _parse_impl(self, cursor, lexical_parent):
         entity = convert(cursor)
@@ -228,8 +289,8 @@ class Parser(object):
 
         return entity
 
-    def print_tree(self):
-        self._print_tree_impl(self.root_entity, 0)
+    def print_tree(self, entity):
+        self._print_tree_impl(entity, 0)
 
     def _print_tree_impl(self, entity, depth):
         print('{indent:s}+ {entity:s} <- {key:s}'.format(
@@ -367,8 +428,8 @@ def main():
             logger.log(level, '<unknown>: %s', diag.spelling)
 
     parser = Parser()
-    parser.parse(tu.cursor)
-    parser.print_tree()
+    root_entity = parser.parse(tu.cursor)
+    parser.print_tree(root_entity)
 
 
 if __name__ == '__main__':
