@@ -76,16 +76,20 @@ class Entity(object):
 
 
 class Root(Entity):
+    KINDS = [ci.CursorKind.TRANSLATION_UNIT]
+
     @classmethod
     def get_key(cls, cursor):
-        assert cursor.kind == ci.CursorKind.TRANSLATION_UNIT
+        assert cursor.kind in cls.KINDS
         return ''
 
 
 class Namespace(Entity):
+    KINDS = [ci.CursorKind.NAMESPACE]
+
     @classmethod
     def get_key(cls, cursor):
-        assert cursor.kind == ci.CursorKind.NAMESPACE
+        assert cursor.kind in cls.KINDS
         parents = []
 
         while cursor is not None:
@@ -102,7 +106,7 @@ class Namespace(Entity):
 
 
 class Class(Entity):
-    CURSOR_KINDS = [
+    KINDS = [
         ci.CursorKind.CLASS_DECL,
         ci.CursorKind.STRUCT_DECL,
         ci.CursorKind.UNION_DECL,
@@ -110,7 +114,7 @@ class Class(Entity):
 
     @classmethod
     def get_key(cls, cursor):
-        assert cursor.kind in cls.CURSOR_KINDS
+        assert cursor.kind in cls.KINDS
 
         if cursor.lexical_parent is None:
             return cursor.spelling
@@ -119,13 +123,15 @@ class Class(Entity):
 
 
 class ClassTemplate(Entity):
+    KINDS = [ci.CursorKind.CLASS_TEMPLATE]
+
     def __init__(self, cursor):
         super(ClassTemplate, self).__init__(cursor)
         self.specializations = set()
 
     @classmethod
     def get_key(cls, cursor):
-        assert cursor.kind == ci.CursorKind.CLASS_TEMPLATE
+        assert cursor.kind in cls.KINDS
 
         # TODO: Should we trust displayname here?
         if cursor.lexical_parent is None:
@@ -149,6 +155,8 @@ class ClassTemplateSpecialization(Entity):
 
 
 class Function(Entity):
+    KINDS = [ci.CursorKind.CXX_METHOD, ci.CursorKind.FUNCTION_DECL]
+
     @classmethod
     def get_key(cls, cursor):
         if cursor.lexical_parent is None:
@@ -170,6 +178,7 @@ class Function(Entity):
 
 
 class FunctionTemplate(Entity):
+    KINDS = [ci.CursorKind.FUNCTION_TEMPLATE]
     # TODO: Key should include the function signature.
 
     def __init__(self, cursor):
@@ -178,7 +187,7 @@ class FunctionTemplate(Entity):
 
     @classmethod
     def get_key(cls, cursor):
-        assert cursor.kind == ci.CursorKind.FUNCTION_TEMPLATE
+        assert cursor.kind in cls.KINDS
 
         # TODO: Is it safe to use displayname here?
         # TODO: How do I get the template arguments?
@@ -209,32 +218,25 @@ class FunctionTemplateSpecialization(Entity):
 
 
 class Variable(Entity):
+    KINDS = [ci.CursorKind.FIELD_DECL, ci.CursorKind.VAR_DECL]
     pass
 
 
 def convert(cursor):
-    CONVERSION_MAP = {
-        ci.CursorKind.FIELD_DECL: Variable,
-        ci.CursorKind.VAR_DECL: Variable,
-    }
-
-    if cursor.kind == ci.CursorKind.TRANSLATION_UNIT:
+    if cursor.kind in Root.KINDS:
         return Root(cursor)
-    elif cursor.kind == ci.CursorKind.NAMESPACE:
+    elif cursor.kind in Namespace.KINDS:
         return Namespace(cursor)
-    elif cursor.kind in [ci.CursorKind.CLASS_DECL,
-                         ci.CursorKind.STRUCT_DECL,
-                         ci.CursorKind.UNION_DECL]:
+    elif cursor.kind in Class.KINDS:
         # Differentiate between declarations of classes and the instantiation
         # of a template class.
         if ci.conf.lib.clang_Type_getNumTemplateArguments(cursor.type) == -1:
             return Class(cursor)
         else:
             return ClassTemplateSpecialization(cursor)
-    elif cursor.kind == ci.CursorKind.CLASS_TEMPLATE:
+    elif cursor.kind in ClassTemplate.KINDS:
         return ClassTemplate(cursor)
-    elif cursor.kind in [ci.CursorKind.CXX_METHOD,
-                         ci.CursorKind.FUNCTION_DECL]:
+    elif cursor.kind in Function.KINDS:
         # Ignore out-of-line definitions of member functions. An out-of-line
         # will not be a lexical child of the class declaration.
         if cursor.semantic_parent != cursor.lexical_parent:
@@ -246,10 +248,9 @@ def convert(cursor):
             return Function(cursor)
         else:
             return FunctionTemplateSpecialization(cursor)
-    elif cursor.kind == ci.CursorKind.FUNCTION_TEMPLATE:
+    elif cursor.kind in FunctionTemplate.KINDS:
         return FunctionTemplate(cursor)
-    elif cursor.kind in [ci.CursorKind.FIELD_DECL,
-                         ci.CursorKind.VAR_DECL]:
+    elif cursor.kind in Variable.KINDS:
         return Variable(cursor)
     else:
         return None
