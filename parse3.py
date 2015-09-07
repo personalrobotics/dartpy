@@ -207,6 +207,11 @@ class Parser(object):
         self.root_entity = self._parse_impl(cursor, None)
 
         self._coalesce_namespaces(self.root_entity)
+        self._filter_access(self.root_entity, [
+            ci.AccessSpecifier.INVALID,
+            ci.AccessSpecifier.NONE,
+            ci.AccessSpecifier.PUBLIC
+        ])
         self._collate_specializations(self.root_entity,
             ClassTemplate, ClassTemplateSpecialization)
         self._collate_specializations(self.root_entity,
@@ -296,6 +301,13 @@ class Parser(object):
 
             if specialization.lexical_parent is not None:
                 specialization.lexical_parent.remove_child(specialization)
+
+    def _filter_access(self, entity, access_levels):
+        for child_entity in list(entity.lexical_children):
+            if child_entity.cursor.access_specifier in access_levels:
+                self._filter_access(child_entity, access_levels)
+            else:
+                entity.remove_child(child_entity)
 
 
 def main():
