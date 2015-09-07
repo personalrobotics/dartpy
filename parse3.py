@@ -144,9 +144,9 @@ class ClassTemplate(Entity):
         specialization.generic_template = self
 
 
-class ClassTemplateSpecialization(Entity):
+class ClassTemplateInstantiaton(Entity):
     def __init__(self, cursor):
-        super(ClassTemplateSpecialization, self).__init__(cursor)
+        super(ClassTemplateInstantiaton, self).__init__(cursor)
         self.generic_template = None
 
     @property
@@ -204,12 +204,12 @@ class FunctionTemplate(Entity):
         specialization.generic_template = self
 
 
-class FunctionTemplateSpecialization(Entity):
+class FunctionTemplateInstantiaton(Entity):
     # TODO: Key should include the value of the template parameters.
     # TODO: Key should include the function signature.
 
     def __init__(self, cursor):
-        super(FunctionTemplateSpecialization, self).__init__(cursor)
+        super(FunctionTemplateInstantiaton, self).__init__(cursor)
         self.generic_template = None
 
     @property
@@ -233,7 +233,7 @@ def convert(cursor):
         if ci.conf.lib.clang_Type_getNumTemplateArguments(cursor.type) == -1:
             return Class(cursor)
         else:
-            return ClassTemplateSpecialization(cursor)
+            return ClassTemplateInstantiaton(cursor)
     elif cursor.kind in ClassTemplate.KINDS:
         return ClassTemplate(cursor)
     elif cursor.kind in Function.KINDS:
@@ -247,7 +247,7 @@ def convert(cursor):
         if ci.conf.lib.clang_Cursor_getNumTemplateArguments(cursor) == -1:
             return Function(cursor)
         else:
-            return FunctionTemplateSpecialization(cursor)
+            return FunctionTemplateInstantiaton(cursor)
     elif cursor.kind in FunctionTemplate.KINDS:
         return FunctionTemplate(cursor)
     elif cursor.kind in Variable.KINDS:
@@ -273,9 +273,9 @@ class Parser(object):
             ci.AccessSpecifier.NONE,
             ci.AccessSpecifier.PUBLIC])
         self._collate_specializations(root_entity,
-            ClassTemplate, ClassTemplateSpecialization)
+            ClassTemplate, ClassTemplateInstantiaton)
         self._collate_specializations(root_entity,
-            FunctionTemplate, FunctionTemplateSpecialization)
+            FunctionTemplate, FunctionTemplateInstantiaton)
 
         return root_entity
 
