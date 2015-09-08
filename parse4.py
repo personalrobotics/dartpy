@@ -26,6 +26,10 @@ LOG_SEVERITY_MAP = {
 logger = logging.getLogger()
 
 
+def indent(line, depth):
+    return (' ' * depth) + line
+
+
 class Entity(object):
     def __init__(self, cursor):
         self.cursor = cursor
@@ -35,6 +39,17 @@ class Entity(object):
     def __repr__(self):
         return '{:s}({:s})'.format(
             self.__class__.__name__, self.cursor.spelling)
+
+    @property
+    def name(self):
+        return self.cursor.spelling
+
+    @property
+    def qualified_name(self):
+        if self.lexical_parent is None:
+            return self.name
+        else:
+            return self.lexical_parent.qualified_name + '::' + self.name
 
     @property
     def lexical_children(self):
@@ -55,8 +70,35 @@ class Root(Entity):
     KINDS = [ci.CursorKind.TRANSLATION_UNIT]
 
     @property
+    def name(self):
+        return ''
+
+    @property
+    def qualified_name(self):
+        return ''
+
+    @property
     def key(self):
         return ''
+
+    def emit(self, file, depth=0):
+        # TODO: Don't hard-code the name root_namespace.
+        # TODO: Don't hard-code the header path.
+        file.write(
+            '#include <boost/python.hpp>\n'
+            '#include <dart/config.h>\n'
+            '#include <dart/common/common.h>\n'
+            '#include <dart/dynamics/dynamics.h>\n'
+            '#include <dart/math/math.h>\n'
+            '#include <dart/optimizer/optimizer.h>\n'
+            '\n'
+            'BOOST_PYTHON_MODULE(module)\n'
+            '{\n')
+
+        for child in self.lexical_children:
+            child.emit(file, depth + 1)
+
+        file.write('}\n')
 
 
 class Namespace(Entity):
@@ -69,6 +111,25 @@ class Namespace(Entity):
         else:
             return self.cursor.spelling
 
+    def emit(self, file, depth=0):
+        file.write(
+            '{{\n'
+            'const ::std::string nested_name = ::boost::python::extract<'
+                '::std::string>(boost::python::scope().attr("__name__")'
+                    ' + ".{name:s}");\n'
+            '::boost::python::object nested_module(boost::python::handle<>('
+                'boost::python::borrowed(::PyImport_AddModule('
+                    'nested_name.c_str()))));\n'
+            '::boost::python::scope().attr("{name:s}") = nested_module;\n'
+            '::boost::python::scope nested_scope = nested_module;\n'
+            .format(name=self.cursor.spelling)
+        )
+
+        for child in self.lexical_children:
+            child.emit(file, depth + 1)
+
+        file.write('}\n')
+
 
 class Class(Entity):
     KINDS = [
@@ -76,6 +137,20 @@ class Class(Entity):
         ci.CursorKind.STRUCT_DECL,
         ci.CursorKind.UNION_DECL,
     ]
+
+    @property
+    def key(self):
+        return self.qualified_name
+
+    @property
+    def name(self):
+        if self.is_template:
+            return '{class_name:s}<{template_arguments:s}>'.format(
+                class_name=self.cursor.spelling,
+                template_arguments=', '.join(
+                    x.spelling for x in self.template_arguments))
+        else:
+            return self.cursor.spelling
 
     @property
     def is_template(self):
@@ -88,11 +163,13 @@ class Class(Entity):
 
     @property
     def template_type(self):
-        # TODO: This doesn't return the parent specialization.
         return ci.conf.lib.clang_getSpecializedCursorTemplate(self.cursor)
 
     @property
     def template_arguments(self):
+        if not self.is_template:
+            return None
+
         # Get template type arguments. Non-type template arguments return an
         # INVALID placeholder, which we fill in below.
         template_types = [
@@ -135,27 +212,61 @@ class Class(Entity):
              template_type)
             for template_type in template_types ]
 
-    @property
-    def key(self):
-        if self.is_template:
-            name = '{class_name:s}<{template_arguments:s}>'.format(
-                class_name=self.cursor.spelling,
-                template_arguments=', '.join(
-                    x.spelling for x in self.template_arguments))
-        else:
-            name = self.cursor.spelling
+    def emit(self, file, depth=0):
+        class_args = [self.key]
 
-        if self.cursor.lexical_parent is None:
-            return name
-        else:
-            return self.lexical_parent.key + '::' + name
+        # TODO: Use properties associated with this class.
+        """
+        if self.properties.held_type:
+            class_args.append(self.properties.held_type)
+        if self.properties.noncopyable:
+            class_args.append('::boost::noncopyable')
 
-    def instantiate(self):
-        pass # TODO: Copy methods from self.template_class.
+        # Default to the C++ classes base classes.
+        if self.properties.bases is not None:
+            bases = self.properties.bases
+        else:
+            bases = self.base_classes
+        """
+        # TODO: Get base classes.
+        bases = []
+
+        if bases:
+            class_args.append('::boost::python::bases<{:s}>'.format(
+                ', '.join(bases)))
+
+        file.write(
+            '{{\n'
+            '::boost::python::scope class_scope'
+            ' = boost::python::class_<{args:s}>("{name:s}",'
+            ' ::boost::python::no_init)\n'.format(
+                args=', '.join(class_args),
+                name=self.cursor.spelling))
+
+        for child in self.lexical_children:
+            if isinstance(child, (Function, Variable)):
+                child.emit(file, depth=depth + 1)
+
+        file.write(';\n')
+
+        for child in self.lexical_children:
+            if isinstance(child, (Class, Enum)):
+                child.emit(file, depth=depth + 1)
+
+        file.write('}\n')
+
+
+class Enum(Entity):
+    pass
 
 
 class Function(Entity):
     KINDS = [ci.CursorKind.CXX_METHOD, ci.CursorKind.FUNCTION_DECL]
+
+    @property
+    def is_member(self):
+        return (self.lexical_parent is not None
+                and isinstance(self.lexical_parent, Class))
 
     @property
     def is_const(self):
@@ -197,27 +308,83 @@ class Function(Entity):
         return arguments
 
     @property
-    def key(self):
+    def argument_names(self):
+        return [x.spelling for x in self.cursor.get_arguments()]
+
+    @property
+    def argument_defaults(self):
+        defaults = []
+
+        # TODO: Share this code with template argument values.
+        for argument_cursor in self.cursor.get_arguments():
+            default_value = None
+
+            for child_cursor in argument_cursor.get_children():
+                if child_cursor.kind == ci.CursorKind.INTEGER_LITERAL:
+                    default_value = list(child_cursor.get_tokens())[0].spelling
+                    break
+
+            defaults.append(default_value)
+
+        return defaults
+
+    @property
+    def pointer_signature(self):
+        if self.is_member:
+            pointer_name = '({class_name:s}::*)'.format(
+                class_name=self.lexical_parent.qualified_name)
+        else:
+            pointer_name = '(*)'
+
+        return '{result:s} {name:s}({arguments:s}){attributes:s}'.format(
+            result=self.cursor.type.get_result().get_canonical().spelling,
+            name=pointer_name,
+            arguments=', '.join(
+                argument.type.get_canonical().spelling
+                for argument in self.cursor.get_arguments()
+            ),
+            attributes=' const' if self.is_const else ''
+        )
+
+    @property
+    def name(self):
         def to_str(arg):
             if isinstance(arg, ci.Type):
                 return arg.spelling
             else:
                 return str(arg)
 
-        # Fully-qualified name.
-        if self.cursor.lexical_parent is None:
-            base_name = self.cursor.spelling
-        else:
-            base_name = self.lexical_parent.key + '::' + self.cursor.spelling
-
-        # Template arguments.
         if self.is_template:
-            name = '{name:s}<{args:s}>'.format(
-                name=base_name,
+            return '{name:s}<{args:s}>'.format(
+                name=self.cursor.spelling,
                 args=', '.join(to_str(x) for x in self.template_arguments))
         else:
-            name = base_name
+            return self.cursor.spelling
 
+    @property
+    def key(self):
+        arguments = [
+            ('{:s} {:s}'.format(arg.type.spelling, arg.spelling)
+             if arg.spelling else arg.type.spelling)
+            for arg in self.cursor.get_arguments()
+        ]
+
+        return '{return_type:s} {name:s}({arguments:s}){const:s}'.format(
+            return_type=self.cursor.result_type.spelling,
+            name=self.name,
+            arguments=', '.join(arguments),
+            const=' const' if self.is_const else '')
+
+    @property
+    def pointer_signature(self):
+        if self.is_member:
+            return self.get_signature(
+                '({qualified_name:s}::*)'.format(
+                    qualified_name=self.lexical_parent.qualified_name))
+        else:
+            return self.get_signature('(*)')
+
+    def get_signature(self, name):
         # Function arguments.
         arguments = [
             ('{:s} {:s}'.format(arg.type.spelling, arg.spelling)
@@ -230,6 +397,59 @@ class Function(Entity):
             name=name,
             arguments=', '.join(arguments),
             const=' const' if self.is_const else '')
+
+    def emit(self, file, depth=0):
+        returns_reference = (self.cursor.result_type.kind in [
+            ci.TypeKind.LVALUEREFERENCE, ci.TypeKind.RVALUEREFERENCE])
+
+        def_args = [
+            '"{name:s}"'.format(name=self.name),
+            'static_cast<{type:s}>(&{qualified_name:s})'.format(
+                type=self.pointer_signature,
+                qualified_name=self.qualified_name)
+        ]
+
+        # TODO: Read this from properties.
+        """
+        if self.properties.return_value_policy is not None:
+            def_args.append(
+                'boost::python::return_value_policy<{:s}>()'.format(
+                    self.properties.return_value_policy))
+        elif returns_reference:
+            logger.warning(
+                'Function "%s" requires a "return_value_policy" to be'
+                ' specified because it returns a' ' reference.',
+                self.key)
+        """
+
+        # TODO: Add support for default arguments.
+        argument_names = self.argument_names
+        if self.is_member:
+            argument_names.insert(0, 'self')
+
+        if argument_names:
+            arguments = []
+
+            for name, default_value in zip(self.argument_names,
+                                           self.argument_defaults):
+                if default_value is None:
+                    arg = 'boost::python::arg("{name:s}")'.format(
+                        name=name)
+                else:
+                    arg = 'boost::python::arg("{name:s}") = {value:s}'.format(
+                        name=name,
+                        value=default_value)
+
+                arguments.append(arg)
+
+            def_args.append('({:s})'.format(', '.join(arguments)))
+
+        def_statement = 'def({:s})'.format(', '.join(def_args))
+
+        if self.is_member:
+            file.write('.' + def_statement + '\n')
+        else:
+            file.write('::boost::python::' + def_statement + ';\n')
 
 
 class Variable(Entity):
@@ -413,9 +633,10 @@ def main():
     print('---')
     print_ast(tu.cursor)
     print('---')
-
     root_entity = parse(tu.cursor)
     print_entities(root_entity)
+    print('---')
+    print(root_entity.emit(sys.stdout))
 
     #parser = Parser()
     #root_entity = parser.parse(tu.cursor)
