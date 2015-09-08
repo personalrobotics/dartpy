@@ -8,6 +8,13 @@ import sys
 import yaml
 
 
+# LIMITATIONS
+# - Template specializations are ignored.
+# - Only literals are supported for non-type template arguments.
+# - Function signatures are compared by strict string equality.
+# - Explicit instantiation of template functions are ignored.
+
+
 ERROR_SEVERITIES = [ci.Diagnostic.Error, ci.Diagnostic.Fatal]
 LOG_SEVERITY_MAP = {
     ci.Diagnostic.Ignored: logging.INFO,
