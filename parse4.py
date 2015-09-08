@@ -2,9 +2,20 @@
 from __future__ import print_function
 import argparse
 import cindex as ci
+import logging
 import os.path
 import sys
 import yaml
+
+
+LOG_SEVERITY_MAP = {
+    ci.Diagnostic.Ignored: logging.INFO,
+    ci.Diagnostic.Note: logging.INFO,
+    ci.Diagnostic.Warning: logging.WARNING,
+    ci.Diagnostic.Error: logging.ERROR,
+    ci.Diagnostic.Fatal: logging.FATAL,
+}
+logger = logging.getLogger()
 
 
 class Entity(object):
@@ -16,13 +27,6 @@ class Entity(object):
     def __repr__(self):
         return '{:s}({:s})'.format(
             self.__class__.__name__, self.cursor.spelling)
-
-    @property
-    def key(self):
-        if hasattr(self, 'get_key'):
-            return self.get_key(self.cursor)
-        else:
-            return None
 
     @property
     def lexical_children(self):
@@ -42,31 +46,20 @@ class Entity(object):
 class Root(Entity):
     KINDS = [ci.CursorKind.TRANSLATION_UNIT]
 
-    @classmethod
-    def get_key(cls, cursor):
-        assert cursor.kind in cls.KINDS
+    @property
+    def key(self):
         return ''
 
 
 class Namespace(Entity):
     KINDS = [ci.CursorKind.NAMESPACE]
 
-    @classmethod
-    def get_key(cls, cursor):
-        assert cursor.kind in cls.KINDS
-        parents = []
-
-        while cursor is not None:
-            if cursor.kind == ci.CursorKind.TRANSLATION_UNIT:
-                parents.insert(0, '')
-            elif cursor.kind == ci.CursorKind.NAMESPACE:
-                parents.insert(0, cursor.spelling)
-            else:
-                raise ValueError('Unsupported CursorKind.')
-
-            cursor = cursor.lexical_parent
-
-        return '::'.join(parents)
+    @property
+    def key(self):
+        if self.lexical_parent:
+            return self.lexical_parent.key + '::' + self.cursor.spelling
+        else:
+            return self.cursor.spelling
 
 
 class Class(Entity):
@@ -83,7 +76,7 @@ class Class(Entity):
     @property
     def num_template_arguments(self):
         n = ci.conf.lib.clang_Type_getNumTemplateArguments(self.cursor.type)
-        return (n if n != -1 else 0)
+        return (n if n != -1 else None)
 
     @property
     def template_type(self):
@@ -149,25 +142,75 @@ class Class(Entity):
         else:
             return self.lexical_parent.key + '::' + name
 
+    def instantiate(self):
+        pass # TODO: Copy methods from self.template_class.
+
 
 class Function(Entity):
     KINDS = [ci.CursorKind.CXX_METHOD, ci.CursorKind.FUNCTION_DECL]
 
-    @classmethod
-    def is_const(cls, cursor):
-        return ci.conf.lib.clang_CXXMethod_isConst(cursor)
+    @property
+    def is_const(self):
+        return ci.conf.lib.clang_CXXMethod_isConst(self.cursor)
 
-    @classmethod
-    def is_static(cls, cursor):
-        return ci.conf.lib.clang_CXXMethod_isStatic(cursor)
+    @property
+    def is_static(self):
+        return ci.conf.lib.clang_CXXMethod_isStatic(self.cursor)
+
+    @property
+    def is_template(self):
+        return self.template_class is not None
+
+    @property
+    def template_class(self):
+        return ci.conf.lib.clang_getSpecializedCursorTemplate(self.cursor)
+
+    @property
+    def template_arguments(self):
+        arguments = []
+
+        for i in xrange(self.cursor.get_num_template_arguments()):
+            kind = self.cursor.get_template_argument_kind(i)
+
+            if kind == ci.TemplateArgumentKind.TYPE:
+                argument = self.cursor.get_template_argument_type(i)
+            elif kind == ci.TemplateArgumentKind.INTEGRAL:
+                argument = self.cursor.get_template_argument_value(i)
+            elif kind == ci.TemplateArgumentKind.NULLPTR:
+                argument = 'nullptr'
+            elif kind == ci.TemplateArgumentKind.NULL:
+                raise ValueError(
+                    'Unable to deduce type of template argument {index:d}'
+                    ' on function "{function_name:s}".'.format(
+                        index=i, function_name=self.displayname))
+
+            arguments.append(argument)
+
+        return arguments
 
     @property
     def key(self):
-        if self.cursor.lexical_parent is None:
-            name = self.cursor.spelling
-        else:
-            name = self.lexical_parent.key + '::' + self.cursor.spelling
+        def to_str(arg):
+            if isinstance(arg, ci.Type):
+                return arg.spelling
+            else:
+                return str(arg)
 
+        # Fully-qualified name.
+        if self.cursor.lexical_parent is None:
+            base_name = self.cursor.spelling
+        else:
+            base_name = self.lexical_parent.key + '::' + self.cursor.spelling
+
+        # Template arguments.
+        if self.is_template:
+            name = '{name:s}<{args:s}>'.format(
+                name=base_name,
+                args=', '.join(to_str(x) for x in self.template_arguments))
+        else:
+            name = base_name
+
+        # Function arguments.
         arguments = [
             ('{:s} {:s}'.format(arg.type.spelling, arg.spelling)
              if arg.spelling else arg.type.spelling)
@@ -178,12 +221,18 @@ class Function(Entity):
             return_type=self.cursor.result_type.spelling,
             name=name,
             arguments=', '.join(arguments),
-            const='') # TODO: Const-correctness.
+            const=' const' if self.is_const else '')
 
 
 class Variable(Entity):
     KINDS = [ci.CursorKind.FIELD_DECL, ci.CursorKind.VAR_DECL]
-    pass
+
+    @property
+    def key(self):
+        if self.lexical_parent:
+            return self.lexical_parent.key + '::' + self.cursor.spelling
+        else:
+            return self.cursor.spelling
 
 
 def convert(cursor):
@@ -195,13 +244,17 @@ def convert(cursor):
         #if ci.conf.lib.clang_Type_getNumTemplateArguments(cursor.type) == -1:
         return Class(cursor)
     elif cursor.kind in Function.KINDS:
+        entity = Function(cursor)
+
         # Ignore out-of-line definitions of member functions. An out-of-line
         # will not be a lexical child of the class declaration.
         if cursor.semantic_parent != cursor.lexical_parent:
-            return None
+            # Output all template member function instantiations, since we'll
+            # coalesce them later.
+            if not entity.is_template:
+                return None
 
-        #if ci.conf.lib.clang_Cursor_getNumTemplateArguments(cursor) == -1:
-        return Function(cursor)
+        return entity
     elif cursor.kind in Variable.KINDS:
         return Variable(cursor)
     else:
@@ -356,5 +409,6 @@ def main():
 
 
 if __name__ == '__main__':
+    logging.basicConfig()
     main()
 
