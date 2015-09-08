@@ -8,6 +8,7 @@ import sys
 import yaml
 
 
+ERROR_SEVERITIES = [ci.Diagnostic.Error, ci.Diagnostic.Fatal]
 LOG_SEVERITY_MAP = {
     ci.Diagnostic.Ignored: logging.INFO,
     ci.Diagnostic.Note: logging.INFO,
@@ -386,8 +387,11 @@ def main():
             header_path, e.message)
         return 1
 
+    is_error = False
     for diag in tu.diagnostics:
         level = LOG_SEVERITY_MAP.get(diag.severity, logging.WARNING)
+        is_error = is_error or diag.severity in ERROR_SEVERITIES
+
         if diag.location.file is not None:
             logger.log(level, '%s:%d:%d: %s',
                 os.path.basename(diag.location.file.name),
@@ -395,6 +399,9 @@ def main():
                 diag.spelling)
         else:
             logger.log(level, '<unknown>: %s', diag.spelling)
+
+    if is_error:
+        return 1
 
     print('---')
     print_ast(tu.cursor)
@@ -405,10 +412,17 @@ def main():
 
     #parser = Parser()
     #root_entity = parser.parse(tu.cursor)
-    import IPython; IPython.embed()
+    #import IPython; IPython.embed()
+
+    return 0
 
 
 if __name__ == '__main__':
-    logging.basicConfig()
-    main()
+    try:
+        import colorlog
+        colorlog.basicConfig()
+    except ImportError:
+        logging.basicConfig()
+        logger.warning('Install "colorlog" to colorize log messages.')
 
+    sys.exit(main())
