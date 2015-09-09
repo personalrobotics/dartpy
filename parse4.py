@@ -4,6 +4,7 @@ import argparse
 import cindex as ci
 import logging
 import os.path
+import re
 import sys
 import yaml
 
@@ -200,11 +201,11 @@ class Class(Entity):
             x for x in template_types if x.kind == ci.TypeKind.INVALID])
 
         if len(template_values) != num_nontype_arguments:
-            raise ValueError(
-                'Found {actual:d} values for non-type template arguments, but'
-                ' there are only {expected} non-type arguments.'.format(
-                    actual=len(template_values),
-                    expected=num_nontype_arguments))
+            logger.warning(
+                'Found %d values for non-type template arguments, but there'
+                ' are only % non-type arguments.',
+                len(template_values), num_nontype_arguments)
+            return []
 
         return [
             (template_values.pop(0)
@@ -250,7 +251,7 @@ class Class(Entity):
         file.write(';\n')
 
         for child in self.lexical_children:
-            if isinstance(child, (Class, Enum)):
+            if not isinstance(child, (Function, Variable)):
                 child.emit(file, depth=depth + 1)
 
         file.write('}\n')
@@ -267,6 +268,11 @@ class Function(Entity):
     def is_member(self):
         return (self.lexical_parent is not None
                 and isinstance(self.lexical_parent, Class))
+
+    @property
+    def is_operator(self):
+        return re.match(
+            '^operator[^a-zA-Z0-9_]', self.cursor.spelling) is not None
 
     @property
     def is_const(self):
@@ -329,24 +335,6 @@ class Function(Entity):
         return defaults
 
     @property
-    def pointer_signature(self):
-        if self.is_member:
-            pointer_name = '({class_name:s}::*)'.format(
-                class_name=self.lexical_parent.qualified_name)
-        else:
-            pointer_name = '(*)'
-
-        return '{result:s} {name:s}({arguments:s}){attributes:s}'.format(
-            result=self.cursor.type.get_result().get_canonical().spelling,
-            name=pointer_name,
-            arguments=', '.join(
-                argument.type.get_canonical().spelling
-                for argument in self.cursor.get_arguments()
-            ),
-            attributes=' const' if self.is_const else ''
-        )
-
-    @property
     def name(self):
         def to_str(arg):
             if isinstance(arg, ci.Type):
@@ -377,23 +365,29 @@ class Function(Entity):
 
     @property
     def pointer_signature(self):
-        if self.is_member:
+        if self.is_member and not self.is_static:
             return self.get_signature(
                 '({qualified_name:s}::*)'.format(
-                    qualified_name=self.lexical_parent.qualified_name))
+                    qualified_name=self.lexical_parent.qualified_name),
+                False)
         else:
-            return self.get_signature('(*)')
+            return self.get_signature('(*)', False)
 
-    def get_signature(self, name):
+    def get_signature(self, name, include_argument_names):
         # Function arguments.
-        arguments = [
-            ('{:s} {:s}'.format(arg.type.spelling, arg.spelling)
-             if arg.spelling else arg.type.spelling)
-            for arg in self.cursor.get_arguments()
-        ]
+        if include_argument_names:
+            arguments = [
+                ('{type:s} {name:s}'.format(
+                    type=arg.type.get_canonical().spelling,
+                    name=arg.spelling)
+                 if arg.spelling else arg.type.get_canonical().spelling)
+                for arg in self.cursor.get_arguments() ]
+        else:
+            arguments = [ arg.type.get_canonical().spelling
+                for arg in self.cursor.get_arguments() ]
 
         return '{return_type:s} {name:s}({arguments:s}){const:s}'.format(
-            return_type=self.cursor.result_type.spelling,
+            return_type=self.cursor.result_type.get_canonical().spelling,
             name=name,
             arguments=', '.join(arguments),
             const=' const' if self.is_const else '')
@@ -433,16 +427,17 @@ class Function(Entity):
             for name, default_value in zip(self.argument_names,
                                            self.argument_defaults):
                 if default_value is None:
-                    arg = 'boost::python::arg("{name:s}")'.format(
+                    arg = '::boost::python::arg("{name:s}")'.format(
                         name=name)
                 else:
-                    arg = 'boost::python::arg("{name:s}") = {value:s}'.format(
+                    arg = '::boost::python::arg("{name:s}") = {value:s}'.format(
                         name=name,
                         value=default_value)
 
                 arguments.append(arg)
 
-            def_args.append('({:s})'.format(', '.join(arguments)))
+            if arguments:
+                def_args.append('({:s})'.format(', '.join(arguments)))
 
         def_statement = 'def({:s})'.format(', '.join(def_args))
 
@@ -462,6 +457,9 @@ class Variable(Entity):
         else:
             return self.cursor.spelling
 
+    def emit(self, file, depth=0):
+        pass # TODO: not implemented
+
 
 def convert(cursor):
     if cursor.kind in Root.KINDS:
@@ -469,6 +467,11 @@ def convert(cursor):
     elif cursor.kind in Namespace.KINDS:
         return Namespace(cursor)
     elif cursor.kind in Class.KINDS:
+        # Ignore forward declarations.
+        definition = cursor.get_definition()
+        if definition is None or definition != cursor:
+            return None
+
         #if ci.conf.lib.clang_Type_getNumTemplateArguments(cursor.type) == -1:
         return Class(cursor)
     elif cursor.kind in Function.KINDS:
@@ -489,8 +492,18 @@ def convert(cursor):
         return None
 
 
-def parse(cursor):
+def parse(cursor, accept_fn=None):
+    PUBLIC_LEVELS = [
+        ci.AccessSpecifier.INVALID,
+        ci.AccessSpecifier.NONE,
+        ci.AccessSpecifier.PUBLIC
+    ]
+
     def parse_impl(cursor, lexical_parent):
+        # Ignore cursors that fail the acceptance criteria.
+        if accept_fn is not None and not accept_fn(cursor):
+            return None
+
         entity = convert(cursor)
 
         if entity is not None:
@@ -503,7 +516,17 @@ def parse(cursor):
 
     root_entity = parse_impl(cursor, None)
     coalesce_namespaces(root_entity)
-    remove_inaccessible(root_entity)
+
+    # Remove private and protected members.
+    remove_predicate(root_entity,
+        lambda entity: entity.cursor.access_specifier not in PUBLIC_LEVELS)
+
+    # Remove operators.
+    # TODO: Create bindings for some operators (e.g. addition).
+    remove_predicate(root_entity,
+        lambda entity: isinstance(entity, Function) and entity.is_operator)
+
+
     return root_entity
 
 
@@ -541,19 +564,14 @@ def coalesce_namespaces(entity):
         entity.add_child(canonical_namespace)
 
 
-def remove_inaccessible(entity):
+def remove_predicate(entity, predicate_fn):
     """ Remove protected and private entities. """
-    PUBLIC_LEVELS = [
-        ci.AccessSpecifier.INVALID,
-        ci.AccessSpecifier.NONE,
-        ci.AccessSpecifier.PUBLIC
-    ]
 
     for child_entity in list(entity.lexical_children):
-        if child_entity.cursor.access_specifier in PUBLIC_LEVELS:
-            remove_inaccessible(child_entity)
-        else:
+        if predicate_fn(child_entity):
             entity.remove_child(child_entity)
+        else:
+            remove_predicate(child_entity, predicate_fn)
 
 
 def print_entities(entity, depth=0):
@@ -566,6 +584,17 @@ def print_ast(cursor, depth=0):
     print((' ' * depth) + cursor.kind.name, cursor.spelling)
     for child_cursor in cursor.get_children():
         print_ast(child_cursor, depth + 1)
+
+
+def is_parent_directory(parent_path, child_path):
+    parent_canonical_path = os.path.abspath(parent_path)
+    child_canonical_path = os.path.abspath(child_path)
+    return child_canonical_path.startswith(parent_canonical_path)
+
+
+def is_cursor_in_directory(cursor, parent_path):
+    return (cursor.location.file is None
+        or is_parent_directory(parent_path, cursor.location.file.name))
 
 
 def main():
@@ -630,12 +659,16 @@ def main():
     if is_error:
         return 1
 
-    print('---')
-    print_ast(tu.cursor)
-    print('---')
-    root_entity = parse(tu.cursor)
-    print_entities(root_entity)
-    print('---')
+
+    #print('---')
+    #print_ast(tu.cursor)
+    #print('---')
+    root_entity = parse(tu.cursor,
+        accept_fn=lambda cursor: is_cursor_in_directory(
+            cursor, args.base_path))
+
+    #print_entities(root_entity)
+    #print('---')
     print(root_entity.emit(sys.stdout))
 
     #parser = Parser()
