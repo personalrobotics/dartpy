@@ -10,10 +10,16 @@ import yaml
 
 
 # LIMITATIONS
-# - Template specializations are ignored.
+# - Template classes are ignored
+# - Template functions are ignored
 # - Only literals are supported for non-type template arguments.
 # - Function signatures are compared by strict string equality.
-# - Explicit instantiation of template functions are ignored.
+#
+# TODOs
+# - Emit enums
+# - Emit variables
+# - Wrap constructors.
+# - Automatically infer base classes.
 
 
 ERROR_SEVERITIES = [ci.Diagnostic.Error, ci.Diagnostic.Fatal]
@@ -87,10 +93,11 @@ class Root(Entity):
         # TODO: Don't hard-code the header path.
         file.write(
             '#include <boost/python.hpp>\n'
-            '#include <dart/config.h>\n'
             '#include <dart/common/common.h>\n'
+            '#include <dart/config.h>\n'
             '#include <dart/dynamics/dynamics.h>\n'
             '#include <dart/math/math.h>\n'
+            '#include <dart/renderer/renderer.h>\n'
             '#include <dart/optimizer/optimizer.h>\n'
             '\n'
             'BOOST_PYTHON_MODULE(module)\n'
@@ -113,6 +120,10 @@ class Namespace(Entity):
             return self.cursor.spelling
 
     def emit(self, file, depth=0):
+        # Skip empty namespaces.
+        if not self.lexical_children:
+            return
+
         file.write(
             '{{\n'
             'const ::std::string nested_name = ::boost::python::extract<'
@@ -138,6 +149,14 @@ class Class(Entity):
         ci.CursorKind.STRUCT_DECL,
         ci.CursorKind.UNION_DECL,
     ]
+    PROPERTIES = ['python_name', 'held_type', 'bases', 'noncopyable']
+
+    def __init__(self, cursor):
+        super(Class, self).__init__(cursor)
+        self.python_name = self.name
+        self.base_classes = []
+        self.noncopyable = False
+        self.held_type = None
 
     @property
     def key(self):
@@ -152,6 +171,15 @@ class Class(Entity):
                     x.spelling for x in self.template_arguments))
         else:
             return self.cursor.spelling
+
+    @property
+    def is_pure_virtual(self):
+        for child_cursor in self.cursor.get_children():
+            if child_cursor.kind == ci.CursorKind.CXX_METHOD:
+                if ci.conf.lib.clang_CXXMethod_isPureVirtual(child_cursor):
+                    return True
+
+        return False
 
     @property
     def is_template(self):
@@ -213,28 +241,54 @@ class Class(Entity):
              template_type)
             for template_type in template_types ]
 
+    def attach_properties(self, properties_dict):
+        try:
+            self.python_name = properties_dict['name']
+        except KeyError:
+            pass
+
+        try:
+            self.base_classes = properties_dict['base_classes']
+        except KeyError:
+            pass
+
+        try:
+            self.noncopyable = properties_dict['noncopyable']
+        except KeyError:
+            pass
+
+        try:
+            self.held_type = properties_dict['held_type']
+        except KeyError:
+            pass
+
+        # TODO: Error checking.
+
     def emit(self, file, depth=0):
         class_args = [self.key]
 
-        # TODO: Use properties associated with this class.
-        """
-        if self.properties.held_type:
-            class_args.append(self.properties.held_type)
-        if self.properties.noncopyable:
+        if self.held_type:
+            class_args.append(self.held_type)
+        elif self.is_pure_virtual:
+            logger.warning(
+                'Class "%s" requires "held_type" to be specified because it'
+                ' contains one or more pure virtual functions. Skipping this'
+                ' class.', self.key)
+            return
+
+        if self.noncopyable:
             class_args.append('::boost::noncopyable')
+        elif self.is_pure_virtual:
+            logger.warning(
+                'Class "%s" requires "noncopyable" to be set because it'
+                ' contains one or more pure virtual functions. Skipping this'
+                ' class.', self.key)
+            return
 
-        # Default to the C++ classes base classes.
-        if self.properties.bases is not None:
-            bases = self.properties.bases
-        else:
-            bases = self.base_classes
-        """
-        # TODO: Get base classes.
-        bases = []
-
-        if bases:
+        # TODO: Automatically populate this from C++.
+        if self.base_classes:
             class_args.append('::boost::python::bases<{:s}>'.format(
-                ', '.join(bases)))
+                ', '.join(self.base_classes)))
 
         file.write(
             '{{\n'
@@ -247,6 +301,18 @@ class Class(Entity):
         for child in self.lexical_children:
             if isinstance(child, (Function, Variable)):
                 child.emit(file, depth=depth + 1)
+
+        # Emit .staticmethod() annotations. All overloads must be exported
+        # before calling this, so we do it last. We also have to be careful
+        # to only call this once on each overload.
+        static_method_names = set(
+            child_entity.name
+            for child_entity in self.lexical_children
+            if isinstance(child_entity, Function) and child_entity.is_static
+        )
+        
+        for name in static_method_names:
+            file.write('.staticmethod("{:s}")\n'.format(name))
 
         file.write(';\n')
 
@@ -263,6 +329,10 @@ class Enum(Entity):
 
 class Function(Entity):
     KINDS = [ci.CursorKind.CXX_METHOD, ci.CursorKind.FUNCTION_DECL]
+
+    def __init__(self, cursor):
+        super(Function, self).__init__(cursor)
+        self.return_value_policy = None
 
     @property
     def is_member(self):
@@ -351,17 +421,8 @@ class Function(Entity):
 
     @property
     def key(self):
-        arguments = [
-            ('{:s} {:s}'.format(arg.type.spelling, arg.spelling)
-             if arg.spelling else arg.type.spelling)
-            for arg in self.cursor.get_arguments()
-        ]
-
-        return '{return_type:s} {name:s}({arguments:s}){const:s}'.format(
-            return_type=self.cursor.result_type.spelling,
-            name=self.name,
-            arguments=', '.join(arguments),
-            const=' const' if self.is_const else '')
+        return self.get_signature(
+            self.qualified_name, argument_names=False, canonical_types=False)
 
     @property
     def pointer_signature(self):
@@ -369,32 +430,42 @@ class Function(Entity):
             return self.get_signature(
                 '({qualified_name:s}::*)'.format(
                     qualified_name=self.lexical_parent.qualified_name),
-                False)
+                argument_names=False, canonical_types=True)
         else:
-            return self.get_signature('(*)', False)
+            return self.get_signature('(*)',
+                argument_names=False, canonical_types=True)
 
-    def get_signature(self, name, include_argument_names):
+    def get_signature(self, name, argument_names=True, canonical_types=True):
+        def get_type_name(type):
+            if canonical_types:
+                return type.get_canonical().spelling
+            else:
+                return type.spelling
+
         # Function arguments.
-        if include_argument_names:
+        if argument_names:
             arguments = [
                 ('{type:s} {name:s}'.format(
-                    type=arg.type.get_canonical().spelling,
+                    type=get_type_name(arg.type),
                     name=arg.spelling)
-                 if arg.spelling else arg.type.get_canonical().spelling)
+                 if arg.spelling else get_type_name(arg.type))
                 for arg in self.cursor.get_arguments() ]
         else:
-            arguments = [ arg.type.get_canonical().spelling
+            arguments = [ get_type_name(arg.type)
                 for arg in self.cursor.get_arguments() ]
 
         return '{return_type:s} {name:s}({arguments:s}){const:s}'.format(
-            return_type=self.cursor.result_type.get_canonical().spelling,
+            return_type=get_type_name(self.cursor.result_type),
             name=name,
             arguments=', '.join(arguments),
             const=' const' if self.is_const else '')
 
     def emit(self, file, depth=0):
         returns_reference = (self.cursor.result_type.kind in [
-            ci.TypeKind.LVALUEREFERENCE, ci.TypeKind.RVALUEREFERENCE])
+            ci.TypeKind.LVALUEREFERENCE,
+            ci.TypeKind.RVALUEREFERENCE,
+            ci.TypeKind.POINTER,
+        ])
 
         def_args = [
             '"{name:s}"'.format(name=self.name),
@@ -403,20 +474,19 @@ class Function(Entity):
                 qualified_name=self.qualified_name)
         ]
 
-        # TODO: Read this from properties.
-        """
-        if self.properties.return_value_policy is not None:
+        if self.return_value_policy is not None:
             def_args.append(
                 'boost::python::return_value_policy<{:s}>()'.format(
-                    self.properties.return_value_policy))
+                    self.return_value_policy))
         elif returns_reference:
             logger.warning(
                 'Function "%s" requires a "return_value_policy" to be'
-                ' specified because it returns a' ' reference.',
+                ' specified because it returns a reference or pointer.'
+                ' Skipping this function.',
                 self.key)
-        """
+            return
 
-        # TODO: Add support for default arguments.
+        # TODO: Add better support for default arguments.
         argument_names = self.argument_names
         if self.is_member:
             argument_names.insert(0, 'self')
@@ -445,6 +515,14 @@ class Function(Entity):
             file.write('.' + def_statement + '\n')
         else:
             file.write('::boost::python::' + def_statement + ';\n')
+
+    def attach_properties(self, properties_dict):
+        try:
+            self.return_value_policy = properties_dict['return_value_policy']
+        except KeyError:
+            pass
+
+        # TODO: Error checking.
 
 
 class Variable(Entity):
@@ -574,6 +652,21 @@ def remove_predicate(entity, predicate_fn):
             remove_predicate(child_entity, predicate_fn)
 
 
+def attach_properties(entity, properties):
+    if entity.key in properties:
+        entity_properties = properties[entity.key]
+
+        if entity_properties is not None:
+            entity.attach_properties(entity_properties)
+        else:
+            # This entity was explicitly suppressed.
+            entity.lexical_parent.remove_child(entity)
+            return
+
+    for child_entity in entity.lexical_children:
+        attach_properties(child_entity, properties)
+
+
 def print_entities(entity, depth=0):
     print((' ' * depth) + repr(entity) + ' ' + entity.key)
     for child_entity in entity.lexical_children:
@@ -659,22 +752,11 @@ def main():
     if is_error:
         return 1
 
-
-    #print('---')
-    #print_ast(tu.cursor)
-    #print('---')
     root_entity = parse(tu.cursor,
         accept_fn=lambda cursor: is_cursor_in_directory(
             cursor, args.base_path))
-
-    #print_entities(root_entity)
-    #print('---')
-    print(root_entity.emit(sys.stdout))
-
-    #parser = Parser()
-    #root_entity = parser.parse(tu.cursor)
-    #import IPython; IPython.embed()
-
+    attach_properties(root_entity, metadata['properties'])
+    root_entity.emit(sys.stdout)
     return 0
 
 
