@@ -10,14 +10,19 @@ endif()
 
 # Enable C++11. This is necessary to use DART.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE "RELWITHDEBINFO")
-endif()
 
 add_definitions(-DPROJECT_NAME=${PROJECT_NAME})
 
+find_package(PythonInterp REQUIRED)
+execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
+  "from distutils.sysconfig import get_python_lib;\
+  print(get_python_lib(plat_specific=True, prefix=''))"
+  OUTPUT_VARIABLE PYTHON_SITE_PACKAGES
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
 find_package(Boost REQUIRED COMPONENTS python thread)
-find_package(DART REQUIRED)
+find_package(DART REQUIRED COMPONENTS core)
 find_package(PythonLibs REQUIRED)
 
 include_directories(
@@ -80,28 +85,15 @@ add_library(${PROJECT_NAME} SHARED
   src/python_ZeroDofJoint.cpp
 )
 target_link_libraries(${PROJECT_NAME}
-  ${PROJECT_NAME}
   ${Boost_LIBRARIES}
   ${DART_LIBRARIES}
   ${PYTHON_LIBRARIES}
-  boost_numpy
-  boost_numpy_eigen
 )
 set_target_properties(${PROJECT_NAME} PROPERTIES
   PREFIX ""
   SUFFIX ".so"
 )
 
-# Install the python extension using setuputils.
-install(CODE
-  "
-  execute_process(COMMAND python setup.py
-                          build_ext
-                          --build-temp=${PROJECT_BINARY_DIR}
-                          install
-                          --force
-                          --prefix=${CMAKE_INSTALL_PREFIX}
-                  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
-  )
-  "
+install(TARGETS ${PROJECT_NAME}
+  LIBRARY DESTINATION "${PYTHON_SITE_PACKAGES}"
 )
