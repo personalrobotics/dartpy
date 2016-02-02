@@ -17,7 +17,7 @@ template:
     postinclude:
       content: '/* main postinclude */'
     precontent:
-      content: '/* main precontent */'
+      content: 'boost::python::import("boost_numpy_eigen");'
     footer:
       content: '/* main footer */'
 
@@ -108,6 +108,8 @@ types:
 
 # Selected function and class declarations that need custom parameters.
 declarations:
+  'dart::common::AddonManager':
+    noncopyable: true
   # TODO: Suppress AssimpInputResoruceAdaptor.
   'dart::dynamics::ZeroDofJoint':
     name: ZeroDofJoint

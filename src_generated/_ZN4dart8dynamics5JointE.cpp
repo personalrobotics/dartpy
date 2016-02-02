@@ -8,7 +8,7 @@
 
 void _ZN4dart8dynamics5JointE()
 {
-::boost::python::class_<dart::dynamics::Joint, ::boost::noncopyable, dart::dynamics::RevoluteJoint *, ::boost::python::bases<dart::common::Subject> >("Joint", boost::python::no_init)
+::boost::python::class_<dart::dynamics::Joint, ::boost::noncopyable, dart::dynamics::RevoluteJoint *, ::boost::python::bases<dart::common::Subject, dart::common::AddonManager > >("Joint", boost::python::no_init)
 .def("setProperties", static_cast<void (dart::dynamics::Joint::*)(const dart::dynamics::Joint::Properties &)>(&dart::dynamics::Joint::setProperties), (::boost::python::arg("_properties")))
 .def("getJointProperties", static_cast<const dart::dynamics::Joint::Properties &(dart::dynamics::Joint::*)() const>(&dart::dynamics::Joint::getJointProperties), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("copy", static_cast<void (dart::dynamics::Joint::*)(const dart::dynamics::Joint &)>(&dart::dynamics::Joint::copy), (::boost::python::arg("_otherJoint")))

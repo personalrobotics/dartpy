@@ -26,6 +26,7 @@ void _ZN4dart8dynamics6detail29MultiDofJointUniquePropertiesILm6EEE()
 .def_readwrite("mFrictions", &dart::dynamics::detail::MultiDofJointUniqueProperties<6>::mFrictions)
 .def_readwrite("mPreserveDofNames", &dart::dynamics::detail::MultiDofJointUniqueProperties<6>::mPreserveDofNames)
 .def_readwrite("mDofNames", &dart::dynamics::detail::MultiDofJointUniqueProperties<6>::mDofNames)
+.add_static_property("NumDofs", ::boost::python::make_getter(dart::dynamics::detail::MultiDofJointUniqueProperties<6>::NumDofs))
 ;
 }
 

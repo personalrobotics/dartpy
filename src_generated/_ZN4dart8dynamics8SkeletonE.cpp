@@ -8,7 +8,7 @@
 
 void _ZN4dart8dynamics8SkeletonE()
 {
-::boost::python::class_<dart::dynamics::Skeleton, ::boost::noncopyable, dart::dynamics::Skeleton *, ::boost::python::bases<dart::dynamics::MetaSkeleton, dart::dynamics::SpecializedNodeManagerForSkeleton<dart::dynamics::EndEffector> > >("Skeleton", boost::python::no_init)
+::boost::python::class_<dart::dynamics::Skeleton, ::boost::noncopyable, dart::dynamics::Skeleton *, ::boost::python::bases<dart::common::AddonManager, dart::dynamics::MetaSkeleton, dart::dynamics::SpecializedNodeManagerForSkeleton<dart::dynamics::EndEffector> > >("Skeleton", boost::python::no_init)
 .def("create", static_cast<dart::dynamics::SkeletonPtr (*)(const std::string &)>(&dart::dynamics::Skeleton::create), (::boost::python::arg("_name")))
 .def("create", static_cast<dart::dynamics::SkeletonPtr (*)(const dart::dynamics::Skeleton::Properties &)>(&dart::dynamics::Skeleton::create), (::boost::python::arg("_properties")))
 .def("getPtr", static_cast<dart::dynamics::SkeletonPtr (dart::dynamics::Skeleton::*)()>(&dart::dynamics::Skeleton::getPtr))

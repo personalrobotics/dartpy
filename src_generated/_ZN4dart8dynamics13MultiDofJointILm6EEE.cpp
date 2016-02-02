@@ -103,6 +103,7 @@ void _ZN4dart8dynamics13MultiDofJointILm6EEE()
 .def("getCoulombFriction", static_cast<double (dart::dynamics::MultiDofJoint<6>::*)(std::size_t) const>(&dart::dynamics::MultiDofJoint<6>::getCoulombFriction), (::boost::python::arg("_index")))
 .def("getPotentialEnergy", static_cast<double (dart::dynamics::MultiDofJoint<6>::*)() const>(&dart::dynamics::MultiDofJoint<6>::getPotentialEnergy))
 .def("getBodyConstraintWrench", static_cast<Eigen::Vector6d (dart::dynamics::MultiDofJoint<6>::*)() const>(&dart::dynamics::MultiDofJoint<6>::getBodyConstraintWrench))
+.add_static_property("NumDofs", ::boost::python::make_getter(dart::dynamics::MultiDofJoint<6>::NumDofs))
 ;
 }
 

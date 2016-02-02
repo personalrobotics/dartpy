@@ -8,8 +8,7 @@
 
 void _ZN4dart6common12AddonManagerE()
 {
-#if 0
-::boost::python::class_<dart::common::AddonManager >("AddonManager", boost::python::no_init)
+::boost::python::class_<dart::common::AddonManager, ::boost::noncopyable >("AddonManager", boost::python::no_init)
 .def("setAddonStates", static_cast<void (dart::common::AddonManager::*)(const dart::common::AddonManager::State &)>(&dart::common::AddonManager::setAddonStates), (::boost::python::arg("newStates")))
 .def("getAddonStates", static_cast<dart::common::AddonManager::State (dart::common::AddonManager::*)() const>(&dart::common::AddonManager::getAddonStates))
 .def("copyAddonStatesTo", static_cast<void (dart::common::AddonManager::*)(dart::common::AddonManager::State &) const>(&dart::common::AddonManager::copyAddonStatesTo), (::boost::python::arg("outgoingStates")))
@@ -19,7 +18,6 @@ void _ZN4dart6common12AddonManagerE()
 .def("duplicateAddons", static_cast<void (dart::common::AddonManager::*)(const dart::common::AddonManager *)>(&dart::common::AddonManager::duplicateAddons), (::boost::python::arg("otherManager")))
 .def("matchAddons", static_cast<void (dart::common::AddonManager::*)(const dart::common::AddonManager *)>(&dart::common::AddonManager::matchAddons), (::boost::python::arg("otherManager")))
 ;
-#endif
 }
 
 /* footer */

@@ -8,6 +8,11 @@
 
 void _ZN4dart6common12AddonManager4typeINS_8dynamics6detail18MultiDofJointAddonILm2EEEEE()
 {
+#if 0
+::boost::python::class_<dart::common::AddonManager::type<dart::dynamics::detail::MultiDofJointAddon<2> > >("_ZN4dart6common12AddonManager4typeINS_8dynamics6detail18MultiDofJointAddonILm2EEEEE", boost::python::no_init)
+.def(::boost::python::init<>())
+;
+#endif
 }
 
 /* footer */
