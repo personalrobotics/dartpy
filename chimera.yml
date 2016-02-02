@@ -17,8 +17,15 @@ template:
     postinclude:
       content: '/* main postinclude */'
     precontent:
-      content: 'boost::python::import("boost_numpy_eigen");'
-    footer:
+      content: |
+        boost::python::import("boost_numpy_eigen");
+        boost::python::implicitly_convertible<
+          std::shared_ptr<dart::common::LocalResourceRetriever>,
+          std::shared_ptr<dart::common::ResourceRetriever>>(); 
+        boost::python::implicitly_convertible<
+          std::shared_ptr<dart::utils::PackageResourceRetriever>,
+          std::shared_ptr<dart::common::ResourceRetriever>>(); 
+    foter:
       content: '/* main footer */'
 
 # The C++ namespaces that will be extracted by Chimera
@@ -110,7 +117,12 @@ types:
 declarations:
   'dart::common::AddonManager':
     noncopyable: true
-  # TODO: Suppress AssimpInputResoruceAdaptor.
+  'dart::common::ResourceRetriever':
+    held_type: std::shared_ptr<dart::common::ResourceRetriever>
+  'dart::common::LocalResourceRetriever':
+    held_type: std::shared_ptr<dart::common::LocalResourceRetriever>
+  'dart::common::PackageResourceRetriever':
+    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
   'dart::dynamics::ZeroDofJoint':
     name: ZeroDofJoint
     held_type: 'dart::dynamics::ZeroDofJoint *'
@@ -124,7 +136,7 @@ declarations:
     name: SixDofJoint
     held_type: 'dart::dynamics::MultiDofJoint<6> *'
   'dart::dynamics::Skeleton':
-    held_type: 'dart::dynamics::Skeleton *'
+    held_type: 'dart::dynamics::SkeletonPtr'
   'dart::dynamics::Shape':
   'dart::dynamics::JacobianNode':
     held_type: 'dart::dynamics::JacobianNode *'

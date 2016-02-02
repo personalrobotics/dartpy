@@ -9,6 +9,13 @@
 BOOST_PYTHON_MODULE(dartpy)
 {
   boost::python::import("boost_numpy_eigen");
+  boost::python::implicitly_convertible<
+    std::shared_ptr<dart::common::LocalResourceRetriever>,
+    std::shared_ptr<dart::common::ResourceRetriever>>(); 
+  boost::python::implicitly_convertible<
+    std::shared_ptr<dart::utils::PackageResourceRetriever>,
+    std::shared_ptr<dart::common::ResourceRetriever>>(); 
+  boost::python::implicitly_convertible<std::string, dart::common::Uri>(); 
 
   void _ZN4dart6common12AddonManagerE();
   _ZN4dart6common12AddonManagerE();
