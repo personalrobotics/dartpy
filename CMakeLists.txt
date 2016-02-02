@@ -10,6 +10,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Enable C++11. This is necessary to use DART.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations ${CMAKE_CXX_FLAGS}")
 
 # Use MACOSX_RPATH by default on OS X. This was added in CMake 2.8.12 and
 # became default in CMake 3.0. Explicitly setting this policy is necessary to
@@ -95,18 +96,20 @@ add_custom_target(bind
     "${CHIMERA_SOURCE}"
 )
 
-
-file(STRINGS "${CHIMERA_GENERATED_DIR}/manifest.txt" DARTPY_SOURCES)
+file(STRINGS "${CHIMERA_GENERATED_DIR}/manifest.txt" DARTPY_SOURCES
+  NO_HEX_CONVERSION
+)
 
 add_library("${PROJECT_NAME}" SHARED ${DARTPY_SOURCES})
 target_link_libraries("${PROJECT_NAME}"
   ${DART_LIBRARIES}
-  ${BOOST_PYTHON_LIBRARIES}
+  ${Boost_PYTHON_LIBRARIES}
   ${PYTHON_LIBRARIES}
 )
 set_target_properties("${PROJECT_NAME}" PROPERTIES
   PREFIX ""
   SUFFIX ".so"
+  LINKER_LANGUAGE CXX
 )
 install(TARGETS "${PROJECT_NAME}"
   LIBRARY DESTINATION "${PYTHON_SITE_PACKAGES}"
