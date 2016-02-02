@@ -15,9 +15,9 @@ template:
     header:
       content: '/* main header */'
     postinclude:
-      content: '#include <boost/eigen_numpy.h>'
+      content: '/* main postinclude */'
     precontent:
-      content: '  SetupEigenConverters();'
+      content: '/* main precontent */'
     footer:
       content: '/* main footer */'
 
