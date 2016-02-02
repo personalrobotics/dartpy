@@ -211,7 +211,6 @@ declarations:
   'const dart::dynamics::Marker *dart::dynamics::Skeleton::getMarker(const std::string &) const': null
   'const dart::dynamics::DegreeOfFreedom *dart::dynamics::EndEffector::getDependentDof(size_t) const': null
   #'const std::vector<const DegreeOfFreedom *> &dart::dynamics::EndEffector::getDependentDofs() const': null
-  'const dart::dynamics::BodyNode *dart::dynamics::EndEffector::getParentBodyNode() const': null
   'const dart::dynamics::DegreeOfFreedom *dart::dynamics::ZeroDofJoint::getDof(size_t) const': null
   'const dart::dynamics::PointMass *dart::dynamics::SoftBodyNode::getPointMass(size_t) const': null
   'const dart::dynamics::PointMassNotifier *dart::dynamics::SoftBodyNode::getNotifier() const': null
@@ -233,7 +232,6 @@ declarations:
   #'const std::vector<const DegreeOfFreedom *> &dart::dynamics::BodyNode::getDependentDofs() const': null
   'const dart::dynamics::DegreeOfFreedom *dart::dynamics::BodyNode::getDependentDof(size_t) const': null
   'const dart::dynamics::Marker *dart::dynamics::BodyNode::getMarker(size_t) const': null
-  'const dart::dynamics::EndEffector *dart::dynamics::BodyNode::getEndEffector(size_t) const': null
   'const dart::dynamics::Joint *dart::dynamics::BodyNode::getChildJoint(size_t) const': null
   'const dart::dynamics::BodyNode *dart::dynamics::BodyNode::getChildBodyNode(size_t) const': null
   'const dart::dynamics::BodyNode *dart::dynamics::BodyNode::getParentBodyNode() const': null

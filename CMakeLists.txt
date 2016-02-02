@@ -4,6 +4,9 @@ project(dartpy)
 set(CHIMERA_EXECUTABLE "/home/mkoval/chimera/build/chimera")
 set(CHIMERA_CONFIGURATION "${PROJECT_SOURCE_DIR}/chimera.yml")
 set(CHIMERA_SOURCE_DIR "${PROJECT_SOURCE_DIR}/src")
+set(CHIMERA_COMPILE_DATABASE "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json")
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Use MACOSX_RPATH by default on OS X. This was added in CMake 2.8.12 and
 # became default in CMake 3.0. Explicitly setting this policy is necessary to
@@ -22,12 +25,14 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
 
 find_package(Boost REQUIRED COMPONENTS python thread)
 find_package(DART REQUIRED COMPONENTS core)
+#find_package(FCL REQUIRED)
 find_package(PythonLibs REQUIRED)
 
 include_directories(
   ${Boost_INCLUDE_DIRS}
   ${DART_INCLUDE_DIRS}
   ${PYTHON_INCLUDE_DIRS}
+  "/opt/ros/indigo/include"
 )
 
 # Check whether the CXX compiler and boost::python support get_pointer for
@@ -56,24 +61,10 @@ endif(HAS_STD_SHARED_GET_POINTER)
 # Enable C++11. This is necessary to use DART.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-# Build the Chimera bindings.
-set(CHIMERA_SOURCES "src/placeholder.cpp")
-add_library(${PROJECT_NAME} SHARED
-  ${CHIMERA_SOURCES}
-)
-target_link_libraries(${PROJECT_NAME}
-  ${Boost_LIBRARIES}
-  ${DART_LIBRARIES}
-  ${PYTHON_LIBRARIES}
-)
-
-# This is necessary if CHIMERA_SOURCES is empty because CMake cannot infer the
-# type of the target; i.e. to bootstrap the first run with an empty src
-# directory.
-set_target_properties(${PROJECT_NAME}
-  PROPERTIES LINKER_LANGUAGE CXX
-)
-
+# Build a placeholder library to generate the compile_commands.json database.
+set(CHIMERA_SOURCE "${PROJECT_SOURCE_DIR}/src/placeholder.cpp")
+add_library("${PROJECT_NAME}_placeholder" SHARED "${CHIMERA_SOURCE}")
+target_link_libraries("${PROJECT_NAME}_placeholder" ${DART_LIBRARIES})
 
 # Use Chimera to generate the Boost.Python bindings.
 find_path(DART_HEADER_BASE_PATH "dart.h"
@@ -89,16 +80,14 @@ add_custom_target(bind
     -m "${PROJECT_NAME}"
     -c "${CHIMERA_CONFIGURATION}"
     -o "${CHIMERA_SOURCE_DIR}"
-    "${DART_HEADER_PATH}"
-    --
+    -p "${CHIMERA_COMPILE_DATABASE}"
+    "${CHIMERA_SOURCE}"
   COMMENT "Generating bindings"
-  SOURCES "${CHIMERA_CONFIGURATION}" "${DART_HEADER_PATH}"
+  SOURCES
+  #"${CHIMERA_COMPILE_DATABASE}"
+    "${CHIMERA_CONFIGURATION}"
+    "${CHIMERA_SOURCE}"
 )
-
-get_property(CHIMERA_FLAGS SOURCE "src/placeholder.cpp"
-  PROPERTY COMPILE_FLAGS
-)
-message(STATUS "CHIMERA_FLAGS = ${CHIMERA_FLAGS}")
 
 #set_target_properties(${PROJECT_NAME} PROPERTIES
 #  PREFIX ""
