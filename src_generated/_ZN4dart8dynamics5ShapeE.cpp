@@ -8,7 +8,7 @@
 
 void _ZN4dart8dynamics5ShapeE()
 {
-::boost::python::class_<dart::dynamics::Shape, ::boost::noncopyable, dart::dynamics::Shape *, ::boost::python::bases<dart::common::Subject > >("Shape", boost::python::no_init)
+::boost::python::class_<dart::dynamics::Shape, ::boost::noncopyable, std::shared_ptr<dart::dynamics::Shape>, ::boost::python::bases<dart::common::Subject > >("Shape", boost::python::no_init)
 .def("setColor", static_cast<void (dart::dynamics::Shape::*)(const Eigen::Vector3d &)>(&dart::dynamics::Shape::setColor), (::boost::python::arg("_color")))
 .def("setColor", static_cast<void (dart::dynamics::Shape::*)(const Eigen::Vector4d &)>(&dart::dynamics::Shape::setColor), (::boost::python::arg("_color")))
 .def("setRGB", static_cast<void (dart::dynamics::Shape::*)(const Eigen::Vector3d &)>(&dart::dynamics::Shape::setRGB), (::boost::python::arg("_rgb")))

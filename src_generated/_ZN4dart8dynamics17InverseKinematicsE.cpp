@@ -8,7 +8,7 @@
 
 void _ZN4dart8dynamics17InverseKinematicsE()
 {
-::boost::python::class_<dart::dynamics::InverseKinematics, ::boost::noncopyable, ::boost::python::bases<dart::common::Subject > >("InverseKinematics", boost::python::no_init)
+::boost::python::class_<dart::dynamics::InverseKinematics, ::boost::noncopyable, std::shared_ptr<dart::dynamics::InverseKinematics>, ::boost::python::bases<dart::common::Subject > >("InverseKinematics", boost::python::no_init)
 .def("create", static_cast<dart::dynamics::InverseKinematicsPtr (*)(dart::dynamics::JacobianNode *)>(&dart::dynamics::InverseKinematics::create), (::boost::python::arg("_node")))
 .def("solve", static_cast<bool (dart::dynamics::InverseKinematics::*)(bool)>(&dart::dynamics::InverseKinematics::solve), (::boost::python::arg("_applySolution") = true))
 .def("solve", static_cast<bool (dart::dynamics::InverseKinematics::*)(Eigen::VectorXd &, bool)>(&dart::dynamics::InverseKinematics::solve), (::boost::python::arg("positions"), ::boost::python::arg("_applySolution") = true))

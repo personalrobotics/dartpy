@@ -135,9 +135,20 @@ declarations:
   'dart::dynamics::MultiDofJoint<6>':
     name: SixDofJoint
     held_type: 'dart::dynamics::MultiDofJoint<6> *'
+  'dart::dynamics::InverseKinematics':
+    held_type: 'std::shared_ptr<dart::dynamics::InverseKinematics>'
   'dart::dynamics::Skeleton':
     held_type: 'dart::dynamics::SkeletonPtr'
-  'dart::dynamics::Shape':
+  'dart::dynamics::Chain':
+    held_type: 'dart::dynamics::ChainPtr'
+  'dart::dynamics::Branch':
+    held_type: 'dart::dynamics::BranchPtr'
+  'dart::dynamics::Group':
+    held_type: 'dart::dynamics::GroupPtr'
+  'dart::dynamics::Linkage':
+    held_type: 'dart::dynamics::LinkagePtr'
+  'dart::dynamics::JacobianNode':
+    held_type: 'dart::dynamics::GroupPtr'
   'dart::dynamics::JacobianNode':
     held_type: 'dart::dynamics::JacobianNode *'
   'dart::dynamics::DegreeOfFreedom':
@@ -155,11 +166,25 @@ declarations:
   'dart::dynamics::SoftBodyNode':
     held_type: 'dart::dynamics::SoftBodyNode *'
   'dart::dynamics::MetaSkeleton':
-    held_type: 'dart::dynamics::MetaSkeleton *'
+    held_type: 'dart::dynamics::MetaSkeletonPtr'
   'dart::dynamics::Shape':
-    held_type: 'dart::dynamics::Shape *'
+    held_type: 'std::shared_ptr<dart::dynamics::Shape>'
+  'dart::dynamics::BoxShape':
+    held_type: 'std::shared_ptr<dart::dynamics::BoxShape>'
   'dart::dynamics::CylinderShape':
-    held_type: 'dart::dynamics::CylinderShape *'
+    held_type: 'std::shared_ptr<dart::dynamics::CylinderShape>'
+  'dart::dynamics::EllipsoidShape':
+    held_type: 'std::shared_ptr<dart::dynamics::EllipsoidShape>'
+  'dart::dynamics::LineSegmentShape':
+    held_type: 'std::shared_ptr<dart::dynamics::LineSegmentShape>'
+  'dart::dynamics::MeshShape':
+    held_type: 'std::shared_ptr<dart::dynamics::MeshShape>'
+  'dart::dynamics::ArrowShape':
+    held_type: 'std::shared_ptr<dart::dynamics::ArrowShape>'
+  'dart::dynamics::PlaneShape':
+    held_type: 'std::shared_ptr<dart::dynamics::PlaneShape>'
+  'dart::dynamics::SoftMeshShape':
+    held_type: 'std::shared_ptr<dart::dynamics::SoftMeshShape>'
   'dart::dynamics::Branch':
     held_type: 'dart::dynamics::Branch *'
   'dart::dynamics::EndEffector':
@@ -245,11 +270,13 @@ declarations:
   'const dart::dynamics::BodyNode *dart::dynamics::Joint::getChildBodyNode() const': null
   #'const std::vector<const DegreeOfFreedom *> &dart::dynamics::BodyNode::getDependentDofs() const': null
   'const dart::dynamics::DegreeOfFreedom *dart::dynamics::BodyNode::getDependentDof(size_t) const': null
+  'dart::dynamics::ConstSkeletonPtr dart::dynamics::BodyNode::getSkeleton() const': null
   'const dart::dynamics::Marker *dart::dynamics::BodyNode::getMarker(size_t) const': null
   'const dart::dynamics::Joint *dart::dynamics::BodyNode::getChildJoint(size_t) const': null
   'const dart::dynamics::BodyNode *dart::dynamics::BodyNode::getChildBodyNode(size_t) const': null
   'const dart::dynamics::BodyNode *dart::dynamics::BodyNode::getParentBodyNode() const': null
   'const dart::dynamics::Joint *dart::dynamics::BodyNode::getParentJoint() const': null
+  'const dart::dynamics::Shape *dart::dynamics::BodyNode::getCollisionShape(size_t) const': null
   'const dart::dynamics::BodyNode *dart::dynamics::Marker::getBodyNode() const': null
   'const dart::dynamics::SoftBodyNode *dart::dynamics::PointMass::getParentSoftBodyNode() const': null
   'template<> const dart::dynamics::DegreeOfFreedom *dart::dynamics::MultiDofJoint<2>::getDof(size_t) const': null
