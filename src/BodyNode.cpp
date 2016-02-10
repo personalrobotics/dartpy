@@ -131,8 +131,8 @@ template <class JointType>
 struct BodyNode_moveTo3_factory
 {
   static dart::dynamics::Joint* execute(
-    const dart::dynamics::SkeletonPtr &_newSkeleton,
     dart::dynamics::BodyNode* _bodyNode,
+    const dart::dynamics::SkeletonPtr &_newSkeleton,
     dart::dynamics::BodyNode* _newParent,
     boost::python::object _jointPropertiesPython)
   {
@@ -157,8 +157,44 @@ dart::dynamics::Joint* BodyNode_moveTo3(
   boost::python::object _jointProperties)
 {
   return NominalJointMultiplexer<BodyNode_moveTo3_factory>::execute(
-    _jointType, _newSkeleton, _bodyNode, _newParent, _jointProperties);
+    _jointType, _bodyNode, _newSkeleton, _newParent, _jointProperties);
 }
+
+
+//==============================================================================
+template <class JointType>
+struct BodyNode_copyTo3_factory
+{
+  static boost::python::object execute(
+    dart::dynamics::BodyNode* _bodyNode, 
+    dart::dynamics::BodyNode* _newParent,
+    boost::python::object _jointPropertiesPython,
+    bool _recursive)
+  {
+    typename JointType::Properties jointProperties;
+
+    if (!_jointPropertiesPython.is_none())
+    {
+      jointProperties = boost::python::extract<typename JointType::Properties>(
+        _jointPropertiesPython);
+    }
+
+    const auto ret = _bodyNode->copyTo<JointType>(_newParent, jointProperties);
+    return boost::python::make_tuple(ret.first, ret.second);
+  }
+};
+
+boost::python::object BodyNode_copyTo3(
+  boost::python::object _jointType,
+  dart::dynamics::BodyNode* _bodyNode, 
+  dart::dynamics::BodyNode* _newParent,
+  boost::python::object _jointProperties,
+  bool _recursive)
+{
+  return NominalJointMultiplexer<BodyNode_copyTo3_factory>::execute(
+    _jointType, _bodyNode, _newParent, _jointProperties, _recursive);
+}
+
 
 
 } // namespace python {
