@@ -184,3 +184,11 @@ right_arm.setPositions(right_ee_positions)
 
 # Grab the bottle
 attach(bottle, right_ee)
+
+import aikido_rviz
+aikido_rviz.init_node('dartpy_grasp_fuze_bottle')
+viewer = aikido_rviz.InteractiveMarkerViewer('aikido_markers')
+viewer.addSkeleton(robot)
+viewer.addSkeleton(bottle)
+viewer.addSkeleton(table)
+viewer.update()

@@ -5,6 +5,47 @@
 
 namespace {
 
+template <class T>
+boost::python::object get_pytype()
+{
+  const boost::python::converter::registration* registration
+    = boost::python::converter::registry::query(typeid(T));
+  if (!registration)
+  {
+    throw std::runtime_error(
+      "Type is not known to Boost.Python.");
+  }
+
+  PyTypeObject* class_object = registration->get_class_object();
+  return boost::python::object(
+    boost::python::handle<>(
+      boost::python::borrowed(class_object)));
+}
+
+
+template <template <class> class Factory, class Function, class... Args>
+struct create_registry;
+
+template <template <class> class Factory, class Function>
+struct create_registry<Factory, Function>
+{
+  static void execute(std::map<boost::python::object, Function>& registry)
+  {
+    // do nothing
+  }
+};
+
+template <template <class> class Factory, class Function, class Arg, class... Args>
+struct create_registry<Factory, Function, Arg, Args...>
+{
+  static void execute(std::map<boost::python::object, Function>& registry)
+  {
+    // TODO: Add a mechanism for injecting a function here.
+    registry[get_pytype<Arg>()] = &Factory<Arg>::execute;
+    create_registry<Factory, Function, Args...>::execute(registry);
+  }
+};
+
 template <class JointType>
 struct BodyNode_moveTo2_factory
 {
@@ -29,17 +70,24 @@ template <template <class> class FactoryTemplate, class ReturnType>
 struct Multiplexer
 {
   template <class... Args>
-  static ReturnType execute(
-    boost::python::object _jointType, Args... _args)
+  static ReturnType execute(boost::python::object _jointType, Args... _args)
   {
-    const std::string jointTypeName = boost::python::extract<std::string>(
-      _jointType.attr("__name__"));
+    using namespace dart::dynamics;
 
-    if (jointTypeName == "FreeJoint")
-      return FactoryTemplate<dart::dynamics::FreeJoint>::execute(_args...);
+    std::map<boost::python::object, std::function<ReturnType (Args...)> > registry;
+    create_registry<FactoryTemplate, std::function<ReturnType (Args...)>,
+        FreeJoint, PrismaticJoint, RevoluteJoint, ScrewJoint, WeldJoint,
+        UniversalJoint, BallJoint, EulerJoint, PlanarJoint, TranslationalJoint
+      >::execute(registry);
 
-    std::cerr << "Unknown type of joint '" << jointTypeName << "'." << std::endl;
-    return nullptr;
+    const auto it = registry.find(_jointType);
+    if (it == std::end(registry))
+    {
+      std::cerr << "Unsupported type for template argument." << std::endl;
+      return ReturnType();
+    }
+
+    return it->second(_args...);
   }
 };
 
