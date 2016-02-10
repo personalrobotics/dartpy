@@ -21,6 +21,8 @@ BOOST_PYTHON_MODULE(dartpy)
     std::shared_ptr<dart::utils::PackageResourceRetriever>,
     std::shared_ptr<dart::common::ResourceRetriever>>(); 
 
+  boost::python::implicitly_convertible<std::string, dart::common::Uri>(); 
+
   // std::vector converters
   dart::python::util::vector_to_python<size_t>();
   dart::python::util::collection_from_python<std::vector<size_t>>();

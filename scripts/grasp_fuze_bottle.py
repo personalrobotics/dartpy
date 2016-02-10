@@ -4,7 +4,29 @@ import dartpy
 import numpy
 import os.path
 
+
 WORKSPACE_BASE = '/home/mkoval/storage/dartpy-ws'
+ROBOT_POSE = numpy.array([
+    [ -2.220e-16,   1.000e+00,   0.000e+00,   2.050e+00],
+    [ -1.000e+00,  -2.220e-16,  -0.000e+00,   3.050e+00],
+    [ -0.000e+00,   0.000e+00,   1.000e+00,   0.000e+00],
+    [  0.000e+00,   0.000e+00,   0.000e+00,   1.000e+00]])
+TABLE_POSE = numpy.array([
+    [ 1.,  0.,  0.,  2.],
+    [ 0.,  0., -1.,  2.],
+    [ 0.,  1.,  0.,  0.],
+    [ 0.,  0.,  0.,  1.]])
+BOTTLE_POSE = numpy.array([
+    [ 1.   ,  0.   ,  0.   ,  2.   ],
+    [ 0.   ,  1.   ,  0.   ,  2.228],
+    [ 0.   ,  0.   ,  1.   ,  0.745],
+    [ 0.   ,  0.   ,  0.   ,  1.   ]])
+LEFT_RELAXED_POSITIONS = numpy.array(
+    [ 0.64, -1.76,  0.26,  1.96,  1.16,  0.87,  1.43])
+RIGHT_RELAXED_POSITIONS = numpy.array(
+    [5.65, -1.76, -0.26,  1.96, -1.15,  0.87, -1.43])
+RIGHT_GRASP_POSITIONS = numpy.array(
+    [4.82 , -0.607, -0.1  ,  1.409, -0.031,  0.657, -0.035])
 
 
 def set_pose(skeleton, pose):
@@ -13,6 +35,28 @@ def set_pose(skeleton, pose):
     joint = bodynode.getParentJoint()
     joint.setRelativeTransform(pose)
 
+
+def attach(skeleton, target_bodynode):
+    if skeleton.getNumTrees() != 1:
+        raise ValueError('Only one root BodyNode is supported.')
+
+    source_bodynode = skeleton.getRootBodyNode(0)
+
+    # TODO: Change the type of the root joint to a FixedJoint.
+    if not source_bodynode.moveTo(target_bodynode):
+        raise ValueError('Failed moving BodyNode.')
+
+
+def merge(skeleton, other_skeleton):
+    critera = dartpy.Linkage.Critera()
+    critera.mStart = None # start at the root
+
+    for itree in xrange(other_skeleton.getNumTrees):
+        root_bodynode = other_skeleton.getRootBodyNode(itree)
+        if not root_bodynode.moveTo(skeleton, None):
+            raise ValueError(
+                'Failed moving BodyNode "{:s}" to Skeleton "{:s}".'.format(
+                    root_bodynode.getName(), skeleton.getName()))
 
 def compute_aabb(bodynode):
     # TODO: This should be the default argument (#7).
@@ -110,3 +154,33 @@ right_arm = dartpy.Chain.create(
 head = dartpy.Chain.create(
     robot.getBodyNode('/head/wam1'), robot.getBodyNode('/head/wam2'),
     dartpy.IncludeBoth_t(), 'head')
+
+# Move HERB to the home configuration.
+left_arm.setPositions(LEFT_RELAXED_POSITIONS)
+right_arm.setPositions(RIGHT_RELAXED_POSITIONS)
+
+# Find an IK solution.
+right_ee = right_arm.getBodyNode(right_arm.getNumBodyNodes() - 1)
+right_ee_ik = right_ee.getOrCreateIK()
+# TODO: I should call setDofs(right_arm.getDofs()), but I can't because
+# support for std::vector is not finished.
+
+# Find an IK solution.
+right_ee_ik.getTarget().setRelativeTransform(numpy.array([
+    [  1.091e-01,   3.633e-06,   9.940e-01,   1.771e+00],
+    [  9.940e-01,   3.287e-06,  -1.091e-01,   2.253e+00],
+    [ -3.664e-06,   1.000e+00,  -3.253e-06,   8.655e-01],
+    [  0.000e+00,   0.000e+00,   0.000e+00,   1.000e+00]
+]))
+
+if not right_ee_ik.solve(False):
+    raise ValueError('Failed to find IK solution.')
+right_ee_positions = right_ee_ik.getPositions()
+
+# TODO: Plan to right_ee_positions, instead of teleporting to them.
+right_arm.setPositions(right_ee_positions)
+
+# TODO: Close the hand.
+
+# Grab the bottle
+attach(bottle, right_ee)
