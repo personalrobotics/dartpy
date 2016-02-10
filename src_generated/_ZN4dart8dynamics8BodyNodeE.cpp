@@ -1,4 +1,5 @@
 #include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/BodyNode.h>
 
 #include <boost/python.hpp>
 #include <cmath>
@@ -119,6 +120,8 @@ void _ZN4dart8dynamics8BodyNodeE()
 .def("notifyArticulatedInertiaUpdate", static_cast<void (dart::dynamics::BodyNode::*)()>(&dart::dynamics::BodyNode::notifyArticulatedInertiaUpdate))
 .def("notifyExternalForcesUpdate", static_cast<void (dart::dynamics::BodyNode::*)()>(&dart::dynamics::BodyNode::notifyExternalForcesUpdate))
 .def("notifyCoriolisUpdate", static_cast<void (dart::dynamics::BodyNode::*)()>(&dart::dynamics::BodyNode::notifyCoriolisUpdate))
+// Custom wrappers:
+.def("moveTo", &dart::python::BodyNode_moveTo2, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::JointPtr> >())
 ;
 }
 
