@@ -8,7 +8,7 @@
 
 void _ZN4dart8dynamics15DegreeOfFreedomE()
 {
-::boost::python::class_<dart::dynamics::DegreeOfFreedom, ::boost::noncopyable, dart::dynamics::DegreeOfFreedom *, ::boost::python::bases<dart::common::Subject > >("DegreeOfFreedom", boost::python::no_init)
+::boost::python::class_<dart::dynamics::DegreeOfFreedom, ::boost::noncopyable, dart::dynamics::DegreeOfFreedomPtr, ::boost::python::bases<dart::common::Subject > >("DegreeOfFreedom", boost::python::no_init)
 .def("setName", static_cast<const std::string &(dart::dynamics::DegreeOfFreedom::*)(const std::string &, bool)>(&dart::dynamics::DegreeOfFreedom::setName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name"), ::boost::python::arg("_preserveName") = true))
 .def("getName", static_cast<const std::string &(dart::dynamics::DegreeOfFreedom::*)() const>(&dart::dynamics::DegreeOfFreedom::getName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("preserveName", static_cast<void (dart::dynamics::DegreeOfFreedom::*)(bool)>(&dart::dynamics::DegreeOfFreedom::preserveName), (::boost::python::arg("_preserve")))

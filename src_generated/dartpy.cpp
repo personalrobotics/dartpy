@@ -2,6 +2,8 @@
 
 #include <boost/python.hpp>
 #include <cmath>
+#include <dartpy/util.h>
+#include <dartpy/collections.h>
 #include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* main postinclude */
@@ -9,13 +11,64 @@
 BOOST_PYTHON_MODULE(dartpy)
 {
   boost::python::import("boost_numpy_eigen");
+
+  // std::shared_ptr implicit conversions
   boost::python::implicitly_convertible<
     std::shared_ptr<dart::common::LocalResourceRetriever>,
     std::shared_ptr<dart::common::ResourceRetriever>>(); 
+
   boost::python::implicitly_convertible<
     std::shared_ptr<dart::utils::PackageResourceRetriever>,
     std::shared_ptr<dart::common::ResourceRetriever>>(); 
-  boost::python::implicitly_convertible<std::string, dart::common::Uri>(); 
+
+  // std::vector converters
+  dart::python::util::vector_to_python<size_t>();
+  dart::python::util::collection_from_python<std::vector<size_t>>();
+
+  dart::python::util::vector_to_python<Eigen::Vector3d>();
+  dart::python::util::collection_from_python<
+    std::vector<Eigen::Vector3d>>();
+
+  dart::python::util::vector_to_python<Eigen::Vector3i>();
+  dart::python::util::collection_from_python<
+    std::vector<Eigen::Vector3i>>();
+
+  dart::python::util::vector_to_python<
+    dart::dynamics::PointMass::Properties>();
+  dart::python::util::collection_from_python<
+    std::vector<dart::dynamics::PointMass::Properties>>();
+
+  dart::python::util::vector_to_python<dart::collision::Contact>();
+  dart::python::util::collection_from_python<
+    std::vector<dart::collision::Contact>>();
+
+  dart::python::util::vector_to_python<dart::dynamics::SkeletonPtr>();
+  dart::python::util::collection_from_python<
+    std::vector<dart::dynamics::SkeletonPtr>>();
+
+  dart::python::util::vector_to_python<dart::dynamics::ShapePtr>();
+  dart::python::util::collection_from_python<
+    std::vector<dart::dynamics::ShapePtr>>();
+
+  dart::python::util::vector_to_python<
+    dart::dynamics::BodyNode*, dart::dynamics::BodyNodePtr>();
+  dart::python::util::collection_from_python<
+    std::vector<dart::dynamics::BodyNode*>>();
+
+  dart::python::util::vector_to_python<
+    dart::dynamics::SoftBodyNode*, dart::dynamics::SoftBodyNodePtr>();
+  dart::python::util::collection_from_python<
+    std::vector<dart::dynamics::SoftBodyNode*>>();
+
+  dart::python::util::vector_to_python<
+    dart::dynamics::EndEffector*, dart::dynamics::EndEffectorPtr>();
+  dart::python::util::collection_from_python<
+    std::vector<dart::dynamics::EndEffector*>>();
+
+  dart::python::util::vector_to_python<
+    dart::dynamics::DegreeOfFreedom*, dart::dynamics::DegreeOfFreedomPtr>();
+  dart::python::util::collection_from_python<
+    std::vector<dart::dynamics::DegreeOfFreedom*>>();
 
   void _ZN4dart6common12AddonManagerE();
   _ZN4dart6common12AddonManagerE();

@@ -8,7 +8,7 @@
 
 void _ZN4dart8dynamics11SimpleFrameE()
 {
-::boost::python::class_<dart::dynamics::SimpleFrame, ::boost::python::bases<dart::dynamics::Detachable, dart::dynamics::Frame > >("SimpleFrame", boost::python::no_init)
+::boost::python::class_<dart::dynamics::SimpleFrame, std::shared_ptr<dart::dynamics::SimpleFrame>, ::boost::python::bases<dart::dynamics::Detachable, dart::dynamics::Frame > >("SimpleFrame", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::Frame *, const std::string &, const Eigen::Isometry3d &>((::boost::python::arg("_refFrame"), ::boost::python::arg("_name"), ::boost::python::arg("_relativeTransform"))))
 .def("clone", static_cast<std::shared_ptr<dart::dynamics::SimpleFrame> (dart::dynamics::SimpleFrame::*)(dart::dynamics::Frame *) const>(&dart::dynamics::SimpleFrame::clone), (::boost::python::arg("_refFrame")))
 .def("copy", static_cast<void (dart::dynamics::SimpleFrame::*)(const dart::dynamics::Frame &, dart::dynamics::Frame *, bool)>(&dart::dynamics::SimpleFrame::copy), (::boost::python::arg("_otherFrame"), ::boost::python::arg("_refFrame"), ::boost::python::arg("_copyProperties") = true))
