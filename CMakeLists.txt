@@ -38,6 +38,9 @@ include_directories(SYSTEM
   ${PYTHON_INCLUDE_DIRS}
   "/opt/ros/indigo/include"
 )
+include_directories(
+  "include"
+)
 
 # Check whether the CXX compiler and boost::python support get_pointer for
 # std::shared_ptr<T> references.
