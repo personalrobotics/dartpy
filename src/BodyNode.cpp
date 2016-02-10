@@ -22,6 +22,8 @@ boost::python::object get_pytype()
       boost::python::borrowed(class_object)));
 }
 
+template <class Function>
+using Registry = std::map<boost::python::object, std::function<Function>>;
 
 template <template <class> class Factory, class Function, class... Args>
 struct create_registry;
@@ -29,7 +31,7 @@ struct create_registry;
 template <template <class> class Factory, class Function>
 struct create_registry<Factory, Function>
 {
-  static void execute(std::map<boost::python::object, Function>& registry)
+  static void execute(Registry<Function>& registry)
   {
     // do nothing
   }
@@ -38,7 +40,7 @@ struct create_registry<Factory, Function>
 template <template <class> class Factory, class Function, class Arg, class... Args>
 struct create_registry<Factory, Function, Arg, Args...>
 {
-  static void execute(std::map<boost::python::object, Function>& registry)
+  static void execute(Registry<Function>& registry)
   {
     // TODO: Add a mechanism for injecting a function here.
     registry[get_pytype<Arg>()] = &Factory<Arg>::execute;
@@ -66,16 +68,17 @@ struct BodyNode_moveTo2_factory
   }
 };
 
-template <template <class> class FactoryTemplate, class ReturnType>
+template <template <class> class Factory, class ReturnType>
 struct Multiplexer
 {
   template <class... Args>
   static ReturnType execute(boost::python::object _jointType, Args... _args)
   {
     using namespace dart::dynamics;
+    using Function = ReturnType (Args...);
 
-    std::map<boost::python::object, std::function<ReturnType (Args...)> > registry;
-    create_registry<FactoryTemplate, std::function<ReturnType (Args...)>,
+    Registry<Function> registry;
+    create_registry<Factory, Function,
         FreeJoint, PrismaticJoint, RevoluteJoint, ScrewJoint, WeldJoint,
         UniversalJoint, BallJoint, EulerJoint, PlanarJoint, TranslationalJoint
       >::execute(registry);
