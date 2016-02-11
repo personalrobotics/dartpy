@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(dartpy)
 
-set(CHIMERA_EXECUTABLE "/home/mkoval/chimera/build/chimera")
-set(CHIMERA_CONFIGURATION "${PROJECT_SOURCE_DIR}/chimera.yml")
-set(CHIMERA_GENERATED_DIR "${PROJECT_SOURCE_DIR}/src_generated")
-set(CHIMERA_COMPILE_DATABASE "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json")
+set(chimera_CONFIGURATION "${PROJECT_SOURCE_DIR}/chimera.yml")
+set(chimera_GENERATED_DIR "${PROJECT_SOURCE_DIR}/src_generated")
+set(chimera_COMPILE_DATABASE "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -31,6 +30,16 @@ find_package(Boost REQUIRED COMPONENTS python thread)
 find_package(DART REQUIRED COMPONENTS core)
 #find_package(FCL REQUIRED)
 find_package(PythonLibs REQUIRED)
+
+
+find_package(chimera)
+if(${chimera_FOUND})
+  message(STATUS "Found Chimera. You can use Chimera to re-generate"
+                 " Boost.Python bindings by building the 'bind' target.")
+else()
+  message(WARNING "Unable to find Chimera. You cannot re-generate Boost.Python"
+                  " bindings.")
+endif()
 
 include_directories(SYSTEM
   ${Boost_INCLUDE_DIRS}
@@ -67,9 +76,9 @@ if(HAS_STD_SHARED_GET_POINTER)
 endif(HAS_STD_SHARED_GET_POINTER)
 
 # Build a placeholder library to generate the compile_commands.json database.
-set(CHIMERA_SOURCE "${PROJECT_SOURCE_DIR}/src/placeholder.cpp")
+set(chimera_SOURCE "${PROJECT_SOURCE_DIR}/src/placeholder.cpp")
 add_library("${PROJECT_NAME}_placeholder" SHARED EXCLUDE_FROM_ALL
-  "${CHIMERA_SOURCE}"
+  "${chimera_SOURCE}"
 )
 target_link_libraries("${PROJECT_NAME}_placeholder"
   ${DART_LIBRARIES}
@@ -85,21 +94,21 @@ find_path(DART_HEADER_BASE_PATH "dart.h"
 set(DART_HEADER_PATH "${DART_HEADER_BASE_PATH}/dart.h")
 
 add_custom_target(bind
-  COMMAND "${CHIMERA_EXECUTABLE}"
+  COMMAND "${chimera_EXECUTABLE}"
     -m "${PROJECT_NAME}"
-    -c "${CHIMERA_CONFIGURATION}"
-    -o "${CHIMERA_GENERATED_DIR}"
-    -p "${CHIMERA_COMPILE_DATABASE}"
-    "${CHIMERA_SOURCE}"
-    > "${CHIMERA_GENERATED_DIR}/manifest.txt"
+    -c "${chimera_CONFIGURATION}"
+    -o "${chimera_GENERATED_DIR}"
+    -p "${chimera_COMPILE_DATABASE}"
+    "${chimera_SOURCE}"
+    > "${chimera_GENERATED_DIR}/manifest.txt"
   VERBATIM
   COMMENT "Generating bindings"
   SOURCES
-    "${CHIMERA_CONFIGURATION}"
-    "${CHIMERA_SOURCE}"
+    "${chimera_CONFIGURATION}"
+    "${chimera_SOURCE}"
 )
 
-file(STRINGS "${CHIMERA_GENERATED_DIR}/manifest.txt" DARTPY_SOURCES
+file(STRINGS "${chimera_GENERATED_DIR}/manifest.txt" DARTPY_SOURCES
   NO_HEX_CONVERSION
 )
 
