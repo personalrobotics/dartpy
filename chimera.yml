@@ -145,6 +145,11 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const std::shared_ptr<dart::dynamics::WholeBodyIK> &':
     return_value_policy: boost::python::copy_const_reference
+  'const std::vector<dart::dynamics::InverseKinematics::Analytical::Solution> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const std::pair<Eigen::Vector6d, Eigen::Vector6d> &':
+    return_value_policy: boost::python::copy_const_reference
+
   # smart pointers
   'dart::dynamics::BodyNode *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr>
@@ -156,11 +161,17 @@ types:
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
   'dart::dynamics::EndEffector *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::EndEffectorPtr>
+  'dart::dynamics::Node *':
+    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::NodePtr>
+
   # collections
   'const std::vector<dart::dynamics::BodyNode*>&':
     return_value_policy: boost::python::copy_const_reference
   'const std::vector<dart::dynamics::DegreeOfFreedom*>&':
     return_value_policy: boost::python::copy_const_reference
+  'const std::vector<std::size_t> &':
+    return_value_policy: boost::python::copy_const_reference
+
   # allow unsafe access
   # TODO: Are there smart pointers for these?
   'dart::dynamics::Marker *':
@@ -188,7 +199,7 @@ declarations:
     held_type: std::shared_ptr<dart::common::ResourceRetriever>
   'dart::common::LocalResourceRetriever':
     held_type: std::shared_ptr<dart::common::LocalResourceRetriever>
-  'dart::common::PackageResourceRetriever':
+  'dart::utils::PackageResourceRetriever':
     held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
   'dart::dynamics::ZeroDofJoint':
     name: ZeroDofJoint # TODO: This seems to do nothing.
@@ -367,22 +378,23 @@ declarations:
   'dart::common::ExtensibleMixer<dart::common::Addon::State, dart::dynamics::detail::SupportStateData>':
     name: SupportStateAddonData
 
-  'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::EulerJointAddon, dart::dynamics::detail::EulerJointUniqueProperties, dart::dynamics::EulerJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::EulerJointAddon>(dart::dynamics::detail::EulerJointAddon*)), false>':
-    name: EulerJointPropertiesInSkeleton
-  'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::ScrewJointAddon, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::ScrewJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::ScrewJointAddon>(dart::dynamics::detail::ScrewJointAddon*)), false>':
-    name: ScrewJointPropertiesInSkeleton
-  'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::PlanarJointAddon, dart::dynamics::detail::PlanarJointUniqueProperties, dart::dynamics::PlanarJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::PlanarJointAddon>(dart::dynamics::detail::PlanarJointAddon*)), false>'
-    name: PlanarJointPropertiesInSkeleton
-  'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::RevoluteJointAddon, dart::dynamics::detail::RevoluteJointUniqueProperties, dart::dynamics::RevoluteJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::RevoluteJointAddon>(dart::dynamics::detail::RevoluteJointAddon*)), false>':
-    name: RevoluteJointPropertiesInSkeleton
-  'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::PrismaticJointAddon, dart::dynamics::detail::PrismaticJointUniqueProperties, dart::dynamics::PrismaticJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::PrismaticJointAddon>(dart::dynamics::detail::PrismaticJointAddon*)), false>':
-    name: PrismaticJointUniquePropertiesInSkeleton
-  'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::SingleDofJointAddon, dart::dynamics::detail::SingleDofJointUniqueProperties, dart::dynamics::SingleDofJoint, &(void dart::common::detail::NoOp<dart::dynamics::detail::SingleDofJointAddon*>(dart::dynamics::detail::SingleDofJointAddon*)), false>':
-    name: SingleDofJointPropertiesInSkeleton
-  'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::UniversalJointAddon, dart::dynamics::detail::UniversalJointUniqueProperties, dart::dynamics::UniversalJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::UniversalJointAddon>(dart::dynamics::detail::UniversalJointAddon*)), false>':
-    name: UniversalJointPropertiesInSkeleton
-  'dart::dynamics::AddonWithProtectedStateAndPropertiesInSkeleton<dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::detail::SupportPropertiesData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate, &dart::dynamics::detail::SupportUpdate, true>':
-    name: EndEffectorPropertiesInSkeleton
+  # TODO: See https://github.com/personalrobotics/chimera/issues/69.
+  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::EulerJointAddon, dart::dynamics::detail::EulerJointUniqueProperties, dart::dynamics::EulerJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::EulerJointAddon>(dart::dynamics::detail::EulerJointAddon*)), false>':
+  #  name: EulerJointPropertiesInSkeleton
+  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::ScrewJointAddon, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::ScrewJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::ScrewJointAddon>(dart::dynamics::detail::ScrewJointAddon*)), false>':
+  #  name: ScrewJointPropertiesInSkeleton
+  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::PlanarJointAddon, dart::dynamics::detail::PlanarJointUniqueProperties, dart::dynamics::PlanarJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::PlanarJointAddon>(dart::dynamics::detail::PlanarJointAddon*)), false>':
+  #  name: PlanarJointPropertiesInSkeleton
+  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::RevoluteJointAddon, dart::dynamics::detail::RevoluteJointUniqueProperties, dart::dynamics::RevoluteJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::RevoluteJointAddon>(dart::dynamics::detail::RevoluteJointAddon*)), false>':
+  #  name: RevoluteJointPropertiesInSkeleton
+  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::PrismaticJointAddon, dart::dynamics::detail::PrismaticJointUniqueProperties, dart::dynamics::PrismaticJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::PrismaticJointAddon>(dart::dynamics::detail::PrismaticJointAddon*)), false>':
+  #  name: PrismaticJointUniquePropertiesInSkeleton
+  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::SingleDofJointAddon, dart::dynamics::detail::SingleDofJointUniqueProperties, dart::dynamics::SingleDofJoint, &(void dart::common::detail::NoOp<dart::dynamics::detail::SingleDofJointAddon*>(dart::dynamics::detail::SingleDofJointAddon*)), false>':
+  #  name: SingleDofJointPropertiesInSkeleton
+  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::UniversalJointAddon, dart::dynamics::detail::UniversalJointUniqueProperties, dart::dynamics::UniversalJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::UniversalJointAddon>(dart::dynamics::detail::UniversalJointAddon*)), false>':
+  #  name: UniversalJointPropertiesInSkeleton
+  #'dart::dynamics::AddonWithProtectedStateAndPropertiesInSkeleton<dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::detail::SupportPropertiesData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate, &dart::dynamics::detail::SupportUpdate, true>':
+  #  name: EndEffectorPropertiesInSkeleton
 
   'dart::common::SpecializedAddonManager<dart::dynamics::detail::EulerJointAddon>':
     name: SpecializedEulerJointAddonManager
@@ -453,6 +465,10 @@ declarations:
   # Suppressed because they're useless in Python.
   'dart::common::sub_ptr<dart::dynamics::JacobianNode>': null
   'dart::common::sub_ptr<dart::dynamics::InverseKinematics>': null
+  'const tinyxml2::XMLElement *dart::utils::getElement(const tinyxml2::XMLElement *, const std::string &)': null
+  'tinyxml2::XMLElement *dart::utils::getElement(tinyxml2::XMLElement *, const std::string &)': null
+  'std::ostream &dart::common::colorMsg(const std::string &, int)': null
+  'std::ostream &dart::common::colorErr(const std::string &, const std::string &, unsigned int, int)': null
 
   # Suppressed because these are optional components.
   'Assimp::IOStream': null
@@ -460,9 +476,6 @@ declarations:
   'dart::optimizer::IpoptSolver': null
   'dart::optimizer::NloptSolver': null
   'dart::optimizer::DartTNLP': null
-
-  # Suppressed because of bugs in Chimera.
-  #'dart::common::Signal<void (std::shared_ptr<dart::dynamics::MetaSkeleton const>, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&), dart::common::signal::detail::DefaultCombiner>': null
 
   'dart::dynamics::Frame *dart::dynamics::Frame::World()':
     return_value_policy: boost::python::reference_existing_object
@@ -476,7 +489,7 @@ declarations:
   'const dart::dynamics::JacobianNode *dart::dynamics::InverseKinematics::getNode() const': null
   'const dart::dynamics::JacobianNode *dart::dynamics::InverseKinematics::getAffiliation() const': null
   'std::shared_ptr<const dart::dynamics::SimpleFrame> dart::dynamics::InverseKinematics::getTarget() const': null
-  'std::vector<const DegreeOfFreedom*> dart::dynamics::MetaSkeleton::getDofs() const': null
+  'std::vector<const dart::dynamics::DegreeOfFreedom*> dart::dynamics::MetaSkeleton::getDofs() const': null
   'const dart::dynamics::BodyNode *dart::dynamics::MetaSkeleton::getBodyNode(size_t) const': null
   #'const std::vector<const BodyNode *> &dart::dynamics::MetaSkeleton::getBodyNodes() const': null
   'const dart::dynamics::Joint *dart::dynamics::MetaSkeleton::getJoint(size_t) const': null
@@ -487,7 +500,7 @@ declarations:
   'const dart::dynamics::BodyNode *dart::dynamics::Skeleton::getBodyNode(const std::string &) const': null
   'const dart::dynamics::SoftBodyNode *dart::dynamics::Skeleton::getSoftBodyNode(const std::string &) const': null
   #'const std::vector<const BodyNode *> &dart::dynamics::Skeleton::getBodyNodes() const': null
-  'std::vector<const DegreeOfFreedom*> dart::dynamics::Skeleton::getDofs() const': null
+  'std::vector<const dart::dynamics::DegreeOfFreedom*> dart::dynamics::Skeleton::getDofs() const': null
   'const dart::dynamics::Joint *dart::dynamics::Skeleton::getJoint(size_t) const': null
   'const dart::dynamics::Joint *dart::dynamics::Skeleton::getJoint(const std::string &) const': null
   'const dart::dynamics::DegreeOfFreedom *dart::dynamics::Skeleton::getDof(size_t) const': null
@@ -505,7 +518,7 @@ declarations:
   'const dart::dynamics::SoftBodyNode *dart::dynamics::PointMass::getParentSoftBodyNode() const': null
   'const dart::dynamics::PointMass *dart::dynamics::PointMass::getConnectedPointMass(size_t) const': null
 
-  'std::vector<const DegreeOfFreedom*> dart::dynamics::ReferentialSkeleton::getDofs() const': null
+  'std::vector<const dart::dynamics::DegreeOfFreedom*> dart::dynamics::ReferentialSkeleton::getDofs() const': null
   'const dart::dynamics::DegreeOfFreedom *dart::dynamics::ReferentialSkeleton::getDof(size_t) const': null
   'const dart::dynamics::Joint *dart::dynamics::ReferentialSkeleton::getJoint(size_t) const': null
   #'const std::vector<const BodyNode *> &dart::dynamics::ReferentialSkeleton::getBodyNodes() const': null
@@ -526,7 +539,7 @@ declarations:
   'const dart::dynamics::BodyNode *dart::dynamics::BodyNode::getChildBodyNode(size_t) const': null
   'const dart::dynamics::BodyNode *dart::dynamics::BodyNode::getParentBodyNode() const': null
   'const dart::dynamics::Joint *dart::dynamics::BodyNode::getParentJoint() const': null
-  'const dart::dynamics::Shape *dart::dynamics::BodyNode::getCollisionShape(size_t) const': null
+  'dart::dynamics::ConstShapePtr dart::dynamics::BodyNode::getCollisionShape(size_t) const': null
   'const dart::dynamics::BodyNode *dart::dynamics::Marker::getBodyNode() const': null
   'const dart::dynamics::SoftBodyNode *dart::dynamics::PointMass::getParentSoftBodyNode() const': null
   'template<> const dart::dynamics::DegreeOfFreedom *dart::dynamics::MultiDofJoint<2>::getDof(size_t) const': null

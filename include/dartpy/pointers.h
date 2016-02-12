@@ -2,6 +2,7 @@
 #define DART_PYTHON_POINTERS_H_
 #include <memory>
 #include <dart/dynamics/dynamics.h>
+#include <dartpy/config.h>
 #include "types.h"
 
 #ifdef BOOST_CONFIG_HPP
@@ -103,13 +104,13 @@ inline JointPtr_wrapper_base JointPtr_wrapper_create(
 
 namespace boost {
 
-#ifndef HAS_STD_SHARED_GET_POINTER
+#ifndef DARTPY_HAS_STD_SHARED_GET_POINTER
 template <class T>
 T *get_pointer(std::shared_ptr<T> const &ptr) 
 {
     return ptr.get();
 }
-#endif // ifndef HAS_STD_SHARED_GET_POINTER
+#endif // ifndef DARTPY_HAS_STD_SHARED_GET_POINTER
 
 template <class T>
 T *get_pointer(dart::dynamics::TemplateBodyNodePtr<T> const &p)
