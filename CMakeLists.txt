@@ -67,8 +67,17 @@ if(${chimera_FOUND})
     COMMENT "Generating bindings"
     VERBATIM
   )
+  add_custom_command(OUTPUT "${chimera_GENERATED_DIR}/manifest.cmake"
+    COMMAND
+    bash -c "echo set\\(chimera_GENERATED_SOURCES\
+       $(cat ${chimera_GENERATED_DIR}/manifest.txt) \\)"
+      > "${chimera_GENERATED_DIR}/manifest.cmake"
+    MAIN_DEPENDENCY "${chimera_GENERATED_DIR}/manifest.txt"
+    COMMENT "Generating bindings manifest file"
+    VERBATIM
+  )
   add_custom_target(bind
-    DEPENDS "${chimera_GENERATED_DIR}/manifest.txt"
+    DEPENDS "${chimera_GENERATED_DIR}/manifest.cmake"
     COMMENT "Checking if re-generation is required"
   )
 
