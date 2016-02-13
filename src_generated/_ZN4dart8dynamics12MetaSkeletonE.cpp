@@ -1,18 +1,20 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
 void _ZN4dart8dynamics12MetaSkeletonE()
 {
-::boost::python::class_<dart::dynamics::MetaSkeleton, ::boost::noncopyable, dart::dynamics::MetaSkeleton *, ::boost::python::bases<dart::common::Subject > >("MetaSkeleton", boost::python::no_init)
+::boost::python::class_<dart::dynamics::MetaSkeleton, ::boost::noncopyable, dart::dynamics::MetaSkeletonPtr, ::boost::python::bases<dart::common::Subject > >("MetaSkeleton", boost::python::no_init)
 .def("setName", static_cast<const std::string &(dart::dynamics::MetaSkeleton::*)(const std::string &)>(&dart::dynamics::MetaSkeleton::setName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name")))
 .def("getName", static_cast<const std::string &(dart::dynamics::MetaSkeleton::*)() const>(&dart::dynamics::MetaSkeleton::getName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getNumBodyNodes", static_cast<std::size_t (dart::dynamics::MetaSkeleton::*)() const>(&dart::dynamics::MetaSkeleton::getNumBodyNodes))
 .def("getBodyNode", static_cast<dart::dynamics::BodyNode *(dart::dynamics::MetaSkeleton::*)(std::size_t)>(&dart::dynamics::MetaSkeleton::getBodyNode), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >(), (::boost::python::arg("_idx")))
+.def("getBodyNodes", static_cast<const std::vector<dart::dynamics::BodyNode *> &(dart::dynamics::MetaSkeleton::*)()>(&dart::dynamics::MetaSkeleton::getBodyNodes), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getIndexOf", static_cast<std::size_t (dart::dynamics::MetaSkeleton::*)(const dart::dynamics::BodyNode *, bool) const>(&dart::dynamics::MetaSkeleton::getIndexOf), (::boost::python::arg("_bn"), ::boost::python::arg("_warning") = true))
 .def("getNumJoints", static_cast<std::size_t (dart::dynamics::MetaSkeleton::*)() const>(&dart::dynamics::MetaSkeleton::getNumJoints))
 .def("getJoint", static_cast<dart::dynamics::Joint *(dart::dynamics::MetaSkeleton::*)(std::size_t)>(&dart::dynamics::MetaSkeleton::getJoint), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::JointPtr> >(), (::boost::python::arg("_idx")))

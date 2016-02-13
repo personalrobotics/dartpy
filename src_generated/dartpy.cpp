@@ -1,76 +1,79 @@
-/* main header */
+#include <vector>
+#include <dartpy/collections.h>
+#include <dartpy/util.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include <dartpy/util.h>
-#include <dartpy/collections.h>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* main postinclude */
 
 BOOST_PYTHON_MODULE(dartpy)
 {
-  boost::python::import("boost_numpy_eigen");
+boost::python::import("boost_numpy_eigen");
 
-  // std::shared_ptr implicit conversions
-  boost::python::implicitly_convertible<
-    std::shared_ptr<dart::common::LocalResourceRetriever>,
-    std::shared_ptr<dart::common::ResourceRetriever>>(); 
+// std::shared_ptr implicit conversions
+boost::python::implicitly_convertible<
+  std::shared_ptr<dart::common::LocalResourceRetriever>,
+  std::shared_ptr<dart::common::ResourceRetriever>>(); 
 
-  boost::python::implicitly_convertible<
-    std::shared_ptr<dart::utils::PackageResourceRetriever>,
-    std::shared_ptr<dart::common::ResourceRetriever>>(); 
+boost::python::implicitly_convertible<
+  std::shared_ptr<dart::utils::PackageResourceRetriever>,
+  std::shared_ptr<dart::common::ResourceRetriever>>(); 
 
-  boost::python::implicitly_convertible<std::string, dart::common::Uri>(); 
+// misc implicit conversions
+boost::python::implicitly_convertible<
+  std::string, dart::common::Uri>(); 
 
-  // std::vector converters
-  dart::python::util::vector_to_python<size_t>();
-  dart::python::util::collection_from_python<std::vector<size_t>>();
+// std::vector converters
+dart::python::util::vector_to_python<size_t>();
+dart::python::util::collection_from_python<std::vector<size_t>>();
 
-  dart::python::util::vector_to_python<Eigen::Vector3d>();
-  dart::python::util::collection_from_python<
-    std::vector<Eigen::Vector3d>>();
+dart::python::util::vector_to_python<Eigen::Vector3d>();
+dart::python::util::collection_from_python<
+  std::vector<Eigen::Vector3d>>();
 
-  dart::python::util::vector_to_python<Eigen::Vector3i>();
-  dart::python::util::collection_from_python<
-    std::vector<Eigen::Vector3i>>();
+dart::python::util::vector_to_python<Eigen::Vector3i>();
+dart::python::util::collection_from_python<
+  std::vector<Eigen::Vector3i>>();
 
-  dart::python::util::vector_to_python<
-    dart::dynamics::PointMass::Properties>();
-  dart::python::util::collection_from_python<
-    std::vector<dart::dynamics::PointMass::Properties>>();
+dart::python::util::vector_to_python<
+  dart::dynamics::PointMass::Properties>();
+dart::python::util::collection_from_python<
+  std::vector<dart::dynamics::PointMass::Properties>>();
 
-  dart::python::util::vector_to_python<dart::collision::Contact>();
-  dart::python::util::collection_from_python<
-    std::vector<dart::collision::Contact>>();
+dart::python::util::vector_to_python<dart::collision::Contact>();
+dart::python::util::collection_from_python<
+  std::vector<dart::collision::Contact>>();
 
-  dart::python::util::vector_to_python<dart::dynamics::SkeletonPtr>();
-  dart::python::util::collection_from_python<
-    std::vector<dart::dynamics::SkeletonPtr>>();
+dart::python::util::vector_to_python<dart::dynamics::SkeletonPtr>();
+dart::python::util::collection_from_python<
+  std::vector<dart::dynamics::SkeletonPtr>>();
 
-  dart::python::util::vector_to_python<dart::dynamics::ShapePtr>();
-  dart::python::util::collection_from_python<
-    std::vector<dart::dynamics::ShapePtr>>();
+dart::python::util::vector_to_python<dart::dynamics::ShapePtr>();
+dart::python::util::collection_from_python<
+  std::vector<dart::dynamics::ShapePtr>>();
 
-  dart::python::util::vector_to_python<
-    dart::dynamics::BodyNode*, dart::dynamics::BodyNodePtr>();
-  dart::python::util::collection_from_python<
-    std::vector<dart::dynamics::BodyNode*>>();
+dart::python::util::vector_to_python<
+  dart::dynamics::BodyNode*, dart::dynamics::BodyNodePtr>();
+dart::python::util::collection_from_python<
+  std::vector<dart::dynamics::BodyNode*>>();
 
-  dart::python::util::vector_to_python<
-    dart::dynamics::SoftBodyNode*, dart::dynamics::SoftBodyNodePtr>();
-  dart::python::util::collection_from_python<
-    std::vector<dart::dynamics::SoftBodyNode*>>();
+dart::python::util::vector_to_python<
+  dart::dynamics::SoftBodyNode*, dart::dynamics::SoftBodyNodePtr>();
+dart::python::util::collection_from_python<
+  std::vector<dart::dynamics::SoftBodyNode*>>();
 
-  dart::python::util::vector_to_python<
-    dart::dynamics::EndEffector*, dart::dynamics::EndEffectorPtr>();
-  dart::python::util::collection_from_python<
-    std::vector<dart::dynamics::EndEffector*>>();
+dart::python::util::vector_to_python<
+  dart::dynamics::EndEffector*, dart::dynamics::EndEffectorPtr>();
+dart::python::util::collection_from_python<
+  std::vector<dart::dynamics::EndEffector*>>();
 
-  dart::python::util::vector_to_python<
-    dart::dynamics::DegreeOfFreedom*, dart::dynamics::DegreeOfFreedomPtr>();
-  dart::python::util::collection_from_python<
-    std::vector<dart::dynamics::DegreeOfFreedom*>>();
+dart::python::util::vector_to_python<
+  dart::dynamics::DegreeOfFreedom*, dart::dynamics::DegreeOfFreedomPtr>();
+dart::python::util::collection_from_python<
+  std::vector<dart::dynamics::DegreeOfFreedom*>>();
 
   void _ZN4dart6common12AddonManagerE();
   _ZN4dart6common12AddonManagerE();
@@ -612,33 +615,6 @@ BOOST_PYTHON_MODULE(dartpy)
   void _ZN4dart6common8colorErrERKSsS2_ji();
   _ZN4dart6common8colorErrERKSsS2_ji();
 
-  void _ZN4dart6common12AddonManager4typeINS_8dynamics7SupportEEE();
-  _ZN4dart6common12AddonManager4typeINS_8dynamics7SupportEEE();
-
-  void _ZN4dart6common12AddonManager4typeINS_8dynamics6detail18MultiDofJointAddonILm3EEEEE();
-  _ZN4dart6common12AddonManager4typeINS_8dynamics6detail18MultiDofJointAddonILm3EEEEE();
-
-  void _ZN4dart6common12AddonManager4typeINS_8dynamics6detail15EulerJointAddonEEE();
-  _ZN4dart6common12AddonManager4typeINS_8dynamics6detail15EulerJointAddonEEE();
-
-  void _ZN4dart6common12AddonManager4typeINS_8dynamics6detail16PlanarJointAddonEEE();
-  _ZN4dart6common12AddonManager4typeINS_8dynamics6detail16PlanarJointAddonEEE();
-
-  void _ZN4dart6common12AddonManager4typeINS_8dynamics6detail19PrismaticJointAddonEEE();
-  _ZN4dart6common12AddonManager4typeINS_8dynamics6detail19PrismaticJointAddonEEE();
-
-  void _ZN4dart6common12AddonManager4typeINS_8dynamics6detail18RevoluteJointAddonEEE();
-  _ZN4dart6common12AddonManager4typeINS_8dynamics6detail18RevoluteJointAddonEEE();
-
-  void _ZN4dart6common12AddonManager4typeINS_8dynamics6detail15ScrewJointAddonEEE();
-  _ZN4dart6common12AddonManager4typeINS_8dynamics6detail15ScrewJointAddonEEE();
-
-  void _ZN4dart6common12AddonManager4typeINS_8dynamics6detail18MultiDofJointAddonILm2EEEEE();
-  _ZN4dart6common12AddonManager4typeINS_8dynamics6detail18MultiDofJointAddonILm2EEEEE();
-
-  void _ZN4dart6common12AddonManager4typeINS_8dynamics6detail19UniversalJointAddonEEE();
-  _ZN4dart6common12AddonManager4typeINS_8dynamics6detail19UniversalJointAddonEEE();
-
   void _ZN4dart6common5EmptyE();
   _ZN4dart6common5EmptyE();
 
@@ -806,12 +782,6 @@ BOOST_PYTHON_MODULE(dartpy)
 
   void _ZN4dart6common5TimerE();
   _ZN4dart6common5TimerE();
-
-  void _ZN4dart6common7sub_ptrINS_8dynamics17InverseKinematicsEEE();
-  _ZN4dart6common7sub_ptrINS_8dynamics17InverseKinematicsEEE();
-
-  void _ZN4dart6common7sub_ptrINS_8dynamics12JacobianNodeEEE();
-  _ZN4dart6common7sub_ptrINS_8dynamics12JacobianNodeEEE();
 
   void _ZN4dart9optimizer7ProblemE();
   _ZN4dart9optimizer7ProblemE();
@@ -1275,72 +1245,6 @@ BOOST_PYTHON_MODULE(dartpy)
   void _ZN4dart8dynamics11EndEffector14PropertiesDataE();
   _ZN4dart8dynamics11EndEffector14PropertiesDataE();
 
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeleton16UpdatePropertiesE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeleton16UpdatePropertiesE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeleton8OptionalE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeleton8OptionalE();
-
-  void _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeleton11UpdateStateE();
-  _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeleton11UpdateStateE();
-
-  void _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeleton16UpdatePropertiesE();
-  _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeleton16UpdatePropertiesE();
-
-  void _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeleton8OptionalE();
-  _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeleton8OptionalE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15EulerJointAddonENS2_26EulerJointUniquePropertiesENS0_10EulerJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15EulerJointAddonENS2_26EulerJointUniquePropertiesENS0_10EulerJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15EulerJointAddonENS2_26EulerJointUniquePropertiesENS0_10EulerJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15EulerJointAddonENS2_26EulerJointUniquePropertiesENS0_10EulerJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail16PlanarJointAddonENS2_27PlanarJointUniquePropertiesENS0_11PlanarJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail16PlanarJointAddonENS2_27PlanarJointUniquePropertiesENS0_11PlanarJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19SingleDofJointAddonENS2_30SingleDofJointUniquePropertiesENS0_14SingleDofJointEXadL_ZNS_6common6detail4NoOpIJPS3_EEEvDpT_EELb0EE8OptionalE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19SingleDofJointAddonENS2_30SingleDofJointUniquePropertiesENS0_14SingleDofJointEXadL_ZNS_6common6detail4NoOpIJPS3_EEEvDpT_EELb0EE8OptionalE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19SingleDofJointAddonENS2_30SingleDofJointUniquePropertiesENS0_14SingleDofJointEXadL_ZNS_6common6detail4NoOpIJPS3_EEEvDpT_EELb0EE16UpdatePropertiesE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19SingleDofJointAddonENS2_30SingleDofJointUniquePropertiesENS0_14SingleDofJointEXadL_ZNS_6common6detail4NoOpIJPS3_EEEvDpT_EELb0EE16UpdatePropertiesE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19PrismaticJointAddonENS2_30PrismaticJointUniquePropertiesENS0_14PrismaticJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19PrismaticJointAddonENS2_30PrismaticJointUniquePropertiesENS0_14PrismaticJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail18RevoluteJointAddonENS2_29RevoluteJointUniquePropertiesENS0_13RevoluteJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail18RevoluteJointAddonENS2_29RevoluteJointUniquePropertiesENS0_13RevoluteJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15ScrewJointAddonENS2_26ScrewJointUniquePropertiesENS0_10ScrewJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15ScrewJointAddonENS2_26ScrewJointUniquePropertiesENS0_10ScrewJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15ScrewJointAddonENS2_26ScrewJointUniquePropertiesENS0_10ScrewJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15ScrewJointAddonENS2_26ScrewJointUniquePropertiesENS0_10ScrewJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19UniversalJointAddonENS2_30UniversalJointUniquePropertiesENS0_14UniversalJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19UniversalJointAddonENS2_30UniversalJointUniquePropertiesENS0_14UniversalJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE8OptionalE();
-
-  void _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeletonINS0_7SupportENS0_6detail16SupportStateDataENS3_21SupportPropertiesDataENS0_11EndEffectorEXadL_ZNS3_13SupportUpdateEPS2_EEXadL_ZNS3_13SupportUpdateES7_EELb1EE11UpdateStateE();
-  _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeletonINS0_7SupportENS0_6detail16SupportStateDataENS3_21SupportPropertiesDataENS0_11EndEffectorEXadL_ZNS3_13SupportUpdateEPS2_EEXadL_ZNS3_13SupportUpdateES7_EELb1EE11UpdateStateE();
-
-  void _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeletonINS0_7SupportENS0_6detail16SupportStateDataENS3_21SupportPropertiesDataENS0_11EndEffectorEXadL_ZNS3_13SupportUpdateEPS2_EEXadL_ZNS3_13SupportUpdateES7_EELb1EE16UpdatePropertiesE();
-  _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeletonINS0_7SupportENS0_6detail16SupportStateDataENS3_21SupportPropertiesDataENS0_11EndEffectorEXadL_ZNS3_13SupportUpdateEPS2_EEXadL_ZNS3_13SupportUpdateES7_EELb1EE16UpdatePropertiesE();
-
-  void _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeletonINS0_7SupportENS0_6detail16SupportStateDataENS3_21SupportPropertiesDataENS0_11EndEffectorEXadL_ZNS3_13SupportUpdateEPS2_EEXadL_ZNS3_13SupportUpdateES7_EELb1EE8OptionalE();
-  _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeletonINS0_7SupportENS0_6detail16SupportStateDataENS3_21SupportPropertiesDataENS0_11EndEffectorEXadL_ZNS3_13SupportUpdateEPS2_EEXadL_ZNS3_13SupportUpdateES7_EELb1EE8OptionalE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail16PlanarJointAddonENS2_27PlanarJointUniquePropertiesENS0_11PlanarJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail16PlanarJointAddonENS2_27PlanarJointUniquePropertiesENS0_11PlanarJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19PrismaticJointAddonENS2_30PrismaticJointUniquePropertiesENS0_14PrismaticJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19PrismaticJointAddonENS2_30PrismaticJointUniquePropertiesENS0_14PrismaticJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail18RevoluteJointAddonENS2_29RevoluteJointUniquePropertiesENS0_13RevoluteJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail18RevoluteJointAddonENS2_29RevoluteJointUniquePropertiesENS0_13RevoluteJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-
-  void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19UniversalJointAddonENS2_30UniversalJointUniquePropertiesENS0_14UniversalJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-  _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19UniversalJointAddonENS2_30UniversalJointUniquePropertiesENS0_14UniversalJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EE16UpdatePropertiesE();
-
   void _ZN4dart8dynamics9MeshShape9ColorModeE();
   _ZN4dart8dynamics9MeshShape9ColorModeE();
 
@@ -1367,15 +1271,6 @@ BOOST_PYTHON_MODULE(dartpy)
 
   void _ZN4dart8dynamics6detail23MultiDofJointPropertiesILm2EEE();
   _ZN4dart8dynamics6detail23MultiDofJointPropertiesILm2EEE();
-
-  void _ZN4dart8dynamics6detail29MultiDofJointUniqueProperties7NumDofsE();
-  _ZN4dart8dynamics6detail29MultiDofJointUniqueProperties7NumDofsE();
-
-  void _ZN4dart8dynamics6detail18MultiDofJointAddon7NumDofsE();
-  _ZN4dart8dynamics6detail18MultiDofJointAddon7NumDofsE();
-
-  void _ZN4dart8dynamics13MultiDofJoint7NumDofsE();
-  _ZN4dart8dynamics13MultiDofJoint7NumDofsE();
 
   void _ZN4dart8dynamics9BallJointE();
   _ZN4dart8dynamics9BallJointE();
@@ -1851,8 +1746,8 @@ BOOST_PYTHON_MODULE(dartpy)
   void _ZN4dart5utils9VskParser7OptionsE();
   _ZN4dart5utils9VskParser7OptionsE();
 
-  void _ZN4dart5utils9VskParser12readSkeletonERKNS_6common3UriERKSt10shared_ptrINS2_17ResourceRetrieverEENS1_7OptionsE();
-  _ZN4dart5utils9VskParser12readSkeletonERKNS_6common3UriERKSt10shared_ptrINS2_17ResourceRetrieverEENS1_7OptionsE();
+  void _ZN4dart5utils9VskParser12readSkeletonERKNS_6common3UriENS1_7OptionsE();
+  _ZN4dart5utils9VskParser12readSkeletonERKNS_6common3UriENS1_7OptionsE();
 
   void _ZN4dart5utils9SdfParserE();
   _ZN4dart5utils9SdfParserE();
@@ -1881,6 +1776,19 @@ BOOST_PYTHON_MODULE(dartpy)
   void _ZN4dart5utils12urdf_parsing14parseWorldURDFERKSsRKNS_6common3UriE();
   _ZN4dart5utils12urdf_parsing14parseWorldURDFERKSsRKNS_6common3UriE();
 
+  void _ZN4dart5utils10getElementEPN8tinyxml210XMLElementERKSs();
+  _ZN4dart5utils10getElementEPN8tinyxml210XMLElementERKSs();
+
+  void _ZN4dart5utils10getElementEPKN8tinyxml210XMLElementERKSs();
+  _ZN4dart5utils10getElementEPKN8tinyxml210XMLElementERKSs();
+
+  void _ZN4dart6common8colorErrERKSsS2_ji();
+  _ZN4dart6common8colorErrERKSsS2_ji();
+
+  void _ZN4dart6common8colorMsgERKSsi();
+  _ZN4dart6common8colorMsgERKSsi();
+
 }
 
-/* main footer */
+// main footer
+

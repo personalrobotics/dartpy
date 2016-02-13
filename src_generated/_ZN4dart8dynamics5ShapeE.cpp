@@ -1,8 +1,9 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
@@ -24,7 +25,7 @@ void _ZN4dart8dynamics5ShapeE()
 .def("getOffset", static_cast<Eigen::Vector3d (dart::dynamics::Shape::*)() const>(&dart::dynamics::Shape::getOffset))
 .def("computeInertia", static_cast<Eigen::Matrix3d (dart::dynamics::Shape::*)(double) const>(&dart::dynamics::Shape::computeInertia), (::boost::python::arg("mass")))
 .def("computeInertiaFromDensity", static_cast<Eigen::Matrix3d (dart::dynamics::Shape::*)(double) const>(&dart::dynamics::Shape::computeInertiaFromDensity), (::boost::python::arg("density")))
-.def("computeInertiaFromMass", static_cast<Eigen::Matrix3d (dart::dynamics::Shape::*)(double) const>(&dart::dynamics::Shape::computeInertiaFromMass), (::boost::python::arg("density")))
+.def("computeInertiaFromMass", static_cast<Eigen::Matrix3d (dart::dynamics::Shape::*)(double) const>(&dart::dynamics::Shape::computeInertiaFromMass), (::boost::python::arg("mass")))
 .def("getVolume", static_cast<double (dart::dynamics::Shape::*)() const>(&dart::dynamics::Shape::getVolume))
 .def("getID", static_cast<int (dart::dynamics::Shape::*)() const>(&dart::dynamics::Shape::getID))
 .def("getShapeType", static_cast<dart::dynamics::Shape::ShapeType (dart::dynamics::Shape::*)() const>(&dart::dynamics::Shape::getShapeType))

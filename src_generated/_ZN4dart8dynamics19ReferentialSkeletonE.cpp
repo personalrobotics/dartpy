@@ -1,8 +1,9 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
@@ -13,13 +14,14 @@ void _ZN4dart8dynamics19ReferentialSkeletonE()
 .def("getName", static_cast<const std::string &(dart::dynamics::ReferentialSkeleton::*)() const>(&dart::dynamics::ReferentialSkeleton::getName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getNumBodyNodes", static_cast<std::size_t (dart::dynamics::ReferentialSkeleton::*)() const>(&dart::dynamics::ReferentialSkeleton::getNumBodyNodes))
 .def("getBodyNode", static_cast<dart::dynamics::BodyNode *(dart::dynamics::ReferentialSkeleton::*)(std::size_t)>(&dart::dynamics::ReferentialSkeleton::getBodyNode), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >(), (::boost::python::arg("_idx")))
+.def("getBodyNodes", static_cast<const std::vector<dart::dynamics::BodyNode *> &(dart::dynamics::ReferentialSkeleton::*)()>(&dart::dynamics::ReferentialSkeleton::getBodyNodes), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getIndexOf", static_cast<std::size_t (dart::dynamics::ReferentialSkeleton::*)(const dart::dynamics::BodyNode *, bool) const>(&dart::dynamics::ReferentialSkeleton::getIndexOf), (::boost::python::arg("_bn"), ::boost::python::arg("_warning") = true))
 .def("getNumJoints", static_cast<std::size_t (dart::dynamics::ReferentialSkeleton::*)() const>(&dart::dynamics::ReferentialSkeleton::getNumJoints))
 .def("getJoint", static_cast<dart::dynamics::Joint *(dart::dynamics::ReferentialSkeleton::*)(std::size_t)>(&dart::dynamics::ReferentialSkeleton::getJoint), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::JointPtr> >(), (::boost::python::arg("_idx")))
 .def("getIndexOf", static_cast<std::size_t (dart::dynamics::ReferentialSkeleton::*)(const dart::dynamics::Joint *, bool) const>(&dart::dynamics::ReferentialSkeleton::getIndexOf), (::boost::python::arg("_joint"), ::boost::python::arg("_warning") = true))
 .def("getNumDofs", static_cast<std::size_t (dart::dynamics::ReferentialSkeleton::*)() const>(&dart::dynamics::ReferentialSkeleton::getNumDofs))
 .def("getDof", static_cast<dart::dynamics::DegreeOfFreedom *(dart::dynamics::ReferentialSkeleton::*)(std::size_t)>(&dart::dynamics::ReferentialSkeleton::getDof), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr> >(), (::boost::python::arg("_idx")))
-.def("getDofs", static_cast<std::vector<const dart::dynamics::DegreeOfFreedom *> (dart::dynamics::ReferentialSkeleton::*)() const>(&dart::dynamics::ReferentialSkeleton::getDofs))
+.def("getDofs", static_cast<const std::vector<dart::dynamics::DegreeOfFreedom *> &(dart::dynamics::ReferentialSkeleton::*)()>(&dart::dynamics::ReferentialSkeleton::getDofs), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getIndexOf", static_cast<std::size_t (dart::dynamics::ReferentialSkeleton::*)(const dart::dynamics::DegreeOfFreedom *, bool) const>(&dart::dynamics::ReferentialSkeleton::getIndexOf), (::boost::python::arg("_dof"), ::boost::python::arg("_warning") = true))
 .def("getJacobian", static_cast<dart::math::Jacobian (dart::dynamics::ReferentialSkeleton::*)(const dart::dynamics::JacobianNode *) const>(&dart::dynamics::ReferentialSkeleton::getJacobian), (::boost::python::arg("_node")))
 .def("getJacobian", static_cast<dart::math::Jacobian (dart::dynamics::ReferentialSkeleton::*)(const dart::dynamics::JacobianNode *, const dart::dynamics::Frame *) const>(&dart::dynamics::ReferentialSkeleton::getJacobian), (::boost::python::arg("_node"), ::boost::python::arg("_inCoordinatesOf")))

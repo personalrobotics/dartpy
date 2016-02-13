@@ -1,8 +1,9 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
@@ -33,8 +34,10 @@ void _ZN4dart8dynamics11EndEffectorE()
 .def("dependsOn", static_cast<bool (dart::dynamics::EndEffector::*)(std::size_t) const>(&dart::dynamics::EndEffector::dependsOn), (::boost::python::arg("_genCoordIndex")))
 .def("getNumDependentGenCoords", static_cast<std::size_t (dart::dynamics::EndEffector::*)() const>(&dart::dynamics::EndEffector::getNumDependentGenCoords))
 .def("getDependentGenCoordIndex", static_cast<std::size_t (dart::dynamics::EndEffector::*)(std::size_t) const>(&dart::dynamics::EndEffector::getDependentGenCoordIndex), (::boost::python::arg("_arrayIndex")))
+.def("getDependentGenCoordIndices", static_cast<const std::vector<std::size_t> &(dart::dynamics::EndEffector::*)() const>(&dart::dynamics::EndEffector::getDependentGenCoordIndices), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getNumDependentDofs", static_cast<std::size_t (dart::dynamics::EndEffector::*)() const>(&dart::dynamics::EndEffector::getNumDependentDofs))
 .def("getDependentDof", static_cast<dart::dynamics::DegreeOfFreedom *(dart::dynamics::EndEffector::*)(std::size_t)>(&dart::dynamics::EndEffector::getDependentDof), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr> >(), (::boost::python::arg("_index")))
+.def("getDependentDofs", static_cast<const std::vector<dart::dynamics::DegreeOfFreedom *> &(dart::dynamics::EndEffector::*)()>(&dart::dynamics::EndEffector::getDependentDofs), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getChainDofs", static_cast<const std::vector<const dart::dynamics::DegreeOfFreedom *> (dart::dynamics::EndEffector::*)() const>(&dart::dynamics::EndEffector::getChainDofs))
 .def("getJacobian", static_cast<const dart::math::Jacobian &(dart::dynamics::EndEffector::*)() const>(&dart::dynamics::EndEffector::getJacobian), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getWorldJacobian", static_cast<const dart::math::Jacobian &(dart::dynamics::EndEffector::*)() const>(&dart::dynamics::EndEffector::getWorldJacobian), ::boost::python::return_value_policy<boost::python::copy_const_reference >())

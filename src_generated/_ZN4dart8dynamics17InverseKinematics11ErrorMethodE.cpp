@@ -1,8 +1,9 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
@@ -16,6 +17,7 @@ void _ZN4dart8dynamics17InverseKinematics11ErrorMethodE()
 .def("getMethodName", static_cast<const std::string &(dart::dynamics::InverseKinematics::ErrorMethod::*)() const>(&dart::dynamics::InverseKinematics::ErrorMethod::getMethodName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("setBounds", static_cast<void (dart::dynamics::InverseKinematics::ErrorMethod::*)(const Eigen::Vector6d &, const Eigen::Vector6d &)>(&dart::dynamics::InverseKinematics::ErrorMethod::setBounds), (::boost::python::arg("_lower"), ::boost::python::arg("_upper")))
 .def("setBounds", static_cast<void (dart::dynamics::InverseKinematics::ErrorMethod::*)(const std::pair<Eigen::Vector6d, Eigen::Vector6d> &)>(&dart::dynamics::InverseKinematics::ErrorMethod::setBounds), (::boost::python::arg("_bounds")))
+.def("getBounds", static_cast<const std::pair<Eigen::Vector6d, Eigen::Vector6d> &(dart::dynamics::InverseKinematics::ErrorMethod::*)() const>(&dart::dynamics::InverseKinematics::ErrorMethod::getBounds), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("setAngularBounds", static_cast<void (dart::dynamics::InverseKinematics::ErrorMethod::*)(const Eigen::Vector3d &, const Eigen::Vector3d &)>(&dart::dynamics::InverseKinematics::ErrorMethod::setAngularBounds), (::boost::python::arg("_lower"), ::boost::python::arg("_upper")))
 .def("setAngularBounds", static_cast<void (dart::dynamics::InverseKinematics::ErrorMethod::*)(const std::pair<Eigen::Vector3d, Eigen::Vector3d> &)>(&dart::dynamics::InverseKinematics::ErrorMethod::setAngularBounds), (::boost::python::arg("_bounds")))
 .def("getAngularBounds", static_cast<std::pair<Eigen::Vector3d, Eigen::Vector3d> (dart::dynamics::InverseKinematics::ErrorMethod::*)() const>(&dart::dynamics::InverseKinematics::ErrorMethod::getAngularBounds))

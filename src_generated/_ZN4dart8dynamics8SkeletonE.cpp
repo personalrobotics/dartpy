@@ -1,8 +1,9 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
@@ -45,7 +46,9 @@ void _ZN4dart8dynamics8SkeletonE()
 .def("getSoftBodyNode", static_cast<dart::dynamics::SoftBodyNode *(dart::dynamics::Skeleton::*)(std::size_t)>(&dart::dynamics::Skeleton::getSoftBodyNode), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::SoftBodyNodePtr> >(), (::boost::python::arg("_idx")))
 .def("getBodyNode", static_cast<dart::dynamics::BodyNode *(dart::dynamics::Skeleton::*)(const std::string &)>(&dart::dynamics::Skeleton::getBodyNode), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >(), (::boost::python::arg("_name")))
 .def("getSoftBodyNode", static_cast<dart::dynamics::SoftBodyNode *(dart::dynamics::Skeleton::*)(const std::string &)>(&dart::dynamics::Skeleton::getSoftBodyNode), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::SoftBodyNodePtr> >(), (::boost::python::arg("_name")))
+.def("getBodyNodes", static_cast<const std::vector<dart::dynamics::BodyNode *> &(dart::dynamics::Skeleton::*)()>(&dart::dynamics::Skeleton::getBodyNodes), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getIndexOf", static_cast<std::size_t (dart::dynamics::Skeleton::*)(const dart::dynamics::BodyNode *, bool) const>(&dart::dynamics::Skeleton::getIndexOf), (::boost::python::arg("_bn"), ::boost::python::arg("_warning") = true))
+.def("getTreeBodyNodes", static_cast<const std::vector<dart::dynamics::BodyNode *> &(dart::dynamics::Skeleton::*)(std::size_t)>(&dart::dynamics::Skeleton::getTreeBodyNodes), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_treeIdx")))
 .def("getTreeBodyNodes", static_cast<std::vector<const dart::dynamics::BodyNode *> (dart::dynamics::Skeleton::*)(std::size_t) const>(&dart::dynamics::Skeleton::getTreeBodyNodes), (::boost::python::arg("_treeIdx")))
 .def("getNumJoints", static_cast<std::size_t (dart::dynamics::Skeleton::*)() const>(&dart::dynamics::Skeleton::getNumJoints))
 .def("getJoint", static_cast<dart::dynamics::Joint *(dart::dynamics::Skeleton::*)(std::size_t)>(&dart::dynamics::Skeleton::getJoint), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::JointPtr> >(), (::boost::python::arg("_idx")))
@@ -56,6 +59,7 @@ void _ZN4dart8dynamics8SkeletonE()
 .def("getDof", static_cast<dart::dynamics::DegreeOfFreedom *(dart::dynamics::Skeleton::*)(const std::string &)>(&dart::dynamics::Skeleton::getDof), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr> >(), (::boost::python::arg("_name")))
 .def("getDofs", static_cast<const std::vector<dart::dynamics::DegreeOfFreedom *> &(dart::dynamics::Skeleton::*)()>(&dart::dynamics::Skeleton::getDofs), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getIndexOf", static_cast<std::size_t (dart::dynamics::Skeleton::*)(const dart::dynamics::DegreeOfFreedom *, bool) const>(&dart::dynamics::Skeleton::getIndexOf), (::boost::python::arg("_dof"), ::boost::python::arg("_warning") = true))
+.def("getTreeDofs", static_cast<const std::vector<dart::dynamics::DegreeOfFreedom *> &(dart::dynamics::Skeleton::*)(std::size_t)>(&dart::dynamics::Skeleton::getTreeDofs), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_treeIdx")))
 .def("getIK", static_cast<const std::shared_ptr<dart::dynamics::WholeBodyIK> &(dart::dynamics::Skeleton::*)(bool)>(&dart::dynamics::Skeleton::getIK), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_createIfNull") = false))
 .def("getOrCreateIK", static_cast<const std::shared_ptr<dart::dynamics::WholeBodyIK> &(dart::dynamics::Skeleton::*)()>(&dart::dynamics::Skeleton::getOrCreateIK), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getIK", static_cast<std::shared_ptr<const dart::dynamics::WholeBodyIK> (dart::dynamics::Skeleton::*)() const>(&dart::dynamics::Skeleton::getIK))
@@ -74,6 +78,8 @@ void _ZN4dart8dynamics8SkeletonE()
 .def("getVelocityDifferences", static_cast<Eigen::VectorXd (dart::dynamics::Skeleton::*)(const Eigen::VectorXd &, const Eigen::VectorXd &) const>(&dart::dynamics::Skeleton::getVelocityDifferences), (::boost::python::arg("_dq2"), ::boost::python::arg("_dq1")))
 .def("setState", static_cast<void (dart::dynamics::Skeleton::*)(const Eigen::VectorXd &)>(&dart::dynamics::Skeleton::setState), (::boost::python::arg("_state")))
 .def("getState", static_cast<Eigen::VectorXd (dart::dynamics::Skeleton::*)() const>(&dart::dynamics::Skeleton::getState))
+.def("getSupportIndices", static_cast<const std::vector<std::size_t> &(dart::dynamics::Skeleton::*)() const>(&dart::dynamics::Skeleton::getSupportIndices), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getSupportIndices", static_cast<const std::vector<std::size_t> &(dart::dynamics::Skeleton::*)(std::size_t) const>(&dart::dynamics::Skeleton::getSupportIndices), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_treeIdx")))
 .def("getSupportCentroid", static_cast<const Eigen::Vector2d &(dart::dynamics::Skeleton::*)() const>(&dart::dynamics::Skeleton::getSupportCentroid), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getSupportCentroid", static_cast<const Eigen::Vector2d &(dart::dynamics::Skeleton::*)(std::size_t) const>(&dart::dynamics::Skeleton::getSupportCentroid), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_treeIdx")))
 .def("getSupportVersion", static_cast<std::size_t (dart::dynamics::Skeleton::*)() const>(&dart::dynamics::Skeleton::getSupportVersion))

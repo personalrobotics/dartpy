@@ -1,14 +1,15 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
 void _ZN4dart8dynamics16LineSegmentShapeE()
 {
-::boost::python::class_<dart::dynamics::LineSegmentShape, ::boost::python::bases<dart::dynamics::Shape > >("LineSegmentShape", boost::python::no_init)
+::boost::python::class_<dart::dynamics::LineSegmentShape, std::shared_ptr<dart::dynamics::LineSegmentShape>, ::boost::python::bases<dart::dynamics::Shape > >("LineSegmentShape", boost::python::no_init)
 .def(::boost::python::init<float>((::boost::python::arg("_thickness") = 1.000000e+00)))
 .def(::boost::python::init<const Eigen::Vector3d &, const Eigen::Vector3d &, float>((::boost::python::arg("_v1"), ::boost::python::arg("_v2"), ::boost::python::arg("_thickness") = 1.000000e+00)))
 .def("setThickness", static_cast<void (dart::dynamics::LineSegmentShape::*)(float)>(&dart::dynamics::LineSegmentShape::setThickness), (::boost::python::arg("_thickness")))

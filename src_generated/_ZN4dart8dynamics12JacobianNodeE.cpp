@@ -1,8 +1,9 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
@@ -21,8 +22,10 @@ void _ZN4dart8dynamics12JacobianNodeE()
 .def("dependsOn", static_cast<bool (dart::dynamics::JacobianNode::*)(std::size_t) const>(&dart::dynamics::JacobianNode::dependsOn), (::boost::python::arg("_genCoordIndex")))
 .def("getNumDependentGenCoords", static_cast<std::size_t (dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getNumDependentGenCoords))
 .def("getDependentGenCoordIndex", static_cast<std::size_t (dart::dynamics::JacobianNode::*)(std::size_t) const>(&dart::dynamics::JacobianNode::getDependentGenCoordIndex), (::boost::python::arg("_arrayIndex")))
+.def("getDependentGenCoordIndices", static_cast<const std::vector<std::size_t> &(dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getDependentGenCoordIndices), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getNumDependentDofs", static_cast<std::size_t (dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getNumDependentDofs))
 .def("getDependentDof", static_cast<dart::dynamics::DegreeOfFreedom *(dart::dynamics::JacobianNode::*)(std::size_t)>(&dart::dynamics::JacobianNode::getDependentDof), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr> >(), (::boost::python::arg("_index")))
+.def("getDependentDofs", static_cast<const std::vector<dart::dynamics::DegreeOfFreedom *> &(dart::dynamics::JacobianNode::*)()>(&dart::dynamics::JacobianNode::getDependentDofs), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getChainDofs", static_cast<const std::vector<const dart::dynamics::DegreeOfFreedom *> (dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getChainDofs))
 .def("getJacobian", static_cast<const dart::math::Jacobian &(dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getJacobian), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getJacobian", static_cast<dart::math::Jacobian (dart::dynamics::JacobianNode::*)(const dart::dynamics::Frame *) const>(&dart::dynamics::JacobianNode::getJacobian), (::boost::python::arg("_inCoordinatesOf")))

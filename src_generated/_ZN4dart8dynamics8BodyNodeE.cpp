@@ -1,9 +1,9 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
-#include <dartpy/BodyNode.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
@@ -79,8 +79,10 @@ void _ZN4dart8dynamics8BodyNodeE()
 .def("dependsOn", static_cast<bool (dart::dynamics::BodyNode::*)(std::size_t) const>(&dart::dynamics::BodyNode::dependsOn), (::boost::python::arg("_genCoordIndex")))
 .def("getNumDependentGenCoords", static_cast<std::size_t (dart::dynamics::BodyNode::*)() const>(&dart::dynamics::BodyNode::getNumDependentGenCoords))
 .def("getDependentGenCoordIndex", static_cast<std::size_t (dart::dynamics::BodyNode::*)(std::size_t) const>(&dart::dynamics::BodyNode::getDependentGenCoordIndex), (::boost::python::arg("_arrayIndex")))
+.def("getDependentGenCoordIndices", static_cast<const std::vector<std::size_t> &(dart::dynamics::BodyNode::*)() const>(&dart::dynamics::BodyNode::getDependentGenCoordIndices), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getNumDependentDofs", static_cast<std::size_t (dart::dynamics::BodyNode::*)() const>(&dart::dynamics::BodyNode::getNumDependentDofs))
 .def("getDependentDof", static_cast<dart::dynamics::DegreeOfFreedom *(dart::dynamics::BodyNode::*)(std::size_t)>(&dart::dynamics::BodyNode::getDependentDof), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr> >(), (::boost::python::arg("_index")))
+.def("getDependentDofs", static_cast<const std::vector<dart::dynamics::DegreeOfFreedom *> &(dart::dynamics::BodyNode::*)()>(&dart::dynamics::BodyNode::getDependentDofs), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getChainDofs", static_cast<const std::vector<const dart::dynamics::DegreeOfFreedom *> (dart::dynamics::BodyNode::*)() const>(&dart::dynamics::BodyNode::getChainDofs))
 .def("getRelativeTransform", static_cast<const Eigen::Isometry3d &(dart::dynamics::BodyNode::*)() const>(&dart::dynamics::BodyNode::getRelativeTransform), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getRelativeSpatialVelocity", static_cast<const Eigen::Vector6d &(dart::dynamics::BodyNode::*)() const>(&dart::dynamics::BodyNode::getRelativeSpatialVelocity), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
@@ -120,8 +122,6 @@ void _ZN4dart8dynamics8BodyNodeE()
 .def("notifyArticulatedInertiaUpdate", static_cast<void (dart::dynamics::BodyNode::*)()>(&dart::dynamics::BodyNode::notifyArticulatedInertiaUpdate))
 .def("notifyExternalForcesUpdate", static_cast<void (dart::dynamics::BodyNode::*)()>(&dart::dynamics::BodyNode::notifyExternalForcesUpdate))
 .def("notifyCoriolisUpdate", static_cast<void (dart::dynamics::BodyNode::*)()>(&dart::dynamics::BodyNode::notifyCoriolisUpdate))
-// Custom wrappers:
-.def("moveTo", &dart::python::BodyNode_moveTo2, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::JointPtr> >())
 ;
 }
 

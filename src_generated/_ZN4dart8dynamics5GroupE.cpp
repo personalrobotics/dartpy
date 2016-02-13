@@ -1,14 +1,15 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
 void _ZN4dart8dynamics5GroupE()
 {
-::boost::python::class_<dart::dynamics::Group, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::ReferentialSkeleton > >("Group", boost::python::no_init)
+::boost::python::class_<dart::dynamics::Group, ::boost::noncopyable, dart::dynamics::GroupPtr, ::boost::python::bases<dart::dynamics::ReferentialSkeleton > >("Group", boost::python::no_init)
 .def("create", static_cast<dart::dynamics::GroupPtr (*)(const std::string &, const std::vector<dart::dynamics::BodyNode *> &, bool, bool)>(&dart::dynamics::Group::create), (::boost::python::arg("_name"), ::boost::python::arg("_bodyNodes"), ::boost::python::arg("_includeJoints") = true, ::boost::python::arg("_includeDofs") = true))
 .def("create", static_cast<dart::dynamics::GroupPtr (*)(const std::string &, const std::vector<dart::dynamics::DegreeOfFreedom *> &, bool, bool)>(&dart::dynamics::Group::create), (::boost::python::arg("_name"), ::boost::python::arg("_dofs"), ::boost::python::arg("_includeBodyNodes") = true, ::boost::python::arg("_includeJoints") = true))
 .def("swapBodyNodeIndices", static_cast<void (dart::dynamics::Group::*)(std::size_t, std::size_t)>(&dart::dynamics::Group::swapBodyNodeIndices), (::boost::python::arg("_index1"), ::boost::python::arg("_index2")))

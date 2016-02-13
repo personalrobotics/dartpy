@@ -1,14 +1,15 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
 void _ZN4dart8dynamics14EllipsoidShapeE()
 {
-::boost::python::class_<dart::dynamics::EllipsoidShape, ::boost::python::bases<dart::dynamics::Shape > >("EllipsoidShape", boost::python::no_init)
+::boost::python::class_<dart::dynamics::EllipsoidShape, std::shared_ptr<dart::dynamics::EllipsoidShape>, ::boost::python::bases<dart::dynamics::Shape > >("EllipsoidShape", boost::python::no_init)
 .def(::boost::python::init<const Eigen::Vector3d &>((::boost::python::arg("_size"))))
 .def("setSize", static_cast<void (dart::dynamics::EllipsoidShape::*)(const Eigen::Vector3d &)>(&dart::dynamics::EllipsoidShape::setSize), (::boost::python::arg("_size")))
 .def("getSize", static_cast<const Eigen::Vector3d &(dart::dynamics::EllipsoidShape::*)() const>(&dart::dynamics::EllipsoidShape::getSize), ::boost::python::return_value_policy<boost::python::copy_const_reference >())

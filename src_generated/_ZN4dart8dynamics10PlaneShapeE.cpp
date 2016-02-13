@@ -1,14 +1,15 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
 void _ZN4dart8dynamics10PlaneShapeE()
 {
-::boost::python::class_<dart::dynamics::PlaneShape, ::boost::python::bases<dart::dynamics::Shape > >("PlaneShape", boost::python::no_init)
+::boost::python::class_<dart::dynamics::PlaneShape, std::shared_ptr<dart::dynamics::PlaneShape>, ::boost::python::bases<dart::dynamics::Shape > >("PlaneShape", boost::python::no_init)
 .def(::boost::python::init<const Eigen::Vector3d &, double>((::boost::python::arg("_normal"), ::boost::python::arg("_offset"))))
 .def(::boost::python::init<const Eigen::Vector3d &, const Eigen::Vector3d &>((::boost::python::arg("_normal"), ::boost::python::arg("_point"))))
 .def("draw", static_cast<void (dart::dynamics::PlaneShape::*)(dart::renderer::RenderInterface *, const Eigen::Vector4d &, bool) const>(&dart::dynamics::PlaneShape::draw), (::boost::python::arg("_ri"), ::boost::python::arg("_col"), ::boost::python::arg("_default") = true))

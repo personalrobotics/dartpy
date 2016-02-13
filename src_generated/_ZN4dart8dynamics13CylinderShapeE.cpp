@@ -1,14 +1,15 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
 void _ZN4dart8dynamics13CylinderShapeE()
 {
-::boost::python::class_<dart::dynamics::CylinderShape, dart::dynamics::CylinderShape *, ::boost::python::bases<dart::dynamics::Shape > >("CylinderShape", boost::python::no_init)
+::boost::python::class_<dart::dynamics::CylinderShape, std::shared_ptr<dart::dynamics::CylinderShape>, ::boost::python::bases<dart::dynamics::Shape > >("CylinderShape", boost::python::no_init)
 .def(::boost::python::init<double, double>((::boost::python::arg("_radius"), ::boost::python::arg("_height"))))
 .def("getRadius", static_cast<double (dart::dynamics::CylinderShape::*)() const>(&dart::dynamics::CylinderShape::getRadius))
 .def("setRadius", static_cast<void (dart::dynamics::CylinderShape::*)(double)>(&dart::dynamics::CylinderShape::setRadius), (::boost::python::arg("_radius")))

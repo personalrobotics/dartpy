@@ -1,8 +1,9 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
@@ -21,6 +22,7 @@ void _ZN4dart6common11NameManagerIPNS_8dynamics4NodeEEE()
 .def("hasName", static_cast<bool (dart::common::NameManager<dart::dynamics::Node *>::*)(const std::string &) const>(&dart::common::NameManager<dart::dynamics::Node *>::hasName), (::boost::python::arg("_name")))
 .def("hasObject", static_cast<bool (dart::common::NameManager<dart::dynamics::Node *>::*)(dart::dynamics::Node *const &) const>(&dart::common::NameManager<dart::dynamics::Node *>::hasObject), (::boost::python::arg("_obj")))
 .def("getCount", static_cast<std::size_t (dart::common::NameManager<dart::dynamics::Node *>::*)() const>(&dart::common::NameManager<dart::dynamics::Node *>::getCount))
+.def("getObject", static_cast<dart::dynamics::Node *(dart::common::NameManager<dart::dynamics::Node *>::*)(const std::string &) const>(&dart::common::NameManager<dart::dynamics::Node *>::getObject), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::NodePtr> >(), (::boost::python::arg("_name")))
 .def("getName", static_cast<std::string (dart::common::NameManager<dart::dynamics::Node *>::*)(dart::dynamics::Node *const &) const>(&dart::common::NameManager<dart::dynamics::Node *>::getName), (::boost::python::arg("_obj")))
 .def("changeObjectName", static_cast<std::string (dart::common::NameManager<dart::dynamics::Node *>::*)(dart::dynamics::Node *const &, const std::string &)>(&dart::common::NameManager<dart::dynamics::Node *>::changeObjectName), (::boost::python::arg("_obj"), ::boost::python::arg("_newName")))
 .def("setDefaultName", static_cast<void (dart::common::NameManager<dart::dynamics::Node *>::*)(const std::string &)>(&dart::common::NameManager<dart::dynamics::Node *>::setDefaultName), (::boost::python::arg("_defaultName")))

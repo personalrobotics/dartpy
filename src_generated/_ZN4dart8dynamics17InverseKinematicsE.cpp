@@ -1,8 +1,9 @@
-#include </homes/mkoval/dart-ws/src/dartpy/src/pointers.h>
+#include <dartpy/pointers.h>
+#include <dart/dart.h>
+
 
 #include <boost/python.hpp>
 #include <cmath>
-#include </home/mkoval/storage/dartpy-ws/src/dartpy/src/placeholder.cpp>
 
 /* postinclude */
 
@@ -21,6 +22,7 @@ void _ZN4dart8dynamics17InverseKinematicsE()
 .def("useChain", static_cast<void (dart::dynamics::InverseKinematics::*)()>(&dart::dynamics::InverseKinematics::useChain))
 .def("useWholeBody", static_cast<void (dart::dynamics::InverseKinematics::*)()>(&dart::dynamics::InverseKinematics::useWholeBody))
 .def("setDofs", static_cast<void (dart::dynamics::InverseKinematics::*)(const std::vector<std::size_t> &)>(&dart::dynamics::InverseKinematics::setDofs), (::boost::python::arg("_dofs")))
+.def("getDofs", static_cast<const std::vector<std::size_t> &(dart::dynamics::InverseKinematics::*)() const>(&dart::dynamics::InverseKinematics::getDofs), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("setObjective", static_cast<void (dart::dynamics::InverseKinematics::*)(const std::shared_ptr<dart::optimizer::Function> &)>(&dart::dynamics::InverseKinematics::setObjective), (::boost::python::arg("_objective")))
 .def("getObjective", static_cast<const std::shared_ptr<dart::optimizer::Function> &(dart::dynamics::InverseKinematics::*)()>(&dart::dynamics::InverseKinematics::getObjective), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getObjective", static_cast<std::shared_ptr<const dart::optimizer::Function> (dart::dynamics::InverseKinematics::*)() const>(&dart::dynamics::InverseKinematics::getObjective))
