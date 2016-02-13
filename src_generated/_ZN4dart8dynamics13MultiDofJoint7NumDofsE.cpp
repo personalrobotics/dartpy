@@ -9,7 +9,6 @@
 
 void _ZN4dart8dynamics13MultiDofJoint7NumDofsE()
 {
-::boost::python::scope().attr("NumDofs") = dart::dynamics::MultiDofJoint::NumDofs;
 }
 
 /* footer */

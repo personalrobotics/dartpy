@@ -9,7 +9,6 @@
 
 void _ZN4dart8dynamics46AddonWithProtectedStateAndPropertiesInSkeleton8OptionalE()
 {
-::boost::python::scope().attr("Optional") = dart::dynamics::AddonWithProtectedStateAndPropertiesInSkeleton::Optional;
 }
 
 /* footer */
