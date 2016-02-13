@@ -8,6 +8,7 @@ template:
     header:
       content: |
         #include <dartpy/pointers.h>
+        #include <dart/dart.h>
     postinclude:
       content: '/* postinclude */'
     footer:
@@ -18,6 +19,7 @@ template:
         #include <vector>
         #include <dartpy/collections.h>
         #include <dartpy/util.h>
+        #include <dart/dart.h>
     postinclude:
       content: '/* main postinclude */'
     precontent:
