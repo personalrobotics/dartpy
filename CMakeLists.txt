@@ -63,7 +63,10 @@ if(${chimera_FOUND})
       "${chimera_SOURCE}"
       > "${chimera_GENERATED_DIR}/manifest.txt"
     MAIN_DEPENDENCY "${chimera_CONFIGURATION}"
-    DEPENDS "${chimera_SOURCE}"
+    DEPENDS
+      "${chimera_COMPILE_DATABASE}"
+      "${chimera_GENERATED_DIR}/manifest.txt"
+      "${chimera_SOURCE}"
     COMMENT "Generating bindings"
     VERBATIM
   )

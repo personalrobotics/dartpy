@@ -173,6 +173,8 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const std::vector<std::size_t> &':
     return_value_policy: boost::python::copy_const_reference
+  'const std::vector<dart::dynamics::ShapePtr> &':
+    return_value_policy: boost::python::copy_const_reference
 
   # allow unsafe access
   # TODO: Are there smart pointers for these?

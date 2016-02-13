@@ -69,6 +69,10 @@ $ cmake ..
 > do not currently build without manual intervention. We *strongly* suggest
 > that you skip this step and use the snapshot of bindings included in this Git
 > repository.
+>
+> If you choose to do so, you will need to manually delete:
+> - `UpdateProperties`
+> - `UpdateState`
 
 `dartpy` uses [`chimera`][chimera] to generate Boost.Python bindings from
 DART's C++ header files. You can re-generate the bindings by building the
