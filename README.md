@@ -105,6 +105,15 @@ DART Python API mostly matches the DART C++ API.
 
 There are a few exceptions:
 
+### Namespaces and Nested Classes
+
+> :warning: **Warning:** Due to
+> [personalrobotics/chimera#60](https://github.com/personalrobotics/chimera/issues/60)
+> and
+> [personalrobotics/chimera#66](https://github.com/personalrobotics/chimera/issues/66),
+> `dartpy` is a flat Python module with no sub-modules or nested classes. This
+> results in name conflicts for declarations that have the same name, but reside
+> in different scopes. Only one declaration with that name will be available.
 
 ### Template Functions
 
