@@ -30,7 +30,7 @@ checkout Chimera, Boost.Python, Boost.NumPy/Eigen, and DART from source:
 - git:
     local-name: chimera
     uri: https://github.com/personalrobotics/chimera.git
-    version: feature/catkin
+    version: bugfix/nested_access
 - git:
     local-name: dart
     uri: https://github.com/dartsim/dart.git
@@ -70,9 +70,10 @@ $ cmake ..
 > that you skip this step and use the snapshot of bindings included in this Git
 > repository.
 >
-> If you choose to do so, you will need to manually delete:
-> - `UpdateProperties`
-> - `UpdateState`
+> You must manually delete:
+>
+> - lines of the form `boost::python::scope().attr("Optional")`, two instances
+> - lines of the form `boost::python::scope().attr("NumDofs")`, three instances
 
 `dartpy` uses [`chimera`][chimera] to generate Boost.Python bindings from
 DART's C++ header files. You can re-generate the bindings by building the
