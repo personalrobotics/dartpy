@@ -9,6 +9,9 @@
 
 void _ZN4dart9optimizer7ProblemE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("optimizer"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::optimizer::Problem, ::boost::noncopyable >("Problem", boost::python::no_init)
 .def(::boost::python::init<std::size_t>((::boost::python::arg("_dim") = 0)))
 .def("setDimension", static_cast<void (dart::optimizer::Problem::*)(std::size_t)>(&dart::optimizer::Problem::setDimension), (::boost::python::arg("_dim")))

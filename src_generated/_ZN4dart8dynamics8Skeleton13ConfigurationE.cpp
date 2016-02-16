@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics8Skeleton13ConfigurationE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("Skeleton"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Skeleton::Configuration, ::boost::noncopyable >("Configuration", boost::python::no_init)
 .def(::boost::python::init<const Eigen::VectorXd &, const Eigen::VectorXd &, const Eigen::VectorXd &, const Eigen::VectorXd &, const Eigen::VectorXd &>((::boost::python::arg("positions"), ::boost::python::arg("velocities"), ::boost::python::arg("accelerations"), ::boost::python::arg("forces"), ::boost::python::arg("commands"))))
 .def(::boost::python::init<const std::vector<std::size_t> &, const Eigen::VectorXd &, const Eigen::VectorXd &, const Eigen::VectorXd &, const Eigen::VectorXd &, const Eigen::VectorXd &>((::boost::python::arg("indices"), ::boost::python::arg("positions"), ::boost::python::arg("velocities"), ::boost::python::arg("accelerations"), ::boost::python::arg("forces"), ::boost::python::arg("commands"))))

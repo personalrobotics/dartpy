@@ -9,6 +9,9 @@
 
 void _ZN4dart9collision7ContactE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("collision"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::collision::Contact, ::boost::noncopyable >("Contact", boost::python::no_init)
 .def_readwrite("point", &dart::collision::Contact::point)
 .def_readwrite("normal", &dart::collision::Contact::normal)

@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail15ScrewJointAddonE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::detail::ScrewJointAddon, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::ScrewJointAddon, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::ScrewJoint, &dart::dynamics::detail::JointPropertyUpdate, false> > >("ScrewJointAddon", boost::python::no_init)
 .def(::boost::python::init<dart::common::AddonManager *, const dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::ScrewJointAddon, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::ScrewJoint, &dart::dynamics::detail::JointPropertyUpdate, false>::PropertiesData &>((::boost::python::arg("mgr"), ::boost::python::arg("properties"))))
 .def("setAxis", static_cast<void (dart::dynamics::detail::ScrewJointAddon::*)(const Eigen::Vector3d &)>(&dart::dynamics::detail::ScrewJointAddon::setAxis), (::boost::python::arg("_axis")))

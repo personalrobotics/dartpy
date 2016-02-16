@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics17InverseKinematics10AnalyticalE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("InverseKinematics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::InverseKinematics::Analytical, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::InverseKinematics::GradientMethod > >("Analytical", boost::python::no_init)
 .def("getSolutions", static_cast<const std::vector<dart::dynamics::InverseKinematics::Analytical::Solution> &(dart::dynamics::InverseKinematics::Analytical::*)()>(&dart::dynamics::InverseKinematics::Analytical::getSolutions), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getSolutions", static_cast<const std::vector<dart::dynamics::InverseKinematics::Analytical::Solution> &(dart::dynamics::InverseKinematics::Analytical::*)(const Eigen::Isometry3d &)>(&dart::dynamics::InverseKinematics::Analytical::getSolutions), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_desiredTf")))

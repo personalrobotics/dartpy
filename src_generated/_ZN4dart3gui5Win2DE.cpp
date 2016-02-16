@@ -9,6 +9,9 @@
 
 void _ZN4dart3gui5Win2DE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("gui"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::gui::Win2D, ::boost::noncopyable >("Win2D", boost::python::no_init)
 .def("resize", static_cast<void (dart::gui::Win2D::*)(int, int)>(&dart::gui::Win2D::resize), (::boost::python::arg("_w"), ::boost::python::arg("_h")))
 .def("render", static_cast<void (dart::gui::Win2D::*)()>(&dart::gui::Win2D::render))

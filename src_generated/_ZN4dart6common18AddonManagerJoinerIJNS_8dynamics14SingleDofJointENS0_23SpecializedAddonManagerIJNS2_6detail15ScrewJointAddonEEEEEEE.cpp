@@ -9,6 +9,9 @@
 
 void _ZN4dart6common18AddonManagerJoinerIJNS_8dynamics14SingleDofJointENS0_23SpecializedAddonManagerIJNS2_6detail15ScrewJointAddonEEEEEEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::SpecializedAddonManager<dart::dynamics::detail::ScrewJointAddon> >, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::SingleDofJoint, dart::common::SpecializedAddonManager<dart::dynamics::detail::ScrewJointAddon> > >("_ZN4dart6common18AddonManagerJoinerIJNS_8dynamics14SingleDofJointENS0_23SpecializedAddonManagerIJNS2_6detail15ScrewJointAddonEEEEEEE", boost::python::no_init)
 ;
 }

@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics17InverseKinematics14GradientMethodE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("InverseKinematics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::InverseKinematics::GradientMethod, ::boost::noncopyable, ::boost::python::bases<dart::common::Subject > >("GradientMethod", boost::python::no_init)
 .def("clone", static_cast<std::unique_ptr<dart::dynamics::InverseKinematics::GradientMethod> (dart::dynamics::InverseKinematics::GradientMethod::*)(dart::dynamics::InverseKinematics *) const>(&dart::dynamics::InverseKinematics::GradientMethod::clone), (::boost::python::arg("_newIK")))
 .def("computeGradient", static_cast<void (dart::dynamics::InverseKinematics::GradientMethod::*)(const Eigen::Vector6d &, Eigen::VectorXd &)>(&dart::dynamics::InverseKinematics::GradientMethod::computeGradient), (::boost::python::arg("_error"), ::boost::python::arg("_grad")))

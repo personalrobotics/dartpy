@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail27PlanarJointUniquePropertiesE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::detail::PlanarJointUniqueProperties >("PlanarJointUniqueProperties", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::detail::PlaneType>((::boost::python::arg("_planeType") = 0)))
 .def(::boost::python::init<const Eigen::Vector3d &, const Eigen::Vector3d &>((::boost::python::arg("_transAxis1"), ::boost::python::arg("_transAxis2"))))

@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils9SdfParser8SDFJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils").attr("SdfParser"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::SdfParser::SDFJoint >("SDFJoint", boost::python::no_init)
 .def_readwrite("properties", &dart::utils::SdfParser::SDFJoint::properties)
 .def_readwrite("parentName", &dart::utils::SdfParser::SDFJoint::parentName)

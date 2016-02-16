@@ -9,6 +9,9 @@
 
 void _ZN4dart11integration10IntegratorE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("integration"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::integration::Integrator, ::boost::noncopyable >("Integrator", boost::python::no_init)
 .def("integrate", static_cast<void (dart::integration::Integrator::*)(dart::integration::IntegrableSystem *, double)>(&dart::integration::Integrator::integrate), (::boost::python::arg("_system"), ::boost::python::arg("_dt")))
 .def("integratePos", static_cast<void (dart::integration::Integrator::*)(dart::integration::IntegrableSystem *, double)>(&dart::integration::Integrator::integratePos), (::boost::python::arg("_system"), ::boost::python::arg("_dt")))

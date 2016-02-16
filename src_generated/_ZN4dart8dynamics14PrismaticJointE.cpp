@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics14PrismaticJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::PrismaticJoint, ::boost::noncopyable, ::boost::python::bases<dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::SpecializedAddonManager<dart::dynamics::detail::PrismaticJointAddon> > > >("PrismaticJoint", boost::python::no_init)
 .def("hasPrismaticJointAddon", static_cast<bool (dart::dynamics::PrismaticJoint::*)() const>(&dart::dynamics::PrismaticJoint::hasPrismaticJointAddon))
 .def("setPrismaticJointAddon", static_cast<void (dart::dynamics::PrismaticJoint::*)(const dart::dynamics::PrismaticJoint::Addon *)>(&dart::dynamics::PrismaticJoint::setPrismaticJointAddon), (::boost::python::arg("addon")))

@@ -9,6 +9,9 @@
 
 void _ZN4dart9optimizer21GradientDescentSolverE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("optimizer"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::optimizer::GradientDescentSolver, ::boost::noncopyable, ::boost::python::bases<dart::optimizer::Solver > >("GradientDescentSolver", boost::python::no_init)
 .def(::boost::python::init<const dart::optimizer::GradientDescentSolver::Properties &>((::boost::python::arg("_properties"))))
 .def(::boost::python::init<std::shared_ptr<dart::optimizer::Problem>>((::boost::python::arg("_problem"))))

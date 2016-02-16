@@ -9,6 +9,9 @@
 
 void _ZN4dart6common12AddonManagerE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::AddonManager, ::boost::noncopyable >("AddonManager", boost::python::no_init)
 .def("setAddonStates", static_cast<void (dart::common::AddonManager::*)(const dart::common::AddonManager::State &)>(&dart::common::AddonManager::setAddonStates), (::boost::python::arg("newStates")))
 .def("getAddonStates", static_cast<dart::common::AddonManager::State (dart::common::AddonManager::*)() const>(&dart::common::AddonManager::getAddonStates))

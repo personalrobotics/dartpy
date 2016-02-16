@@ -9,6 +9,9 @@
 
 void _ZN4dart8renderer16DecoColorChannelE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("renderer"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::renderer::DecoColorChannel>("DecoColorChannel")
 .value("CC_R", dart::renderer::DecoColorChannel::CC_R)
 .value("CC_G", dart::renderer::DecoColorChannel::CC_G)

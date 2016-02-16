@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics10EulerJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::EulerJoint, ::boost::noncopyable, ::boost::python::bases<dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<3>, dart::common::SpecializedAddonManager<dart::dynamics::detail::EulerJointAddon> > > >("EulerJoint", boost::python::no_init)
 .def("hasEulerJointAddon", static_cast<bool (dart::dynamics::EulerJoint::*)() const>(&dart::dynamics::EulerJoint::hasEulerJointAddon))
 .def("setEulerJointAddon", static_cast<void (dart::dynamics::EulerJoint::*)(const dart::dynamics::EulerJoint::Addon *)>(&dart::dynamics::EulerJoint::setEulerJointAddon), (::boost::python::arg("addon")))

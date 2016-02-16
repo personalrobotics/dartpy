@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics13CylinderShapeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::CylinderShape, std::shared_ptr<dart::dynamics::CylinderShape>, ::boost::python::bases<dart::dynamics::Shape > >("CylinderShape", boost::python::no_init)
 .def(::boost::python::init<double, double>((::boost::python::arg("_radius"), ::boost::python::arg("_height"))))
 .def("getRadius", static_cast<double (dart::dynamics::CylinderShape::*)() const>(&dart::dynamics::CylinderShape::getRadius))

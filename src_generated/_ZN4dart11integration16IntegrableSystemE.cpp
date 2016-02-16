@@ -9,6 +9,9 @@
 
 void _ZN4dart11integration16IntegrableSystemE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("integration"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::integration::IntegrableSystem, ::boost::noncopyable >("IntegrableSystem", boost::python::no_init)
 .def("setConfigs", static_cast<void (dart::integration::IntegrableSystem::*)(const Eigen::VectorXd &)>(&dart::integration::IntegrableSystem::setConfigs), (::boost::python::arg("_configs")))
 .def("setGenVels", static_cast<void (dart::integration::IntegrableSystem::*)(const Eigen::VectorXd &)>(&dart::integration::IntegrableSystem::setGenVels), (::boost::python::arg("_genVels")))

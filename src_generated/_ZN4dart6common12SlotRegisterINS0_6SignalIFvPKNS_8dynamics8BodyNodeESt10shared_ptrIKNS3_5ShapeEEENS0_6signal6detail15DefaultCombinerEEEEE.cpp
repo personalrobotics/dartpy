@@ -9,6 +9,9 @@
 
 void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS3_5ShapeEEENS0_6signal6detail15DefaultCombinerEEEEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::SlotRegister<dart::common::Signal<void (const dart::dynamics::BodyNode *, std::shared_ptr<const dart::dynamics::Shape>), dart::common::signal::detail::DefaultCombiner> >, ::boost::noncopyable >("_ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS3_5ShapeEEENS0_6signal6detail15DefaultCombinerEEEEE", boost::python::no_init)
 .def(::boost::python::init<dart::common::Signal<void (const dart::dynamics::BodyNode *, std::shared_ptr<const dart::dynamics::Shape>), dart::common::signal::detail::DefaultCombiner>::SignalType &>((::boost::python::arg("_signal"))))
 ;

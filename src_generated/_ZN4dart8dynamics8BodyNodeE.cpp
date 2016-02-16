@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics8BodyNodeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::BodyNode, ::boost::noncopyable, dart::dynamics::BodyNode *, ::boost::python::bases<dart::common::AddonManager, dart::dynamics::SpecializedNodeManagerForBodyNode<dart::dynamics::EndEffector>, dart::dynamics::SkeletonRefCountingBase, dart::dynamics::TemplatedJacobianNode<dart::dynamics::BodyNode> > >("BodyNode", boost::python::no_init)
 .def("setProperties", static_cast<void (dart::dynamics::BodyNode::*)(const dart::dynamics::BodyNode::ExtendedProperties &)>(&dart::dynamics::BodyNode::setProperties), (::boost::python::arg("_properties")))
 .def("setProperties", static_cast<void (dart::dynamics::BodyNode::*)(const dart::dynamics::BodyNode::NodeProperties &)>(&dart::dynamics::BodyNode::setProperties), (::boost::python::arg("_properties")))

@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail16PlanarJointAddonE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::detail::PlanarJointAddon, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::PlanarJointAddon, dart::dynamics::detail::PlanarJointUniqueProperties, dart::dynamics::PlanarJoint, &dart::dynamics::detail::JointPropertyUpdate, false> > >("PlanarJointAddon", boost::python::no_init)
 .def(::boost::python::init<dart::common::AddonManager *, const dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::PlanarJointAddon, dart::dynamics::detail::PlanarJointUniqueProperties, dart::dynamics::PlanarJoint, &dart::dynamics::detail::JointPropertyUpdate, false>::PropertiesData &>((::boost::python::arg("mgr"), ::boost::python::arg("properties"))))
 .def("setXYPlane", static_cast<void (dart::dynamics::detail::PlanarJointAddon::*)()>(&dart::dynamics::detail::PlanarJointAddon::setXYPlane))

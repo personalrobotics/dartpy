@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils9SdfParser11SDFBodyNodeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils").attr("SdfParser"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::SdfParser::SDFBodyNode >("SDFBodyNode", boost::python::no_init)
 .def_readwrite("properties", &dart::utils::SdfParser::SDFBodyNode::properties)
 .def_readwrite("initTransform", &dart::utils::SdfParser::SDFBodyNode::initTransform)

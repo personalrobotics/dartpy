@@ -9,6 +9,9 @@
 
 void _ZN4dart8planning13PathShortenerE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("planning"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::planning::PathShortener, ::boost::noncopyable >("PathShortener", boost::python::no_init)
 .def(::boost::python::init<>())
 .def(::boost::python::init<dart::simulation::WorldPtr, dart::dynamics::SkeletonPtr, const std::vector<std::size_t> &, double>((::boost::python::arg("world"), ::boost::python::arg("robot"), ::boost::python::arg("dofs"), ::boost::python::arg("stepSize") = 1.000000e-01)))

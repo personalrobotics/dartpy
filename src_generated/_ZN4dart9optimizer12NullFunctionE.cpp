@@ -9,6 +9,9 @@
 
 void _ZN4dart9optimizer12NullFunctionE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("optimizer"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::optimizer::NullFunction, ::boost::python::bases<dart::optimizer::Function > >("NullFunction", boost::python::no_init)
 .def(::boost::python::init<const std::string &>((::boost::python::arg("_name"))))
 .def("eval", static_cast<double (dart::optimizer::NullFunction::*)(const Eigen::VectorXd &)>(&dart::optimizer::NullFunction::eval), (::boost::python::arg("")))

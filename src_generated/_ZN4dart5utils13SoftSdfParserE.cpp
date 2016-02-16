@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils13SoftSdfParserE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::SoftSdfParser, ::boost::noncopyable, ::boost::python::bases<dart::utils::SdfParser > >("SoftSdfParser", boost::python::no_init)
 .def("readSoftSdfFile", static_cast<dart::simulation::WorldPtr (*)(const dart::common::Uri &, const dart::common::ResourceRetrieverPtr &)>(&dart::utils::SoftSdfParser::readSoftSdfFile), (::boost::python::arg("_fileUri"), ::boost::python::arg("_retriever")))
 .def("readSkeleton", static_cast<dart::dynamics::SkeletonPtr (*)(const dart::common::Uri &, const dart::common::ResourceRetrieverPtr &)>(&dart::utils::SoftSdfParser::readSkeleton), (::boost::python::arg("_fileName"), ::boost::python::arg("_retriever")))

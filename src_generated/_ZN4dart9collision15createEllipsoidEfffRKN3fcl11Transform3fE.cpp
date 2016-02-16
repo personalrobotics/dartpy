@@ -9,6 +9,9 @@
 
 void _ZN4dart9collision15createEllipsoidEfffRKN3fcl11Transform3fE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("collision"));
+::boost::python::scope parent_scope(parent_object);
+
 }
 
 /* footer */

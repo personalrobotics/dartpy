@@ -9,6 +9,9 @@
 
 void _ZN4dart8renderer12DecoDrawTypeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("renderer"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::renderer::DecoDrawType>("DecoDrawType")
 .value("DT_WireFrame", dart::renderer::DecoDrawType::DT_WireFrame)
 .value("DT_SolidPolygon", dart::renderer::DecoDrawType::DT_SolidPolygon)

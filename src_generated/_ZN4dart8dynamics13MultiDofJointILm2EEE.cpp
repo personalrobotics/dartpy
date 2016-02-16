@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics13MultiDofJointILm2EEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::MultiDofJoint<2>, ::boost::noncopyable, dart::dynamics::MultiDofJoint<2> *, ::boost::python::bases<dart::dynamics::Joint, dart::common::SpecializedAddonManager<dart::dynamics::detail::MultiDofJointAddon<2> > > >("_ZN4dart8dynamics13MultiDofJointILm2EEE", boost::python::no_init)
 .def("hasMultiDofJointAddon", static_cast<bool (dart::dynamics::MultiDofJoint<2>::*)() const>(&dart::dynamics::MultiDofJoint<2>::hasMultiDofJointAddon))
 .def("eraseMultiDofJointAddon", static_cast<void (dart::dynamics::MultiDofJoint<2>::*)()>(&dart::dynamics::MultiDofJoint<2>::eraseMultiDofJointAddon))

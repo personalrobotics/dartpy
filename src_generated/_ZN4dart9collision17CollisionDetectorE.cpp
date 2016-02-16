@@ -9,6 +9,9 @@
 
 void _ZN4dart9collision17CollisionDetectorE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("collision"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::collision::CollisionDetector, ::boost::noncopyable >("CollisionDetector", boost::python::no_init)
 .def("addSkeleton", static_cast<void (dart::collision::CollisionDetector::*)(const dart::dynamics::SkeletonPtr &)>(&dart::collision::CollisionDetector::addSkeleton), (::boost::python::arg("_skeleton")))
 .def("removeSkeleton", static_cast<void (dart::collision::CollisionDetector::*)(const dart::dynamics::SkeletonPtr &)>(&dart::collision::CollisionDetector::removeSkeleton), (::boost::python::arg("_skeleton")))

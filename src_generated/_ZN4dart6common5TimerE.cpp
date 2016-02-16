@@ -9,6 +9,9 @@
 
 void _ZN4dart6common5TimerE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::Timer >("Timer", boost::python::no_init)
 .def(::boost::python::init<const std::string &>((::boost::python::arg("_name"))))
 .def("start", static_cast<void (dart::common::Timer::*)()>(&dart::common::Timer::start))

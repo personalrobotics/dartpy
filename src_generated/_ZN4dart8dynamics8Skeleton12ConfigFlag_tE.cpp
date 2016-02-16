@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics8Skeleton12ConfigFlag_tE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("Skeleton"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::dynamics::Skeleton::ConfigFlag_t>("ConfigFlag_t")
 .value("CONFIG_NOTHING", dart::dynamics::Skeleton::ConfigFlag_t::CONFIG_NOTHING)
 .value("CONFIG_POSITIONS", dart::dynamics::Skeleton::ConfigFlag_t::CONFIG_POSITIONS)

@@ -9,6 +9,9 @@
 
 void _ZN4dart6common3UriE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::Uri >("Uri", boost::python::no_init)
 .def(::boost::python::init<>())
 .def(::boost::python::init<const std::string &>((::boost::python::arg("_input"))))

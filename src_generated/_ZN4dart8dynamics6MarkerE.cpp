@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6MarkerE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Marker >("Marker", boost::python::no_init)
 .def(::boost::python::init<const std::string &, const Eigen::Vector3d &, const Eigen::Vector4d &, dart::dynamics::BodyNode *, dart::dynamics::Marker::ConstraintType>((::boost::python::arg("name"), ::boost::python::arg("offset"), ::boost::python::arg("color"), ::boost::python::arg("bodyNode"), ::boost::python::arg("type") = 0)))
 .def("draw", static_cast<void (dart::dynamics::Marker::*)(dart::renderer::RenderInterface *, bool, const Eigen::Vector4d &, bool) const>(&dart::dynamics::Marker::draw), (::boost::python::arg("ri"), ::boost::python::arg("offset"), ::boost::python::arg("color"), ::boost::python::arg("useDefaultColor") = true))

@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail26ScrewJointUniquePropertiesE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::detail::ScrewJointUniqueProperties >("ScrewJointUniqueProperties", boost::python::no_init)
 .def(::boost::python::init<const Eigen::Vector3d &, double>((::boost::python::arg("_axis"), ::boost::python::arg("_pitch") = 1.000000e-01)))
 .def_readwrite("mAxis", &dart::dynamics::detail::ScrewJointUniqueProperties::mAxis)

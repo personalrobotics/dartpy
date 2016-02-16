@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamicsL13INVALID_INDEXE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::scope().attr("INVALID_INDEX") = dart::dynamics::INVALID_INDEX;
 }
 

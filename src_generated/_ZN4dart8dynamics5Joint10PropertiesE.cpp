@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics5Joint10PropertiesE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("Joint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Joint::Properties >("Properties", boost::python::no_init)
 .def(::boost::python::init<const std::string &, const Eigen::Isometry3d &, const Eigen::Isometry3d &, bool, dart::dynamics::Joint::ActuatorType>((::boost::python::arg("_name"), ::boost::python::arg("_T_ParentBodyToJoint"), ::boost::python::arg("_T_ChildBodyToJoint"), ::boost::python::arg("_isPositionLimited"), ::boost::python::arg("_actuatorType"))))
 .def_readwrite("mName", &dart::dynamics::Joint::Properties::mName)

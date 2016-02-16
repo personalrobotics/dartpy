@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics7InertiaE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Inertia >("Inertia", boost::python::no_init)
 .def(::boost::python::init<double, const Eigen::Vector3d &, const Eigen::Matrix3d &>((::boost::python::arg("_mass"), ::boost::python::arg("_com"), ::boost::python::arg("_momentOfInertia"))))
 .def(::boost::python::init<const Eigen::Matrix6d &>((::boost::python::arg("_spatialInertiaTensor"))))

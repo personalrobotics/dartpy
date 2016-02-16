@@ -9,6 +9,9 @@
 
 void _ZN4dart3gui18drawStringOnScreenEffRKSsb()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("gui"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("drawStringOnScreen", static_cast<void (*)(float, float, const std::string &, bool)>(&dart::gui::drawStringOnScreen), (::boost::python::arg("_x"), ::boost::python::arg("_y"), ::boost::python::arg("_s"), ::boost::python::arg("_bigFont") = true))
 ;}
 

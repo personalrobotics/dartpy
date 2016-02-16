@@ -9,6 +9,9 @@
 
 void _ZN4dart9collision20FCLMeshCollisionNodeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("collision"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::collision::FCLMeshCollisionNode, ::boost::python::bases<dart::collision::CollisionNode > >("FCLMeshCollisionNode", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::BodyNode *>((::boost::python::arg("_bodyNode"))))
 .def("detectCollision", static_cast<bool (dart::collision::FCLMeshCollisionNode::*)(dart::collision::FCLMeshCollisionNode *, std::vector<dart::collision::Contact> *, int)>(&dart::collision::FCLMeshCollisionNode::detectCollision), (::boost::python::arg("_otherNode"), ::boost::python::arg("_contactPoints"), ::boost::python::arg("_max_num_contact")))

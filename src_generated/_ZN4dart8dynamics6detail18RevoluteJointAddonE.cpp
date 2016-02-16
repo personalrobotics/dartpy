@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail18RevoluteJointAddonE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::detail::RevoluteJointAddon, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::RevoluteJointAddon, dart::dynamics::detail::RevoluteJointUniqueProperties, dart::dynamics::RevoluteJoint, &dart::dynamics::detail::JointPropertyUpdate, false> > >("RevoluteJointAddon", boost::python::no_init)
 .def(::boost::python::init<dart::common::AddonManager *, const dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::RevoluteJointAddon, dart::dynamics::detail::RevoluteJointUniqueProperties, dart::dynamics::RevoluteJoint, &dart::dynamics::detail::JointPropertyUpdate, false>::PropertiesData &>((::boost::python::arg("mgr"), ::boost::python::arg("properties"))))
 .def("setAxis", static_cast<void (dart::dynamics::detail::RevoluteJointAddon::*)(const Eigen::Vector3d &)>(&dart::dynamics::detail::RevoluteJointAddon::setAxis), (::boost::python::arg("_axis")))

@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics11WholeBodyIKE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::WholeBodyIK, dart::dynamics::WholeBodyIK *, ::boost::python::bases<dart::dynamics::HierarchicalIK > >("WholeBodyIK", boost::python::no_init)
 .def("create", static_cast<std::shared_ptr<dart::dynamics::WholeBodyIK> (*)(const dart::dynamics::SkeletonPtr &)>(&dart::dynamics::WholeBodyIK::create), (::boost::python::arg("_skel")))
 .def("clone", static_cast<std::shared_ptr<dart::dynamics::HierarchicalIK> (dart::dynamics::WholeBodyIK::*)(const dart::dynamics::SkeletonPtr &) const>(&dart::dynamics::WholeBodyIK::clone), (::boost::python::arg("_newSkel")))

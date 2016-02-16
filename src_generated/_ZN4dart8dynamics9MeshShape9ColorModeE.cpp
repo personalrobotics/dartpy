@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics9MeshShape9ColorModeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("MeshShape"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::dynamics::MeshShape::ColorMode>("ColorMode")
 .value("MATERIAL_COLOR", dart::dynamics::MeshShape::ColorMode::MATERIAL_COLOR)
 .value("COLOR_INDEX", dart::dynamics::MeshShape::ColorMode::COLOR_INDEX)

@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19SingleDofJointAddonENS2_30SingleDofJointUniquePropertiesENS0_14SingleDofJointEXadL_ZNS_6common6detail4NoOpIJPS3_EEEvDpT_EELb0EEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::SingleDofJointAddon, dart::dynamics::detail::SingleDofJointUniqueProperties, dart::dynamics::SingleDofJoint, &dart::common::detail::NoOp, false>, ::boost::noncopyable, ::boost::python::bases<dart::common::Addon > >("_ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail19SingleDofJointAddonENS2_30SingleDofJointUniquePropertiesENS0_14SingleDofJointEXadL_ZNS_6common6detail4NoOpIJPS3_EEEvDpT_EELb0EEE", boost::python::no_init)
 .def(::boost::python::init<dart::common::AddonManager *, const dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::SingleDofJointAddon, dart::dynamics::detail::SingleDofJointUniqueProperties, dart::dynamics::SingleDofJoint, &dart::common::detail::NoOp, false>::PropertiesData &>((::boost::python::arg("mgr"), ::boost::python::arg("properties"))))
 .def("cloneAddon", static_cast<std::unique_ptr<dart::common::Addon> (dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::SingleDofJointAddon, dart::dynamics::detail::SingleDofJointUniqueProperties, dart::dynamics::SingleDofJoint, &dart::common::detail::NoOp, false>::*)(dart::common::AddonManager *) const>(&dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::SingleDofJointAddon, dart::dynamics::detail::SingleDofJointUniqueProperties, dart::dynamics::SingleDofJoint, &dart::common::detail::NoOp, false>::cloneAddon), (::boost::python::arg("newManager")))

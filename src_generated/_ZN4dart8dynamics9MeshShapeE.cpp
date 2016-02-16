@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics9MeshShapeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::MeshShape, std::shared_ptr<dart::dynamics::MeshShape>, ::boost::python::bases<dart::dynamics::Shape > >("MeshShape", boost::python::no_init)
 .def(::boost::python::init<const Eigen::Vector3d &, const aiScene *, const std::string &, const dart::common::ResourceRetrieverPtr &>((::boost::python::arg("_scale"), ::boost::python::arg("_mesh"), ::boost::python::arg("_path"), ::boost::python::arg("_resourceRetriever"))))
 .def("update", static_cast<void (dart::dynamics::MeshShape::*)()>(&dart::dynamics::MeshShape::update))

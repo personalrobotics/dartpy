@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail21SupportPropertiesDataE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::detail::SupportPropertiesData >("SupportPropertiesData", boost::python::no_init)
 .def(::boost::python::init<>())
 .def_readwrite("mGeometry", &dart::dynamics::detail::SupportPropertiesData::mGeometry)

@@ -9,6 +9,9 @@
 
 void _ZN4dart10constraint20JointLimitConstraintE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("constraint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::constraint::JointLimitConstraint, ::boost::noncopyable, ::boost::python::bases<dart::constraint::ConstraintBase > >("JointLimitConstraint", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::Joint *>((::boost::python::arg("_joint"))))
 .def("setErrorAllowance", static_cast<void (*)(double)>(&dart::constraint::JointLimitConstraint::setErrorAllowance), (::boost::python::arg("_allowance")))

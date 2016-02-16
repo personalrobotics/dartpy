@@ -9,6 +9,9 @@
 
 void _ZN4dart4math9quatToExpERKN5Eigen10QuaternionIdLi0EEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("math"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("quatToExp", static_cast<Eigen::Vector3d (*)(const Eigen::Quaterniond &)>(&dart::math::quatToExp), (::boost::python::arg("_q")))
 ;}
 

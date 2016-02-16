@@ -9,6 +9,9 @@
 
 void _ZN4dart10constraint14ConstraintInfoE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("constraint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::constraint::ConstraintInfo, ::boost::noncopyable >("ConstraintInfo", boost::python::no_init)
 .def_readwrite("x", &dart::constraint::ConstraintInfo::x)
 .def_readwrite("lo", &dart::constraint::ConstraintInfo::lo)

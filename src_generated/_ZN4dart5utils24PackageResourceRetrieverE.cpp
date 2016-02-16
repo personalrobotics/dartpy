@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils24PackageResourceRetrieverE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::PackageResourceRetriever, std::shared_ptr<dart::utils::PackageResourceRetriever>, ::boost::python::bases<dart::common::ResourceRetriever > >("PackageResourceRetriever", boost::python::no_init)
 .def(::boost::python::init<const dart::common::ResourceRetrieverPtr &>((::boost::python::arg("_localRetriever"))))
 .def("addPackageDirectory", static_cast<void (dart::utils::PackageResourceRetriever::*)(const std::string &, const std::string &)>(&dart::utils::PackageResourceRetriever::addPackageDirectory), (::boost::python::arg("_packageName"), ::boost::python::arg("_packageDirectory")))

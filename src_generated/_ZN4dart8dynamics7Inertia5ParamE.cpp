@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics7Inertia5ParamE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("Inertia"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::dynamics::Inertia::Param>("Param")
 .value("MASS", dart::dynamics::Inertia::Param::MASS)
 .value("COM_X", dart::dynamics::Inertia::Param::COM_X)

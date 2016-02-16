@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics7Linkage8CriteriaE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("Linkage"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Linkage::Criteria >("Criteria", boost::python::no_init)
 .def("satisfy", static_cast<std::vector<dart::dynamics::BodyNode *> (dart::dynamics::Linkage::Criteria::*)() const>(&dart::dynamics::Linkage::Criteria::satisfy))
 .def_readwrite("mStart", &dart::dynamics::Linkage::Criteria::mStart)

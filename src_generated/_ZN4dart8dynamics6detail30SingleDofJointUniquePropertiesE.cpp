@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail30SingleDofJointUniquePropertiesE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::detail::SingleDofJointUniqueProperties >("SingleDofJointUniqueProperties", boost::python::no_init)
 .def(::boost::python::init<double, double, double, double, double, double, double, double, double, double, double, double, bool, std::string>((::boost::python::arg("_positionLowerLimit"), ::boost::python::arg("_positionUpperLimit"), ::boost::python::arg("_velocityLowerLimit"), ::boost::python::arg("_velocityUpperLimit"), ::boost::python::arg("_accelerationLowerLimit"), ::boost::python::arg("_accelerationUpperLimit"), ::boost::python::arg("_forceLowerLimit"), ::boost::python::arg("_forceUpperLimit"), ::boost::python::arg("_springStiffness"), ::boost::python::arg("_restPosition"), ::boost::python::arg("_dampingCoefficient"), ::boost::python::arg("_coulombFriction"), ::boost::python::arg("_preserveDofName"), ::boost::python::arg("_dofName"))))
 .def_readwrite("mPositionLowerLimit", &dart::dynamics::detail::SingleDofJointUniqueProperties::mPositionLowerLimit)

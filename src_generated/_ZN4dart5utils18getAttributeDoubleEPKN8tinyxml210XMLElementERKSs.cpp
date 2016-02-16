@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils18getAttributeDoubleEPKN8tinyxml210XMLElementERKSs()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("getAttributeDouble", static_cast<double (*)(const tinyxml2::XMLElement *, const std::string &)>(&dart::utils::getAttributeDouble), (::boost::python::arg("element"), ::boost::python::arg("attributeName")))
 ;}
 

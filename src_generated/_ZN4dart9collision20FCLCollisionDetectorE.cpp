@@ -9,6 +9,9 @@
 
 void _ZN4dart9collision20FCLCollisionDetectorE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("collision"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::collision::FCLCollisionDetector, ::boost::noncopyable, ::boost::python::bases<dart::collision::CollisionDetector > >("FCLCollisionDetector", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("detectCollision", static_cast<bool (dart::collision::FCLCollisionDetector::*)(bool, bool)>(&dart::collision::FCLCollisionDetector::detectCollision), (::boost::python::arg("_checkAllCollisions"), ::boost::python::arg("_calculateContactPoints")))

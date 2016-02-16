@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics14SingleDofJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::SingleDofJoint, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::Joint > >("SingleDofJoint", boost::python::no_init)
 .def("hasSingleDofJointAddon", static_cast<bool (dart::dynamics::SingleDofJoint::*)() const>(&dart::dynamics::SingleDofJoint::hasSingleDofJointAddon))
 .def("setSingleDofJointAddon", static_cast<void (dart::dynamics::SingleDofJoint::*)(const dart::dynamics::SingleDofJoint::Addon *)>(&dart::dynamics::SingleDofJoint::setSingleDofJointAddon), (::boost::python::arg("addon")))

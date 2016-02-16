@@ -9,6 +9,9 @@
 
 void _ZN4dart10constraint17BalanceConstraintE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("constraint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::constraint::BalanceConstraint, ::boost::python::bases<dart::optimizer::Function, dart::dynamics::HierarchicalIK::Function > >("BalanceConstraint", boost::python::no_init)
 .def(::boost::python::init<const std::shared_ptr<dart::dynamics::HierarchicalIK> &, dart::constraint::BalanceConstraint::BalanceMethod_t, dart::constraint::BalanceConstraint::ErrorMethod_t>((::boost::python::arg("_ik"), ::boost::python::arg("_balanceMethod") = 0, ::boost::python::arg("_errorMethod") = 0)))
 .def("eval", static_cast<double (dart::constraint::BalanceConstraint::*)(const Eigen::VectorXd &)>(&dart::constraint::BalanceConstraint::eval), (::boost::python::arg("_x")))

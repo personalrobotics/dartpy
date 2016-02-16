@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils9SdfParserE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::SdfParser, ::boost::noncopyable >("SdfParser", boost::python::no_init)
 .def("readSdfFile", static_cast<dart::simulation::WorldPtr (*)(const dart::common::Uri &, const dart::common::ResourceRetrieverPtr &)>(&dart::utils::SdfParser::readSdfFile), (::boost::python::arg("_fileUri"), ::boost::python::arg("_retriever")))
 .def("readSkeleton", static_cast<dart::dynamics::SkeletonPtr (*)(const dart::common::Uri &, const dart::common::ResourceRetrieverPtr &)>(&dart::utils::SdfParser::readSkeleton), (::boost::python::arg("_fileUri"), ::boost::python::arg("_retriever")))

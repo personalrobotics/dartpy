@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics8SkeletonE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Skeleton, ::boost::noncopyable, dart::dynamics::SkeletonPtr, ::boost::python::bases<dart::common::AddonManager, dart::dynamics::MetaSkeleton, dart::dynamics::SpecializedNodeManagerForSkeleton<dart::dynamics::EndEffector> > >("Skeleton", boost::python::no_init)
 .def("create", static_cast<dart::dynamics::SkeletonPtr (*)(const std::string &)>(&dart::dynamics::Skeleton::create), (::boost::python::arg("_name")))
 .def("create", static_cast<dart::dynamics::SkeletonPtr (*)(const dart::dynamics::Skeleton::Properties &)>(&dart::dynamics::Skeleton::create), (::boost::python::arg("_properties")))

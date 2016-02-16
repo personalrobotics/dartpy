@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics19ReferentialSkeletonE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::ReferentialSkeleton, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::MetaSkeleton > >("ReferentialSkeleton", boost::python::no_init)
 .def("setName", static_cast<const std::string &(dart::dynamics::ReferentialSkeleton::*)(const std::string &)>(&dart::dynamics::ReferentialSkeleton::setName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name")))
 .def("getName", static_cast<const std::string &(dart::dynamics::ReferentialSkeleton::*)() const>(&dart::dynamics::ReferentialSkeleton::getName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())

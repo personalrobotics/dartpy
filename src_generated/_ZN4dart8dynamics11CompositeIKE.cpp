@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics11CompositeIKE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::CompositeIK, ::boost::python::bases<dart::dynamics::HierarchicalIK > >("CompositeIK", boost::python::no_init)
 .def("create", static_cast<std::shared_ptr<dart::dynamics::CompositeIK> (*)(const dart::dynamics::SkeletonPtr &)>(&dart::dynamics::CompositeIK::create), (::boost::python::arg("_skel")))
 .def("clone", static_cast<std::shared_ptr<dart::dynamics::HierarchicalIK> (dart::dynamics::CompositeIK::*)(const dart::dynamics::SkeletonPtr &) const>(&dart::dynamics::CompositeIK::clone), (::boost::python::arg("_newSkel")))

@@ -9,6 +9,9 @@
 
 void _ZN4dart6common12UriComponentE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::UriComponent >("UriComponent", boost::python::no_init)
 .def(::boost::python::init<>())
 .def(::boost::python::init<dart::common::UriComponent::reference_const_type>((::boost::python::arg("_value"))))

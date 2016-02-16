@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics10PlaneShapeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::PlaneShape, std::shared_ptr<dart::dynamics::PlaneShape>, ::boost::python::bases<dart::dynamics::Shape > >("PlaneShape", boost::python::no_init)
 .def(::boost::python::init<const Eigen::Vector3d &, double>((::boost::python::arg("_normal"), ::boost::python::arg("_offset"))))
 .def(::boost::python::init<const Eigen::Vector3d &, const Eigen::Vector3d &>((::boost::python::arg("_normal"), ::boost::python::arg("_point"))))

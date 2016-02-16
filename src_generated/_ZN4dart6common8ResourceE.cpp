@@ -9,6 +9,9 @@
 
 void _ZN4dart6common8ResourceE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::Resource, ::boost::noncopyable >("Resource", boost::python::no_init)
 .def("getSize", static_cast<std::size_t (dart::common::Resource::*)()>(&dart::common::Resource::getSize))
 .def("tell", static_cast<std::size_t (dart::common::Resource::*)()>(&dart::common::Resource::tell))

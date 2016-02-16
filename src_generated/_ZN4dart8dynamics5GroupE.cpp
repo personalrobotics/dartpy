@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics5GroupE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Group, ::boost::noncopyable, dart::dynamics::GroupPtr, ::boost::python::bases<dart::dynamics::ReferentialSkeleton > >("Group", boost::python::no_init)
 .def("create", static_cast<dart::dynamics::GroupPtr (*)(const std::string &, const std::vector<dart::dynamics::BodyNode *> &, bool, bool)>(&dart::dynamics::Group::create), (::boost::python::arg("_name"), ::boost::python::arg("_bodyNodes"), ::boost::python::arg("_includeJoints") = true, ::boost::python::arg("_includeDofs") = true))
 .def("create", static_cast<dart::dynamics::GroupPtr (*)(const std::string &, const std::vector<dart::dynamics::DegreeOfFreedom *> &, bool, bool)>(&dart::dynamics::Group::create), (::boost::python::arg("_name"), ::boost::python::arg("_dofs"), ::boost::python::arg("_includeBodyNodes") = true, ::boost::python::arg("_includeJoints") = true))

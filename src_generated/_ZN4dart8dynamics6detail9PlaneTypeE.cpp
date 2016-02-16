@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail9PlaneTypeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::dynamics::detail::PlaneType>("PlaneType")
 .value("XY", dart::dynamics::detail::PlaneType::XY)
 .value("YZ", dart::dynamics::detail::PlaneType::YZ)

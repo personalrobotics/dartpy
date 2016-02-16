@@ -9,6 +9,9 @@
 
 void _ZN4dart3gui9TrackballE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("gui"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::gui::Trackball >("Trackball", boost::python::no_init)
 .def(::boost::python::init<>())
 .def(::boost::python::init<const Eigen::Vector2d &, double>((::boost::python::arg("_center"), ::boost::python::arg("_radius"))))

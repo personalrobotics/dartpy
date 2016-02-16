@@ -9,6 +9,9 @@
 
 void _ZN4dart8renderer21OpenGLRenderInterfaceE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("renderer"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::renderer::OpenGLRenderInterface, ::boost::noncopyable, ::boost::python::bases<dart::renderer::RenderInterface > >("OpenGLRenderInterface", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("initialize", static_cast<void (dart::renderer::OpenGLRenderInterface::*)()>(&dart::renderer::OpenGLRenderInterface::initialize))

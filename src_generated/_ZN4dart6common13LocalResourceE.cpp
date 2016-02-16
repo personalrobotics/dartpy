@@ -9,6 +9,9 @@
 
 void _ZN4dart6common13LocalResourceE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::LocalResource, ::boost::noncopyable, ::boost::python::bases<dart::common::Resource > >("LocalResource", boost::python::no_init)
 .def(::boost::python::init<const std::string &>((::boost::python::arg("_path"))))
 .def("isGood", static_cast<bool (dart::common::LocalResource::*)() const>(&dart::common::LocalResource::isGood))

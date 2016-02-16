@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils10c3d_head_tE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::c3d_head_t, ::boost::noncopyable >("c3d_head_t", boost::python::no_init)
 .def_readwrite("prec_start", &dart::utils::c3d_head_t::prec_start)
 .def_readwrite("key", &dart::utils::c3d_head_t::key)

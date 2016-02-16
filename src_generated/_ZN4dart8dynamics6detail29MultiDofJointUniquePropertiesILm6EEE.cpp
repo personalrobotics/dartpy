@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail29MultiDofJointUniquePropertiesILm6EEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::detail::MultiDofJointUniqueProperties<6> >("_ZN4dart8dynamics6detail29MultiDofJointUniquePropertiesILm6EEE", boost::python::no_init)
 .def(::boost::python::init<const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &, const dart::dynamics::detail::MultiDofJointUniqueProperties<6>::Vector &>((::boost::python::arg("_positionLowerLimits"), ::boost::python::arg("_positionUpperLimits"), ::boost::python::arg("_velocityLowerLimits"), ::boost::python::arg("_velocityUpperLimits"), ::boost::python::arg("_accelerationLowerLimits"), ::boost::python::arg("_accelerationUpperLimits"), ::boost::python::arg("_forceLowerLimits"), ::boost::python::arg("_forceUpperLimits"), ::boost::python::arg("_springStiffness"), ::boost::python::arg("_restPosition"), ::boost::python::arg("_dampingCoefficient"), ::boost::python::arg("_coulombFrictions"))))
 .def_readwrite("mPositionLowerLimits", &dart::dynamics::detail::MultiDofJointUniqueProperties<6>::mPositionLowerLimits)

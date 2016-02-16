@@ -9,6 +9,9 @@
 
 void _ZN4dart8renderer15RenderInterfaceE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("renderer"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::renderer::RenderInterface >("RenderInterface", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("initialize", static_cast<void (dart::renderer::RenderInterface::*)()>(&dart::renderer::RenderInterface::initialize))

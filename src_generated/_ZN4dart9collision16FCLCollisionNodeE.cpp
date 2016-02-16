@@ -9,6 +9,9 @@
 
 void _ZN4dart9collision16FCLCollisionNodeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("collision"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::collision::FCLCollisionNode, ::boost::noncopyable, ::boost::python::bases<dart::collision::CollisionNode > >("FCLCollisionNode", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::BodyNode *>((::boost::python::arg("_bodyNode"))))
 .def("getNumCollisionObjects", static_cast<std::size_t (dart::collision::FCLCollisionNode::*)() const>(&dart::collision::FCLCollisionNode::getNumCollisionObjects))

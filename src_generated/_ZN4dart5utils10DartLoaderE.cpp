@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils10DartLoaderE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::DartLoader, ::boost::noncopyable >("DartLoader", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("addPackageDirectory", static_cast<void (dart::utils::DartLoader::*)(const std::string &, const std::string &)>(&dart::utils::DartLoader::addPackageDirectory), (::boost::python::arg("_packageName"), ::boost::python::arg("_packageDirectory")))

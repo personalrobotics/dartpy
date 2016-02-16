@@ -9,6 +9,9 @@
 
 void _ZN4dart4math5asinhEd()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("math"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("asinh", static_cast<double (*)(double)>(&dart::math::asinh), (::boost::python::arg("_X")))
 ;}
 

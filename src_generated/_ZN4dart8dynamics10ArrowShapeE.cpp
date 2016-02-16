@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics10ArrowShapeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::ArrowShape, std::shared_ptr<dart::dynamics::ArrowShape>, ::boost::python::bases<dart::dynamics::MeshShape > >("ArrowShape", boost::python::no_init)
 .def(::boost::python::init<const Eigen::Vector3d &, const Eigen::Vector3d &, const dart::dynamics::ArrowShape::Properties &, const Eigen::Vector4d &, std::size_t>((::boost::python::arg("_tail"), ::boost::python::arg("_head"), ::boost::python::arg("_properties"), ::boost::python::arg("_color"), ::boost::python::arg("_resolution") = 10)))
 .def("setPositions", static_cast<void (dart::dynamics::ArrowShape::*)(const Eigen::Vector3d &, const Eigen::Vector3d &)>(&dart::dynamics::ArrowShape::setPositions), (::boost::python::arg("_tail"), ::boost::python::arg("_head")))

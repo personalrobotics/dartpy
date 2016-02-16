@@ -9,6 +9,9 @@
 
 void _ZN4dart10constraint16ConstraintSolverE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("constraint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::constraint::ConstraintSolver, ::boost::noncopyable >("ConstraintSolver", boost::python::no_init)
 .def(::boost::python::init<double>((::boost::python::arg("_timeStep"))))
 .def("addSkeleton", static_cast<void (dart::constraint::ConstraintSolver::*)(const dart::dynamics::SkeletonPtr &)>(&dart::constraint::ConstraintSolver::addSkeleton), (::boost::python::arg("_skeleton")))

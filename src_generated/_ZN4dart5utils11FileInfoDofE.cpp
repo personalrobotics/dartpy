@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils11FileInfoDofE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::FileInfoDof, ::boost::noncopyable >("FileInfoDof", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::Skeleton *, double>((::boost::python::arg("_skel"), ::boost::python::arg("_fps") = 1.200000e+02)))
 .def("loadFile", static_cast<bool (dart::utils::FileInfoDof::*)(const char *)>(&dart::utils::FileInfoDof::loadFile), (::boost::python::arg("_fileName")))

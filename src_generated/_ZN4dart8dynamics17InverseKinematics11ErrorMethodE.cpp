@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics17InverseKinematics11ErrorMethodE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("InverseKinematics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::InverseKinematics::ErrorMethod, ::boost::noncopyable, ::boost::python::bases<dart::common::Subject > >("ErrorMethod", boost::python::no_init)
 .def("clone", static_cast<std::unique_ptr<dart::dynamics::InverseKinematics::ErrorMethod> (dart::dynamics::InverseKinematics::ErrorMethod::*)(dart::dynamics::InverseKinematics *) const>(&dart::dynamics::InverseKinematics::ErrorMethod::clone), (::boost::python::arg("_newIK")))
 .def("computeError", static_cast<Eigen::Vector6d (dart::dynamics::InverseKinematics::ErrorMethod::*)()>(&dart::dynamics::InverseKinematics::ErrorMethod::computeError))

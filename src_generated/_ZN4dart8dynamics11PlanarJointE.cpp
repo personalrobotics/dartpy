@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics11PlanarJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::PlanarJoint, ::boost::noncopyable, ::boost::python::bases<dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<3>, dart::common::SpecializedAddonManager<dart::dynamics::detail::PlanarJointAddon> > > >("PlanarJoint", boost::python::no_init)
 .def("hasPlanarJointAddon", static_cast<bool (dart::dynamics::PlanarJoint::*)() const>(&dart::dynamics::PlanarJoint::hasPlanarJointAddon))
 .def("setPlanarJointAddon", static_cast<void (dart::dynamics::PlanarJoint::*)(const dart::dynamics::PlanarJoint::Addon *)>(&dart::dynamics::PlanarJoint::setPlanarJointAddon), (::boost::python::arg("addon")))

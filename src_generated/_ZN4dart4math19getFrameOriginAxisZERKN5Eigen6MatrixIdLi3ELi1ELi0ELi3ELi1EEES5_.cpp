@@ -9,6 +9,9 @@
 
 void _ZN4dart4math19getFrameOriginAxisZERKN5Eigen6MatrixIdLi3ELi1ELi0ELi3ELi1EEES5_()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("math"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("getFrameOriginAxisZ", static_cast<Eigen::Isometry3d (*)(const Eigen::Vector3d &, const Eigen::Vector3d &)>(&dart::math::getFrameOriginAxisZ), (::boost::python::arg("_origin"), ::boost::python::arg("_axisZ")))
 ;}
 

@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils12hasAttributeEPKN8tinyxml210XMLElementEPKc()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("hasAttribute", static_cast<bool (*)(const tinyxml2::XMLElement *, const char *const)>(&dart::utils::hasAttribute), (::boost::python::arg("element"), ::boost::python::arg("name")))
 ;}
 

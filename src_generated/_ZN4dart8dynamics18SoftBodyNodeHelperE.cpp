@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics18SoftBodyNodeHelperE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::SoftBodyNodeHelper, ::boost::noncopyable >("SoftBodyNodeHelper", boost::python::no_init)
 .def("makeBoxProperties", static_cast<dart::dynamics::SoftBodyNode::UniqueProperties (*)(const Eigen::Vector3d &, const Eigen::Isometry3d &, double, double, double, double)>(&dart::dynamics::SoftBodyNodeHelper::makeBoxProperties), (::boost::python::arg("_size"), ::boost::python::arg("_localTransform"), ::boost::python::arg("_totalMass"), ::boost::python::arg("_vertexStiffness") = 1.000000e+00, ::boost::python::arg("_edgeStiffness") = 1.000000e+00, ::boost::python::arg("_dampingCoeff") = 1.000000e-02))
 .def("setBox", static_cast<void (*)(dart::dynamics::SoftBodyNode *, const Eigen::Vector3d &, const Eigen::Isometry3d &, double, double, double, double)>(&dart::dynamics::SoftBodyNodeHelper::setBox), (::boost::python::arg("_softBodyNode"), ::boost::python::arg("_size"), ::boost::python::arg("_localTransform"), ::boost::python::arg("_totalMass"), ::boost::python::arg("_vertexStiffness") = 1.000000e+00, ::boost::python::arg("_edgeStiffness") = 1.000000e+00, ::boost::python::arg("_dampingCoeff") = 1.000000e-02))

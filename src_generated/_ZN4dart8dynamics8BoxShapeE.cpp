@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics8BoxShapeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::BoxShape, std::shared_ptr<dart::dynamics::BoxShape>, ::boost::python::bases<dart::dynamics::Shape > >("BoxShape", boost::python::no_init)
 .def(::boost::python::init<const Eigen::Vector3d &>((::boost::python::arg("_size"))))
 .def("setSize", static_cast<void (dart::dynamics::BoxShape::*)(const Eigen::Vector3d &)>(&dart::dynamics::BoxShape::setSize), (::boost::python::arg("_size")))

@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics10ScrewJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::ScrewJoint, ::boost::noncopyable, ::boost::python::bases<dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::SpecializedAddonManager<dart::dynamics::detail::ScrewJointAddon> > > >("ScrewJoint", boost::python::no_init)
 .def("hasScrewJointAddon", static_cast<bool (dart::dynamics::ScrewJoint::*)() const>(&dart::dynamics::ScrewJoint::hasScrewJointAddon))
 .def("setScrewJointAddon", static_cast<void (dart::dynamics::ScrewJoint::*)(const dart::dynamics::ScrewJoint::Addon *)>(&dart::dynamics::ScrewJoint::setScrewJointAddon), (::boost::python::arg("addon")))

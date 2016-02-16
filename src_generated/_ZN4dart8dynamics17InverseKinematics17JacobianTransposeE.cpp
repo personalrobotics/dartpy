@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics17InverseKinematics17JacobianTransposeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("InverseKinematics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::InverseKinematics::JacobianTranspose, ::boost::python::bases<dart::dynamics::InverseKinematics::GradientMethod > >("JacobianTranspose", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::InverseKinematics *, const dart::dynamics::InverseKinematics::GradientMethod::Properties &>((::boost::python::arg("_ik"), ::boost::python::arg("properties"))))
 .def("clone", static_cast<std::unique_ptr<dart::dynamics::InverseKinematics::GradientMethod> (dart::dynamics::InverseKinematics::JacobianTranspose::*)(dart::dynamics::InverseKinematics *) const>(&dart::dynamics::InverseKinematics::JacobianTranspose::clone), (::boost::python::arg("_newIK")))

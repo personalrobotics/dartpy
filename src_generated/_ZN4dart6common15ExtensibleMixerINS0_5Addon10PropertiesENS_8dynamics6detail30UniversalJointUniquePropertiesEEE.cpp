@@ -9,6 +9,9 @@
 
 void _ZN4dart6common15ExtensibleMixerINS0_5Addon10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::UniversalJointUniqueProperties>, ::boost::python::bases<dart::common::Addon::Properties, dart::dynamics::detail::UniversalJointUniqueProperties > >("_ZN4dart6common15ExtensibleMixerINS0_5Addon10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEE", boost::python::no_init)
 .def(::boost::python::init<>())
 .def(::boost::python::init<const dart::dynamics::detail::UniversalJointUniqueProperties &>((::boost::python::arg("mixin"))))

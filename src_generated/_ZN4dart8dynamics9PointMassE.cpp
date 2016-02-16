@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics9PointMassE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::PointMass, ::boost::python::bases<dart::common::Subject > >("PointMass", boost::python::no_init)
 .def("getIndexInSoftBodyNode", static_cast<std::size_t (dart::dynamics::PointMass::*)() const>(&dart::dynamics::PointMass::getIndexInSoftBodyNode))
 .def("setMass", static_cast<void (dart::dynamics::PointMass::*)(double)>(&dart::dynamics::PointMass::setMass), (::boost::python::arg("_mass")))

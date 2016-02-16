@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail19SingleDofJointAddonE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::detail::SingleDofJointAddon, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::SingleDofJointAddon, dart::dynamics::detail::SingleDofJointUniqueProperties, dart::dynamics::SingleDofJoint, &dart::common::detail::NoOp, false> > >("SingleDofJointAddon", boost::python::no_init)
 .def(::boost::python::init<dart::common::AddonManager *, const dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::SingleDofJointAddon, dart::dynamics::detail::SingleDofJointUniqueProperties, dart::dynamics::SingleDofJoint, &dart::common::detail::NoOp, false>::PropertiesData &>((::boost::python::arg("mgr"), ::boost::python::arg("properties"))))
 .def("setPositionLowerLimit", static_cast<void (dart::dynamics::detail::SingleDofJointAddon::*)(const double &)>(&dart::dynamics::detail::SingleDofJointAddon::setPositionLowerLimit), (::boost::python::arg("value")))

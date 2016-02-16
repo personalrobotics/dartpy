@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics18TranslationalJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::TranslationalJoint, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::MultiDofJoint<3> > >("TranslationalJoint", boost::python::no_init)
 .def("getTranslationalJointProperties", static_cast<dart::dynamics::TranslationalJoint::Properties (dart::dynamics::TranslationalJoint::*)() const>(&dart::dynamics::TranslationalJoint::getTranslationalJointProperties))
 .def("getType", static_cast<const std::string &(dart::dynamics::TranslationalJoint::*)() const>(&dart::dynamics::TranslationalJoint::getType), ::boost::python::return_value_policy<boost::python::copy_const_reference >())

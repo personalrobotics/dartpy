@@ -9,6 +9,9 @@
 
 void _ZN4dart9optimizer6SolverE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("optimizer"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::optimizer::Solver, ::boost::noncopyable >("Solver", boost::python::no_init)
 .def("solve", static_cast<bool (dart::optimizer::Solver::*)()>(&dart::optimizer::Solver::solve))
 .def("getType", static_cast<std::string (dart::optimizer::Solver::*)() const>(&dart::optimizer::Solver::getType))

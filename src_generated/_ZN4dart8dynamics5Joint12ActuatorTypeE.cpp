@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics5Joint12ActuatorTypeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("Joint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::dynamics::Joint::ActuatorType>("ActuatorType")
 .value("FORCE", dart::dynamics::Joint::ActuatorType::FORCE)
 .value("PASSIVE", dart::dynamics::Joint::ActuatorType::PASSIVE)

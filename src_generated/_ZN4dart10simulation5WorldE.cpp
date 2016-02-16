@@ -9,6 +9,9 @@
 
 void _ZN4dart10simulation5WorldE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("simulation"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::simulation::World, ::boost::python::bases<dart::common::Subject > >("World", boost::python::no_init)
 .def(::boost::python::init<const std::string &>((::boost::python::arg("_name"))))
 .def("clone", static_cast<std::shared_ptr<dart::simulation::World> (dart::simulation::World::*)() const>(&dart::simulation::World::clone))

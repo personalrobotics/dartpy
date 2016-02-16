@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils10SkelParser9SkelJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils").attr("SkelParser"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::SkelParser::SkelJoint >("SkelJoint", boost::python::no_init)
 .def_readwrite("properties", &dart::utils::SkelParser::SkelJoint::properties)
 .def_readwrite("position", &dart::utils::SkelParser::SkelJoint::position)

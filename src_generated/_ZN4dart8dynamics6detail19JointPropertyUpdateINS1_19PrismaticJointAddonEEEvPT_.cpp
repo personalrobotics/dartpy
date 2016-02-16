@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6detail19JointPropertyUpdateINS1_19PrismaticJointAddonEEEvPT_()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("detail"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("JointPropertyUpdate", static_cast<void (*)(dart::dynamics::detail::PrismaticJointAddon *)>(&dart::dynamics::detail::JointPropertyUpdate), (::boost::python::arg("addon")))
 ;}
 

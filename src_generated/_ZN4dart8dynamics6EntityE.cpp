@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics6EntityE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Entity, ::boost::noncopyable, ::boost::python::bases<dart::common::Subject > >("Entity", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::Frame *, const std::string &, bool>((::boost::python::arg("_refFrame"), ::boost::python::arg("_name"), ::boost::python::arg("_quiet"))))
 .def("setProperties", static_cast<void (dart::dynamics::Entity::*)(const dart::dynamics::Entity::Properties &)>(&dart::dynamics::Entity::setProperties), (::boost::python::arg("_properties")))

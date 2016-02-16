@@ -9,6 +9,9 @@
 
 void _ZN4dart6common5AddonE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::Addon, ::boost::noncopyable >("Addon", boost::python::no_init)
 .def("cloneAddon", static_cast<std::unique_ptr<dart::common::Addon> (dart::common::Addon::*)(dart::common::AddonManager *) const>(&dart::common::Addon::cloneAddon), (::boost::python::arg("newManager")))
 .def("setAddonState", static_cast<void (dart::common::Addon::*)(const dart::common::Addon::State &)>(&dart::common::Addon::setAddonState), (::boost::python::arg("otherState")))

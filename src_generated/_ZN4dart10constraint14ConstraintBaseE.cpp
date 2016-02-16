@@ -9,6 +9,9 @@
 
 void _ZN4dart10constraint14ConstraintBaseE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("constraint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::constraint::ConstraintBase, ::boost::noncopyable >("ConstraintBase", boost::python::no_init)
 .def("getDimension", static_cast<std::size_t (dart::constraint::ConstraintBase::*)() const>(&dart::constraint::ConstraintBase::getDimension))
 .def("update", static_cast<void (dart::constraint::ConstraintBase::*)()>(&dart::constraint::ConstraintBase::update))

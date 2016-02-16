@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics4NodeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Node, ::boost::noncopyable, ::boost::python::bases<dart::common::Subject > >("Node", boost::python::no_init)
 .def("setName", static_cast<const std::string &(dart::dynamics::Node::*)(const std::string &)>(&dart::dynamics::Node::setName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("newName")))
 .def("getName", static_cast<const std::string &(dart::dynamics::Node::*)() const>(&dart::dynamics::Node::getName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())

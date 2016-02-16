@@ -9,6 +9,9 @@
 
 void _ZN4dart9collision20collideCylinderPlaneERKdS2_RKN5Eigen9TransformIdLi3ELi1ELi0EEERKNS3_6MatrixIdLi3ELi1ELi0ELi3ELi1EEES7_PSt6vectorINS0_7ContactESaISD_EE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("collision"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("collideCylinderPlane", static_cast<int (*)(const double &, const double &, const Eigen::Isometry3d &, const Eigen::Vector3d &, const Eigen::Isometry3d &, std::vector<dart::collision::Contact> *)>(&dart::collision::collideCylinderPlane), (::boost::python::arg("cyl_rad"), ::boost::python::arg("half_height"), ::boost::python::arg("T0"), ::boost::python::arg("plane_normal"), ::boost::python::arg("T1"), ::boost::python::arg("result")))
 ;}
 

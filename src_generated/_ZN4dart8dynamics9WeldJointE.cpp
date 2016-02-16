@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics9WeldJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::WeldJoint, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::ZeroDofJoint > >("WeldJoint", boost::python::no_init)
 .def("getWeldJointProperties", static_cast<dart::dynamics::WeldJoint::Properties (dart::dynamics::WeldJoint::*)() const>(&dart::dynamics::WeldJoint::getWeldJointProperties))
 .def("getType", static_cast<const std::string &(dart::dynamics::WeldJoint::*)() const>(&dart::dynamics::WeldJoint::getType), ::boost::python::return_value_policy<boost::python::copy_const_reference >())

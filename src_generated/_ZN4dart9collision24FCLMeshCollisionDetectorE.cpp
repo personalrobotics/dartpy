@@ -9,6 +9,9 @@
 
 void _ZN4dart9collision24FCLMeshCollisionDetectorE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("collision"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::collision::FCLMeshCollisionDetector, ::boost::noncopyable, ::boost::python::bases<dart::collision::CollisionDetector > >("FCLMeshCollisionDetector", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("createCollisionNode", static_cast<dart::collision::CollisionNode *(dart::collision::FCLMeshCollisionDetector::*)(dart::dynamics::BodyNode *)>(&dart::collision::FCLMeshCollisionDetector::createCollisionNode), ::boost::python::return_value_policy<boost::python::reference_existing_object >(), (::boost::python::arg("_bodyNode")))

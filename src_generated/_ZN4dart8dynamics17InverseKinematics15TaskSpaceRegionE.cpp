@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics17InverseKinematics15TaskSpaceRegionE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("InverseKinematics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::InverseKinematics::TaskSpaceRegion, ::boost::python::bases<dart::dynamics::InverseKinematics::ErrorMethod > >("TaskSpaceRegion", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::InverseKinematics *, const dart::dynamics::InverseKinematics::TaskSpaceRegion::Properties &>((::boost::python::arg("_ik"), ::boost::python::arg("_properties"))))
 .def("clone", static_cast<std::unique_ptr<dart::dynamics::InverseKinematics::ErrorMethod> (dart::dynamics::InverseKinematics::TaskSpaceRegion::*)(dart::dynamics::InverseKinematics *) const>(&dart::dynamics::InverseKinematics::TaskSpaceRegion::clone), (::boost::python::arg("_newIK")))

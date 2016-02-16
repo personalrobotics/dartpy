@@ -9,6 +9,9 @@
 
 void _ZN4dart8planning3RRTE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("planning"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::planning::RRT, ::boost::noncopyable >("RRT", boost::python::no_init)
 .def(::boost::python::init<dart::simulation::WorldPtr, dart::dynamics::SkeletonPtr, const std::vector<std::size_t> &, const Eigen::VectorXd &, double>((::boost::python::arg("world"), ::boost::python::arg("robot"), ::boost::python::arg("dofs"), ::boost::python::arg("root"), ::boost::python::arg("stepSize") = 2.000000e-02)))
 .def(::boost::python::init<dart::simulation::WorldPtr, dart::dynamics::SkeletonPtr, const std::vector<std::size_t> &, const std::vector<Eigen::VectorXd> &, double>((::boost::python::arg("world"), ::boost::python::arg("robot"), ::boost::python::arg("dofs"), ::boost::python::arg("roots"), ::boost::python::arg("stepSize") = 2.000000e-02)))

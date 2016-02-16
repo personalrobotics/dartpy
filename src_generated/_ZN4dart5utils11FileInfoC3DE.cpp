@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils11FileInfoC3DE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::FileInfoC3D, ::boost::noncopyable >("FileInfoC3D", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("getNumMarkers", static_cast<int (dart::utils::FileInfoC3D::*)() const>(&dart::utils::FileInfoC3D::getNumMarkers))

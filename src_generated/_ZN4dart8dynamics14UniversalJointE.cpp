@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics14UniversalJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::UniversalJoint, ::boost::noncopyable, ::boost::python::bases<dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<2>, dart::common::SpecializedAddonManager<dart::dynamics::detail::UniversalJointAddon> > > >("UniversalJoint", boost::python::no_init)
 .def("hasUniversalJointAddon", static_cast<bool (dart::dynamics::UniversalJoint::*)() const>(&dart::dynamics::UniversalJoint::hasUniversalJointAddon))
 .def("setUniversalJointAddon", static_cast<void (dart::dynamics::UniversalJoint::*)(const dart::dynamics::UniversalJoint::Addon *)>(&dart::dynamics::UniversalJoint::setUniversalJointAddon), (::boost::python::arg("addon")))

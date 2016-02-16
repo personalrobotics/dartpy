@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamicsL23DefaultIKDLSCoefficientE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::scope().attr("DefaultIKDLSCoefficient") = dart::dynamics::DefaultIKDLSCoefficient;
 }
 

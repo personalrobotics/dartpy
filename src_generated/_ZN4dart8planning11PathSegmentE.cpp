@@ -9,6 +9,9 @@
 
 void _ZN4dart8planning11PathSegmentE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("planning"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::planning::PathSegment, ::boost::noncopyable >("PathSegment", boost::python::no_init)
 .def("getLength", static_cast<double (dart::planning::PathSegment::*)() const>(&dart::planning::PathSegment::getLength))
 .def("getConfig", static_cast<Eigen::VectorXd (dart::planning::PathSegment::*)(double) const>(&dart::planning::PathSegment::getConfig), (::boost::python::arg("s")))

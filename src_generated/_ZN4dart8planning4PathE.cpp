@@ -9,6 +9,9 @@
 
 void _ZN4dart8planning4PathE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("planning"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::planning::Path >("Path", boost::python::no_init)
 .def(::boost::python::init<const std::list<Eigen::VectorXd> &, double>((::boost::python::arg("path"), ::boost::python::arg("maxDeviation") = 0.000000e+00)))
 .def("getLength", static_cast<double (dart::planning::Path::*)() const>(&dart::planning::Path::getLength))

@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics8BodyNode16UniquePropertiesE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("BodyNode"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::BodyNode::UniqueProperties >("UniqueProperties", boost::python::no_init)
 .def(::boost::python::init<const dart::dynamics::Inertia &, const std::vector<dart::dynamics::ShapePtr> &, bool, double, double, bool>((::boost::python::arg("_inertia"), ::boost::python::arg("_collisionShapes"), ::boost::python::arg("_isCollidable") = true, ::boost::python::arg("_frictionCoeff") = 1.000000e+00, ::boost::python::arg("_restitutionCoeff") = 0.000000e+00, ::boost::python::arg("_gravityMode") = true)))
 .def_readwrite("mInertia", &dart::dynamics::BodyNode::UniqueProperties::mInertia)

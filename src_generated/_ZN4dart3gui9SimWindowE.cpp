@@ -9,6 +9,9 @@
 
 void _ZN4dart3gui9SimWindowE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("gui"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::gui::SimWindow, ::boost::noncopyable, ::boost::python::bases<dart::gui::Win3D > >("SimWindow", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("timeStepping", static_cast<void (dart::gui::SimWindow::*)()>(&dart::gui::SimWindow::timeStepping))

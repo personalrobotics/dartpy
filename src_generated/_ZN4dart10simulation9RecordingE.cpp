@@ -9,6 +9,9 @@
 
 void _ZN4dart10simulation9RecordingE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("simulation"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::simulation::Recording, ::boost::noncopyable >("Recording", boost::python::no_init)
 .def(::boost::python::init<const std::vector<dart::dynamics::SkeletonPtr> &>((::boost::python::arg("_skeletons"))))
 .def(::boost::python::init<const std::vector<int> &>((::boost::python::arg("_skelDofs"))))

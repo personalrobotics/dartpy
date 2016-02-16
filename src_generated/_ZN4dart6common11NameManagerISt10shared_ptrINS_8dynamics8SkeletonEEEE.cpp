@@ -9,6 +9,9 @@
 
 void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > >("_ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE", boost::python::no_init)
 .def(::boost::python::init<const std::string &, const std::string &>((::boost::python::arg("_managerName"), ::boost::python::arg("_defaultName"))))
 .def("setPattern", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)(const std::string &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::setPattern), (::boost::python::arg("_newPattern")))

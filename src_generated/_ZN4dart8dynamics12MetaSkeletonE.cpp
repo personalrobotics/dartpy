@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics12MetaSkeletonE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::MetaSkeleton, ::boost::noncopyable, dart::dynamics::MetaSkeletonPtr, ::boost::python::bases<dart::common::Subject > >("MetaSkeleton", boost::python::no_init)
 .def("setName", static_cast<const std::string &(dart::dynamics::MetaSkeleton::*)(const std::string &)>(&dart::dynamics::MetaSkeleton::setName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name")))
 .def("getName", static_cast<const std::string &(dart::dynamics::MetaSkeleton::*)() const>(&dart::dynamics::MetaSkeleton::getName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())

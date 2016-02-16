@@ -9,6 +9,9 @@
 
 void _ZN4dart4math17makeSkewSymmetricERKN5Eigen6MatrixIdLi3ELi1ELi0ELi3ELi1EEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("math"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("makeSkewSymmetric", static_cast<Eigen::Matrix3d (*)(const Eigen::Vector3d &)>(&dart::math::makeSkewSymmetric), (::boost::python::arg("_v")))
 ;}
 

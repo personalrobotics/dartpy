@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics5FrameE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::Frame, ::boost::noncopyable, dart::dynamics::Frame *, ::boost::python::bases<dart::dynamics::Entity > >("Frame", boost::python::no_init)
 .def("World", static_cast<dart::dynamics::Frame *(*)()>(&dart::dynamics::Frame::World), ::boost::python::return_value_policy<boost::python::reference_existing_object >())
 .def("getRelativeTransform", static_cast<const Eigen::Isometry3d &(dart::dynamics::Frame::*)() const>(&dart::dynamics::Frame::getRelativeTransform), ::boost::python::return_value_policy<boost::python::copy_const_reference >())

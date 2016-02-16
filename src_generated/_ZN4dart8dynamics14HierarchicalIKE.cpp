@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics14HierarchicalIKE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::HierarchicalIK, ::boost::noncopyable, ::boost::python::bases<dart::common::Subject > >("HierarchicalIK", boost::python::no_init)
 .def("solve", static_cast<bool (dart::dynamics::HierarchicalIK::*)(bool)>(&dart::dynamics::HierarchicalIK::solve), (::boost::python::arg("_applySolution") = true))
 .def("solve", static_cast<bool (dart::dynamics::HierarchicalIK::*)(Eigen::VectorXd &, bool)>(&dart::dynamics::HierarchicalIK::solve), (::boost::python::arg("positions"), ::boost::python::arg("_applySolution") = true))

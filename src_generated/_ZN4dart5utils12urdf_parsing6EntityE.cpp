@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils12urdf_parsing6EntityE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils").attr("urdf_parsing"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::utils::urdf_parsing::Entity >("Entity", boost::python::no_init)
 .def(::boost::python::init<>())
 .def(::boost::python::init<const urdf::Entity &>((::boost::python::arg("urdfEntity"))))

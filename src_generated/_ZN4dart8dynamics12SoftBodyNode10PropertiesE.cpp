@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics12SoftBodyNode10PropertiesE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("SoftBodyNode"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::SoftBodyNode::Properties, ::boost::python::bases<dart::dynamics::BodyNode::Properties, dart::dynamics::SoftBodyNode::UniqueProperties > >("Properties", boost::python::no_init)
 .def(::boost::python::init<const dart::dynamics::BodyNode::Properties &, const dart::dynamics::SoftBodyNode::UniqueProperties &>((::boost::python::arg("_bodyProperties"), ::boost::python::arg("_softProperties"))))
 ;

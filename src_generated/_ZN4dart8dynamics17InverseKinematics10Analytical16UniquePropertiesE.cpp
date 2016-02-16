@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics17InverseKinematics10Analytical16UniquePropertiesE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("InverseKinematics").attr("Analytical"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::InverseKinematics::Analytical::UniqueProperties >("UniqueProperties", boost::python::no_init)
 .def(::boost::python::init<dart::dynamics::InverseKinematics::Analytical::ExtraDofUtilization_t, double>((::boost::python::arg("extraDofUtilization") = 0, ::boost::python::arg("extraErrorLengthClamp") = 1.000000e+00)))
 .def(::boost::python::init<dart::dynamics::InverseKinematics::Analytical::ExtraDofUtilization_t, double, dart::dynamics::InverseKinematics::Analytical::QualityComparison>((::boost::python::arg("extraDofUtilization"), ::boost::python::arg("extraErrorLengthClamp"), ::boost::python::arg("qualityComparator"))))

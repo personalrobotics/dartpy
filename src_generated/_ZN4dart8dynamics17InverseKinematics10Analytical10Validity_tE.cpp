@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics17InverseKinematics10Analytical10Validity_tE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("InverseKinematics").attr("Analytical"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::dynamics::InverseKinematics::Analytical::Validity_t>("Validity_t")
 .value("VALID", dart::dynamics::InverseKinematics::Analytical::Validity_t::VALID)
 .value("OUT_OF_REACH", dart::dynamics::InverseKinematics::Analytical::Validity_t::OUT_OF_REACH)

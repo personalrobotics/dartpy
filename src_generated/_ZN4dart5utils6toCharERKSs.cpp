@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils6toCharERKSs()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("toChar", static_cast<char (*)(const std::string &)>(&dart::utils::toChar), (::boost::python::arg("str")))
 ;}
 

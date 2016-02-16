@@ -9,6 +9,9 @@
 
 void _ZN4dart9optimizer15ModularFunctionE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("optimizer"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::optimizer::ModularFunction, ::boost::python::bases<dart::optimizer::Function > >("ModularFunction", boost::python::no_init)
 .def(::boost::python::init<const std::string &>((::boost::python::arg("_name"))))
 .def("eval", static_cast<double (dart::optimizer::ModularFunction::*)(const Eigen::VectorXd &)>(&dart::optimizer::ModularFunction::eval), (::boost::python::arg("_x")))

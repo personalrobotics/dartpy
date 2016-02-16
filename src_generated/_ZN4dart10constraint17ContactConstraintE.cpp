@@ -9,6 +9,9 @@
 
 void _ZN4dart10constraint17ContactConstraintE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("constraint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::constraint::ContactConstraint, ::boost::noncopyable, ::boost::python::bases<dart::constraint::ConstraintBase > >("ContactConstraint", boost::python::no_init)
 .def(::boost::python::init<dart::collision::Contact &, double>((::boost::python::arg("_contact"), ::boost::python::arg("_timeStep"))))
 .def("setErrorAllowance", static_cast<void (*)(double)>(&dart::constraint::ContactConstraint::setErrorAllowance), (::boost::python::arg("_allowance")))

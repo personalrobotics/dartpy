@@ -9,6 +9,9 @@
 
 void _ZN4dart3gui6JitterE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("gui"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::gui::Jitter, ::boost::noncopyable >("Jitter", boost::python::no_init)
 .add_static_property("j2", ::boost::python::make_getter(dart::gui::Jitter::j2))
 .add_static_property("j4", ::boost::python::make_getter(dart::gui::Jitter::j4))

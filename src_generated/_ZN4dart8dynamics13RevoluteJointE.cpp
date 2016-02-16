@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics13RevoluteJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::RevoluteJoint, ::boost::noncopyable, ::boost::python::bases<dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::SpecializedAddonManager<dart::dynamics::detail::RevoluteJointAddon> > > >("RevoluteJoint", boost::python::no_init)
 .def("hasRevoluteJointAddon", static_cast<bool (dart::dynamics::RevoluteJoint::*)() const>(&dart::dynamics::RevoluteJoint::hasRevoluteJointAddon))
 .def("setRevoluteJointAddon", static_cast<void (dart::dynamics::RevoluteJoint::*)(const dart::dynamics::RevoluteJoint::Addon *)>(&dart::dynamics::RevoluteJoint::setRevoluteJointAddon), (::boost::python::arg("addon")))

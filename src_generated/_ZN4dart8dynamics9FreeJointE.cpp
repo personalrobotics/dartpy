@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics9FreeJointE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::FreeJoint, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::MultiDofJoint<6> > >("FreeJoint", boost::python::no_init)
 .def("getFreeJointProperties", static_cast<dart::dynamics::FreeJoint::Properties (dart::dynamics::FreeJoint::*)() const>(&dart::dynamics::FreeJoint::getFreeJointProperties))
 .def("getType", static_cast<const std::string &(dart::dynamics::FreeJoint::*)() const>(&dart::dynamics::FreeJoint::getType), ::boost::python::return_value_policy<boost::python::copy_const_reference >())

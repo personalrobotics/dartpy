@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15ScrewJointAddonENS2_26ScrewJointUniquePropertiesENS0_10ScrewJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::ScrewJointAddon, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::ScrewJoint, &dart::dynamics::detail::JointPropertyUpdate, false>, ::boost::noncopyable, ::boost::python::bases<dart::common::Addon > >("_ZN4dart8dynamics38AddonWithProtectedPropertiesInSkeletonINS0_6detail15ScrewJointAddonENS2_26ScrewJointUniquePropertiesENS0_10ScrewJointEXadL_ZNS2_19JointPropertyUpdateIS3_EEvPT_EELb0EEE", boost::python::no_init)
 .def(::boost::python::init<dart::common::AddonManager *, const dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::ScrewJointAddon, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::ScrewJoint, &dart::dynamics::detail::JointPropertyUpdate, false>::PropertiesData &>((::boost::python::arg("mgr"), ::boost::python::arg("properties"))))
 .def("cloneAddon", static_cast<std::unique_ptr<dart::common::Addon> (dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::ScrewJointAddon, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::ScrewJoint, &dart::dynamics::detail::JointPropertyUpdate, false>::*)(dart::common::AddonManager *) const>(&dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::ScrewJointAddon, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::ScrewJoint, &dart::dynamics::detail::JointPropertyUpdate, false>::cloneAddon), (::boost::python::arg("newManager")))

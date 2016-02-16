@@ -9,6 +9,9 @@
 
 void _ZN4dart10constraint9PGSOptionE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("constraint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::constraint::PGSOption, ::boost::noncopyable >("PGSOption", boost::python::no_init)
 .def("setDefault", static_cast<void (dart::constraint::PGSOption::*)()>(&dart::constraint::PGSOption::setDefault))
 .def_readwrite("itermax", &dart::constraint::PGSOption::itermax)

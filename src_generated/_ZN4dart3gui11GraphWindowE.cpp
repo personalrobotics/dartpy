@@ -9,6 +9,9 @@
 
 void _ZN4dart3gui11GraphWindowE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("gui"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::gui::GraphWindow, ::boost::noncopyable, ::boost::python::bases<dart::gui::Win2D > >("GraphWindow", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("draw", static_cast<void (dart::gui::GraphWindow::*)()>(&dart::gui::GraphWindow::draw))

@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils9SdfParser10NextResultE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils").attr("SdfParser"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::utils::SdfParser::NextResult>("NextResult")
 .value("VALID", dart::utils::SdfParser::NextResult::VALID)
 .value("CONTINUE", dart::utils::SdfParser::NextResult::CONTINUE)

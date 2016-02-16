@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics12SoftBodyNode16UniquePropertiesE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("SoftBodyNode"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::dynamics::SoftBodyNode::UniqueProperties >("UniqueProperties", boost::python::no_init)
 .def(::boost::python::init<double, double, double, const std::vector<dart::dynamics::PointMass::Properties> &, const std::vector<Eigen::Vector3i> &>((::boost::python::arg("_Kv"), ::boost::python::arg("_Ke"), ::boost::python::arg("_DampCoeff"), ::boost::python::arg("_points"), ::boost::python::arg("_faces"))))
 .def("addPointMass", static_cast<void (dart::dynamics::SoftBodyNode::UniqueProperties::*)(const dart::dynamics::PointMass::Properties &)>(&dart::dynamics::SoftBodyNode::UniqueProperties::addPointMass), (::boost::python::arg("_properties")))

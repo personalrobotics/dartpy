@@ -9,6 +9,9 @@
 
 void _ZN4dart4math11BoundingBoxE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("math"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::math::BoundingBox >("BoundingBox", boost::python::no_init)
 .def(::boost::python::init<>())
 .def(::boost::python::init<const Eigen::Vector3d &, const Eigen::Vector3d &>((::boost::python::arg("min"), ::boost::python::arg("max"))))

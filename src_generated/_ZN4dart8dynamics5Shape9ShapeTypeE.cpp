@@ -9,6 +9,9 @@
 
 void _ZN4dart8dynamics5Shape9ShapeTypeE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("Shape"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::enum_<dart::dynamics::Shape::ShapeType>("ShapeType")
 .value("BOX", dart::dynamics::Shape::ShapeType::BOX)
 .value("ELLIPSOID", dart::dynamics::Shape::ShapeType::ELLIPSOID)

@@ -9,6 +9,9 @@
 
 void _ZN4dart6common6SignalIFvRKSsS3_ENS0_6signal6detail15DefaultCombinerEEE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::common::Signal<void (const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &), dart::common::signal::detail::DefaultCombiner> >("_ZN4dart6common6SignalIFvRKSsS3_ENS0_6signal6detail15DefaultCombinerEEE", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("disconnect", static_cast<void (dart::common::Signal<void (const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &), dart::common::signal::detail::DefaultCombiner>::*)(const dart::common::Connection &) const>(&dart::common::Signal<void (const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &), dart::common::signal::detail::DefaultCombiner>::disconnect), (::boost::python::arg("_connection")))

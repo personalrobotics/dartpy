@@ -9,6 +9,9 @@
 
 void _ZN4dart5utils16getValueVector2dEPKN8tinyxml210XMLElementERKSs()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("utils"));
+::boost::python::scope parent_scope(parent_object);
+
 boost::python::def("getValueVector2d", static_cast<Eigen::Vector2d (*)(const tinyxml2::XMLElement *, const std::string &)>(&dart::utils::getValueVector2d), (::boost::python::arg("parentElement"), ::boost::python::arg("name")))
 ;}
 

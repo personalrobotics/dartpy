@@ -9,6 +9,9 @@
 
 void _ZN4dart10constraint16ConstrainedGroupE()
 {
+::boost::python::object parent_object(::boost::python::scope().attr("constraint"));
+::boost::python::scope parent_scope(parent_object);
+
 ::boost::python::class_<dart::constraint::ConstrainedGroup, ::boost::noncopyable >("ConstrainedGroup", boost::python::no_init)
 .def(::boost::python::init<>())
 .def("getNumConstraints", static_cast<std::size_t (dart::constraint::ConstrainedGroup::*)() const>(&dart::constraint::ConstrainedGroup::getNumConstraints))
