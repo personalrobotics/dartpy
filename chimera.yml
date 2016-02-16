@@ -204,6 +204,12 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const Eigen::MatrixXd &':
     return_value_policy: boost::python::copy_const_reference
+  'Eigen::VectorXd &':
+    return_value_policy: boost::python::copy_const_reference
+  'std::vector<Eigen::VectorXd> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const Eigen::aligned_vector<Eigen::Vector2i> &':
+    return_value_policy: boost::python::copy_const_reference
   'const dart::math::Jacobian &':
     return_value_policy: boost::python::copy_const_reference
   'const dart::dynamics::Inertia &': 
@@ -226,10 +232,21 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const std::shared_ptr<dart::dynamics::WholeBodyIK> &':
     return_value_policy: boost::python::copy_const_reference
+  'const std::vector<Eigen::MatrixXd> &':
+    return_value_policy: boost::python::copy_const_reference
   'const std::vector<dart::dynamics::InverseKinematics::Analytical::Solution> &':
     return_value_policy: boost::python::copy_const_reference
   'const std::pair<Eigen::Vector6d, Eigen::Vector6d> &':
     return_value_policy: boost::python::copy_const_reference
+  'const dart::math::BoundingBox &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::math::SupportPolygon &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::optimizer::Solver::Properties &':
+    return_value_policy: boost::python::copy_const_reference
+  'dart::common::UriComponent::reference_type':
+    return_value_policy: boost::python::copy_const_reference
+
 
   # smart pointers
   'dart::dynamics::BodyNode *':
@@ -240,6 +257,8 @@ types:
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr>
   'dart::dynamics::Joint *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+  'dart::dynamics::EulerJoint *':
+    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::TemplateJointPtr<dart::dynamics::EulerJoint, dart::dynamics::BodyNode>>
   'dart::dynamics::EndEffector *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::EndEffectorPtr>
   'dart::dynamics::Node *':
@@ -254,10 +273,24 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const std::vector<dart::dynamics::ShapePtr> &':
     return_value_policy: boost::python::copy_const_reference
+  'const std::set<dart::dynamics::Entity *> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const std::set<dart::dynamics::Frame *> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const std::pair<Eigen::Vector3d, Eigen::Vector3d> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const std::vector<int> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const std::vector<Eigen::Vector3d> &':
+    return_value_policy: boost::python::copy_const_reference
 
   # allow unsafe access
   # TODO: Are there smart pointers for these?
-  'dart::dynamics::Frame*':
+  'dart::dynamics::PointMass *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::Support *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::Frame *':
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::Marker *':
     return_value_policy: boost::python::reference_existing_object
@@ -275,6 +308,32 @@ types:
     return_value_policy: boost::python::reference_existing_object
   'dart::planning::PathSegment *':
     return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::InverseKinematics::ErrorMethod &':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::InverseKinematics::GradientMethod &':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::PointMassNotifier *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::SingleDofJoint::Addon *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::MultiDofJoint<2>::Addon *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::InverseKinematics::Analytical *':
+    return_value_policy: boost::python::reference_existing_object
+
+  # TODO: temporarily disabled
+  'std::mutex &': null
+  'const aiScene *': null
+  'const aiMesh *': null
+
+  # suppressed to disable const overloads
+  'const dart::dynamics::EndEffector *': null
+  'const dart::dynamics::Support *': null
+  'const std::vector<dart::dynamics::ConstShapePtr> &': null
+  'const std::vector<const dart::dynamics::DegreeOfFreedom *> &': null
+  'const std::vector<const dart::dynamics::BodyNode *> &': null
+  'const dart::dynamics::SoftBodyNode *': null
+  'std::ostream *': null
 
 # Selected function and class declarations that need custom parameters.
 declarations:
