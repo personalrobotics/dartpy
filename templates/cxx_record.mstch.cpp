@@ -10,7 +10,8 @@
 
 void {{class.mangled_name}}()
 {
-::boost::python::object parent_object(::boost::python::scope().attr("{{class.parent.name}}"));
+::boost::python::object parent_object(::boost::python::scope(){{!
+    }}{{#class.scope}}.attr("{{name}}"){{/class.scope}});
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<{{{class.qualified_name}}}{{^class.is_copyable}}, {{!

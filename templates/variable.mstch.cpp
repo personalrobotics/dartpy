@@ -10,9 +10,10 @@
 
 void {{variable.mangled_name}}()
 {
-    {{{prebody}}}
-    ::boost::python::scope().attr("{{variable.name}}") = {{variable.qualified_name}};
-    {{{postbody}}}
-}
+
+::boost::python::object parent_object(::boost::python::scope(){{!
+    }}{{#function.scope}}.attr("{{name}}"){{/function.scope}}){{!
+    }}.attr("{{variable.name}}") = {{variable.qualified_name}}
+;}
 {{{postcontent}}}
 {{{footer}}}

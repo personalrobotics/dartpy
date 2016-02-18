@@ -10,7 +10,8 @@
 
 void {{enum.mangled_name}}()
 {
-::boost::python::object parent_object(::boost::python::scope().attr("{{enum.parent.name}}"));
+::boost::python::object parent_object(::boost::python::scope(){{!
+    }}{{#enum.scope}}.attr("{{name}}"){{/enum.scope}});
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::enum_<{{enum.qualified_name}}>("{{enum.name}}"){{#enum.values}}
