@@ -1,9 +1,15 @@
 #ifndef DARTPY_DETAIL_JOINTANDNODEREGISTRY_H_
 #define DARTPY_DETAIL_JOINTANDNODEREGISTRY_H_
+#include <dartpy/pointers.h>
 #include <dart/dynamics/dynamics.h>
 
 using dart::dynamics::BodyNode;
+using dart::dynamics::BodyNodePtr;
+using dart::dynamics::Joint;
+using dart::dynamics::JointPtr;
 using dart::dynamics::Skeleton;
+using dart::dynamics::TemplateBodyNodePtr;
+
 
 namespace dart {
 namespace python {
@@ -36,9 +42,7 @@ struct Skeleton_createJointAndBodyNodePair
       _parent, jointProperties, bodyProperties);
 
     return boost::python::make_tuple(
-      dart::dynamics::TemplateJointPtr<JointType, BodyNode>(ret.first),
-      dart::dynamics::TemplateBodyNodePtr<NodeType>(ret.second)
-    );
+      JointPtr(ret.first), TemplateBodyNodePtr<NodeType>(ret.second));
   }
 };
 

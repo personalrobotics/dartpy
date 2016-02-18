@@ -1,5 +1,6 @@
-#include <dartpy/BodyNode.h>
+#include <dartpy/pointers.h>
 #include <dartpy/template_registry.h>
+#include <dartpy/BodyNode.h>
 
 namespace dart {
 namespace python {

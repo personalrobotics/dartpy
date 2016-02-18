@@ -1,5 +1,5 @@
-#include <dartpy/Skeleton.h>
 #include <dartpy/template_registry.h>
+#include <dartpy/Skeleton.h>
 
 namespace dart {
 namespace python {

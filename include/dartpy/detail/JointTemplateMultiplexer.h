@@ -1,5 +1,6 @@
 #ifndef DARTPY_DETAIL_JOINTTEMPLATEMULTIPLEXER_H_
 #define DARTPY_DETAIL_JOINTTEMPLATEMULTIPLEXER_H_
+#include <dartpy/pointers.h>
 #include <dart/dynamics/dynamics.h>
 
 namespace dart {

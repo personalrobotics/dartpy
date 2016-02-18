@@ -1,5 +1,6 @@
 #ifndef DARTPY_TEMPLATE_REGISTRY_H_
 #define DARTPY_TEMPLATE_REGISTRY_H_
+#include <dartpy/pointers.h>
 #include <type_traits>
 #include <boost/python.hpp>
 #include "metaprogramming.h"
