@@ -1,5 +1,6 @@
 #ifndef DARTPY_TEMPLATE_REGISTRY_H_
 #define DARTPY_TEMPLATE_REGISTRY_H_
+#include <type_traits>
 #include <boost/python.hpp>
 #include "metaprogramming.h"
 #include "detail/JointTemplateMultiplexer.h"
@@ -9,7 +10,6 @@ namespace dart {
 namespace python {
 
 // Helpers for template metaprogramming.
-
 using AllJointTypes = typelist<
   dart::dynamics::FreeJoint,
   dart::dynamics::PrismaticJoint,
@@ -53,7 +53,18 @@ using TemplateRegistry
   = std::map<TemplateRegistryKey<NumParameters>, std::function<Function>>;
 
 
-/// Helper class for registering all types.
+// Source: http://en.cppreference.com/w/cpp/language/sizeof...
+template <class... Ts>
+constexpr auto make_array(Ts... ts)
+  -> std::array<typename std::common_type<Ts...>::type, sizeof...(ts)>
+{
+  // Double braces are required for aggregate initialization.
+  // See: http://stackoverflow.com/a/11735045/111426
+  return {{ ts... }};
+}
+
+
+/// Helper class for registering all types in a typelist.
 template <class Registry, class TypeTuple>
 struct register_all_types {};
 
