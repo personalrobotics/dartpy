@@ -12,7 +12,7 @@ void _ZN4dart8dynamics11EndEffectorE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::EndEffector, ::boost::noncopyable, dart::dynamics::EndEffector *, ::boost::python::bases<dart::common::SpecializedAddonManager<dart::dynamics::Support>, dart::dynamics::FixedFrame, dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>, dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector> > >("EndEffector", boost::python::no_init)
+::boost::python::class_<dart::dynamics::EndEffector, ::boost::noncopyable, dart::dynamics::TemplateNodePtr<dart::dynamics::EndEffector, dart::dynamics::BodyNode>, ::boost::python::bases<dart::common::SpecializedAddonManager<dart::dynamics::Support>, dart::dynamics::FixedFrame, dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>, dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector> > >("EndEffector", boost::python::no_init)
 .def("setState", static_cast<void (dart::dynamics::EndEffector::*)(const dart::dynamics::EndEffector::StateData &)>(&dart::dynamics::EndEffector::setState), (::boost::python::arg("_state")))
 .def("getEndEffectorState", static_cast<dart::dynamics::EndEffector::StateData (dart::dynamics::EndEffector::*)() const>(&dart::dynamics::EndEffector::getEndEffectorState))
 .def("setProperties", static_cast<void (dart::dynamics::EndEffector::*)(const dart::dynamics::EndEffector::PropertiesData &, bool)>(&dart::dynamics::EndEffector::setProperties), (::boost::python::arg("_properties"), ::boost::python::arg("_useNow")))

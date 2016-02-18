@@ -1,4 +1,5 @@
 #include <dartpy/pointers.h>
+#include <dartpy/Skeleton.h>
 #include <dart/dart.h>
 
 
@@ -160,6 +161,7 @@ void _ZN4dart8dynamics8SkeletonE()
 .def_readwrite("mUnionRootSkeleton", &dart::dynamics::Skeleton::mUnionRootSkeleton)
 .def_readwrite("mUnionSize", &dart::dynamics::Skeleton::mUnionSize)
 .def_readwrite("mUnionIndex", &dart::dynamics::Skeleton::mUnionIndex)
+.def("createJointAndBodyNodePair", &dart::python::Skeleton_createJointAndBodyNodePair)
 ;
 }
 

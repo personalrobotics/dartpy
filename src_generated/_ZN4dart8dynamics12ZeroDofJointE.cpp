@@ -12,7 +12,7 @@ void _ZN4dart8dynamics12ZeroDofJointE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::ZeroDofJoint, ::boost::noncopyable, dart::dynamics::ZeroDofJoint *, ::boost::python::bases<dart::dynamics::Joint > >("ZeroDofJoint", boost::python::no_init)
+::boost::python::class_<dart::dynamics::ZeroDofJoint, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::Joint > >("ZeroDofJoint", boost::python::no_init)
 .def("getZeroDofJointProperties", static_cast<dart::dynamics::ZeroDofJoint::Properties (dart::dynamics::ZeroDofJoint::*)() const>(&dart::dynamics::ZeroDofJoint::getZeroDofJointProperties))
 .def("getDof", static_cast<dart::dynamics::DegreeOfFreedom *(dart::dynamics::ZeroDofJoint::*)(std::size_t)>(&dart::dynamics::ZeroDofJoint::getDof), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr> >(), (::boost::python::arg("")))
 .def("setDofName", static_cast<const std::string &(dart::dynamics::ZeroDofJoint::*)(std::size_t, const std::string &, bool)>(&dart::dynamics::ZeroDofJoint::setDofName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg(""), ::boost::python::arg(""), ::boost::python::arg("")))

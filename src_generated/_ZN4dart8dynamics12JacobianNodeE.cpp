@@ -12,7 +12,7 @@ void _ZN4dart8dynamics12JacobianNodeE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::JacobianNode, ::boost::noncopyable, dart::dynamics::JacobianNode *, ::boost::python::bases<dart::dynamics::Frame, dart::dynamics::Node > >("JacobianNode", boost::python::no_init)
+::boost::python::class_<dart::dynamics::JacobianNode, ::boost::noncopyable, dart::dynamics::TemplateNodePtr<dart::dynamics::JacobianNode, dart::dynamics::BodyNode>, ::boost::python::bases<dart::dynamics::Frame, dart::dynamics::Node > >("JacobianNode", boost::python::no_init)
 .def("getIK", static_cast<const std::shared_ptr<dart::dynamics::InverseKinematics> &(dart::dynamics::JacobianNode::*)(bool)>(&dart::dynamics::JacobianNode::getIK), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_createIfNull")))
 .def("getOrCreateIK", static_cast<const std::shared_ptr<dart::dynamics::InverseKinematics> &(dart::dynamics::JacobianNode::*)()>(&dart::dynamics::JacobianNode::getOrCreateIK), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getIK", static_cast<std::shared_ptr<const dart::dynamics::InverseKinematics> (dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getIK))

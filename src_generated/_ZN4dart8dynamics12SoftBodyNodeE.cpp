@@ -12,7 +12,7 @@ void _ZN4dart8dynamics12SoftBodyNodeE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::SoftBodyNode, ::boost::noncopyable, dart::dynamics::SoftBodyNode *, ::boost::python::bases<dart::dynamics::BodyNode > >("SoftBodyNode", boost::python::no_init)
+::boost::python::class_<dart::dynamics::SoftBodyNode, ::boost::noncopyable, dart::dynamics::SoftBodyNodePtr, ::boost::python::bases<dart::dynamics::BodyNode > >("SoftBodyNode", boost::python::no_init)
 .def("setProperties", static_cast<void (dart::dynamics::SoftBodyNode::*)(const dart::dynamics::SoftBodyNode::Properties &)>(&dart::dynamics::SoftBodyNode::setProperties), (::boost::python::arg("_properties")))
 .def("setProperties", static_cast<void (dart::dynamics::SoftBodyNode::*)(const dart::dynamics::SoftBodyNode::UniqueProperties &)>(&dart::dynamics::SoftBodyNode::setProperties), (::boost::python::arg("_properties")))
 .def("removeSoftBodyShapes", static_cast<dart::dynamics::ShapePtr (dart::dynamics::SoftBodyNode::*)()>(&dart::dynamics::SoftBodyNode::removeSoftBodyShapes))
