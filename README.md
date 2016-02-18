@@ -150,15 +150,12 @@ that you intend to pass as template arguments. Typically, this includes:
 cartesian product of two lists of types. You can register all of the above
 combinations using the three lines of code:
 ```c++
-JointAndNodeTemplateRegistry::register_all_types<
-  typelist<MyJoint1, MyJoint2 /* ... */>,
-  AllNodeTypes>();
-JointAndNodeTemplateRegistry::register_all_types<
-  AllJointTypes,
-  typelist<MyBodyNode1, MyBodyNode2, MyBodyNode3 /* ... */>();
-JointAndNodeTemplateRegistry::register_all_types<
-  typelist<MyJoint1, MyJoint2 /* ... */>,
-  typelist<MyBodyNode1, MyBodyNode2, MyBodyNode3 /* ... */>();
+using MyJointTypes = typelist<MyJoint1, MyJoint2 /* ... */>;
+using MyBodyNodeTypes = typelist<MyBodyNode1, MyBodyNode2, MyBodyNode3 /* ... */>;
+
+JointAndNodeTemplateRegistry::register_all_types<MyJointTypes, AllNodeTypes>();
+JointAndNodeTemplateRegistry::register_all_types<AllJointTypes, MyBodyNodeTypes>();
+JointAndNodeTemplateRegistry::register_all_types<MyJointTypes, MyBodyNodeTypes>();
 ```
 
 Note that this approach means that is is not generally possible to call
