@@ -1,15 +1,15 @@
 #ifndef DARTPY_TEMPLATE_REGISTRY_H_
 #define DARTPY_TEMPLATE_REGISTRY_H_
 #include <boost/python.hpp>
+#include "metaprogramming.h"
 #include "detail/JointTemplateMultiplexer.h"
 
 namespace dart {
 namespace python {
 
-template <class... Types>
-struct type_list {};
+// Helpers for template metaprogramming.
 
-using AllJointTypes = type_list<
+using AllJointTypes = typelist<
   dart::dynamics::FreeJoint,
   dart::dynamics::PrismaticJoint,
   dart::dynamics::RevoluteJoint,
@@ -20,7 +20,7 @@ using AllJointTypes = type_list<
   dart::dynamics::EulerJoint,
   dart::dynamics::PlanarJoint,
   dart::dynamics::TranslationalJoint>;
-using AllBodyNodeTypes = type_list<
+using AllBodyNodeTypes = typelist<
   dart::dynamics::BodyNode,
   dart::dynamics::SoftBodyNode>;
 
@@ -53,7 +53,7 @@ template <class Registry, class TypeTuple>
 struct register_all_types {};
 
 template <class Registry>
-struct register_all_types<Registry, type_list<>>
+struct register_all_types<Registry, typelist<>>
 {
   static void register_type()
   {
@@ -62,12 +62,22 @@ struct register_all_types<Registry, type_list<>>
 };
 
 template <class Registry, class Type, class... Types>
-struct register_all_types<Registry, type_list<Type, Types...>>
+struct register_all_types<Registry, typelist<Type, Types...>>
 {
   static void register_type()
   {
     Registry::template register_type<Type>();
-    register_all_types<Registry, type_list<Types...>>::register_type();
+    register_all_types<Registry, typelist<Types...>>::register_type();
+  }
+};
+
+template <class Registry, class... Type, class... Types>
+struct register_all_types<Registry, typelist<typelist<Type...>, Types...>>
+{
+  static void register_type()
+  {
+    Registry::template register_type<Type...>();
+    register_all_types<Registry, typelist<Types...>>::register_type();
   }
 };
 
@@ -83,12 +93,12 @@ struct JointTemplateRegistry
   template <class JointType>
   static void register_type()
   {
-    const boost::python::object class_object = get_pytype<JointType>();
-    mBodyNode_moveTo2_registry[class_object]
+    const boost::python::object joint_type = get_pytype<JointType>();
+    mBodyNode_moveTo2_registry[joint_type]
       = &detail::BodyNode_moveTo2_factory<JointType>::execute;
-    mBodyNode_moveTo3_registry[class_object]
+    mBodyNode_moveTo3_registry[joint_type]
       = &detail::BodyNode_moveTo3_factory<JointType>::execute;
-    mBodyNode_copyTo3_registry[class_object]
+    mBodyNode_copyTo3_registry[joint_type]
       = &detail::BodyNode_copyTo3_factory<JointType>::execute;
   }
 
@@ -111,9 +121,15 @@ struct JointAndNodeTemplateRegistry
   template <class JointType, class NodeType>
   static void register_type()
   {
+    // TODO: createJointAndBodyNodePair
   }
 
-//template <class JointType , class NodeType >
+  static void register_default_types()
+  {
+    register_all_types<JointAndNodeTemplateRegistry, 
+      typelist_product<AllJointTypes, AllBodyNodeTypes>::type>
+        ::register_type();
+  }
 };
 
 

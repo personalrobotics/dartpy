@@ -76,8 +76,6 @@ dart::python::util::vector_to_python<
 dart::python::util::collection_from_python<
   std::vector<dart::dynamics::DegreeOfFreedom*>>();
 
-dart::python::JointTemplateRegistry::register_default_types();
-
   ::boost::python::scope().attr("common") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.common"))));
 
   void _ZN4dart6common12AddonManagerE();
@@ -1831,6 +1829,8 @@ dart::python::JointTemplateRegistry::register_default_types();
   void _ZN4dart6common8colorErrERKSsS2_ji();
   _ZN4dart6common8colorErrERKSsS2_ji();
 
+dart::python::JointTemplateRegistry::register_default_types();
+dart::python::JointAndNodeTemplateRegistry::register_default_types();
 }
 
 // main footer
