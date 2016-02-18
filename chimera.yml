@@ -4,93 +4,103 @@ arguments:
   - "-I/usr/lib/clang/3.6/include"
 
 template:
+  module:
+    source:
+      'templates/module.mstch.cpp'
+  cxx_record:
+    source:
+      'templates/cxx_record.mstch.cpp'
+  enum:
+    source:
+      'templates/enum.mstch.cpp'
+  function:
+    source:
+      'templates/function.mstch.cpp'
+  variable:
+    source:
+      'templates/variable.mstch.cpp'
   file:
-    header:
-      content: |
-        #include <dartpy/pointers.h>
-        #include <dart/dart.h>
+    header: |
+      #include <dartpy/pointers.h>
+      #include <dart/dart.h>
     postinclude:
-      content: '/* postinclude */'
+      '/* postinclude */'
     footer:
-      content: '/* footer */'
+      '/* footer */'
   main:
-    header:
-      content: |
-        #include <vector>
-        #include <dartpy/collections.h>
-        #include <dartpy/util.h>
-        #include <dart/dart.h>
+    header: |
+      #include <vector>
+      #include <dartpy/collections.h>
+      #include <dartpy/util.h>
+      #include <dart/dart.h>
     postinclude:
-      content: '/* main postinclude */'
-    precontent:
-      content: |
-        boost::python::import("boost_numpy_eigen");
+      '/* main postinclude */'
+    precontent: |
+      boost::python::import("boost_numpy_eigen");
 
-        // std::shared_ptr implicit conversions
-        boost::python::implicitly_convertible<
-          std::shared_ptr<dart::common::LocalResourceRetriever>,
-          std::shared_ptr<dart::common::ResourceRetriever>>(); 
+      // std::shared_ptr implicit conversions
+      boost::python::implicitly_convertible<
+        std::shared_ptr<dart::common::LocalResourceRetriever>,
+        std::shared_ptr<dart::common::ResourceRetriever>>(); 
 
-        boost::python::implicitly_convertible<
-          std::shared_ptr<dart::utils::PackageResourceRetriever>,
-          std::shared_ptr<dart::common::ResourceRetriever>>(); 
+      boost::python::implicitly_convertible<
+        std::shared_ptr<dart::utils::PackageResourceRetriever>,
+        std::shared_ptr<dart::common::ResourceRetriever>>(); 
 
-        // misc implicit conversions
-        boost::python::implicitly_convertible<
-          std::string, dart::common::Uri>(); 
+      // misc implicit conversions
+      boost::python::implicitly_convertible<
+        std::string, dart::common::Uri>(); 
 
-        // std::vector converters
-        dart::python::util::vector_to_python<size_t>();
-        dart::python::util::collection_from_python<std::vector<size_t>>();
+      // std::vector converters
+      dart::python::util::vector_to_python<size_t>();
+      dart::python::util::collection_from_python<std::vector<size_t>>();
 
-        dart::python::util::vector_to_python<Eigen::Vector3d>();
-        dart::python::util::collection_from_python<
-          std::vector<Eigen::Vector3d>>();
+      dart::python::util::vector_to_python<Eigen::Vector3d>();
+      dart::python::util::collection_from_python<
+        std::vector<Eigen::Vector3d>>();
 
-        dart::python::util::vector_to_python<Eigen::Vector3i>();
-        dart::python::util::collection_from_python<
-          std::vector<Eigen::Vector3i>>();
+      dart::python::util::vector_to_python<Eigen::Vector3i>();
+      dart::python::util::collection_from_python<
+        std::vector<Eigen::Vector3i>>();
 
-        dart::python::util::vector_to_python<
-          dart::dynamics::PointMass::Properties>();
-        dart::python::util::collection_from_python<
-          std::vector<dart::dynamics::PointMass::Properties>>();
+      dart::python::util::vector_to_python<
+        dart::dynamics::PointMass::Properties>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::dynamics::PointMass::Properties>>();
 
-        dart::python::util::vector_to_python<dart::collision::Contact>();
-        dart::python::util::collection_from_python<
-          std::vector<dart::collision::Contact>>();
+      dart::python::util::vector_to_python<dart::collision::Contact>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::collision::Contact>>();
 
-        dart::python::util::vector_to_python<dart::dynamics::SkeletonPtr>();
-        dart::python::util::collection_from_python<
-          std::vector<dart::dynamics::SkeletonPtr>>();
+      dart::python::util::vector_to_python<dart::dynamics::SkeletonPtr>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::dynamics::SkeletonPtr>>();
 
-        dart::python::util::vector_to_python<dart::dynamics::ShapePtr>();
-        dart::python::util::collection_from_python<
-          std::vector<dart::dynamics::ShapePtr>>();
+      dart::python::util::vector_to_python<dart::dynamics::ShapePtr>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::dynamics::ShapePtr>>();
 
-        dart::python::util::vector_to_python<
-          dart::dynamics::BodyNode*, dart::dynamics::BodyNodePtr>();
-        dart::python::util::collection_from_python<
-          std::vector<dart::dynamics::BodyNode*>>();
+      dart::python::util::vector_to_python<
+        dart::dynamics::BodyNode*, dart::dynamics::BodyNodePtr>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::dynamics::BodyNode*>>();
 
-        dart::python::util::vector_to_python<
-          dart::dynamics::SoftBodyNode*, dart::dynamics::SoftBodyNodePtr>();
-        dart::python::util::collection_from_python<
-          std::vector<dart::dynamics::SoftBodyNode*>>();
+      dart::python::util::vector_to_python<
+        dart::dynamics::SoftBodyNode*, dart::dynamics::SoftBodyNodePtr>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::dynamics::SoftBodyNode*>>();
 
-        dart::python::util::vector_to_python<
-          dart::dynamics::EndEffector*, dart::dynamics::EndEffectorPtr>();
-        dart::python::util::collection_from_python<
-          std::vector<dart::dynamics::EndEffector*>>();
+      dart::python::util::vector_to_python<
+        dart::dynamics::EndEffector*, dart::dynamics::EndEffectorPtr>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::dynamics::EndEffector*>>();
 
-        dart::python::util::vector_to_python<
-          dart::dynamics::DegreeOfFreedom*, dart::dynamics::DegreeOfFreedomPtr>();
-        dart::python::util::collection_from_python<
-          std::vector<dart::dynamics::DegreeOfFreedom*>>();
-
-    footer:
-      content: |
-        // main footer
+      dart::python::util::vector_to_python<
+        dart::dynamics::DegreeOfFreedom*, dart::dynamics::DegreeOfFreedomPtr>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::dynamics::DegreeOfFreedom*>>();
+    footer: |
+      // main footer
 
 # The C++ namespaces that will be extracted by Chimera
 namespaces:
@@ -127,7 +137,7 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const dart::math::Jacobian &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::Inertia &': 
+  'const dart::dynamics::Inertia &':
     return_value_policy: boost::python::copy_const_reference
   'const dart::dynamics::Entity::Properties &':
     return_value_policy: boost::python::copy_const_reference
@@ -472,9 +482,9 @@ declarations:
   # Suppressed because these are optional components.
   'Assimp::IOStream': null
   'dart::dynamics::AssimpInputResourceAdaptor': null
-  'dart::optimizer::IpoptSolver': null
+  #'dart::optimizer::IpoptSolver': null
   'dart::optimizer::NloptSolver': null
-  'dart::optimizer::DartTNLP': null
+  #'dart::optimizer::DartTNLP': null
 
   'dart::dynamics::Frame *dart::dynamics::Frame::World()':
     return_value_policy: boost::python::reference_existing_object
