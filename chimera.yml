@@ -8,15 +8,20 @@ template:
     header:
       content: |
         #include <dartpy/pointers.h>
+        #include <dartpy/template_registry.h>
         #include <dart/dart.h>
     postinclude:
       content: '/* postinclude */'
     footer:
       content: '/* footer */'
+    # TODO: Put this at the bottom of the module:
+    # dart::python::JointTemplateRegistry::register_default_types();
+    # dart::python::JointAndNodeTemplateRegistry::register_default_types();
   main:
     header:
       content: |
         #include <vector>
+        #include <dartpy/pointers.h>
         #include <dartpy/collections.h>
         #include <dartpy/util.h>
         #include <dart/dart.h>
@@ -347,52 +352,52 @@ declarations:
     held_type: std::shared_ptr<dart::common::LocalResourceRetriever>
   'dart::utils::PackageResourceRetriever':
     held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
-  'dart::dynamics::ZeroDofJoint':
-    name: ZeroDofJoint # TODO: This seems to do nothing.
-    held_type: 'dart::dynamics::ZeroDofJoint *' # TODO: Should be a smart pointer
-  'dart::dynamics::MultiDofJoint<2>':
-    name: TwoDofJoint # TODO: This seems to do nothing.
-    held_type: 'dart::dynamics::MultiDofJoint<2> *' # TODO: Should be a smart pointer
-  'dart::dynamics::MultiDofJoint<3>':
-    name: ThreeDofJoint # TODO: This seems to do nothing.
-    held_type: 'dart::dynamics::MultiDofJoint<3> *' # TODO: Should be a smart pointer
-  'dart::dynamics::MultiDofJoint<6>':
-    name: SixDofJoint # TODO: This seems to do nothing.
-    held_type: 'dart::dynamics::MultiDofJoint<6> *' # TODO: Should be a smart pointer
   'dart::dynamics::InverseKinematics':
     held_type: 'std::shared_ptr<dart::dynamics::InverseKinematics>'
-  'dart::dynamics::Skeleton':
-    held_type: 'dart::dynamics::SkeletonPtr'
-  'dart::dynamics::SimpleFrame':
-    held_type: 'std::shared_ptr<dart::dynamics::SimpleFrame>'
-  'dart::dynamics::Chain':
-    held_type: 'dart::dynamics::ChainPtr'
-  'dart::dynamics::Branch':
-    held_type: 'dart::dynamics::BranchPtr'
-  'dart::dynamics::Group':
-    held_type: 'dart::dynamics::GroupPtr'
-  'dart::dynamics::Linkage':
-    held_type: 'dart::dynamics::LinkagePtr'
-  'dart::dynamics::JacobianNode':
-    held_type: 'dart::dynamics::GroupPtr'
-  'dart::dynamics::JacobianNode':
-    held_type: 'dart::dynamics::JacobianNode *'
-  'dart::dynamics::DegreeOfFreedom':
-    held_type: 'dart::dynamics::DegreeOfFreedomPtr'
+
+    # Frames
   'dart::dynamics::Frame':
     held_type: 'dart::dynamics::Frame *'
+  'dart::dynamics::SimpleFrame':
+    held_type: 'std::shared_ptr<dart::dynamics::SimpleFrame>'
+
+  # Joints
+  # TODO: What should the HeldType be for derived Joint classes? They cannot be
+  # TemplateJointPtr<Derived, BodyNode> because the the type of the Joint
+  # stored in a TemplateJointPtr may change at runtime. They also should not be
+  # Joint* because of potential memory leaks.
   'dart::dynamics::Joint':
-    held_type: 'dart::dynamics::Joint *'
-  'dart::dynamics::Joint':
-    held_type: 'dart::dynamics::RevoluteJoint *'
+    held_type: 'dart::dynamics::JointPtr'
+  'dart::dynamics::ZeroDofJoint':
+    name: ZeroDofJoint
+  'dart::dynamics::MultiDofJoint<2>':
+    name: TwoDofJoint
+  'dart::dynamics::MultiDofJoint<3>':
+    name: ThreeDofJoint
+  'dart::dynamics::MultiDofJoint<6>':
+    name: SixDofJoint
+
+  # DegreeOfFreedoms
+  'dart::dynamics::DegreeOfFreedom':
+    held_type: 'dart::dynamics::DegreeOfFreedomPtr'
+
+  # Nodes
   'dart::dynamics::JacobianNode':
-    held_type: 'dart::dynamics::JacobianNode *'
+    held_type: 'dart::dynamics::TemplateNodePtr<dart::dynamics::JacobianNode, dart::dynamics::BodyNode>'
   'dart::dynamics::BodyNode':
-    held_type: 'dart::dynamics::BodyNode *'
+    held_type: 'dart::dynamics::BodyNodePtr'
   'dart::dynamics::SoftBodyNode':
-    held_type: 'dart::dynamics::SoftBodyNode *'
-  'dart::dynamics::MetaSkeleton':
-    held_type: 'dart::dynamics::MetaSkeletonPtr'
+    held_type: 'dart::dynamics::SoftBodyNodePtr'
+  'dart::dynamics::EndEffector':
+    held_type: 'dart::dynamics::TemplateNodePtr<dart::dynamics::EndEffector, dart::dynamics::BodyNode>'
+  'dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>':
+    name: TemplatedJacobianEndEffector
+    held_type: 'dart::dynamics::TemplateNodePtr<dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>, dart::dynamics::BodyNode>'
+  'dart::dynamics::TemplatedJacobianNode<dart::dynamics::BodyNode>':
+    name: TemplatedJacobianBodyNode
+    held_type: 'dart::dynamics::TemplateNodePtr<dart::dynamics::TemplatedJacobianNode<dart::dynamics::BodyNode>, dart::dynamics::BodyNode>'
+
+  # Shapes
   'dart::dynamics::Shape':
     held_type: 'std::shared_ptr<dart::dynamics::Shape>'
   'dart::dynamics::BoxShape':
@@ -411,10 +416,25 @@ declarations:
     held_type: 'std::shared_ptr<dart::dynamics::PlaneShape>'
   'dart::dynamics::SoftMeshShape':
     held_type: 'std::shared_ptr<dart::dynamics::SoftMeshShape>'
+
+  # MetaSkeletons
+  'dart::dynamics::Skeleton':
+    held_type: 'dart::dynamics::SkeletonPtr'
+  'dart::dynamics::MetaSkeleton':
+    held_type: 'dart::dynamics::MetaSkeletonPtr'
   'dart::dynamics::Branch':
-    held_type: 'dart::dynamics::Branch *'
-  'dart::dynamics::EndEffector':
-    held_type: 'dart::dynamics::EndEffector *'
+    held_type: 'dart::dynamics::BranchPtr'
+  'dart::dynamics::Chain':
+    held_type: 'dart::dynamics::ChainPtr'
+  'dart::dynamics::Branch':
+    held_type: 'dart::dynamics::BranchPtr'
+  'dart::dynamics::Group':
+    held_type: 'dart::dynamics::GroupPtr'
+  'dart::dynamics::Linkage':
+    held_type: 'dart::dynamics::LinkagePtr'
+
+
+   # TODO: Unknown.
   'dart::dynamics::WholeBodyIK':
     held_type: 'dart::dynamics::WholeBodyIK *'
   'dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>':
@@ -435,28 +455,6 @@ declarations:
     name: ExtensibleNodeProperties
   'dart::common::Extensible<dart::dynamics::Node::State>':
     name: ExtensibleNodeState
-
-  # ExtensibleMixer<T...> names
-  # TODO: Resolution is broken in Chimera. Perhaps because of variadic templates?
-  # TODO: See https://github.com/personalrobotics/chimera/issues/71
-  #'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::SupportPropertiesData>':
-  #  name: ExtensibleMixerSupportPropertiesData
-  #'dart::common::ExtensibleMixer<dart::common::Addon::State, dart::dynamics::detail::SupportStateData>':
-  #  name: ExtensibleMixerUniversalSupportStateData
-  #'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::EulerJointUniqueProperties>':
-  #  name: ExtensibleMixerEulerJointUniqueProperties
-  #'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>':
-  #  name: ExtensibleMixerScrewJointUniqueProperties
-  #'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::PlanarJointUniqueProperties>':
-  #  name: ExtensibleMixerPlanarJointUniqueProperties
-  #'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::RevoluteJointUniqueProperties>':
-  #  name: ExtensibleMixerRevoluteJointUniqueProperties
-  #'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::PrismaticJointUniqueProperties>':
-  #  name: ExtensibleMixerPrismaticJointUniqueProperties
-  #'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::SingleDofJointUniqueProperties>':
-  #  name: ExtensibleMixerSingleDofJointUniqueProperties
-  #'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::UniversalJointUniqueProperties>':
-  #  name: ExtensibleMixerUniversalJointUniqueProperties
 
   # SpecializedAddonManager<T> names
   'dart::common::SpecializedAddonManager<dart::dynamics::detail::EulerJointAddon>':
@@ -501,116 +499,14 @@ declarations:
     name: NameManagerSkeleton
 
   # Suppressed because of bugs in DART:
-  'template <> void dart::common::NameManager<dart::dynamics::Marker *>::removeEntries(const std::string&, dart::dynamics::Marker *const &)': null
-  'template <> void dart::common::NameManager<dart::dynamics::BodyNode *>::removeEntries(const std::string&, dart::dynamics::BodyNode *const &)': null
-  'template <> void dart::common::NameManager<dart::dynamics::SoftBodyNode *>::removeEntries(const std::string&, dart::dynamics::SoftBodyNode *const &)': null
-  'template <> void dart::common::NameManager<dart::dynamics::EndEffector *>::removeEntries(const std::string&, dart::dynamics::EndEffector *const &)': null
-  'template <> void dart::common::NameManager<dart::dynamics::DegreeOfFreedom*>::removeEntries(const std::string&, dart::dynamics::DegreeOfFreedom *const &)': null
-  'template <> void dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame>>::removeEntries(const std::string&, std::shared_ptr<dart::dynamics::SimpleFrame> const &)': null
-  'template <> void dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::removeEntries(const std::string&, std::shared_ptr<dart::dynamics::Skeleton> const &)': null
+  #'template <> void dart::common::NameManager<dart::dynamics::Marker *>::removeEntries(const std::string&, dart::dynamics::Marker *const &)': null
+  #'template <> void dart::common::NameManager<dart::dynamics::BodyNode *>::removeEntries(const std::string&, dart::dynamics::BodyNode *const &)': null
+  #'template <> void dart::common::NameManager<dart::dynamics::SoftBodyNode *>::removeEntries(const std::string&, dart::dynamics::SoftBodyNode *const &)': null
+  #'template <> void dart::common::NameManager<dart::dynamics::EndEffector *>::removeEntries(const std::string&, dart::dynamics::EndEffector *const &)': null
+  #'template <> void dart::common::NameManager<dart::dynamics::DegreeOfFreedom*>::removeEntries(const std::string&, dart::dynamics::DegreeOfFreedom *const &)': null
+  #'template <> void dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame>>::removeEntries(const std::string&, std::shared_ptr<dart::dynamics::SimpleFrame> const &)': null
+  #'template <> void dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::removeEntries(const std::string&, std::shared_ptr<dart::dynamics::Skeleton> const &)': null
 
-  # TODO: See https://github.com/personalrobotics/chimera/issues/71
-  #'dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >':
-  #  name: SimpleFrameNameManager
-  #'dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >':
-  #  name: SkeletonNameManager
-
-  # TODO: See https://github.com/personalrobotics/chimera/issues/71
-  #'dart::common::Signal<void (dart::dynamics::Entity const*), dart::common::signal::detail::DefaultCombiner>':
-  #  name: EntitySignal
-  #'dart::common::SlotRegister<dart::common::Signal<void (dart::dynamics::Entity const*), dart::common::signal::detail::DefaultCombiner> >':
-  #  name: EntitySlotRegister
-  #'dart::common::Signal<void (dart::dynamics::Entity const*, dart::dynamics::Frame const*, dart::dynamics::Frame const*), dart::common::signal::detail::DefaultCombiner>':
-  #  name: EntityFrameChangedSignal
-  #'dart::common::SlotRegister<dart::common::Signal<void (dart::dynamics::Entity const*, dart::dynamics::Frame const*, dart::dynamics::Frame const*), dart::common::signal::detail::DefaultCombiner> >':
-  #  name: EntityFrameChangedSlotRegister
-  #'dart::common::Signal<void (dart::dynamics::Entity const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&), dart::common::signal::detail::DefaultCombiner>':
-  #  name: EntityNameChangedSignal
-  #'dart::common::SlotRegister<dart::common::Signal<void (dart::dynamics::Entity const*, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&), dart::common::signal::detail::DefaultCombiner> >':
-  #  name: EntityNameChangedSlotRegister
-  #'dart::common::Signal<void (dart::dynamics::Entity const*, std::shared_ptr<dart::dynamics::Shape const>), dart::common::signal::detail::DefaultCombiner>':
-  #  name: EntityVizShapeSignal
-  #'dart::common::SlotRegister<dart::common::Signal<void (dart::dynamics::Entity const*, std::shared_ptr<dart::dynamics::Shape const>), dart::common::signal::detail::DefaultCombiner> >':
-  #  name: EntityVizShapeSlotRegister
-  #'dart::common::Signal<void (dart::dynamics::BodyNode const*), dart::common::signal::detail::DefaultCombiner>':
-  #  name: BodyNodeStructuralChangedSignal
-  #'dart::common::SlotRegister<dart::common::Signal<void (dart::dynamics::BodyNode const*), dart::common::signal::detail::DefaultCombiner> >':
-  #  name: BodyNodeStructuralChangedSlotRegister 
-  #'dart::common::Signal<void (dart::dynamics::BodyNode const*, std::shared_ptr<dart::dynamics::Shape const>), dart::common::signal::detail::DefaultCombiner>':
-  #  name: BodyNodeColShapeSignal
-  #'dart::common::SlotRegister<dart::common::Signal<void (dart::dynamics::BodyNode const*, std::shared_ptr<dart::dynamics::Shape const>), dart::common::signal::detail::DefaultCombiner> >':
-  #  name: BodyNodeColShapeSlotRegister
-  #'dart::common::Signal<void (std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&), dart::common::signal::detail::DefaultCombiner>':
-  #  name: WorldNameChangeSignal
-  #'dart::common::SlotRegister<dart::common::Signal<void (std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&), dart::common::signal::detail::DefaultCombiner> >':
-  #  name: WorldNameChangeSlotRegister
-  #'dart::common::Signal<void (std::shared_ptr<dart::dynamics::MetaSkeleton const>, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&), dart::common::signal::detail::DefaultCombiner>':
-  #  name: MetaSkeletonNameChangeSignal
-  #'dart::common::SlotRegister<dart::common::Signal<void (std::shared_ptr<dart::dynamics::MetaSkeleton const>, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::basic_string<char, std::char_traits<char>, std::allocator<char> > const&), dart::common::signal::detail::DefaultCombiner> >':
-  #  name: MetaSkeletonNameChangeSlotRegister
-  #
-  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::EulerJointAddon, dart::dynamics::detail::EulerJointUniqueProperties, dart::dynamics::EulerJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::EulerJointAddon>(dart::dynamics::detail::EulerJointAddon*)), false>':
-  #  name: EulerJointPropertiesInSkeleton
-  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::ScrewJointAddon, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::ScrewJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::ScrewJointAddon>(dart::dynamics::detail::ScrewJointAddon*)), false>':
-  #  name: ScrewJointPropertiesInSkeleton
-  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::PlanarJointAddon, dart::dynamics::detail::PlanarJointUniqueProperties, dart::dynamics::PlanarJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::PlanarJointAddon>(dart::dynamics::detail::PlanarJointAddon*)), false>':
-  #  name: PlanarJointPropertiesInSkeleton
-  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::RevoluteJointAddon, dart::dynamics::detail::RevoluteJointUniqueProperties, dart::dynamics::RevoluteJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::RevoluteJointAddon>(dart::dynamics::detail::RevoluteJointAddon*)), false>':
-  #  name: RevoluteJointPropertiesInSkeleton
-  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::PrismaticJointAddon, dart::dynamics::detail::PrismaticJointUniqueProperties, dart::dynamics::PrismaticJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::PrismaticJointAddon>(dart::dynamics::detail::PrismaticJointAddon*)), false>':
-  #  name: PrismaticJointUniquePropertiesInSkeleton
-  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::SingleDofJointAddon, dart::dynamics::detail::SingleDofJointUniqueProperties, dart::dynamics::SingleDofJoint, &(void dart::common::detail::NoOp<dart::dynamics::detail::SingleDofJointAddon*>(dart::dynamics::detail::SingleDofJointAddon*)), false>':
-  #  name: SingleDofJointPropertiesInSkeleton
-  #'dart::dynamics::AddonWithProtectedPropertiesInSkeleton<dart::dynamics::detail::UniversalJointAddon, dart::dynamics::detail::UniversalJointUniqueProperties, dart::dynamics::UniversalJoint, &(void dart::dynamics::detail::JointPropertyUpdate<dart::dynamics::detail::UniversalJointAddon>(dart::dynamics::detail::UniversalJointAddon*)), false>':
-  #  name: UniversalJointPropertiesInSkeleton
-  #'dart::dynamics::AddonWithProtectedStateAndPropertiesInSkeleton<dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::detail::SupportPropertiesData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate, &dart::dynamics::detail::SupportUpdate, true>':
-  #  name: EndEffectorPropertiesInSkeleton
-  #
-  #'dart::common::SpecializedAddonManager<dart::dynamics::detail::EulerJointAddon>':
-  #  name: SpecializedEulerJointAddonManager
-  #'dart::common::SpecializedAddonManager<dart::dynamics::detail::ScrewJointAddon>':
-  #  name: SpecializedScrewJointAddonManager
-  #'dart::common::SpecializedAddonManager<dart::dynamics::detail::PlanarJointAddon>':
-  #  name: SpecializedPlanarJointAddonManager
-  #'dart::common::SpecializedAddonManager<dart::dynamics::detail::MultiDofJointAddon<2ul> >':
-  #  name: SpecializedTwoDofJointAddonManager
-  #'dart::common::SpecializedAddonManager<dart::dynamics::detail::MultiDofJointAddon<3ul> >':
-  #  name: SpecializedThreeDofJointAddonManager
-  #'dart::common::SpecializedAddonManager<dart::dynamics::detail::MultiDofJointAddon<6ul> >':
-  #  name: SpecializedSixDofJointAddonManager
-  #'dart::common::SpecializedAddonManager<dart::dynamics::detail::RevoluteJointAddon>':
-  #  name: SpecializedRevoluteJointAddonManager
-  #'dart::common::SpecializedAddonManager<dart::dynamics::detail::PrismaticJointAddon>':
-  #  name: SpecializedPrismaticJointAddonManager
-  #'dart::common::SpecializedAddonManager<dart::dynamics::detail::UniversalJointAddon>':
-  #  name: SpecializedUniversalJointAddonManager
-  #'dart::common::SpecializedAddonManager<dart::dynamics::Support>':
-  #  name: SpecializedSupportAddonManager
-  #
-  #'dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<2ul>, dart::common::SpecializedAddonManager<dart::dynamics::detail::UniversalJointAddon> >':
-  #  name: UniversalJointAddonJoiner
-  #'dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<3ul>, dart::common::SpecializedAddonManager<dart::dynamics::detail::EulerJointAddon> >':
-  #  name: EulerJointAddonJoiner
-  #'dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<3ul>, dart::common::SpecializedAddonManager<dart::dynamics::detail::PlanarJointAddon> >':
-  #  name: PlanarJointAddonJoiner
-  #'dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::SpecializedAddonManager<dart::dynamics::detail::ScrewJointAddon> >':
-  #  name: ScrewJointAddonJoiner
-  #'dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::SpecializedAddonManager<dart::dynamics::detail::RevoluteJointAddon> >':
-  #  name: RevoluteJointAddonJoiner
-  #'dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::SpecializedAddonManager<dart::dynamics::detail::PrismaticJointAddon> >':
-  #  name: PrismaticJointAddonJoiner
-  #
-  #  'dart::common::ExtensibleMapHolder<std::map<std::type_index, std::unique_ptr<dart::common::ExtensibleVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::ExtensibleVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > >, std::less<std::type_index>, std::allocator<std::pair<std::type_index const, std::unique_ptr<dart::common::ExtensibleVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::ExtensibleVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > > > > > >':
-  #    name: NodeExtensibleMapHolder
-  #  'dart::common::ExtensibleMapHolder<std::map<std::type_index, std::unique_ptr<dart::common::Addon::Properties, std::default_delete<dart::common::Addon::Properties> >, std::less<std::type_index>, std::allocator<std::pair<std::type_index const, std::unique_ptr<dart::common::Addon::Properties, std::default_delete<dart::common::Addon::Properties> > > > > >':
-  #    name: AddonPropertiesExtensibleMapHolder
-  #  'dart::common::ExtensibleMapHolder<std::map<std::type_index, std::unique_ptr<dart::common::Addon::State, std::default_delete<dart::common::Addon::State> >, std::less<std::type_index>, std::allocator<std::pair<std::type_index const, std::unique_ptr<dart::common::Addon::State, std::default_delete<dart::common::Addon::State> > > > > >':
-  #    name: AddonStateExtensibleMapHolder
-
-  'dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>':
-    name: EndEffectorJacobianNode
-  'dart::dynamics::TemplatedJacobianNode<dart::dynamics::BodyNode>':
-    name: EndEffectorBodyNode
   'dart::dynamics::SpecializedNodeManagerForBodyNode<dart::dynamics::EndEffector>':
     name: SpecializedEndEffectorNodeManagerForBodyNode
   'dart::dynamics::SpecializedNodeManagerForSkeleton<dart::dynamics::EndEffector>':
