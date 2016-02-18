@@ -100,6 +100,7 @@ namespaces:
 constants:
   # TODO Bugs:
   '= Eigen::VectorXd()': 'Eigen::VectorXd()'
+  #'nullptr': 'nullptr' # This breaks Boost.Python.
 
   # String literals:
   '""': '""'
@@ -119,31 +120,31 @@ constants:
   '"world"': '"world"'
 
   # Eigen:
-  'Eigen::Matrix3d::Identity()': 'Eigen::Matrix3d::Identity()'
-  'Eigen::Vector3d::Zero()': 'Eigen::Vector3d::Zero()'
-  'Eigen::Vector4d::Ones()': 'Eigen::Vector4d::Ones()'
-  'Eigen::Isometry3d::Identity()': 'Eigen::Isometry3d::Identity()'
+  'Eigen::Matrix3d::Identity()': 'Eigen::Matrix3d(Eigen::Matrix3d::Identity())'
+  'Eigen::Vector3d::Zero()': 'Eigen::Vector3d(Eigen::Vector3d::Zero())'
+  'Eigen::Vector4d::Ones()': 'Eigen::Vector4d(Eigen::Vector4d::Ones())'
+  'Eigen::Isometry3d::Identity()': 'Eigen::Isometry3d(Eigen::Isometry3d::Identity())'
   'Eigen::Vector4d(0.5,0.5,1.0,1.0)': 'Eigen::Vector4d(0.5,0.5,1.0,1.0)'
   'Eigen::Vector3d(0.0, 0.0, -9.81)': 'Eigen::Vector3d(0.0, 0.0, -9.81)'
-  'Eigen::Vector3d::Constant(-DART_DBL_INF)': 'Eigen::Vector3d::Constant(-DART_DBL_INF)'
-  'Eigen::Vector3d::Constant( DART_DBL_INF)': 'Eigen::Vector3d::Constant( DART_DBL_INF)'
-  'Eigen::Vector3d::UnitX()': 'Eigen::Vector3d::UnitX()'
-  'Eigen::Vector3d::UnitY()': 'Eigen::Vector3d::UnitY()'
-  'Eigen::Vector3d::UnitZ()': 'Eigen::Vector3d::UnitZ()'
-  'Eigen::Vector3d::Constant(0.05)': 'Eigen::Vector3d::Constant(0.05)'
+  'Eigen::Vector3d::Constant(-DART_DBL_INF)': 'Eigen::Vector3d(Eigen::Vector3d::Constant(-DART_DBL_INF))'
+  'Eigen::Vector3d::Constant( DART_DBL_INF)': 'Eigen::Vector3d(Eigen::Vector3d::Constant( DART_DBL_INF))'
+  'Eigen::Vector3d::UnitX()': 'Eigen::Vector3d(Eigen::Vector3d::UnitX())'
+  'Eigen::Vector3d::UnitY()': 'Eigen::Vector3d(Eigen::Vector3d::UnitY())'
+  'Eigen::Vector3d::UnitZ()': 'Eigen::Vector3d(Eigen::Vector3d::UnitZ())'
+  'Eigen::Vector3d::Constant(0.05)': 'Eigen::Vector3d(Eigen::Vector3d::Constant(0.05))'
   'Eigen::VectorXd()': 'Eigen::VectorXd()'
-  'Eigen::Vector3d::Constant(-DefaultIKTolerance)': 'Eigen::Vector3d::Constant(-dart::dynamics::DefaultIKTolerance)'
-  'Eigen::Vector3d::Constant( DefaultIKTolerance)': 'Eigen::Vector3d::Constant(dart::dynamics::DefaultIKTolerance)'
-  'Eigen::Vector6d::Constant(-DefaultIKTolerance)': 'Eigen::Vector6d::Constant(-dart::dynamics::DefaultIKTolerance)'
-  'Eigen::Vector6d::Constant( DefaultIKTolerance)': 'Eigen::Vector6d::Constant(dart::dynamics::DefaultIKTolerance)'
-  'Eigen::Vector3d::Constant(DefaultIKLinearWeight)': 'Eigen::Vector3d::Constant(dart::dynamics::DefaultIKLinearWeight)'
-  'Eigen::Vector3d::Constant(DefaultIKAngularWeight)': 'Eigen::Vector3d::Constant(dart::dynamics::DefaultIKAngularWeight)'
+  'Eigen::Vector3d::Constant(-DefaultIKTolerance)': 'Eigen::Vector3d(Eigen::Vector3d::Constant(-dart::dynamics::DefaultIKTolerance))'
+  'Eigen::Vector3d::Constant( DefaultIKTolerance)': 'Eigen::Vector3d(Eigen::Vector3d::Constant(dart::dynamics::DefaultIKTolerance))'
+  'Eigen::Vector6d::Constant(-DefaultIKTolerance)': 'Eigen::Vector6d(Eigen::Vector6d::Constant(-dart::dynamics::DefaultIKTolerance))'
+  'Eigen::Vector6d::Constant( DefaultIKTolerance)': 'Eigen::Vector6d(Eigen::Vector6d::Constant(dart::dynamics::DefaultIKTolerance))'
+  'Eigen::Vector3d::Constant(DefaultIKLinearWeight)': 'Eigen::Vector3d(Eigen::Vector3d::Constant(dart::dynamics::DefaultIKLinearWeight))'
+  'Eigen::Vector3d::Constant(DefaultIKAngularWeight)': 'Eigen::Vector3d(Eigen::Vector3d::Constant(dart::dynamics::DefaultIKAngularWeight))'
 
   # Other:
-  'nullptr': 'nullptr'
-  '&cout': ':td::cout'
+  'cout': 'std::cout'
+  '&cout': 'std::cout'
   'Frame::World()': 'dart::dynamics::Frame::World()'
-  'std::vector<BodyNode*>()': 'std::vector<art::dynamics::BodyNode*>()'
+  'std::vector<BodyNode*>()': 'std::vector<dart::dynamics::BodyNode*>()'
   'std::vector<ShapePtr>()': 'std::vector<dart::dynamics::ShapePtr>()'
   'std::vector<std::string>()': 'std::vector<std::string>()'
   'Color::White(1.0)': 'dart::Color::White(1.0)'
@@ -172,8 +173,8 @@ constants:
   'PlanarJointUniqueProperties()': 'dart::dynamics::PlanarJoint::UniqueProperties()'
   'SoftBodyNode::UniqueProperties()': 'dart::dynamics::SoftBodyNode::UniqueProperties()'
   'BodyNode::Properties()': 'dart::dynamics::BodyNode::Properties()'
-  'RevoluteJointUniqueProperties()': 'dart::dynamics::RevoluteJointUniqueProperties()'
-  'PrismaticJointUniqueProperties()': 'dart::dynamics::PrismaticJointUniqueProperties()'
+  'RevoluteJointUniqueProperties()': 'dart::dynamics::RevoluteJoint::UniqueProperties()'
+  'PrismaticJointUniqueProperties()': 'dart::dynamics::PrismaticJoint::UniqueProperties()'
 
   # Ambiguous TODOs:
   # Warning: Unable to evaluate non-trivial call 'Properties()' in default value for parameter '_properties' of method 'dart::dynamics::ArrowShape::ArrowShape'.
@@ -205,9 +206,9 @@ types:
   'const Eigen::MatrixXd &':
     return_value_policy: boost::python::copy_const_reference
   'Eigen::VectorXd &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: boost::python::copy_non_const_reference
   'std::vector<Eigen::VectorXd> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: boost::python::copy_non_const_reference
   'const Eigen::aligned_vector<Eigen::Vector2i> &':
     return_value_policy: boost::python::copy_const_reference
   'const dart::math::Jacobian &':
@@ -244,8 +245,6 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const dart::optimizer::Solver::Properties &':
     return_value_policy: boost::python::copy_const_reference
-  'dart::common::UriComponent::reference_type':
-    return_value_policy: boost::python::copy_const_reference
 
 
   # smart pointers
@@ -257,8 +256,7 @@ types:
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr>
   'dart::dynamics::Joint *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  'dart::dynamics::EulerJoint *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::TemplateJointPtr<dart::dynamics::EulerJoint, dart::dynamics::BodyNode>>
+  'dart::dynamics::EulerJoint *': null # TODO
   'dart::dynamics::EndEffector *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::EndEffectorPtr>
   'dart::dynamics::Node *':
@@ -320,6 +318,8 @@ types:
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::InverseKinematics::Analytical *':
     return_value_policy: boost::python::reference_existing_object
+  'dart::common::UriComponent::reference_type':
+    return_value_policy: boost::python::reference_existing_object
 
   # TODO: temporarily disabled
   'std::mutex &': null
@@ -329,6 +329,8 @@ types:
   # suppressed to disable const overloads
   'const dart::dynamics::EndEffector *': null
   'const dart::dynamics::Support *': null
+  'dart::dynamics::ConstSkeletonPtr': null
+  'std::vector<const dart::dynamics::BodyNode *>': null
   'const std::vector<dart::dynamics::ConstShapePtr> &': null
   'const std::vector<const dart::dynamics::DegreeOfFreedom *> &': null
   'const std::vector<const dart::dynamics::BodyNode *> &': null
