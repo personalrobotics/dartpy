@@ -74,6 +74,47 @@ struct BodyNode_copyTo3_factory
   }
 };
 
+//==============================================================================
+template <class JointType>
+struct BodyNode_split_factory
+{
+  static dart::dynamics::SkeletonPtr execute(
+    dart::dynamics::BodyNode* _bodyNode, 
+    const std::string& _skeletonName,
+    boost::python::object _jointPropertiesPython)
+  {
+    typename JointType::Properties jointProperties;
+
+    if (!_jointPropertiesPython.is_none())
+    {
+      jointProperties = boost::python::extract<typename JointType::Properties>(
+        _jointPropertiesPython);
+    }
+
+    return _bodyNode->split<JointType>(_skeletonName, jointProperties);
+  }
+};
+
+//==============================================================================
+template <class JointType>
+struct BodyNode_changeParentJointType_factory
+{
+  static dart::dynamics::JointPtr execute(
+    dart::dynamics::BodyNode* _bodyNode, 
+    boost::python::object _jointPropertiesPython)
+  {
+    typename JointType::Properties jointProperties;
+
+    if (!_jointPropertiesPython.is_none())
+    {
+      jointProperties = boost::python::extract<typename JointType::Properties>(
+        _jointPropertiesPython);
+    }
+
+    return _bodyNode->changeParentJointType<JointType>(jointProperties);
+  }
+};
+
 } // namespace detail
 } // namespace python
 } // namespace dart

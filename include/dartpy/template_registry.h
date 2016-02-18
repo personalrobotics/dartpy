@@ -120,6 +120,11 @@ struct JointTemplateRegistry
       = &detail::BodyNode_moveTo3_factory<JointType>::execute;
     mBodyNode_copyTo3_registry[key]
       = &detail::BodyNode_copyTo3_factory<JointType>::execute;
+    mBodyNode_split_registry[key]
+      = &detail::BodyNode_split_factory<JointType>::execute;
+    mBodyNode_changeParentJointType_registry[key]
+      = &detail::BodyNode_changeParentJointType_factory<JointType>::execute;
+    ;
   }
 
   static void register_default_types()
@@ -133,6 +138,10 @@ struct JointTemplateRegistry
     mBodyNode_moveTo3_registry;
   static RegistryType<detail::BodyNode_copyTo3_factory>
     mBodyNode_copyTo3_registry;
+  static RegistryType<detail::BodyNode_split_factory>
+    mBodyNode_split_registry;
+  static RegistryType<detail::BodyNode_changeParentJointType_factory>
+    mBodyNode_changeParentJointType_registry;
 };
 
 
