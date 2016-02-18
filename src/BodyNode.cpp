@@ -11,7 +11,8 @@ dart::dynamics::Joint* BodyNode_moveTo2(
   dart::dynamics::BodyNode* _newParent,
   boost::python::object _jointProperties)
 {
-  return JointTemplateRegistry::mBodyNode_moveTo2_registry[_jointType](
+  TemplateRegistryKey<1> key {{ _jointType }};
+  return JointTemplateRegistry::mBodyNode_moveTo2_registry[key](
     _bodyNode, _newParent, _jointProperties);
 }
 
@@ -23,7 +24,8 @@ dart::dynamics::Joint* BodyNode_moveTo3(
   dart::dynamics::BodyNode* _newParent,
   boost::python::object _jointProperties)
 {
-  return JointTemplateRegistry::mBodyNode_moveTo3_registry[_jointType](
+  TemplateRegistryKey<1> key {{ _jointType }};
+  return JointTemplateRegistry::mBodyNode_moveTo3_registry[key](
     _bodyNode, _newSkeleton, _newParent, _jointProperties);
 }
 
@@ -36,7 +38,8 @@ boost::python::object BodyNode_copyTo3(
   boost::python::object _jointProperties,
   bool _recursive)
 {
-  return JointTemplateRegistry::mBodyNode_copyTo3_registry[_jointType](
+  TemplateRegistryKey<1> key {{ _jointType }};
+  return JointTemplateRegistry::mBodyNode_copyTo3_registry[key](
     _bodyNode, _newParent, _jointProperties, _recursive);
 }
 

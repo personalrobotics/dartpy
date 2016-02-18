@@ -12,6 +12,7 @@ struct Skeleton_createJointAndBodyNodePair
 {
   static boost::python::object execute(
     dart::dynamics::Skeleton* _skeleton,
+    dart::dynamics::BodyNode* _parent,
     boost::python::object _jointPropertiesPython,
     boost::python::object _bodyPropertiesPython)
   {
@@ -30,7 +31,7 @@ struct Skeleton_createJointAndBodyNodePair
     }
 
     auto ret = _skeleton->createJointAndBodyNodePair<JointType, NodeType>(
-      jointProperties, bodyProperties);
+      _parent, jointProperties, bodyProperties);
 
     return boost::python::make_tuple(ret.first, ret.second);
   }

@@ -44,15 +44,20 @@ boost::python::object get_pytype()
 
 
 /// Registry that maps Python type objects to a factory function.
-template <class Function>
-using TemplateRegistry = std::map<
-  boost::python::object, std::function<Function>>;
+template <size_t NumParameters>
+using TemplateRegistryKey
+  = std::array<boost::python::object, NumParameters>;
+
+template <class Function, size_t NumParameters>
+using TemplateRegistry
+  = std::map<TemplateRegistryKey<NumParameters>, std::function<Function>>;
 
 
 /// Helper class for registering all types.
 template <class Registry, class TypeTuple>
 struct register_all_types {};
 
+// Base case.
 template <class Registry>
 struct register_all_types<Registry, typelist<>>
 {
@@ -62,6 +67,7 @@ struct register_all_types<Registry, typelist<>>
   }
 };
 
+// Specialization for a manually constructed typelist.
 template <class Registry, class Type, class... Types>
 struct register_all_types<Registry, typelist<Type, Types...>>
 {
@@ -72,6 +78,7 @@ struct register_all_types<Registry, typelist<Type, Types...>>
   }
 };
 
+// Specialization for the output of typelist_product.
 template <class Registry, class... Type, class... Types>
 struct register_all_types<Registry, typelist<typelist<Type...>, Types...>>
 {
@@ -89,17 +96,19 @@ struct JointTemplateRegistry
 
   template <template <class> class Factory>
   using RegistryType = TemplateRegistry<
-    decltype(Factory<NominalType>::execute)>;
+    decltype(Factory<NominalType>::execute), 1>;
 
   template <class JointType>
   static void register_type()
   {
     const boost::python::object joint_type = get_pytype<JointType>();
-    mBodyNode_moveTo2_registry[joint_type]
+    TemplateRegistryKey<1> key {{ joint_type }};
+
+    mBodyNode_moveTo2_registry[key]
       = &detail::BodyNode_moveTo2_factory<JointType>::execute;
-    mBodyNode_moveTo3_registry[joint_type]
+    mBodyNode_moveTo3_registry[key]
       = &detail::BodyNode_moveTo3_factory<JointType>::execute;
-    mBodyNode_copyTo3_registry[joint_type]
+    mBodyNode_copyTo3_registry[key]
       = &detail::BodyNode_copyTo3_factory<JointType>::execute;
   }
 
@@ -124,16 +133,17 @@ struct JointAndNodeTemplateRegistry
 
   template <template <class, class> class Factory>
   using RegistryType = TemplateRegistry<
-    decltype(Factory<NominalJointType, NominalNodeType>::execute)>;
+    decltype(Factory<NominalJointType, NominalNodeType>::execute), 2>;
 
   template <class JointType, class NodeType>
   static void register_type()
   {
     const boost::python::object joint_type = get_pytype<JointType>();
     const boost::python::object node_type = get_pytype<NodeType>();
+    TemplateRegistryKey<2> key {{ joint_type, node_type }};
 
     // TODO: This should be indexed by [joint_type, node_type].
-    mSkeleton_createJointAndBodyNodePair_registry[joint_type]
+    mSkeleton_createJointAndBodyNodePair_registry[key]
       = &detail::Skeleton_createJointAndBodyNodePair<
           JointType, NodeType>::execute;
   }

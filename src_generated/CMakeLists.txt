@@ -51,6 +51,7 @@ include_directories(
 include("${chimera_GENERATED_DIR}/manifest.cmake")
 add_library("${PROJECT_NAME}" SHARED
   ../src/BodyNode.cpp
+  ../src/Skeleton.cpp
   ../src/template_registry.cpp
   ${chimera_GENERATED_SOURCES}
 )
