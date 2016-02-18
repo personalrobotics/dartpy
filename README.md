@@ -107,17 +107,14 @@ becomes the Python code
 joint = bodynode.moveTo(dartpy.dynamics.FreeJoint, newParent)
 ```
 
-Due to limitations of C++, support for template arguments is *limited to C++
-classes provided with DART*. For example, the following code would result in a
-runtime error:
-```python
-joint = bodynode.moveTo(MyCustomJoint, newParent)
-```
+Due to limitations of C++, this functionality requires the template arguments
+to be registered with `dartpy`. Follow [the instructions below](#Template Member Functions)
+to register your custom types for use as template arguments.
+
 
 ## Usage: Bindings for Extension Libraries
 
-### Custom `BodyNode`s and `Joint`s
-#### Template Member Functions
+### Template Member Functions
 DART uses template member functions to construct `Addon`, `BodyNode`, and
 `Joint` instances. `dartpy` works around this limitation by wrapping these
 functions for a *predefined set* of template arguments. You need to *register*
