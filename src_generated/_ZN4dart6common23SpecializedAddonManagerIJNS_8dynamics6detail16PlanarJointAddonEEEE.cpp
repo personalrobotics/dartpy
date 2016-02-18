@@ -12,7 +12,7 @@ void _ZN4dart6common23SpecializedAddonManagerIJNS_8dynamics6detail16PlanarJointA
 ::boost::python::object parent_object(::boost::python::scope().attr("common"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::common::SpecializedAddonManager<dart::dynamics::detail::PlanarJointAddon>, ::boost::noncopyable, ::boost::python::bases<dart::common::AddonManager > >("_ZN4dart6common23SpecializedAddonManagerIJNS_8dynamics6detail16PlanarJointAddonEEEE", boost::python::no_init)
+::boost::python::class_<dart::common::SpecializedAddonManager<dart::dynamics::detail::PlanarJointAddon>, ::boost::noncopyable, ::boost::python::bases<dart::common::AddonManager > >("SpecializedAddonManagerPlanarJointAddon", boost::python::no_init)
 .def(::boost::python::init<>())
 ;
 }

@@ -12,7 +12,7 @@ void _ZN4dart8dynamics21TemplatedJacobianNodeINS0_11EndEffectorEEE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::JacobianNode > >("_ZN4dart8dynamics21TemplatedJacobianNodeINS0_11EndEffectorEEE", boost::python::no_init)
+::boost::python::class_<dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::JacobianNode > >("EndEffectorJacobianNode", boost::python::no_init)
 .def("getJacobian", static_cast<dart::math::Jacobian (dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>::*)(const dart::dynamics::Frame *) const>(&dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>::getJacobian), (::boost::python::arg("_inCoordinatesOf")))
 .def("getJacobian", static_cast<dart::math::Jacobian (dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>::*)(const Eigen::Vector3d &) const>(&dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>::getJacobian), (::boost::python::arg("_offset")))
 .def("getJacobian", static_cast<dart::math::Jacobian (dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>::*)(const Eigen::Vector3d &, const dart::dynamics::Frame *) const>(&dart::dynamics::TemplatedJacobianNode<dart::dynamics::EndEffector>::getJacobian), (::boost::python::arg("_offset"), ::boost::python::arg("_inCoordinatesOf")))

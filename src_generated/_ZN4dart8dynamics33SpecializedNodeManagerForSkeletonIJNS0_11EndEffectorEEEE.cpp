@@ -12,7 +12,7 @@ void _ZN4dart8dynamics33SpecializedNodeManagerForSkeletonIJNS0_11EndEffectorEEEE
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::SpecializedNodeManagerForSkeleton<dart::dynamics::EndEffector>, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::detail::BasicNodeManagerForSkeleton, dart::dynamics::SpecializedNodeManagerForBodyNode<dart::dynamics::EndEffector> > >("_ZN4dart8dynamics33SpecializedNodeManagerForSkeletonIJNS0_11EndEffectorEEEE", boost::python::no_init)
+::boost::python::class_<dart::dynamics::SpecializedNodeManagerForSkeleton<dart::dynamics::EndEffector>, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::detail::BasicNodeManagerForSkeleton, dart::dynamics::SpecializedNodeManagerForBodyNode<dart::dynamics::EndEffector> > >("SpecializedEndEffectorNodeManagerForSkeleton", boost::python::no_init)
 .def(::boost::python::init<>())
 ;
 }

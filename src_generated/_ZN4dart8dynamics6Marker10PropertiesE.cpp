@@ -13,7 +13,7 @@ void _ZN4dart8dynamics6Marker10PropertiesE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::dynamics::Marker::Properties >("Properties", boost::python::no_init)
-.def(::boost::python::init<const std::string &, const Eigen::Vector3d &, const Eigen::Vector4d &, dart::dynamics::Marker::ConstraintType>((::boost::python::arg("name"), ::boost::python::arg("offset"), ::boost::python::arg("color"), ::boost::python::arg("type") = 0)))
+.def(::boost::python::init<const std::string &, const Eigen::Vector3d &, const Eigen::Vector4d &, dart::dynamics::Marker::ConstraintType>((::boost::python::arg("name"), ::boost::python::arg("offset"), ::boost::python::arg("color"), ::boost::python::arg("type"))))
 .def_readwrite("mName", &dart::dynamics::Marker::Properties::mName)
 .def_readwrite("mOffset", &dart::dynamics::Marker::Properties::mOffset)
 .def_readwrite("mColor", &dart::dynamics::Marker::Properties::mColor)

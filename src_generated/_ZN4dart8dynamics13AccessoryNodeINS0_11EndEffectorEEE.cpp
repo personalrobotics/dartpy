@@ -12,7 +12,7 @@ void _ZN4dart8dynamics13AccessoryNodeINS0_11EndEffectorEEE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>, ::boost::noncopyable >("_ZN4dart8dynamics13AccessoryNodeINS0_11EndEffectorEEE", boost::python::no_init)
+::boost::python::class_<dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>, ::boost::noncopyable >("EndEffectorAccessoryNode", boost::python::no_init)
 .def("getIndexInBodyNode", static_cast<std::size_t (dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>::*)() const>(&dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>::getIndexInBodyNode))
 .def("getIndexInSkeleton", static_cast<std::size_t (dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>::*)() const>(&dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>::getIndexInSkeleton))
 .def("getIndexInTree", static_cast<std::size_t (dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>::*)() const>(&dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>::getIndexInTree))

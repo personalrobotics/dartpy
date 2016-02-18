@@ -40,7 +40,7 @@ void _ZN4dart8renderer15RenderInterfaceE()
 .def("setPenColor", static_cast<void (dart::renderer::RenderInterface::*)(const Eigen::Vector4d &)>(&dart::renderer::RenderInterface::setPenColor), (::boost::python::arg("_col")))
 .def("setPenColor", static_cast<void (dart::renderer::RenderInterface::*)(const Eigen::Vector3d &)>(&dart::renderer::RenderInterface::setPenColor), (::boost::python::arg("_col")))
 .def("setLineWidth", static_cast<void (dart::renderer::RenderInterface::*)(float)>(&dart::renderer::RenderInterface::setLineWidth), (::boost::python::arg("_width")))
-.def("saveToImage", static_cast<void (dart::renderer::RenderInterface::*)(const char *, dart::renderer::DecoBufferType)>(&dart::renderer::RenderInterface::saveToImage), (::boost::python::arg("_filename"), ::boost::python::arg("_buffType") = 1))
+.def("saveToImage", static_cast<void (dart::renderer::RenderInterface::*)(const char *, dart::renderer::DecoBufferType)>(&dart::renderer::RenderInterface::saveToImage), (::boost::python::arg("_filename"), ::boost::python::arg("_buffType")))
 ;
 }
 

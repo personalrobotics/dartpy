@@ -12,7 +12,7 @@ void _ZN4dart6common11NameManagerIPNS_8dynamics11EndEffectorEEE()
 ::boost::python::object parent_object(::boost::python::scope().attr("common"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::common::NameManager<dart::dynamics::EndEffector *> >("_ZN4dart6common11NameManagerIPNS_8dynamics11EndEffectorEEE", boost::python::no_init)
+::boost::python::class_<dart::common::NameManager<dart::dynamics::EndEffector *> >("NameManagerEndEffector", boost::python::no_init)
 .def(::boost::python::init<const std::string &, const std::string &>((::boost::python::arg("_managerName"), ::boost::python::arg("_defaultName"))))
 .def("setPattern", static_cast<bool (dart::common::NameManager<dart::dynamics::EndEffector *>::*)(const std::string &)>(&dart::common::NameManager<dart::dynamics::EndEffector *>::setPattern), (::boost::python::arg("_newPattern")))
 .def("issueNewName", static_cast<std::string (dart::common::NameManager<dart::dynamics::EndEffector *>::*)(const std::string &) const>(&dart::common::NameManager<dart::dynamics::EndEffector *>::issueNewName), (::boost::python::arg("_name")))

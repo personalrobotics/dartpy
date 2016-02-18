@@ -1822,11 +1822,11 @@ dart::python::util::collection_from_python<
   void _ZN4dart5utils10getElementEPKN8tinyxml210XMLElementERKSs();
   _ZN4dart5utils10getElementEPKN8tinyxml210XMLElementERKSs();
 
-  void _ZN4dart6common8colorErrERKSsS2_ji();
-  _ZN4dart6common8colorErrERKSsS2_ji();
-
   void _ZN4dart6common8colorMsgERKSsi();
   _ZN4dart6common8colorMsgERKSsi();
+
+  void _ZN4dart6common8colorErrERKSsS2_ji();
+  _ZN4dart6common8colorErrERKSsS2_ji();
 
 }
 

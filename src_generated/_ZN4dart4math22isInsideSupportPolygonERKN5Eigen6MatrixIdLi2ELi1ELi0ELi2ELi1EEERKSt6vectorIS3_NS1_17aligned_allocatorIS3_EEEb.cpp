@@ -12,7 +12,7 @@ void _ZN4dart4math22isInsideSupportPolygonERKN5Eigen6MatrixIdLi2ELi1ELi0ELi2ELi1
 ::boost::python::object parent_object(::boost::python::scope().attr("math"));
 ::boost::python::scope parent_scope(parent_object);
 
-boost::python::def("isInsideSupportPolygon", static_cast<bool (*)(const Eigen::Vector2d &, const dart::math::SupportPolygon &, bool)>(&dart::math::isInsideSupportPolygon), (::boost::python::arg("_p"), ::boost::python::arg("_support"), ::boost::python::arg("_includeEdge") = true))
+boost::python::def("isInsideSupportPolygon", static_cast<bool (*)(const Eigen::Vector2d &, const dart::math::SupportPolygon &, bool)>(&dart::math::isInsideSupportPolygon), (::boost::python::arg("_p"), ::boost::python::arg("_support"), ::boost::python::arg("_includeEdge")))
 ;}
 
 /* footer */

@@ -13,7 +13,7 @@ void _ZN4dart8dynamics6detail16SupportStateDataE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::dynamics::detail::SupportStateData >("SupportStateData", boost::python::no_init)
-.def(::boost::python::init<bool>((::boost::python::arg("active") = false)))
+.def(::boost::python::init<bool>((::boost::python::arg("active"))))
 .def_readwrite("mActive", &dart::dynamics::detail::SupportStateData::mActive)
 ;
 }

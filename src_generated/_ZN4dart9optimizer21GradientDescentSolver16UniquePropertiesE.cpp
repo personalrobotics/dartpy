@@ -13,7 +13,7 @@ void _ZN4dart9optimizer21GradientDescentSolver16UniquePropertiesE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::optimizer::GradientDescentSolver::UniqueProperties >("UniqueProperties", boost::python::no_init)
-.def(::boost::python::init<double, std::size_t, std::size_t, double, double, double, Eigen::VectorXd, Eigen::VectorXd>((::boost::python::arg("_stepMultiplier"), ::boost::python::arg("_maxAttempts"), ::boost::python::arg("_perturbationStep"), ::boost::python::arg("_maxPerturbationFactor"), ::boost::python::arg("_maxRandomizationStep"), ::boost::python::arg("_defaultConstraintWeight"), ::boost::python::arg("_eqConstraintWeights"), ::boost::python::arg("_ineqConstraintWeights"))))
+.def(::boost::python::init<double, std::size_t, std::size_t, double, double, double, Eigen::VectorXd, Eigen::VectorXd>((::boost::python::arg("_stepMultiplier"), ::boost::python::arg("_maxAttempts"), ::boost::python::arg("_perturbationStep"), ::boost::python::arg("_maxPerturbationFactor"), ::boost::python::arg("_maxRandomizationStep"), ::boost::python::arg("_defaultConstraintWeight"), ::boost::python::arg("_eqConstraintWeights") = Eigen::VectorXd(), ::boost::python::arg("_ineqConstraintWeights") = Eigen::VectorXd())))
 .def_readwrite("mStepSize", &dart::optimizer::GradientDescentSolver::UniqueProperties::mStepSize)
 .def_readwrite("mMaxAttempts", &dart::optimizer::GradientDescentSolver::UniqueProperties::mMaxAttempts)
 .def_readwrite("mPerturbationStep", &dart::optimizer::GradientDescentSolver::UniqueProperties::mPerturbationStep)
