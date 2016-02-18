@@ -48,7 +48,7 @@ def attach(skeleton, target_bodynode):
 
 
 def merge(skeleton, other_skeleton):
-    critera = dartpy.Linkage.Critera()
+    critera = dartpy.dynamics.Linkage.Critera()
     critera.mStart = None # start at the root
 
     for itree in xrange(other_skeleton.getNumTrees):
@@ -60,7 +60,7 @@ def merge(skeleton, other_skeleton):
 
 def compute_aabb(bodynode):
     # TODO: This should be the default argument (#7).
-    bodynode_pose = bodynode.getTransform(dartpy.Frame.World())
+    bodynode_pose = bodynode.getTransform(dartpy.dynamics.Frame.World())
 
     min_corner = numpy.array([numpy.PINF] * 3)
     max_corner = numpy.array([numpy.NINF] * 3)
@@ -88,8 +88,8 @@ def compute_aabb(bodynode):
 
 
 # TODO: All of this should be replaced by the the CatkinResourceRetriever.
-local_retriever = dartpy.LocalResourceRetriever()
-package_retriever = dartpy.PackageResourceRetriever(local_retriever)
+local_retriever = dartpy.common.LocalResourceRetriever()
+package_retriever = dartpy.utils.PackageResourceRetriever(local_retriever)
 package_retriever.addPackageDirectory('herb_description',
     os.path.join(WORKSPACE_BASE, 'devel', 'share', 'herb_description'))
 package_retriever.addPackageDirectory('herb_description',
@@ -97,7 +97,7 @@ package_retriever.addPackageDirectory('herb_description',
 package_retriever.addPackageDirectory('pr_ordata',
     os.path.join(WORKSPACE_BASE, 'src','pr_ordata'))
 
-urdf_loader = dartpy.DartLoader()
+urdf_loader = dartpy.utils.DartLoader()
 
 print('Loading the table.')
 table = urdf_loader.parseSkeleton(
@@ -145,15 +145,15 @@ set_pose(robot, robot_pose)
 
 # TODO: The IncludeBoth_t() type-tag is awkward (#11).
 # TODO: It's counter-intuitive that this includes j1, the parent of wam1.
-left_arm = dartpy.Chain.create(
+left_arm = dartpy.dynamics.Chain.create(
     robot.getBodyNode('/left/wam1'), robot.getBodyNode('/left/wam7'),
-    dartpy.IncludeBoth_t(), 'left_arm')
-right_arm = dartpy.Chain.create(
+    dartpy.dynamics.Chain.IncludeBoth_t(), 'left_arm')
+right_arm = dartpy.dynamics.Chain.create(
     robot.getBodyNode('/right/wam1'), robot.getBodyNode('/right/wam7'),
-    dartpy.IncludeBoth_t(), 'right_arm')
-head = dartpy.Chain.create(
+    dartpy.dynamics.Chain.IncludeBoth_t(), 'right_arm')
+head = dartpy.dynamics.Chain.create(
     robot.getBodyNode('/head/wam1'), robot.getBodyNode('/head/wam2'),
-    dartpy.IncludeBoth_t(), 'head')
+    dartpy.dynamics.Chain.IncludeBoth_t(), 'head')
 
 # Move HERB to the home configuration.
 left_arm.setPositions(LEFT_RELAXED_POSITIONS)
@@ -185,6 +185,7 @@ right_arm.setPositions(right_ee_positions)
 # Grab the bottle
 attach(bottle, right_ee)
 
+"""
 import aikido_rviz
 aikido_rviz.init_node('dartpy_grasp_fuze_bottle')
 viewer = aikido_rviz.InteractiveMarkerViewer('aikido_markers')
@@ -192,3 +193,4 @@ viewer.addSkeleton(robot)
 viewer.addSkeleton(bottle)
 viewer.addSkeleton(table)
 viewer.update()
+"""
