@@ -3,6 +3,7 @@
 #include <boost/python.hpp>
 #include "metaprogramming.h"
 #include "detail/JointTemplateMultiplexer.h"
+#include "detail/JointAndNodeRegistry.h"
 
 namespace dart {
 namespace python {
@@ -107,21 +108,34 @@ struct JointTemplateRegistry
     register_all_types<JointTemplateRegistry, AllJointTypes>::register_type();
   }
 
-  static RegistryType<
-    detail::BodyNode_moveTo2_factory> mBodyNode_moveTo2_registry;
-  static RegistryType<
-    detail::BodyNode_moveTo3_factory> mBodyNode_moveTo3_registry;
-  static RegistryType<
-    detail::BodyNode_copyTo3_factory> mBodyNode_copyTo3_registry;
+  static RegistryType<detail::BodyNode_moveTo2_factory>
+    mBodyNode_moveTo2_registry;
+  static RegistryType<detail::BodyNode_moveTo3_factory>
+    mBodyNode_moveTo3_registry;
+  static RegistryType<detail::BodyNode_copyTo3_factory>
+    mBodyNode_copyTo3_registry;
 };
 
 
 struct JointAndNodeTemplateRegistry
 {
+  using NominalJointType = dart::dynamics::WeldJoint;
+  using NominalNodeType = dart::dynamics::BodyNode;
+
+  template <template <class, class> class Factory>
+  using RegistryType = TemplateRegistry<
+    decltype(Factory<NominalJointType, NominalNodeType>::execute)>;
+
   template <class JointType, class NodeType>
   static void register_type()
   {
-    // TODO: createJointAndBodyNodePair
+    const boost::python::object joint_type = get_pytype<JointType>();
+    const boost::python::object node_type = get_pytype<NodeType>();
+
+    // TODO: This should be indexed by [joint_type, node_type].
+    mSkeleton_createJointAndBodyNodePair_registry[joint_type]
+      = &detail::Skeleton_createJointAndBodyNodePair<
+          JointType, NodeType>::execute;
   }
 
   static void register_default_types()
@@ -130,6 +144,9 @@ struct JointAndNodeTemplateRegistry
       typelist_product<AllJointTypes, AllBodyNodeTypes>::type>
         ::register_type();
   }
+
+  static RegistryType<detail::Skeleton_createJointAndBodyNodePair>
+    mSkeleton_createJointAndBodyNodePair_registry;
 };
 
 
