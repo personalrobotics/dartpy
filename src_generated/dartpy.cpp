@@ -1,5 +1,6 @@
 #include <vector>
 #include <dartpy/collections.h>
+#include <dartpy/template_registry.h>
 #include <dartpy/util.h>
 #include <dart/dart.h>
 
@@ -74,6 +75,8 @@ dart::python::util::vector_to_python<
   dart::dynamics::DegreeOfFreedom*, dart::dynamics::DegreeOfFreedomPtr>();
 dart::python::util::collection_from_python<
   std::vector<dart::dynamics::DegreeOfFreedom*>>();
+
+dart::python::JointTemplateRegistry::register_default_types();
 
   ::boost::python::scope().attr("common") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.common"))));
 

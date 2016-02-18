@@ -6,6 +6,25 @@
 namespace dart {
 namespace python {
 
+template <class... Types>
+struct type_list {};
+
+using AllJointTypes = type_list<
+  dart::dynamics::FreeJoint,
+  dart::dynamics::PrismaticJoint,
+  dart::dynamics::RevoluteJoint,
+  dart::dynamics::ScrewJoint,
+  dart::dynamics::WeldJoint,
+  dart::dynamics::UniversalJoint,
+  dart::dynamics::BallJoint,
+  dart::dynamics::EulerJoint,
+  dart::dynamics::PlanarJoint,
+  dart::dynamics::TranslationalJoint>;
+using AllBodyNodeTypes = type_list<
+  dart::dynamics::BodyNode,
+  dart::dynamics::SoftBodyNode>;
+
+
 /// Gets the PyTypeObject object associated with a C++ class.
 template <class T>
 boost::python::object get_pytype()
@@ -29,6 +48,30 @@ using TemplateRegistry = std::map<
   boost::python::object, std::function<Function>>;
 
 
+/// Helper class for registering all types.
+template <class Registry, class TypeTuple>
+struct register_all_types {};
+
+template <class Registry>
+struct register_all_types<Registry, type_list<>>
+{
+  static void register_type()
+  {
+    // Do nothing.
+  }
+};
+
+template <class Registry, class Type, class... Types>
+struct register_all_types<Registry, type_list<Type, Types...>>
+{
+  static void register_type()
+  {
+    Registry::template register_type<Type>();
+    register_all_types<Registry, type_list<Types...>>::register_type();
+  }
+};
+
+
 struct JointTemplateRegistry
 {
   using NominalType = dart::dynamics::WeldJoint;
@@ -49,6 +92,11 @@ struct JointTemplateRegistry
       = &detail::BodyNode_copyTo3_factory<JointType>::execute;
   }
 
+  static void register_default_types()
+  {
+    register_all_types<JointTemplateRegistry, AllJointTypes>::register_type();
+  }
+
   static RegistryType<
     detail::BodyNode_moveTo2_factory> mBodyNode_moveTo2_registry;
   static RegistryType<
@@ -56,6 +104,18 @@ struct JointTemplateRegistry
   static RegistryType<
     detail::BodyNode_copyTo3_factory> mBodyNode_copyTo3_registry;
 };
+
+
+struct JointAndNodeTemplateRegistry
+{
+  template <class JointType, class NodeType>
+  static void register_type()
+  {
+  }
+
+//template <class JointType , class NodeType >
+};
+
 
 } // namespace python
 } // namespace dart
