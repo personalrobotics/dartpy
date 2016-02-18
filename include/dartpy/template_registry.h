@@ -9,7 +9,6 @@
 namespace dart {
 namespace python {
 
-// Helpers for template metaprogramming.
 using AllJointTypes = typelist<
   dart::dynamics::FreeJoint,
   dart::dynamics::PrismaticJoint,
@@ -21,6 +20,7 @@ using AllJointTypes = typelist<
   dart::dynamics::EulerJoint,
   dart::dynamics::PlanarJoint,
   dart::dynamics::TranslationalJoint>;
+
 using AllBodyNodeTypes = typelist<
   dart::dynamics::BodyNode,
   dart::dynamics::SoftBodyNode>;
@@ -103,17 +103,15 @@ struct register_all_types<Registry, typelist<typelist<Type...>, Types...>>
 
 struct JointTemplateRegistry
 {
-  using NominalType = dart::dynamics::WeldJoint;
-
   template <template <class> class Factory>
   using RegistryType = TemplateRegistry<
-    decltype(Factory<NominalType>::execute), 1>;
+    decltype(Factory<dart::dynamics::FreeJoint>::execute), 1>;
 
   template <class JointType>
   static void register_type()
   {
     const boost::python::object joint_type = get_pytype<JointType>();
-    TemplateRegistryKey<1> key {{ joint_type }};
+    const auto key = make_array(joint_type);
 
     mBodyNode_moveTo2_registry[key]
       = &detail::BodyNode_moveTo2_factory<JointType>::execute;
@@ -139,31 +137,34 @@ struct JointTemplateRegistry
 
 struct JointAndNodeTemplateRegistry
 {
-  using NominalJointType = dart::dynamics::WeldJoint;
-  using NominalNodeType = dart::dynamics::BodyNode;
-
   template <template <class, class> class Factory>
   using RegistryType = TemplateRegistry<
-    decltype(Factory<NominalJointType, NominalNodeType>::execute), 2>;
+    decltype(Factory<dart::dynamics::FreeJoint,
+                     dart::dynamics::BodyNode>::execute), 2>;
 
   template <class JointType, class NodeType>
   static void register_type()
   {
     const boost::python::object joint_type = get_pytype<JointType>();
     const boost::python::object node_type = get_pytype<NodeType>();
-    TemplateRegistryKey<2> key {{ joint_type, node_type }};
+    const auto key = make_array(joint_type, node_type);
 
-    // TODO: This should be indexed by [joint_type, node_type].
     mSkeleton_createJointAndBodyNodePair_registry[key]
-      = &detail::Skeleton_createJointAndBodyNodePair<
-          JointType, NodeType>::execute;
+        = &detail::Skeleton_createJointAndBodyNodePair<
+            JointType, NodeType>::execute;
+  }
+
+  template <class JointTypes, class NodeTypes>
+  static void register_all_types()
+  {
+    dart::python::register_all_types<JointAndNodeTemplateRegistry, 
+      typename typelist_product<JointTypes, NodeTypes>::type>
+        ::register_type();
   }
 
   static void register_default_types()
   {
-    register_all_types<JointAndNodeTemplateRegistry, 
-      typelist_product<AllJointTypes, AllBodyNodeTypes>::type>
-        ::register_type();
+    register_all_types<AllJointTypes, AllBodyNodeTypes>();
   }
 
   static RegistryType<detail::Skeleton_createJointAndBodyNodePair>

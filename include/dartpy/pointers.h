@@ -9,150 +9,43 @@
 #error "pointers.h must be included before any Boost headers"
 #endif
 
-namespace dart {
-namespace python {
-
-class JointPtr_wrapper_base {
-public:
-    JointPtr_wrapper_base()
-        : mIsGeneric(true)
-    {
-    }
-
-    JointPtr_wrapper_base(dart::dynamics::JointPtr const &joint)
-        : mIsGeneric(true)
-        , mJoint(joint)
-    {
-    }
-
-    dart::dynamics::Joint *get_base() const
-    {
-        return mJoint.get();
-    }
-
-    virtual ~JointPtr_wrapper_base() = default;
-
-protected:
-    bool mIsGeneric;
-    JointType::Enum mType;
-    dart::dynamics::JointPtr mJoint;
-};
-
-template <class T, dart::python::JointType::Enum TEnum>
-class JointPtr_wrapper : public JointPtr_wrapper_base {
-public:
-    JointPtr_wrapper(dart::dynamics::JointPtr const &joint)
-        : JointPtr_wrapper_base(joint)
-    {
-        assert(dynamic_cast<T *>(joint.get()));
-        mType = TEnum;
-    }
-
-    virtual ~JointPtr_wrapper() = default;
-
-    T *get() const
-    {
-        if (mType == TEnum) {
-            return dynamic_cast<T>(mJoint.get());
-        } else {
-            return nullptr;
-        }
-    }
-};
-
-inline JointPtr_wrapper_base JointPtr_wrapper_create(
-        dart::dynamics::JointPtr const &joint)
-{
-    if (dynamic_cast<dart::dynamics::RevoluteJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::RevoluteJoint,
-                                JointType::REVOLUTE>(joint);
-    } else if (dynamic_cast<dart::dynamics::PrismaticJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::PrismaticJoint,
-                                JointType::PRISMATIC>(joint);
-    } else if (dynamic_cast<dart::dynamics::ScrewJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::ScrewJoint,
-                                JointType::SCREW>(joint);
-    } else if (dynamic_cast<dart::dynamics::WeldJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::WeldJoint,
-                                JointType::WELD>(joint);
-    } else if (dynamic_cast<dart::dynamics::UniversalJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::UniversalJoint,
-                                JointType::UNIVERSAL>(joint);
-    } else if (dynamic_cast<dart::dynamics::BallJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::BallJoint,
-                                JointType::BALL>(joint);
-    } else if (dynamic_cast<dart::dynamics::EulerJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::EulerJoint,
-                                JointType::EULER>(joint);
-    } else if (dynamic_cast<dart::dynamics::PlanarJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::PlanarJoint,
-                                JointType::PLANAR>(joint);
-    } else if (dynamic_cast<dart::dynamics::TranslationalJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::TranslationalJoint,
-                                JointType::TRANSLATIONAL>(joint);
-    } else if (dynamic_cast<dart::dynamics::FreeJoint *>(joint.get())) {
-        return JointPtr_wrapper<dart::dynamics::FreeJoint,
-                                JointType::FREE>(joint);
-    } else {
-        return JointPtr_wrapper_base(joint);
-    }
-}
-
-} // namespace python
-} // namespace dart
-
-
 namespace boost {
 
 #ifndef DARTPY_HAS_STD_SHARED_GET_POINTER
 template <class T>
-T *get_pointer(std::shared_ptr<T> const &ptr) 
+T* get_pointer(const std::shared_ptr<T>& p) 
 {
-    return ptr.get();
+  return p.get();
 }
 #endif // ifndef DARTPY_HAS_STD_SHARED_GET_POINTER
 
-template <class T>
-T *get_pointer(dart::dynamics::TemplateBodyNodePtr<T> const &p)
+template <class BodyNodeT>
+BodyNodeT* get_pointer(
+  const dart::dynamics::TemplateBodyNodePtr<BodyNodeT>& p)
 {
-    return p.get();
+  return p.get();
 }
 
-template <class T, class U>
-T *get_pointer(dart::dynamics::TemplateNodePtr<T, U> const &p)
+template <class NodeT, class BodyNodeT>
+NodeT* get_pointer(
+  const dart::dynamics::TemplateNodePtr<NodeT, BodyNodeT>& p)
 {
-    return p.get();
+  return p.get();
 }
 
-template <class T, class U>
-T *get_pointer(dart::dynamics::TemplateDegreeOfFreedomPtr<T, U> const &p)
+template <class JointT, class BodyNodeT>
+JointT* get_pointer(
+  const dart::dynamics::TemplateJointPtr<JointT, BodyNodeT>& p)
 {
-    return p.get();
+  return p.get();
 }
 
-inline dart::dynamics::DegreeOfFreedom *get_pointer(
-    dart::dynamics::DegreeOfFreedomPtr const &p)
+template <class DegreeOfFreedomT, class BodyNodeT>
+DegreeOfFreedomT* get_pointer(
+  const dart::dynamics::TemplateDegreeOfFreedomPtr<
+    DegreeOfFreedomT, BodyNodeT>& p)
 {
-    return p.get();
-}
-
-inline dart::dynamics::Joint *get_pointer(
-    dart::dynamics::JointPtr const &p)
-{
-    return p.get();
-}
-
-inline dart::dynamics::Joint *get_pointer(
-    dart::python::JointPtr_wrapper_base const &p)
-{
-    return p.get_base();
-}
-
-template <class T, dart::python::JointType::Enum TEnum>
-inline dart::dynamics::Joint *get_pointer(
-    dart::python::JointPtr_wrapper<T, TEnum> const &p)
-{
-    return p.get();
+  return p.get();
 }
 
 } // namespace boost
@@ -165,33 +58,33 @@ inline dart::dynamics::Joint *get_pointer(
 namespace boost {
 namespace python {
 
-template <>
-struct pointee<dart::dynamics::BodyNodePtr>
+template <class BodyNodeT>
+struct pointee<dart::dynamics::TemplateBodyNodePtr<BodyNodeT>>
 {
-    typedef dart::dynamics::BodyNode type;
+  using type = BodyNodeT;
 };
 
-template <>
-struct pointee<dart::dynamics::DegreeOfFreedomPtr>
+template <class NodeT, class BodyNodeT>
+struct pointee<dart::dynamics::TemplateNodePtr<NodeT, BodyNodeT>>
 {
-    typedef dart::dynamics::DegreeOfFreedom type;
+  using type = NodeT;
 };
 
-template <>
-struct pointee<dart::dynamics::JointPtr>
+template <class JointT, class BodyNodeT>
+struct pointee<dart::dynamics::TemplateJointPtr<JointT, BodyNodeT>>
 {
-    typedef dart::dynamics::Joint type;
+  using type = JointT;
 };
 
-template <>
-struct pointee<dart::python::JointPtr_wrapper_base>
+template <class DegreeOfFreedomT, class BodyNodeT>
+struct pointee<dart::dynamics::TemplateDegreeOfFreedomPtr<
+  DegreeOfFreedomT, BodyNodeT>>
 {
-    typedef dart::dynamics::Joint type;
+  using type = DegreeOfFreedomT;
 };
 
-
-}
-}
+} // namespace python
+} // namespace boost
 
 namespace boost {
 namespace python {
@@ -290,5 +183,4 @@ private:
 
 }} // namespace boost::python
 
-
-#endif
+#endif // ifndef DART_PYTHON_POINTERS_H_

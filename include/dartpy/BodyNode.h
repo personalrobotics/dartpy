@@ -12,8 +12,7 @@ dart::dynamics::Joint* BodyNode_moveTo2(
   dart::dynamics::BodyNode* _newParent,
   boost::python::object _jointProperties);
 
-} // namespace python {
-} // namespace dart {
-
+} // namespace python
+} // namespace dart
 
 #endif // ifndef DARTPY_BODYNODE_H_
