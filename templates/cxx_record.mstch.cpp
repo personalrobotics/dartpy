@@ -14,7 +14,7 @@ void {{class.mangled_name}}()
     }}{{#class.scope}}.attr("{{name}}"){{/class.scope}});
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<{{{class.qualified_name}}}{{^class.is_copyable}}, {{!
+::boost::python::class_<{{{class.type}}}{{^class.is_copyable}}, {{!
         }}::boost::noncopyable{{/class.is_copyable}}{{#class.bases?}}, {{!
         }}::boost::python::bases<{{!
             }}{{#class.bases}}{{{qualified_name}}}{{^last}}, {{/last}}{{/class.bases}}{{!
@@ -29,7 +29,7 @@ void {{class.mangled_name}}()
 
 /* methods */}}
 {{#class.methods}}{{!
-    }}.def("{{name}}", static_cast<{{{type}}}>(&{{qualified_name}}){{!
+    }}.def("{{name}}", static_cast<{{{type}}}>(&{{{qualified_name}}}){{!
     }}{{#return_value_policy}}, ::boost::python::return_value_policy<{{{.}}} >(){{/return_value_policy}}{{!
     }}{{#params?}}, ({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}})
 {{/class.methods}}{{!

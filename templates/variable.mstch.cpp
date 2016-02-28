@@ -13,7 +13,7 @@ void {{variable.mangled_name}}()
 
 ::boost::python::object parent_object(::boost::python::scope(){{!
     }}{{#function.scope}}.attr("{{name}}"){{/function.scope}}){{!
-    }}.attr("{{variable.name}}") = {{variable.qualified_name}}
+    }}.attr("{{variable.name}}") = {{{variable.qualified_name}}}
 ;}
 {{{postcontent}}}
 {{{footer}}}

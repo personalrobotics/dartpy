@@ -15,7 +15,7 @@ void {{function.mangled_name}}()
 ::boost::python::scope parent_scope(parent_object);
 
 boost::python::def("{{function.name}}", {{!
-    }}static_cast<{{{function.type}}}>(&{{function.qualified_name}}){{!
+    }}static_cast<{{{function.type}}}>(&{{{function.qualified_name}}}){{!
     }}{{#function.params?}}, ({{#function.params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/function.params}}){{/function.params?}})
 ;}
 {{{postcontent}}}
