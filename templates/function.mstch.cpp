@@ -11,7 +11,7 @@
 void {{function.mangled_name}}()
 {
 ::boost::python::object parent_object(::boost::python::scope(){{!
-    }}{{#function.scope}}.attr("{{name}}"){{/function.scope}});
+    }}{{#function.scope}}{{#name}}.attr("{{name}}"){{/name}}{{/function.scope}});
 ::boost::python::scope parent_scope(parent_object);
 
 boost::python::def("{{function.name}}", {{!

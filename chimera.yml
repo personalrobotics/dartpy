@@ -104,7 +104,8 @@ template:
 
 # The C++ namespaces that will be extracted by Chimera
 namespaces:
-  - dart
+  'dart':
+    name: null  # Collapse the 'dart' namespace into its parent.
 
 # String replacements for various constants used in default arguments.
 constants:
