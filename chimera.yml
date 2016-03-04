@@ -46,15 +46,15 @@ template:
       // std::shared_ptr implicit conversions
       boost::python::implicitly_convertible<
         std::shared_ptr<dart::common::LocalResourceRetriever>,
-        std::shared_ptr<dart::common::ResourceRetriever>>(); 
+        std::shared_ptr<dart::common::ResourceRetriever>>();
 
       boost::python::implicitly_convertible<
         std::shared_ptr<dart::utils::PackageResourceRetriever>,
-        std::shared_ptr<dart::common::ResourceRetriever>>(); 
+        std::shared_ptr<dart::common::ResourceRetriever>>();
 
       // misc implicit conversions
       boost::python::implicitly_convertible<
-        std::string, dart::common::Uri>(); 
+        std::string, dart::common::Uri>();
 
       // std::vector converters
       dart::python::util::vector_to_python<size_t>();
