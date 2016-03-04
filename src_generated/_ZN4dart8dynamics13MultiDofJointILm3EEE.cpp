@@ -12,7 +12,7 @@ void _ZN4dart8dynamics13MultiDofJointILm3EEE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::MultiDofJoint<3>, ::boost::noncopyable, dart::dynamics::MultiDofJoint<3> *, ::boost::python::bases<dart::dynamics::Joint, dart::common::SpecializedAddonManager<dart::dynamics::detail::MultiDofJointAddon<3> > > >("_ZN4dart8dynamics13MultiDofJointILm3EEE", boost::python::no_init)
+::boost::python::class_<dart::dynamics::MultiDofJoint<3>, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::Joint, dart::common::SpecializedAddonManager<dart::dynamics::detail::MultiDofJointAddon<3> > > >("ThreeDofJoint", boost::python::no_init)
 .def("hasMultiDofJointAddon", static_cast<bool (dart::dynamics::MultiDofJoint<3>::*)() const>(&dart::dynamics::MultiDofJoint<3>::hasMultiDofJointAddon))
 .def("eraseMultiDofJointAddon", static_cast<void (dart::dynamics::MultiDofJoint<3>::*)()>(&dart::dynamics::MultiDofJoint<3>::eraseMultiDofJointAddon))
 .def("releaseMultiDofJointAddon", static_cast<std::unique_ptr<dart::dynamics::MultiDofJoint<3>::Addon> (dart::dynamics::MultiDofJoint<3>::*)()>(&dart::dynamics::MultiDofJoint<3>::releaseMultiDofJointAddon))

@@ -12,7 +12,7 @@ void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE()
 ::boost::python::object parent_object(::boost::python::scope().attr("common"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > >("_ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE", boost::python::no_init)
+::boost::python::class_<dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > >("NameManagerSkeleton", boost::python::no_init)
 .def(::boost::python::init<const std::string &, const std::string &>((::boost::python::arg("_managerName"), ::boost::python::arg("_defaultName"))))
 .def("setPattern", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)(const std::string &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::setPattern), (::boost::python::arg("_newPattern")))
 .def("issueNewName", static_cast<std::string (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)(const std::string &) const>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::issueNewName), (::boost::python::arg("_name")))
@@ -20,6 +20,7 @@ void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE()
 .def("addName", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)(const std::string &, const std::shared_ptr<dart::dynamics::Skeleton> &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::addName), (::boost::python::arg("_name"), ::boost::python::arg("_obj")))
 .def("removeName", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)(const std::string &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::removeName), (::boost::python::arg("_name")))
 .def("removeObject", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)(const std::shared_ptr<dart::dynamics::Skeleton> &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::removeObject), (::boost::python::arg("_obj")))
+.def("removeEntries", static_cast<void (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)(const std::string &, const std::shared_ptr<dart::dynamics::Skeleton> &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::removeEntries), (::boost::python::arg("_name"), ::boost::python::arg("_obj")))
 .def("clear", static_cast<void (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)()>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::clear))
 .def("hasName", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)(const std::string &) const>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::hasName), (::boost::python::arg("_name")))
 .def("hasObject", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::*)(const std::shared_ptr<dart::dynamics::Skeleton> &) const>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::hasObject), (::boost::python::arg("_obj")))

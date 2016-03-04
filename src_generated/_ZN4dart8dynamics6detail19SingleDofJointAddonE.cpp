@@ -43,7 +43,7 @@ void _ZN4dart8dynamics6detail19SingleDofJointAddonE()
 .def("setFriction", static_cast<void (dart::dynamics::detail::SingleDofJointAddon::*)(const double &)>(&dart::dynamics::detail::SingleDofJointAddon::setFriction), (::boost::python::arg("value")))
 .def("getFriction", static_cast<const double &(dart::dynamics::detail::SingleDofJointAddon::*)() const>(&dart::dynamics::detail::SingleDofJointAddon::getFriction), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("setPreserveDofName", static_cast<void (dart::dynamics::detail::SingleDofJointAddon::*)(const bool &)>(&dart::dynamics::detail::SingleDofJointAddon::setPreserveDofName), (::boost::python::arg("value")))
-.def("setDofName", static_cast<const std::string &(dart::dynamics::detail::SingleDofJointAddon::*)(const std::string &, bool)>(&dart::dynamics::detail::SingleDofJointAddon::setDofName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("name"), ::boost::python::arg("preserveName") = true))
+.def("setDofName", static_cast<const std::string &(dart::dynamics::detail::SingleDofJointAddon::*)(const std::string &, bool)>(&dart::dynamics::detail::SingleDofJointAddon::setDofName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("name"), ::boost::python::arg("preserveName")))
 .def("getDofName", static_cast<const std::string &(dart::dynamics::detail::SingleDofJointAddon::*)() const>(&dart::dynamics::detail::SingleDofJointAddon::getDofName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 ;
 }

@@ -1,6 +1,8 @@
 #include <vector>
+#include <dartpy/pointers.h>
 #include <dartpy/collections.h>
 #include <dartpy/util.h>
+#include <dartpy/template_registry.h>
 #include <dart/dart.h>
 
 
@@ -730,9 +732,6 @@ dart::python::util::collection_from_python<
 
   void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE();
   _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE();
-
-  void _ZN4dart6common11NameManagerIPNS_8dynamics11EndEffectorEEE();
-  _ZN4dart6common11NameManagerIPNS_8dynamics11EndEffectorEEE();
 
   ::boost::python::scope().attr("common").attr("signal") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.common.signal"))));
 
@@ -1816,18 +1815,21 @@ dart::python::util::collection_from_python<
   void _ZN4dart5utils12urdf_parsing14parseWorldURDFERKSsRKNS_6common3UriE();
   _ZN4dart5utils12urdf_parsing14parseWorldURDFERKSsRKNS_6common3UriE();
 
-  void _ZN4dart5utils10getElementEPN8tinyxml210XMLElementERKSs();
-  _ZN4dart5utils10getElementEPN8tinyxml210XMLElementERKSs();
-
   void _ZN4dart5utils10getElementEPKN8tinyxml210XMLElementERKSs();
   _ZN4dart5utils10getElementEPKN8tinyxml210XMLElementERKSs();
-
-  void _ZN4dart6common8colorErrERKSsS2_ji();
-  _ZN4dart6common8colorErrERKSsS2_ji();
 
   void _ZN4dart6common8colorMsgERKSsi();
   _ZN4dart6common8colorMsgERKSsi();
 
+  void _ZN4dart5utils10getElementEPN8tinyxml210XMLElementERKSs();
+  _ZN4dart5utils10getElementEPN8tinyxml210XMLElementERKSs();
+
+  void _ZN4dart6common8colorErrERKSsS2_ji();
+  _ZN4dart6common8colorErrERKSsS2_ji();
+
+
+  dart::python::JointTemplateRegistry::register_default_types();
+  dart::python::JointAndNodeTemplateRegistry::register_default_types();
 }
 
 // main footer

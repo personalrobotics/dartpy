@@ -213,7 +213,6 @@
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common11NameManagerIPNS_8dynamics6MarkerEEE.cpp
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE.cpp
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE.cpp
-/home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common11NameManagerIPNS_8dynamics11EndEffectorEEE.cpp
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common6signal6detail18ConnectionBodyBaseE.cpp
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common10ConnectionE.cpp
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEE.cpp
@@ -566,7 +565,7 @@
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart5utils12urdf_parsing6EntityE.cpp
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart5utils12urdf_parsing5WorldE.cpp
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart5utils12urdf_parsing14parseWorldURDFERKSsRKNS_6common3UriE.cpp
-/home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart5utils10getElementEPN8tinyxml210XMLElementERKSs.cpp
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart5utils10getElementEPKN8tinyxml210XMLElementERKSs.cpp
-/home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common8colorErrERKSsS2_ji.cpp
 /home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common8colorMsgERKSsi.cpp
+/home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart5utils10getElementEPN8tinyxml210XMLElementERKSs.cpp
+/home/mkoval/storage/grey-ws/src/dartpy/src_generated/_ZN4dart6common8colorErrERKSsS2_ji.cpp

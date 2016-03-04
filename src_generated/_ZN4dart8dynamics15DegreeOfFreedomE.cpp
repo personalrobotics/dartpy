@@ -13,7 +13,7 @@ void _ZN4dart8dynamics15DegreeOfFreedomE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::dynamics::DegreeOfFreedom, ::boost::noncopyable, dart::dynamics::DegreeOfFreedomPtr, ::boost::python::bases<dart::common::Subject > >("DegreeOfFreedom", boost::python::no_init)
-.def("setName", static_cast<const std::string &(dart::dynamics::DegreeOfFreedom::*)(const std::string &, bool)>(&dart::dynamics::DegreeOfFreedom::setName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name"), ::boost::python::arg("_preserveName") = true))
+.def("setName", static_cast<const std::string &(dart::dynamics::DegreeOfFreedom::*)(const std::string &, bool)>(&dart::dynamics::DegreeOfFreedom::setName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name"), ::boost::python::arg("_preserveName")))
 .def("getName", static_cast<const std::string &(dart::dynamics::DegreeOfFreedom::*)() const>(&dart::dynamics::DegreeOfFreedom::getName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("preserveName", static_cast<void (dart::dynamics::DegreeOfFreedom::*)(bool)>(&dart::dynamics::DegreeOfFreedom::preserveName), (::boost::python::arg("_preserve")))
 .def("isNamePreserved", static_cast<bool (dart::dynamics::DegreeOfFreedom::*)() const>(&dart::dynamics::DegreeOfFreedom::isNamePreserved))
@@ -82,7 +82,6 @@ void _ZN4dart8dynamics15DegreeOfFreedomE()
 .def("getCoulombFriction", static_cast<double (dart::dynamics::DegreeOfFreedom::*)() const>(&dart::dynamics::DegreeOfFreedom::getCoulombFriction))
 .def("getJoint", static_cast<dart::dynamics::Joint *(dart::dynamics::DegreeOfFreedom::*)()>(&dart::dynamics::DegreeOfFreedom::getJoint), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::JointPtr> >())
 .def("getSkeleton", static_cast<dart::dynamics::SkeletonPtr (dart::dynamics::DegreeOfFreedom::*)()>(&dart::dynamics::DegreeOfFreedom::getSkeleton))
-.def("getSkeleton", static_cast<dart::dynamics::ConstSkeletonPtr (dart::dynamics::DegreeOfFreedom::*)() const>(&dart::dynamics::DegreeOfFreedom::getSkeleton))
 .def("getChildBodyNode", static_cast<dart::dynamics::BodyNode *(dart::dynamics::DegreeOfFreedom::*)()>(&dart::dynamics::DegreeOfFreedom::getChildBodyNode), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
 .def("getParentBodyNode", static_cast<dart::dynamics::BodyNode *(dart::dynamics::DegreeOfFreedom::*)()>(&dart::dynamics::DegreeOfFreedom::getParentBodyNode), ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
 ;

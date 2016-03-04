@@ -13,7 +13,7 @@ void _ZN4dart5utils9VskParser7OptionsE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::utils::VskParser::Options >("Options", boost::python::no_init)
-.def(::boost::python::init<const dart::common::ResourceRetrieverPtr &, const Eigen::Vector3d &, double, double, double, double, double, double, bool>((::boost::python::arg("retrieverOrNullptr"), ::boost::python::arg("defaultEllipsoidSize"), ::boost::python::arg("thicknessRatio") = 3.500000e-01, ::boost::python::arg("density") = 1.000000e+03, ::boost::python::arg("jointPositionLowerLimit") = -3.141593e+00, ::boost::python::arg("jointPositionUpperLimit") = 3.141593e+00, ::boost::python::arg("jointDampingCoefficient") = 1.000000e-01, ::boost::python::arg("jointFriction") = 0.000000e+00, ::boost::python::arg("removeEndBodyNodes") = false)))
+.def(::boost::python::init<const dart::common::ResourceRetrieverPtr &, const Eigen::Vector3d &, double, double, double, double, double, double, bool>((::boost::python::arg("retrieverOrNullptr"), ::boost::python::arg("defaultEllipsoidSize"), ::boost::python::arg("thicknessRatio"), ::boost::python::arg("density"), ::boost::python::arg("jointPositionLowerLimit"), ::boost::python::arg("jointPositionUpperLimit"), ::boost::python::arg("jointDampingCoefficient"), ::boost::python::arg("jointFriction"), ::boost::python::arg("removeEndBodyNodes"))))
 .def_readwrite("retrieverOrNullptr", &dart::utils::VskParser::Options::retrieverOrNullptr)
 .def_readwrite("defaultEllipsoidSize", &dart::utils::VskParser::Options::defaultEllipsoidSize)
 .def_readwrite("thicknessRatio", &dart::utils::VskParser::Options::thicknessRatio)

@@ -13,7 +13,7 @@ void _ZN4dart9optimizer8FunctionE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::optimizer::Function >("Function", boost::python::no_init)
-.def(::boost::python::init<const std::string &>((::boost::python::arg("_name"))))
+.def(::boost::python::init<const std::string &>((::boost::python::arg("_name") = "function")))
 .def("setName", static_cast<void (dart::optimizer::Function::*)(const std::string &)>(&dart::optimizer::Function::setName), (::boost::python::arg("_newName")))
 .def("getName", static_cast<const std::string &(dart::optimizer::Function::*)() const>(&dart::optimizer::Function::getName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("eval", static_cast<double (dart::optimizer::Function::*)(const Eigen::VectorXd &)>(&dart::optimizer::Function::eval), (::boost::python::arg("_x")))

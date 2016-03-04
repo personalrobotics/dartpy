@@ -12,7 +12,7 @@ void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE()
 ::boost::python::object parent_object(::boost::python::scope().attr("common"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> > >("_ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE", boost::python::no_init)
+::boost::python::class_<dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> > >("NameManagerSimpleFrame", boost::python::no_init)
 .def(::boost::python::init<const std::string &, const std::string &>((::boost::python::arg("_managerName"), ::boost::python::arg("_defaultName"))))
 .def("setPattern", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::*)(const std::string &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::setPattern), (::boost::python::arg("_newPattern")))
 .def("issueNewName", static_cast<std::string (dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::*)(const std::string &) const>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::issueNewName), (::boost::python::arg("_name")))
@@ -20,6 +20,7 @@ void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE()
 .def("addName", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::*)(const std::string &, const std::shared_ptr<dart::dynamics::SimpleFrame> &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::addName), (::boost::python::arg("_name"), ::boost::python::arg("_obj")))
 .def("removeName", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::*)(const std::string &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::removeName), (::boost::python::arg("_name")))
 .def("removeObject", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::*)(const std::shared_ptr<dart::dynamics::SimpleFrame> &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::removeObject), (::boost::python::arg("_obj")))
+.def("removeEntries", static_cast<void (dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::*)(const std::string &, const std::shared_ptr<dart::dynamics::SimpleFrame> &)>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::removeEntries), (::boost::python::arg("_name"), ::boost::python::arg("_obj")))
 .def("clear", static_cast<void (dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::*)()>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::clear))
 .def("hasName", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::*)(const std::string &) const>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::hasName), (::boost::python::arg("_name")))
 .def("hasObject", static_cast<bool (dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::*)(const std::shared_ptr<dart::dynamics::SimpleFrame> &) const>(&dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame> >::hasObject), (::boost::python::arg("_obj")))

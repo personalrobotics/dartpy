@@ -12,7 +12,7 @@ void _ZN4dart6common11NameManagerIPNS_8dynamics4NodeEEE()
 ::boost::python::object parent_object(::boost::python::scope().attr("common"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::common::NameManager<dart::dynamics::Node *> >("_ZN4dart6common11NameManagerIPNS_8dynamics4NodeEEE", boost::python::no_init)
+::boost::python::class_<dart::common::NameManager<dart::dynamics::Node *> >("NameManagerNode", boost::python::no_init)
 .def(::boost::python::init<const std::string &, const std::string &>((::boost::python::arg("_managerName"), ::boost::python::arg("_defaultName"))))
 .def("setPattern", static_cast<bool (dart::common::NameManager<dart::dynamics::Node *>::*)(const std::string &)>(&dart::common::NameManager<dart::dynamics::Node *>::setPattern), (::boost::python::arg("_newPattern")))
 .def("issueNewName", static_cast<std::string (dart::common::NameManager<dart::dynamics::Node *>::*)(const std::string &) const>(&dart::common::NameManager<dart::dynamics::Node *>::issueNewName), (::boost::python::arg("_name")))

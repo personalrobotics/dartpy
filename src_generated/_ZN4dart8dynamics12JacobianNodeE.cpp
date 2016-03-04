@@ -12,8 +12,8 @@ void _ZN4dart8dynamics12JacobianNodeE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::JacobianNode, ::boost::noncopyable, dart::dynamics::JacobianNode *, ::boost::python::bases<dart::dynamics::Frame, dart::dynamics::Node > >("JacobianNode", boost::python::no_init)
-.def("getIK", static_cast<const std::shared_ptr<dart::dynamics::InverseKinematics> &(dart::dynamics::JacobianNode::*)(bool)>(&dart::dynamics::JacobianNode::getIK), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_createIfNull") = false))
+::boost::python::class_<dart::dynamics::JacobianNode, ::boost::noncopyable, dart::dynamics::TemplateNodePtr<dart::dynamics::JacobianNode, dart::dynamics::BodyNode>, ::boost::python::bases<dart::dynamics::Frame, dart::dynamics::Node > >("JacobianNode", boost::python::no_init)
+.def("getIK", static_cast<const std::shared_ptr<dart::dynamics::InverseKinematics> &(dart::dynamics::JacobianNode::*)(bool)>(&dart::dynamics::JacobianNode::getIK), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_createIfNull")))
 .def("getOrCreateIK", static_cast<const std::shared_ptr<dart::dynamics::InverseKinematics> &(dart::dynamics::JacobianNode::*)()>(&dart::dynamics::JacobianNode::getOrCreateIK), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getIK", static_cast<std::shared_ptr<const dart::dynamics::InverseKinematics> (dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getIK))
 .def("createIK", static_cast<const std::shared_ptr<dart::dynamics::InverseKinematics> &(dart::dynamics::JacobianNode::*)()>(&dart::dynamics::JacobianNode::createIK), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
@@ -21,7 +21,6 @@ void _ZN4dart8dynamics12JacobianNodeE()
 .def("setName", static_cast<const std::string &(dart::dynamics::JacobianNode::*)(const std::string &)>(&dart::dynamics::JacobianNode::setName), ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name")))
 .def("getName", static_cast<const std::string &(dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getName), ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("getSkeleton", static_cast<std::shared_ptr<dart::dynamics::Skeleton> (dart::dynamics::JacobianNode::*)()>(&dart::dynamics::JacobianNode::getSkeleton))
-.def("getSkeleton", static_cast<std::shared_ptr<const dart::dynamics::Skeleton> (dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getSkeleton))
 .def("dependsOn", static_cast<bool (dart::dynamics::JacobianNode::*)(std::size_t) const>(&dart::dynamics::JacobianNode::dependsOn), (::boost::python::arg("_genCoordIndex")))
 .def("getNumDependentGenCoords", static_cast<std::size_t (dart::dynamics::JacobianNode::*)() const>(&dart::dynamics::JacobianNode::getNumDependentGenCoords))
 .def("getDependentGenCoordIndex", static_cast<std::size_t (dart::dynamics::JacobianNode::*)(std::size_t) const>(&dart::dynamics::JacobianNode::getDependentGenCoordIndex), (::boost::python::arg("_arrayIndex")))
