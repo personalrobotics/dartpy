@@ -356,7 +356,7 @@ types:
 # Selected function and class declarations that need custom parameters.
 declarations:
   'dart::common::AddonManager':
-    noncopyable: true
+    is_copyable: false
   'dart::common::ResourceRetriever':
     held_type: std::shared_ptr<dart::common::ResourceRetriever>
   'dart::common::LocalResourceRetriever':

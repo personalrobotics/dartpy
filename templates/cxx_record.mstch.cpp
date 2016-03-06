@@ -15,7 +15,8 @@ void {{class.mangled_name}}()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<{{{class.type}}}{{^class.is_copyable}}, {{!
-        }}::boost::noncopyable{{/class.is_copyable}}{{#class.bases?}}, {{!
+        }}::boost::noncopyable{{/class.is_copyable}}{{#class.held_type}}, {{!
+        }}{{{.}}}{{/class.held_type}}{{#class.bases?}}, {{!
         }}::boost::python::bases<{{!
             }}{{#class.bases}}{{{qualified_name}}}{{^last}}, {{/last}}{{/class.bases}}{{!
         }} >{{/class.bases?}} >("{{class.name}}", boost::python::no_init){{!
