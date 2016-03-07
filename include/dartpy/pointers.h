@@ -9,6 +9,8 @@
 #error "pointers.h must be included before any Boost headers"
 #endif
 
+#include "get_signature.h"
+
 namespace boost {
 
 #ifndef DARTPY_HAS_STD_SHARED_GET_POINTER
