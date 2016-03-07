@@ -30,10 +30,14 @@ void {{class.mangled_name}}()
 
 /* methods */}}
 {{#class.methods}}{{!
-    }}.def("{{name}}", static_cast<{{{type}}}>(&{{{qualified_name}}}){{!
+}}{{#overloads}}{{!
+    }}.def("{{name}}", []({{{class.type}}} *self {{#params}}, {{{type}}} {{name}}{{/params}}) { {{!
+        }}return (self->*static_cast<{{{type}}}>(&{{{qualified_name}}}))({{!
+            }}{{#params}}{{name}}{{^last}}, {{/last}}{{/params}}); }{{!
     }}{{#return_value_policy}}, ::boost::python::return_value_policy<{{{.}}} >(){{/return_value_policy}}{{!
     }}{{#params?}}, ({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}})
-{{/class.methods}}{{!
+{{/overloads}}{{!
+}}{{/class.methods}}{{!
 
 /* static methods */}}
 {{#class.methods}}{{!
