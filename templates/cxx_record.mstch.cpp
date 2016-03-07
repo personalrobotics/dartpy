@@ -23,10 +23,15 @@ void {{class.mangled_name}}()
 
 /* constructors */}}
 {{#class.constructors}}{{!
-    }}.def(::boost::python::init<{{!
-        }}{{#params}}{{{type}}}{{^last}}, {{/last}}{{/params}}{{!
-    }}>({{#params?}}({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}}))
-{{/class.constructors}}{{!
+}}{{#overloads}}{{!
+    }}.def("__init__", ::boost::python::make_constructor({{!
+        }}[]({{#params}}{{{type}}} {{name}}{{^last}}, {{/last}}{{/params}}){{!
+        }} -> {{{class.type}}} * { {{!
+        }}return new {{{class.type}}}({{#params}}{{name}}{{^last}}, {{/last}}{{/params}}); }{{! 
+        }}, ::boost::python::default_call_policies(){{!
+        }}{{#params?}}, ({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}}))
+{{/overloads}}{{!
+}}{{/class.constructors}}{{!
 
 /* member functions */}}
 {{#class.methods}}{{!
