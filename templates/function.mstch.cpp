@@ -14,9 +14,13 @@ void {{function.mangled_name}}()
     }}{{#function.scope}}{{#name}}.attr("{{name}}"){{/name}}{{/function.scope}});
 ::boost::python::scope parent_scope(parent_object);
 
-boost::python::def("{{function.name}}", {{!
-    }}static_cast<{{{function.type}}}>(&{{{function.qualified_name}}}){{!
-    }}{{#function.params?}}, ({{#function.params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/function.params}}){{/function.params?}})
-;}
+{{#function.overloads}}{{!
+    }}::boost::python::def("{{name}}", []({{#params}}{{{type}}} {{name}}{{^last}}, {{/last}}{{/params}}) -> {{{return_type}}} { {{!
+    }}return {{{qualified_name}}}({{#params}}{{name}}{{^last}}, {{/last}}{{/params}}); }{{!
+    }}{{#return_value_policy}}, ::boost::python::return_value_policy<{{{.}}} >(){{/return_value_policy}}{{!
+    }}{{#params?}}, ({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}});
+{{/function.overloads}}
+
+}
 {{{postcontent}}}
 {{{footer}}}
