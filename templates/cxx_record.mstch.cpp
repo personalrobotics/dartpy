@@ -6,7 +6,17 @@
 #include <boost/python.hpp>
 #include <cmath>
 
-/* postinclude */
+namespace {
+
+{{#class.?comment}}{{!
+}}constexpr char {{class.mangled_name}}_docstring[] = R"CHIMERA_STRING({{!
+}}{{#class.comment}}{{!
+}}{{{.}}}
+{{/class.comment}}{{!
+}})CHIMERA_STRING";
+{{/class.?comment}}
+
+} // namespace
 
 void {{class.mangled_name}}()
 {
@@ -19,7 +29,8 @@ void {{class.mangled_name}}()
         }}{{{.}}}{{/class.held_type}}{{#class.bases?}}, {{!
         }}::boost::python::bases<{{!
             }}{{#class.bases}}{{{qualified_name}}}{{^last}}, {{/last}}{{/class.bases}}{{!
-        }} >{{/class.bases?}} >("{{class.name}}", boost::python::no_init){{!
+        }} >{{/class.bases?}} >("{{class.name}}",{{!
+        }} {{class.mangled_name}}_docstring, boost::python::no_init){{!
 
 /* constructors */}}
 {{#class.constructors}}{{!
