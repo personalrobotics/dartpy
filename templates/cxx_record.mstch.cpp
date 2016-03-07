@@ -16,6 +16,17 @@ namespace {
 }})CHIMERA_STRING";
 {{/class.?comment}}
 
+{{#class.methods}}{{!
+}}{{#?comment}}{{!
+}}constexpr char {{mangled_name}}_docstring[] = R"CHIMERA_STRING({{!
+}}{{#comment}}{{!
+}}{{{.}}}
+{{/comment}}{{!
+}})CHIMERA_STRING";
+
+{{/?comment}}{{!
+}}{{/class.methods}}
+
 } // namespace
 
 void {{class.mangled_name}}()
@@ -29,8 +40,9 @@ void {{class.mangled_name}}()
         }}{{{.}}}{{/class.held_type}}{{#class.bases?}}, {{!
         }}::boost::python::bases<{{!
             }}{{#class.bases}}{{{qualified_name}}}{{^last}}, {{/last}}{{/class.bases}}{{!
-        }} >{{/class.bases?}} >("{{class.name}}",{{!
-        }} {{class.mangled_name}}_docstring, boost::python::no_init){{!
+        }} >{{/class.bases?}} >("{{class.name}}"{{!
+        }}{{#class.?comment}}, {{class.mangled_name}}_docstring{{/class.?comment}}{{!
+        }}, boost::python::no_init){{!
 
 /* constructors */}}
 {{#class.constructors}}{{!
@@ -51,6 +63,7 @@ void {{class.mangled_name}}()
     }}.def("{{name}}", []({{#is_const}}const {{/is_const}}{{{class.type}}} *self{{#params}}, {{{type}}} {{name}}{{/params}}) -> {{{return_type}}} { {{!
     }}return self->{{name}}({{#params}}{{name}}{{^last}}, {{/last}}{{/params}}); }{{!
     }}{{#return_value_policy}}, ::boost::python::return_value_policy<{{{.}}} >(){{/return_value_policy}}{{!
+    }}{{#?comment}}, {{mangled_name}}_docstring{{/?comment}}{{!
     }}{{#params?}}, ({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}})
 {{/overloads}}{{!
 }}{{/is_static}}{{!

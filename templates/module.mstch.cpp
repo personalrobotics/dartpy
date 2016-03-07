@@ -10,6 +10,8 @@
 
 BOOST_PYTHON_MODULE({{module.name}})
 {
+::boost::python::docstring_options options(true, true, false);
+
 {{{precontent}}}
 {{#module.namespaces}}{{#name}}
   ::boost::python::scope(){{!

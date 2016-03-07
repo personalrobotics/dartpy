@@ -15,7 +15,8 @@ set(chimera_GENERATED_DIR "${PROJECT_SOURCE_DIR}/src_generated")
 set(chimera_COMPILE_DATABASE "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json")
 
 # Enable C++11. This is necessary to use DART.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+# Enable documentation parsing.
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wdocumentation")
 set(CMAKE_CXX_FLAGS "-Wno-deprecated-declarations ${CMAKE_CXX_FLAGS}")
 
 find_package(DART REQUIRED COMPONENTS core)
@@ -23,13 +24,14 @@ find_package(chimera QUIET)
 
 include_directories(SYSTEM
   ${Boost_INCLUDE_DIRS}
-  ${DART_INCLUDE_DIRS}
   ${PYTHON_INCLUDE_DIRS}
   "/opt/ros/indigo/include"
 )
 include_directories(
   "include"
   "src_placeholder"
+  # This can't go in the SYSTEM includes because Clang ignores comments there.
+  ${DART_INCLUDE_DIRS}
 )
 
 if(${chimera_FOUND})
