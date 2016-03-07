@@ -28,17 +28,29 @@ void {{class.mangled_name}}()
     }}>({{#params?}}({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}}))
 {{/class.constructors}}{{!
 
-/* methods */}}
+/* member functions */}}
 {{#class.methods}}{{!
+}}{{^is_static}}{{!
 }}{{#overloads}}{{!
     }}.def("{{name}}", []({{#is_const}}const {{/is_const}}{{{class.type}}} *self{{#params}}, {{{type}}} {{name}}{{/params}}) -> {{{return_type}}} { {{!
     }}return self->{{name}}({{#params}}{{name}}{{^last}}, {{/last}}{{/params}}); }{{!
     }}{{#return_value_policy}}, ::boost::python::return_value_policy<{{{.}}} >(){{/return_value_policy}}{{!
     }}{{#params?}}, ({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}})
 {{/overloads}}{{!
+}}{{/is_static}}{{!
 }}{{/class.methods}}{{!
 
-/* static methods */}}
+/* static member functions */}}
+{{#class.methods}}{{!
+}}{{#is_static}}{{!
+}}{{#overloads}}{{!
+    }}.def("{{name}}", []({{#params}}{{{type}}} {{name}}{{^last}}, {{/last}}{{/params}}) -> {{{return_type}}} { {{!
+    }}return {{{class.qualified_name}}}::{{name}}({{#params}}{{name}}{{^last}}, {{/last}}{{/params}}); }{{!
+    }}{{#return_value_policy}}, ::boost::python::return_value_policy<{{{.}}} >(){{/return_value_policy}}{{!
+    }}{{#params?}}, ({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}})
+{{/overloads}}{{!
+}}{{/is_static}}{{!
+}}{{/class.methods}}
 {{#class.static_methods}}{{!
     }}.staticmethod("{{.}}")
 {{/class.static_methods}}{{!
