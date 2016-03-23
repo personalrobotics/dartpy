@@ -33,8 +33,9 @@ find_package(DART REQUIRED COMPONENTS core)
 # functions and variables.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
 
-# TODO: This should be set by DART.
+# TODO: These should be set by DART.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+include_directories(SYSTEM "/opt/ros/indigo/include")
 
 # Clang ignores docstrings in SYSTEM includes, so we omit that flag.
 include_directories(${DART_INCLUDE_DIRS})
