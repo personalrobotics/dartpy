@@ -1,5 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
-project(dartpy)
+project(dartpy_generator)
+
+set(chimera_CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera.yml")
+set(chimera_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(chimera_GENERATED_DIR "${chimera_SOURCE_DIR}/generated")
+set(chimera_PLACEHOLDER_FILE "${chimera_SOURCE_DIR}/placeholder.cpp")
+set(chimera_COMPILE_DATABASE
+  "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json")
 
 # Use MACOSX_RPATH by default on OS X. This was added in CMake 2.8.12 and
 # became default in CMake 3.0. Explicitly setting this policy is necessary to
@@ -12,7 +19,7 @@ endif()
 include(ExternalProject)
 ExternalProject_Add("${PROJECT_NAME}_external"
   DOWNLOAD_COMMAND ""
-  SOURCE_DIR "${chimera_GENERATED_DIR}"
+  SOURCE_DIR "${chimera_SOURCE_DIR}"
 )
 add_custom_target("${PROJECT_NAME}_bindings" ALL
   DEPENDS "${PROJECT_NAME}_external"
@@ -21,12 +28,6 @@ add_custom_target("${PROJECT_NAME}_bindings" ALL
 find_package(chimera QUIET)
 if(${chimera_FOUND})
   message(STATUS "Found Chimera. Re-generating Boost.Python bindings.")
-
-  set(chimera_CONFIGURATION "${PROJECT_SOURCE_DIR}/chimera.yml")
-  set(chimera_GENERATED_DIR "${PROJECT_SOURCE_DIR}/src_generated")
-  set(chimera_COMPILE_DATABASE
-    "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json")
-  set(chimera_SOURCE "${PROJECT_SOURCE_DIR}/src_placeholder/placeholder.cpp")
 
   # Generate a CMake compilation database for use by Chimera.
   set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -47,24 +48,14 @@ if(${chimera_FOUND})
   # TODO: This should be set by DART.
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-  include_directories(
-    "include"
-    "src_placeholder"
-    # Clang ignores docstrings in SYSTEM includes, so we put them here.
-    ${DART_INCLUDE_DIRS}
-  )
+  # Clang ignores docstrings in SYSTEM includes, so we omit that flag.
+  include_directories(${DART_INCLUDE_DIRS})
 
   add_library("${PROJECT_NAME}_placeholder" SHARED EXCLUDE_FROM_ALL
-    "${chimera_SOURCE}"
+    "${chimera_PLACEHOLDER_FILE}"
   )
   target_link_libraries("${PROJECT_NAME}_placeholder"
     ${DART_LIBRARIES}
-  )
-
-  # TODO: This should be done as a build step.
-  configure_file("${PROJECT_SOURCE_DIR}/cmake/CMakeLists_bindings.txt.in"
-    "${PROJECT_SOURCE_DIR}/src_generated/CMakeLists.txt"
-    @ONLY
   )
 
   # Use Chimera to re-generate Boost.Python bindings.
@@ -74,12 +65,12 @@ if(${chimera_FOUND})
       -c "${chimera_CONFIGURATION}"
       -o "${chimera_GENERATED_DIR}"
       -p "${chimera_COMPILE_DATABASE}"
-      "${chimera_SOURCE}"
+      "${chimera_PLACEHOLDER_FILE}"
       > "${chimera_GENERATED_DIR}/manifest.txt"
     DEPENDS
       "${chimera_CONFIGURATION}"
       "${chimera_COMPILE_DATABASE}"
-      "${chimera_SOURCE}"
+      "${chimera_PLACEHOLDER_FILE}"
     DEPENDERS
       "configure"
     COMMENT "Generating bindings"
