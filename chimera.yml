@@ -270,8 +270,6 @@ types:
 
 # Selected function and class declarations that need custom parameters.
 declarations:
-  'dart::common::AddonManager':
-    is_copyable: false
   'dart::common::ResourceRetriever':
     held_type: std::shared_ptr<dart::common::ResourceRetriever>
   'dart::common::LocalResourceRetriever':
@@ -382,28 +380,6 @@ declarations:
   'dart::common::Extensible<dart::dynamics::Node::State>':
     name: ExtensibleNodeState
 
-  # SpecializedAddonManager<T> names
-  'dart::common::SpecializedAddonManager<dart::dynamics::detail::EulerJointAddon>':
-    name: SpecializedAddonManagerEulerJointAddon
-  'dart::common::SpecializedAddonManager<dart::dynamics::detail::ScrewJointAddon>':
-    name: SpecializedAddonManagerScrewJointAddon
-  'dart::common::SpecializedAddonManager<dart::dynamics::detail::PlanarJointAddon>':
-    name: SpecializedAddonManagerPlanarJointAddon
-  'dart::common::SpecializedAddonManager<dart::dynamics::detail::MultiDofJointAddon<2ul>>':
-    name: SpecializedAddonManagerTwoDofJointAddon
-  'dart::common::SpecializedAddonManager<dart::dynamics::detail::MultiDofJointAddon<3ul>>':
-    name: SpecializedAddonManagerThreeDofJointAddon
-  'dart::common::SpecializedAddonManager<dart::dynamics::detail::MultiDofJointAddon<6ul>>':
-    name: SpecializedAddonManagerSixDofJointAddon
-  'dart::common::SpecializedAddonManager<dart::dynamics::detail::RevoluteJointAddon>':
-    name: SpecializedAddonManagerRevoluteJointAddon
-  'dart::common::SpecializedAddonManager<dart::dynamics::detail::PrismaticJointAddon>':
-    name: SpecializedAddonManagerPrismaticJointAddon
-  'dart::common::SpecializedAddonManager<dart::dynamics::detail::UniversalJointAddon>':
-    name: SpecializedAddonManagerUniversalJointAddon
-  'dart::common::SpecializedAddonManager<dart::dynamics::Support>':
-    name: SpecializedAddonManagerSupportJointAddon
-
   # NameManager<T> names
   'dart::common::NameManager<dart::dynamics::EndEffector*>':
     name: NameManagerEndEffector
@@ -432,11 +408,6 @@ declarations:
   #'template <> void dart::common::NameManager<dart::dynamics::DegreeOfFreedom*>::removeEntries(const std::string&, dart::dynamics::DegreeOfFreedom *const &)': null
   #'template <> void dart::common::NameManager<std::shared_ptr<dart::dynamics::SimpleFrame>>::removeEntries(const std::string&, std::shared_ptr<dart::dynamics::SimpleFrame> const &)': null
   #'template <> void dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> >::removeEntries(const std::string&, std::shared_ptr<dart::dynamics::Skeleton> const &)': null
-
-  'dart::dynamics::SpecializedNodeManagerForBodyNode<dart::dynamics::EndEffector>':
-    name: SpecializedEndEffectorNodeManagerForBodyNode
-  'dart::dynamics::SpecializedNodeManagerForSkeleton<dart::dynamics::EndEffector>':
-    name: SpecializedEndEffectorNodeManagerForSkeleton
 
   'dart::dynamics::detail::MultiDofJointProperties<2ul>':
     name: TwoDofJointProperties
@@ -530,7 +501,6 @@ declarations:
   'const dart::dynamics::BodyNode *dart::dynamics::BodyNode::getChildBodyNode(size_t) const': null
   'const dart::dynamics::BodyNode *dart::dynamics::BodyNode::getParentBodyNode() const': null
   'const dart::dynamics::Joint *dart::dynamics::BodyNode::getParentJoint() const': null
-  'dart::dynamics::ConstShapePtr dart::dynamics::BodyNode::getCollisionShape(size_t) const': null
   'const dart::dynamics::BodyNode *dart::dynamics::Marker::getBodyNode() const': null
   'const dart::dynamics::SoftBodyNode *dart::dynamics::PointMass::getParentSoftBodyNode() const': null
   'template<> const dart::dynamics::DegreeOfFreedom *dart::dynamics::MultiDofJoint<2>::getDof(size_t) const': null

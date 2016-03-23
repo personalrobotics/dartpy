@@ -47,45 +47,6 @@ if(${chimera_FOUND})
     ${DART_LIBRARIES}
   )
 
-  # Use Chimera to generate the Boost.Python bindings.
-  find_path(DART_HEADER_BASE_PATH "dart.h"
-    PATH_SUFFIXES "dart"
-    HINTS ${DART_INCLUDE_DIRS}
-    DOC "DART header file"
-    NO_DEFAULT_PATH
-  )
-  set(DART_HEADER_PATH "${DART_HEADER_BASE_PATH}/dart.h")
-
-  add_custom_command(OUTPUT "${chimera_GENERATED_DIR}/manifest.txt"
-    COMMAND "${chimera_EXECUTABLE}"
-      -m "${PROJECT_NAME}"
-      -c "${chimera_CONFIGURATION}"
-      -o "${chimera_GENERATED_DIR}"
-      -p "${chimera_COMPILE_DATABASE}"
-      "${chimera_SOURCE}"
-      > "${chimera_GENERATED_DIR}/manifest.txt"
-    MAIN_DEPENDENCY "${chimera_CONFIGURATION}"
-    DEPENDS
-      "${chimera_COMPILE_DATABASE}"
-      "${chimera_GENERATED_DIR}/manifest.txt"
-      "${chimera_SOURCE}"
-    COMMENT "Generating bindings"
-    VERBATIM
-  )
-  add_custom_command(OUTPUT "${chimera_GENERATED_DIR}/manifest.cmake"
-    COMMAND
-    bash -c "echo set\\(chimera_GENERATED_SOURCES\
-       $(cat ${chimera_GENERATED_DIR}/manifest.txt) \\)"
-      > "${chimera_GENERATED_DIR}/manifest.cmake"
-    MAIN_DEPENDENCY "${chimera_GENERATED_DIR}/manifest.txt"
-    COMMENT "Generating bindings manifest file"
-    VERBATIM
-  )
-  add_custom_target(bind
-    DEPENDS "${chimera_GENERATED_DIR}/manifest.cmake"
-    COMMENT "Checking if re-generation is required"
-  )
-
   # TODO: This should be done as a build step.
   configure_file("${PROJECT_SOURCE_DIR}/cmake/CMakeLists_bindings.txt.in"
     "${PROJECT_SOURCE_DIR}/src_generated/CMakeLists.txt"
@@ -96,5 +57,28 @@ else()
                   " bindings.")
 endif()
 
-# Actually build the bindings.
-add_subdirectory(src_generated)
+include(ExternalProject)
+ExternalProject_Add("${PROJECT_NAME}_external"
+  DOWNLOAD_COMMAND ""
+  SOURCE_DIR "${chimera_GENERATED_DIR}"
+)
+ExternalProject_Add_Step("${PROJECT_NAME}_external" "chimera_bind"
+  COMMAND "${chimera_EXECUTABLE}"
+    -m "${PROJECT_NAME}"
+    -c "${chimera_CONFIGURATION}"
+    -o "${chimera_GENERATED_DIR}"
+    -p "${chimera_COMPILE_DATABASE}"
+    "${chimera_SOURCE}"
+    > "${chimera_GENERATED_DIR}/manifest.txt"
+  DEPENDS
+    "${chimera_CONFIGURATION}"
+    "${chimera_COMPILE_DATABASE}"
+    "${chimera_SOURCE}"
+  DEPENDERS
+    "configure"
+  COMMENT "Generating bindings"
+)
+
+add_custom_target("${PROJECT_NAME}_bindings"
+  DEPENDS "${PROJECT_NAME}_external"
+)
