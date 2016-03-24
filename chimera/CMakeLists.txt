@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(dartpy_chimera)
 
+set(chimera_MODULE_NAME "dartpy")
 set(chimera_CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera.yml")
 set(chimera_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../src")
 set(chimera_GENERATED_DIR "${chimera_SOURCE_DIR}/generated")
@@ -50,7 +51,7 @@ target_link_libraries("${PROJECT_NAME}_placeholder"
 # Use Chimera to re-generate Boost.Python bindings.
 add_custom_target("${PROJECT_NAME}_bindings"
   COMMAND "${chimera_EXECUTABLE}"
-    -m "${PROJECT_NAME}"
+    -m "${chimera_MODULE_NAME}"
     -c "${chimera_CONFIGURATION}"
     -o "${chimera_GENERATED_DIR}"
     -p "${chimera_COMPILE_DATABASE}"

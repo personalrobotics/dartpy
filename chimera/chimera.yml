@@ -231,7 +231,11 @@ types:
   'const dart::dynamics::MultiDofJoint<2>::Addon *': null
   'const dart::dynamics::MultiDofJoint<3>::Addon *': null
   'const dart::dynamics::MultiDofJoint<6>::Addon *': null
+
   'const dart::common::Addon::State *': null
+  'const dart::common::detail::AddonWithState<dart::common::ManagerTrackingAddon<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>::State &':
+    return_value_policy: boost::python::copy_const_reference
+
 
   # smart pointers
   'dart::dynamics::BodyNode *':
@@ -250,20 +254,20 @@ types:
   # joint smart pointers
   'dart::dynamics::Joint *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  'dart::dynamics::EulerJoint *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  'dart::dynamics::SingleDofJoint *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  'dart::dynamics::PlanarJoint *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  'dart::dynamics::PrismaticJoint *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  'dart::dynamics::UniversalJoint *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  'dart::dynamics::RevoluteJoint *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  'dart::dynamics::ScrewJoint *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+  #'dart::dynamics::EulerJoint *':
+  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+  #'dart::dynamics::SingleDofJoint *':
+  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+  #'dart::dynamics::PlanarJoint *':
+  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+  #'dart::dynamics::PrismaticJoint *':
+  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+  #'dart::dynamics::UniversalJoint *':
+  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+  #'dart::dynamics::RevoluteJoint *':
+  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+  #'dart::dynamics::ScrewJoint *':
+  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
 
   # collections
   'const std::vector<dart::dynamics::BodyNode*>&':
@@ -595,6 +599,9 @@ classes:
   'dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<3>, dart::common::RequiresAddon<dart::dynamics::detail::EulerJointAddon> >':
     name: AddonManagerJoiner_ThreeDofJoint_EulerJointAddon
 
+  'dart::common::detail::AddonWithState<dart::common::ManagerTrackingAddon<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>':
+    name: AddonWithState_EndEffector_Support_SupportStateData_EndEffector_SupportUpdate
+
   'dart::common::Signal<void (const dart::dynamics::Entity *), dart::common::signal::detail::DefaultCombiner>':
     name: EntitySignal
   'dart::common::SlotRegister<dart::common::Signal<void (const dart::dynamics::Entity *), dart::common::signal::detail::DefaultCombiner> >':
@@ -759,3 +766,12 @@ functions:
   'tinyxml2::XMLElement *dart::utils::getElement(tinyxml2::XMLElement *, const std::string &)': null
   'std::ostream &dart::common::colorMsg(const std::string &, int)': null
   'std::ostream &dart::common::colorErr(const std::string &, const std::string &, unsigned int, int)': null
+
+  # Suppressed because of bugs in DART.
+  'Eigen::Matrix3d dart::dynamics::Shape::computeInertiaFromMass(double) const': null
+  'Eigen::Matrix3d dart::dynamics::Shape::computeInertiaFromDensity(double) const': null
+
+  # Suppressed because they take unique_ptr's
+  'void dart::constraint::ConstraintSolver::setCollisionDetector(std::unique_ptr<dart::collision::CollisionDetector>)': null
+  'void dart::constraint::ConstraintSolver::setLCPSolver(std::unique_ptr<dart::constraint::LCPSolver>)': null
+  'bool dart::dynamics::Group::removeJoints(std::vector<dart::dynamics::Joint*, std::allocator<dart::dynamics::Joint*> > const&, bool, bool)': null

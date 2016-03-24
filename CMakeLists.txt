@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 project(dartpy)
 
 # TODO: This should be set by DART.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated")
 
 find_package(PythonInterp REQUIRED)
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
