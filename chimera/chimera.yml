@@ -188,6 +188,18 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const std::vector<Eigen::VectorXd> &':
     return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::detail::MultiDofJointAddon<2>::BoolArray &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::detail::MultiDofJointAddon<3>::BoolArray &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::detail::MultiDofJointAddon<6>::BoolArray &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::detail::MultiDofJointAddon<2>::StringArray &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::detail::MultiDofJointAddon<3>::StringArray &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::detail::MultiDofJointAddon<6>::StringArray &':
+    return_value_policy: boost::python::copy_const_reference
 
    # Addons
   'dart::dynamics::DynamicsAddon *':
@@ -213,6 +225,8 @@ types:
   'dart::dynamics::MultiDofJoint<2>::Addon *':
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::MultiDofJoint<3>::Addon *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::MultiDofJoint<6>::Addon *':
     return_value_policy: boost::python::reference_existing_object
   'dart::common::Addon::State *':
     return_value_policy: boost::python::reference_existing_object
@@ -254,20 +268,27 @@ types:
   # joint smart pointers
   'dart::dynamics::Joint *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  #'dart::dynamics::EulerJoint *':
-  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  #'dart::dynamics::SingleDofJoint *':
-  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  #'dart::dynamics::PlanarJoint *':
-  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  #'dart::dynamics::PrismaticJoint *':
-  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  #'dart::dynamics::UniversalJoint *':
-  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  #'dart::dynamics::RevoluteJoint *':
-  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
-  #'dart::dynamics::ScrewJoint *':
-  #  return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+  # TODO: These should all use smart pointers.
+  'dart::dynamics::EulerJoint *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::SingleDofJoint *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::PlanarJoint *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::PrismaticJoint *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::UniversalJoint *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::RevoluteJoint *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::ScrewJoint *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::MultiDofJoint<2> *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::MultiDofJoint<3> *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::MultiDofJoint<6> *':
+    return_value_policy: boost::python::reference_existing_object
 
   # collections
   'const std::vector<dart::dynamics::BodyNode*>&':
@@ -369,6 +390,9 @@ types:
   'const dart::dynamics::EulerJoint *': null
   'const dart::dynamics::ScrewJoint *': null
   'const dart::dynamics::RevoluteJoint *': null
+  'const dart::dynamics::MultiDofJoint<2> *': null
+  'const dart::dynamics::MultiDofJoint<3> *': null
+  'const dart::dynamics::MultiDofJoint<6> *': null
 
   'const dart::dynamics::InverseKinematics::GradientMethod &': null
   'const dart::dynamics::InverseKinematics::Analytical *': null
@@ -473,14 +497,19 @@ classes:
   # Joints
   'dart::dynamics::Joint':
     held_type: dart::dynamics::JointPtr
-  'dart::dynamics::ZeroDofJoint':
-    name: ZeroDofJoint
   'dart::dynamics::MultiDofJoint<2>':
     name: TwoDofJoint
   'dart::dynamics::MultiDofJoint<3>':
     name: ThreeDofJoint
   'dart::dynamics::MultiDofJoint<6>':
     name: SixDofJoint
+  'dart::dynamics::detail::MultiDofJointAddon<2>':
+    name: ThreeDofJointAddon
+  'dart::dynamics::detail::MultiDofJointAddon<3>':
+    name: ThreeDofJointAddon
+  'dart::dynamics::detail::MultiDofJointAddon<6>':
+    name: SixDofJoint
+
 
   # DegreeOfFreedoms
   'dart::dynamics::DegreeOfFreedom':
@@ -507,6 +536,13 @@ classes:
     name: TemplatedJacobianShapeNode
     held_type: dart::dynamics::TemplateNodePtr<dart::dynamics::TemplatedJacobianNode<dart::dynamics::ShapeNode>, dart::dynamics::BodyNode>
 
+  # Resource Retrievers
+  'dart::common::ResourceRetriever':
+    held_type: std::shared_ptr<dart::common::ResourceRetriever>
+  'dart::common::LocalResourceRetriever':
+    held_type: std::shared_ptr<dart::common::LocalResourceRetriever>
+  'dart::utils::PackageResourceRetriever':
+    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
 
   'dart::dynamics::SkeletonSpecializedFor<dart::dynamics::ShapeNode>':
     name: SkeletonSpecializedForShapeNode
@@ -759,6 +795,13 @@ classes:
   'dart::optimizer::NloptSolver': null
   'dart::optimizer::DartTNLP': null
 
+  # Workarounds for bugs in Chimera.
+  'dart::dynamics::ShapeFrame':
+    bases:
+    - dart::dynamics::Frame
+    - dart::common::VersionCounter
+    - dart::common::SpecializedForAddon<dart::dynamics::VisualAddon, dart::dynamics::CollisionAddon, dart::dynamics::DynamicsAddon>
+
 functions:
   'dart::dynamics::Frame *dart::dynamics::Frame::World()':
     return_value_policy: boost::python::reference_existing_object
@@ -767,11 +810,20 @@ functions:
   'std::ostream &dart::common::colorMsg(const std::string &, int)': null
   'std::ostream &dart::common::colorErr(const std::string &, const std::string &, unsigned int, int)': null
 
-  # Suppressed because of bugs in DART.
+  # Incompete argument types.
+  'void dart::renderer::RenderInterface::readFrameBuffer(dart::renderer::DecoBufferType, dart::renderer::DecoColorChannel, void*)': null
+  'void dart::renderer::OpenGLRenderInterface::readFrameBuffer(dart::renderer::DecoBufferType, dart::renderer::DecoColorChannel, void*)': null
+  'size_t dart::common::Resource::read(void *, size_t, size_t)': null
+  'size_t dart::common::LocalResource::read(void *, size_t, size_t)': null
+
+  # std::unique_ptr arguments.
+  'void dart::constraint::ConstraintSolver::setLCPSolver(std::unique_ptr<dart::constraint::LCPSolver>)': null
+  'void dart::constraint::ConstraintSolver::setCollisionDetector(std::unique_ptr<dart::collision::CollisionDetector>)': null
+
+  # Workarounds for bugs in DART.
   'Eigen::Matrix3d dart::dynamics::Shape::computeInertiaFromMass(double) const': null
   'Eigen::Matrix3d dart::dynamics::Shape::computeInertiaFromDensity(double) const': null
-
-  # Suppressed because they take unique_ptr's
-  'void dart::constraint::ConstraintSolver::setCollisionDetector(std::unique_ptr<dart::collision::CollisionDetector>)': null
-  'void dart::constraint::ConstraintSolver::setLCPSolver(std::unique_ptr<dart::constraint::LCPSolver>)': null
   'bool dart::dynamics::Group::removeJoints(std::vector<dart::dynamics::Joint*, std::allocator<dart::dynamics::Joint*> > const&, bool, bool)': null
+  'template<> dart::dynamics::MultiDofJoint<2>::Addon *dart::dynamics::MultiDofJoint<2>::getMultiDofJointAddon(const bool)': null
+  'template<> dart::dynamics::MultiDofJoint<3>::Addon *dart::dynamics::MultiDofJoint<3>::getMultiDofJointAddon(const bool)': null
+  'template<> dart::dynamics::MultiDofJoint<6>::Addon *dart::dynamics::MultiDofJoint<6>::getMultiDofJointAddon(const bool)': null
