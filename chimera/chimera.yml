@@ -798,9 +798,9 @@ classes:
   # Workarounds for bugs in Chimera.
   'dart::dynamics::ShapeFrame':
     bases:
-    - dart::dynamics::Frame
-    - dart::common::VersionCounter
-    - dart::common::SpecializedForAddon<dart::dynamics::VisualAddon, dart::dynamics::CollisionAddon, dart::dynamics::DynamicsAddon>
+    - {qualified_name: 'dart::dynamics::Frame'}
+    - {qualified_name: 'dart::common::VersionCounter'}
+    - {qualified_name: 'dart::common::SpecializedForAddon<dart::dynamics::VisualAddon, dart::dynamics::CollisionAddon, dart::dynamics::DynamicsAddon>'}
 
 functions:
   'dart::dynamics::Frame *dart::dynamics::Frame::World()':
