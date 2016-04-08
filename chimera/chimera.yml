@@ -791,9 +791,9 @@ classes:
   # Suppressed because these are optional components.
   'Assimp::IOStream': null
   'dart::dynamics::AssimpInputResourceAdaptor': null
-  'dart::optimizer::IpoptSolver': null
-  'dart::optimizer::NloptSolver': null
-  'dart::optimizer::DartTNLP': null
+  #'dart::optimizer::IpoptSolver': null
+  #'dart::optimizer::NloptSolver': null
+  #'dart::optimizer::DartTNLP': null
 
   # Workarounds for bugs in Chimera.
   'dart::dynamics::ShapeFrame':
