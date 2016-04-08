@@ -61,7 +61,7 @@ void {{class.mangled_name}}()
 }}{{^is_static}}{{!
 }}{{#overloads}}{{!
     }}.def("{{name}}", []({{#is_const}}const {{/is_const}}{{{class.type}}} *self{{#params}}, {{{type}}} {{name}}{{/params}}) -> {{{return_type}}} { {{!
-    }}return self->{{{qualified_name}}}({{#params}}{{name}}{{^last}}, {{/last}}{{/params}}); }{{!
+    }}return self->{{{name}}}({{#params}}{{name}}{{^last}}, {{/last}}{{/params}}); }{{!
     }}{{#return_value_policy}}, ::boost::python::return_value_policy<{{{.}}} >(){{/return_value_policy}}{{!
     }}{{#?comment}}, {{mangled_name}}_docstring{{/?comment}}{{!
     }}{{#params?}}, ({{#params}}::boost::python::arg("{{name}}"){{^last}}, {{/last}}{{/params}}){{/params?}})
