@@ -332,10 +332,6 @@ types:
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::Marker *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::collision::CollisionNode *':
-    return_value_policy: boost::python::reference_existing_object
-  'dart::collision::FCLCollisionNode *':
-    return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::InverseKinematics *':
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::JacobianNode *':
@@ -791,9 +787,9 @@ classes:
   # Suppressed because these are optional components.
   'Assimp::IOStream': null
   'dart::dynamics::AssimpInputResourceAdaptor': null
-  #'dart::optimizer::IpoptSolver': null
-  #'dart::optimizer::NloptSolver': null
-  #'dart::optimizer::DartTNLP': null
+  'dart::optimizer::IpoptSolver': null
+  'dart::optimizer::NloptSolver': null
+  'dart::optimizer::DartTNLP': null
 
   # Workarounds for bugs in Chimera.
   'dart::dynamics::ShapeFrame':
@@ -818,8 +814,7 @@ functions:
   'size_t dart::common::LocalResource::read(void *, size_t, size_t)': null
 
   # std::unique_ptr arguments.
-  'void dart::constraint::ConstraintSolver::setLCPSolver(std::unique_ptr<dart::constraint::LCPSolver>)': null
-  'void dart::constraint::ConstraintSolver::setCollisionDetector(std::unique_ptr<dart::collision::CollisionDetector>)': null
+  #'void dart::constraint::ConstraintSolver::setLCPSolver(std::unique_ptr<dart::constraint::LCPSolver>)': null
 
   # Workarounds for bugs in DART.
   'Eigen::Matrix3d dart::dynamics::Shape::computeInertiaFromMass(double) const': null
