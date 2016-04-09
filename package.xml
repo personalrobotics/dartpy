@@ -19,7 +19,9 @@
   <depend>boost</depend>
   <depend>dart</depend>
   <depend>python</depend>
-  <exec_depend>boost_numpy_eigen</exec_depend>
+  <!-- This should be a <build_depend>, but is listed as a <depend> to get
+       catkin_build to build it as a dependency of dartpy. -->
+  <depend>boost_numpy_eigen</depend>
   <!-- These are required by REP-136. -->
   <exec_depend>catkin</exec_depend>
   <export>
