@@ -61,7 +61,7 @@ add_chimera_binding(TARGET "${PROJECT_NAME}"
   MODULE "${PROJECT_NAME}"
   CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.yml"
   NAMESPACES "dart"
-  SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/chimera/placeholder.cpp"
+  SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.cpp"
   EXTRA_SOURCES
     src/BodyNode.cpp
     src/Skeleton.cpp
