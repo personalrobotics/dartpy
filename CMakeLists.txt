@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 project(dartpy)
 
 # TODO: This should be set by DART.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated -Wno-deprecated-declarations")
 
 find_package(PythonInterp REQUIRED)
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
@@ -72,6 +72,9 @@ target_link_libraries("${PROJECT_NAME}"
   ${Boost_PYTHON_LIBRARIES}
   ${DART_LIBRARIES}
   ${PYTHON_LIBRARIES}
+)
+set_target_properties("${PROJECT_NAME}" PROPERTIES
+  PREFIX ""
 )
 
 install(TARGETS "${PROJECT_NAME}"
