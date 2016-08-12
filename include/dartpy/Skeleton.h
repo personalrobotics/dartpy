@@ -1,7 +1,7 @@
 #ifndef DARTPY_SKELETON_H_
 #define DARTPY_SKELETON_H_
 #include <boost/python.hpp>
-#include <dart/dynamics/dynamics.h>
+#include <dart/dynamics/dynamics.hpp>
 
 namespace dart {
 namespace python {

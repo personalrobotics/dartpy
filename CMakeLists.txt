@@ -13,7 +13,7 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
 )
 
 find_package(Boost REQUIRED COMPONENTS python)
-find_package(DART REQUIRED COMPONENTS core)
+find_package(DART REQUIRED COMPONENTS utils utils-urdf optimizer-ipopt optimizer-nlopt)
 find_package(PythonLibs REQUIRED)
 find_package(chimera REQUIRED)
 

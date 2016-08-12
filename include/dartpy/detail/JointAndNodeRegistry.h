@@ -1,7 +1,7 @@
 #ifndef DARTPY_DETAIL_JOINTANDNODEREGISTRY_H_
 #define DARTPY_DETAIL_JOINTANDNODEREGISTRY_H_
 #include <dartpy/pointers.h>
-#include <dart/dynamics/dynamics.h>
+#include <dart/dynamics/dynamics.hpp>
 
 using dart::dynamics::BodyNode;
 using dart::dynamics::BodyNodePtr;
@@ -24,6 +24,7 @@ struct Skeleton_createJointAndBodyNodePair
     boost::python::object _jointPropertiesPython,
     boost::python::object _bodyPropertiesPython)
   {
+#if 0
     typename JointType::Properties jointProperties;
     if (!_jointPropertiesPython.is_none())
     {
@@ -43,6 +44,8 @@ struct Skeleton_createJointAndBodyNodePair
 
     return boost::python::make_tuple(
       JointPtr(ret.first), TemplateBodyNodePtr<NodeType>(ret.second));
+#endif
+    throw std::runtime_error("createJointAndBodyNodePair is not supported.");
   }
 };
 
