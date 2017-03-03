@@ -15,8 +15,7 @@ Python bindings for [DART][dart], the Dynamic Animation and Robotics Toolkit.
 * [Chimera][chimera] (only for generating new bindings)
 * [Boost.Numpy][boost_numpy] (build from source)
 * [Boost.Numpy/Eigen][boost_numpy_eigen] (build from source)
-* [DART][dart] (tested on `f4e5604390418aa123458a786bcfbd14a4f289fc`, current
-  as of 2/11/2016)
+* [DART][dart]
 
 If [`wstool`][wstool] is available, you can use this `.rosinstall` file to
 checkout Chimera, Boost.Python, Boost.NumPy/Eigen, and DART from source:
@@ -24,21 +23,21 @@ checkout Chimera, Boost.Python, Boost.NumPy/Eigen, and DART from source:
 - git:
     local-name: boost_numpy
     uri: https://github.com/personalrobotics/Boost.NumPy.git
+    version: 0.0.1
 - git:
     local-name: boost_numpy_eigen
     uri: https://github.com/personalrobotics/Boost.NumPy_Eigen.git
+    version: 0.0.1
 - git:
     local-name: chimera
     uri: https://github.com/personalrobotics/chimera.git
-    version: bugfix/nested_access
 - git:
     local-name: dart
     uri: https://github.com/dartsim/dart.git
-    version: f4e5604390418aa123458a786bcfbd14a4f289fc
+    version: release-6.1
 - git:
     local-name: dartpy
     uri: https://github.com/personalrobotics/dartpy.git
-    version: chimera
 ```
 
 If these packages are in a [Catkin workspace][catkin_workspace], you can follow
@@ -58,33 +57,17 @@ process:
 $ mkdir build
 $ cd build
 $ cmake ..
-```
-
-### Binding Generation
-
-> :warning: **Warning:** Running Chimera is only necessary if you are using a
-> version of DART that differs from the one listed above.
-
-`dartpy` uses [`chimera`][chimera] to generate Boost.Python bindings from
-DART's C++ header files. You can re-generate the bindings by building the
-`bind` target:
-```console
-$ make bind
-```
-The generated files are stored in the [`src_generated`
-directory](src_generated/). You should clear your `CMakeCache.txt` and re-run
-`cmake` before proceeding.
-
-
-### Building Packaged Bindings
-
-Once the Boost.Python bindings are generated, either by: (1) running `chimera`
-or (2) using the incldued files, you can build the Python extension module.
-`dartpy` contains a cached copy of the Boost.Python bindings in the
-[`src_generated` directory](src_generated/). You can build those:
-```console
 $ make
 $ make install
+```
+
+If you are using `catkin_tools`, change your compiler to Clang 3.7 by running:
+```console
+$ catkin config -a --cmake-args -DCMAKE_C_COMPILER=$(which clang-3.7) -DCMAKE_CXX_COMPILER=$(which clang++-3.7)
+```
+Then, you follow the standard Catkin build process:
+```console
+$ catkin build
 ```
 
 ## Usage
