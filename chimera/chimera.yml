@@ -23,7 +23,7 @@ template:
     header: |
       #include <dartpy/pointers.h>
       #include <dartpy/template_registry.h>
-      #include <dart/dart.h>
+      #include <dart/dart.hpp>
     postinclude:
       '/* postinclude */'
     footer:
@@ -37,7 +37,7 @@ template:
       #include <dartpy/pointers.h>
       #include <dartpy/collections.h>
       #include <dartpy/util.h>
-      #include <dart/dart.h>
+      #include <dart/dart.hpp>
     postinclude:
       '/* main postinclude */'
     precontent: |
