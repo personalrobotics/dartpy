@@ -1,7 +1,7 @@
 #ifndef DARTPY_DETAIL_JOINTANDNODEREGISTRY_H_
 #define DARTPY_DETAIL_JOINTANDNODEREGISTRY_H_
 #include <dartpy/pointers.h>
-#include <dart/dynamics/dynamics.h>
+#include <dart/dynamics/dynamics.hpp>
 
 using dart::dynamics::BodyNode;
 using dart::dynamics::BodyNodePtr;
