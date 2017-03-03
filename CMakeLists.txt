@@ -13,7 +13,7 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
 )
 
 find_package(Boost REQUIRED COMPONENTS python thread)
-find_package(DART REQUIRED COMPONENTS core)
+find_package(DART REQUIRED)
 find_package(PythonLibs REQUIRED)
 
 include_directories(SYSTEM

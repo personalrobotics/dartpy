@@ -28,7 +28,7 @@ set(CMAKE_C_COMPILER "${chimera_C_COMPILER}")
 set(CMAKE_CXX_COMPILER "${chimera_CXX_COMPILER}")
 
 # Create a placeholder library to generate the compilation database.
-find_package(DART REQUIRED COMPONENTS core)
+find_package(DART REQUIRED)
 
 # Disable deprecation warnings since we may generate bindings for deprecated
 # functions and variables.
