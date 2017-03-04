@@ -24,6 +24,9 @@ template:
       #include <dartpy/pointers.h>
       #include <dartpy/template_registry.h>
       #include <dart/dart.hpp>
+      #include <dart/utils/utils.hpp>
+      #include <dart/optimizer/optimizer.hpp>
+      #include <dart/optimizer/nlopt/nlopt.hpp>
     postinclude:
       '/* postinclude */'
     footer:
@@ -38,6 +41,9 @@ template:
       #include <dartpy/collections.h>
       #include <dartpy/util.h>
       #include <dart/dart.hpp>
+      #include <dart/utils/utils.hpp>
+      #include <dart/optimizer/optimizer.hpp>
+      #include <dart/optimizer/nlopt/nlopt.hpp>
     postinclude:
       '/* main postinclude */'
     precontent: |
@@ -188,66 +194,77 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const std::vector<Eigen::VectorXd> &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::detail::MultiDofJointAddon<2>::BoolArray &':
+  'const dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::detail::MultiDofJointAddon<3>::BoolArray &':
+  'const dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::detail::MultiDofJointAddon<6>::BoolArray &':
+  'const dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::detail::MultiDofJointAddon<2>::StringArray &':
+  'const dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::detail::MultiDofJointAddon<3>::StringArray &':
+  'const dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::detail::MultiDofJointAddon<6>::StringArray &':
+  'const dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect::StringArray &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect::StringArray &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect::StringArray &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect::StringArray &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect::StringArray &':
     return_value_policy: boost::python::copy_const_reference
 
-   # Addons
-  'dart::dynamics::DynamicsAddon *':
+   # Aspects
+  'dart::dynamics::DynamicsAspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::CollisionAddon *':
+  'dart::dynamics::CollisionAspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::VisualAddon *':
+  'dart::dynamics::VisualAspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::ScrewJoint::Addon *':
+  'dart::dynamics::ScrewJoint::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::EulerJoint::Addon *':
+  'dart::dynamics::EulerJoint::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::RevoluteJoint::Addon *':
+  'dart::dynamics::RevoluteJoint::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::UniversalJoint::Addon *':
+  'dart::dynamics::UniversalJoint::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::PrismaticJoint::Addon *':
+  'dart::dynamics::PrismaticJoint::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::PlanarJoint::Addon *':
+  'dart::dynamics::PlanarJoint::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::SingleDofJoint::Addon *':
+  'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::MultiDofJoint<2>::Addon *':
+  'dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::MultiDofJoint<3>::Addon *':
+  'dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::MultiDofJoint<6>::Addon *':
+  'dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::common::Addon::State *':
+  'dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::common::Aspect::State *':
     return_value_policy: boost::python::reference_existing_object
 
-  # Disable const Addons
-  'const dart::dynamics::DynamicsAddon *': null
-  'const dart::dynamics::CollisionAddon *': null
-  'const dart::dynamics::VisualAddon *': null
-  'const dart::dynamics::ScrewJoint::Addon *': null
-  'const dart::dynamics::EulerJoint::Addon *': null
-  'const dart::dynamics::RevoluteJoint::Addon *': null
-  'const dart::dynamics::UniversalJoint::Addon *': null
-  'const dart::dynamics::PrismaticJoint::Addon *': null
-  'const dart::dynamics::PlanarJoint::Addon *': null
-  'const dart::dynamics::SingleDofJoint::Addon *': null
-  'const dart::dynamics::MultiDofJoint<2>::Addon *': null
-  'const dart::dynamics::MultiDofJoint<3>::Addon *': null
-  'const dart::dynamics::MultiDofJoint<6>::Addon *': null
+  # Disable const Aspects
+  'const dart::dynamics::DynamicsAspect *': null
+  'const dart::dynamics::CollisionAspect *': null
+  'const dart::dynamics::VisualAspect *': null
+  'const dart::dynamics::ScrewJoint::Aspect *': null
+  'const dart::dynamics::EulerJoint::Aspect *': null
+  'const dart::dynamics::RevoluteJoint::Aspect *': null
+  'const dart::dynamics::UniversalJoint::Aspect *': null
+  'const dart::dynamics::PrismaticJoint::Aspect *': null
+  'const dart::dynamics::PlanarJoint::Aspect *': null
+  'const dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect *': null
+  'const dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect *': null
+  'const dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect *': null
+  'const dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect *': null
+  'const dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *': null
 
-  'const dart::common::Addon::State *': null
-  'const dart::common::detail::AddonWithState<dart::common::ManagerTrackingAddon<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>::State &':
+  'const dart::common::Aspect::State *': null
+  'const dart::common::detail::AspectWithState<dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>::State &':
     return_value_policy: boost::python::copy_const_reference
 
 
@@ -271,8 +288,6 @@ types:
   # TODO: These should all use smart pointers.
   'dart::dynamics::EulerJoint *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::SingleDofJoint *':
-    return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::PlanarJoint *':
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::PrismaticJoint *':
@@ -283,11 +298,15 @@ types:
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::ScrewJoint *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::MultiDofJoint<2> *':
+  'dart::dynamics::GenericJoint<dart::math::R1Space> *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::MultiDofJoint<3> *':
+  'dart::dynamics::GenericJoint<dart::math::R2Space> *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::MultiDofJoint<6> *':
+  'dart::dynamics::GenericJoint<dart::math::R3Space> *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::GenericJoint<dart::math::SO3Space> *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::GenericJoint<dart::math::SE3Space> *':
     return_value_policy: boost::python::reference_existing_object
 
   # collections
@@ -348,13 +367,15 @@ types:
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::PointMassNotifier *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::SingleDofJoint::Addon *':
+  'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::MultiDofJoint<2>::Addon *':
+  'dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::MultiDofJoint<3>::Addon *':
+  'dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
-  'dart::dynamics::MultiDofJoint<6>::Addon *':
+  'dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::InverseKinematics::Analytical *':
     return_value_policy: boost::python::reference_existing_object
@@ -374,21 +395,22 @@ types:
   'Assimp::IOStream *': null
 
   # suppressed to disable const overloads
-  'const dart::common::Addon::Properties *': null
-  'const dart::dynamics::ScrewJoint::Addon *': null
-  'const dart::dynamics::EulerJoint::Addon *': null
+  'const dart::common::Aspect::Properties *': null
+  'const dart::dynamics::ScrewJoint::Aspect *': null
+  'const dart::dynamics::EulerJoint::Aspect *': null
 
   'const dart::dynamics::Joint *': null
-  'const dart::dynamics::SingleDofJoint *': null
   'const dart::dynamics::PlanarJoint *': null
   'const dart::dynamics::PrismaticJoint *': null
   'const dart::dynamics::UniversalJoint *': null
   'const dart::dynamics::EulerJoint *': null
   'const dart::dynamics::ScrewJoint *': null
   'const dart::dynamics::RevoluteJoint *': null
-  'const dart::dynamics::MultiDofJoint<2> *': null
-  'const dart::dynamics::MultiDofJoint<3> *': null
-  'const dart::dynamics::MultiDofJoint<6> *': null
+  'const dart::dynamics::GenericJoint<dart::math::R1Space> *': null
+  'const dart::dynamics::GenericJoint<dart::math::R2Space> *': null
+  'const dart::dynamics::GenericJoint<dart::math::R3Space> *': null
+  'const dart::dynamics::GenericJoint<dart::math::SO3Space> *': null
+  'const dart::dynamics::GenericJoint<dart::math::SE3Space> *': null
 
   'const dart::dynamics::InverseKinematics::GradientMethod &': null
   'const dart::dynamics::InverseKinematics::Analytical *': null
@@ -417,8 +439,8 @@ classes:
     held_type: std::shared_ptr<dart::common::ResourceRetriever>
   'dart::common::LocalResourceRetriever':
     held_type: std::shared_ptr<dart::common::LocalResourceRetriever>
-  'dart::utils::PackageResourceRetriever':
-    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
+#  'dart::utils::PackageResourceRetriever':
+#    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
   'dart::dynamics::InverseKinematics':
     held_type: 'std::shared_ptr<dart::dynamics::InverseKinematics>'
 
@@ -440,72 +462,75 @@ classes:
     name: VirtualBodyNodeSpecializedForShapeNode
   'dart::dynamics::NodeManagerJoinerForBodyNode<dart::common::Virtual<dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::ShapeNode>>, dart::common::Virtual<dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::EndEffector>>>':
     name: NodeManagerJoinerForBodyNode_VirtualBodyNodeSpecializedForShapeNode_VirtualBodyNodeSpecializedForEndEffector
-  'dart::common::SpecializedForAddon<dart::dynamics::CollisionAddon, dart::dynamics::DynamicsAddon>':
-    name: SpecializedForAddon_CollisionAddon_DynamicsAddon
-  'dart::common::Virtual<dart::common::SpecializedForAddon<dart::dynamics::CollisionAddon, dart::dynamics::DynamicsAddon>>':
-    name: VirtualSpecializedForAddon_CollisionAddon_DynamicsAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::Support>':
-    name: SpecializedForAddonSupport
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::VisualAddonProperties>':
-    name: ExtensibleMixer_AddonProperties_VisualAddonProperties
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::CollisionAddonProperties>':
-    name: ExtensibleMixer_AddonProperties_CollisionAddonProperties
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::DynamicsAddonProperties>':
-    name: ExtensibleMixer_AddonProperties_DynamicsAddonProperties
-  'dart::common::ExtensibleMixer<dart::common::Addon::State, dart::dynamics::detail::SupportStateData>':
-    name: ExtensibleMixer_AddonState_SupportStateData
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::SupportPropertiesData>':
-    name: ExtensibleMixer_AddonProperties_SupportPropertiesData
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::SingleDofJointUniqueProperties>':
-    name: ExtensibleMixer_AddonProperties_SingleDofJointUniqueProperties
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::PlanarJointUniqueProperties>':
-    name: ExtensibleMixer_AddonProperties_PlanarJointUniqueProperties
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::PrismaticJointUniqueProperties>':
-    name: ExtensibleMixer_AddonProperties_PrismaticJointUniqueProperties
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::UniversalJointUniqueProperties>':
-    name: ExtensibleMixer_AddonProperties_UniversalJointUniqueProperties
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::RevoluteJointUniqueProperties>':
-    name: ExtensibleMixer_AddonProperties_RevoluteJointUniqueProperties
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::EulerJointUniqueProperties>':
-    name: ExtensibleMixer_AddonProperties_EulerJointUniqueProperties
-  'dart::common::ExtensibleMixer<dart::common::Addon::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>':
-    name: ExtensibleMixer_AddonProperties_ScrewJointUniqueProperties
+  'dart::common::SpecializedForAspect<dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>':
+    name: SpecializedForAspect_CollisionAspect_DynamicsAspect
+  'dart::common::Virtual<dart::common::SpecializedForAspect<dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>>':
+    name: VirtualSpecializedForAspect_CollisionAspect_DynamicsAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::Support>':
+    name: SpecializedForAspectSupport
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::VisualAspectProperties>':
+    name: MakeCloneable_AspectProperties_VisualAspectProperties
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::CollisionAspectProperties>':
+    name: MakeCloneable_AspectProperties_CollisionAspectProperties
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::DynamicsAspectProperties>':
+    name: MakeCloneable_AspectProperties_DynamicsAspectProperties
+  'dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::SupportStateData>':
+    name: MakeCloneable_AspectState_SupportStateData
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::SupportPropertiesData>':
+    name: MakeCloneable_AspectProperties_SupportPropertiesData
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::PlanarJointUniqueProperties>':
+    name: MakeCloneable_AspectProperties_PlanarJointUniqueProperties
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::PrismaticJointUniqueProperties>':
+    name: MakeCloneable_AspectProperties_PrismaticJointUniqueProperties
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::UniversalJointUniqueProperties>':
+    name: MakeCloneable_AspectProperties_UniversalJointUniqueProperties
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::RevoluteJointUniqueProperties>':
+    name: MakeCloneable_AspectProperties_RevoluteJointUniqueProperties
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::EulerJointUniqueProperties>':
+    name: MakeCloneable_AspectProperties_EulerJointUniqueProperties
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>':
+    name: MakeCloneable_AspectProperties_ScrewJointUniqueProperties
 
-  'dart::common::ManagerTrackingAddon<dart::dynamics::ShapeFrame>':
-    name: ManagerTrackingAddon_ShapeFrame
-  'dart::common::ManagerTrackingAddon<dart::dynamics::EulerJoint>':
-    name: ManagerTrackingAddon_EulerJoint
-  'dart::common::ManagerTrackingAddon<dart::dynamics::ScrewJoint>':
-    name: ManagerTrackingAddon_ScrewJoint
-  'dart::common::ManagerTrackingAddon<dart::dynamics::EndEffector>':
-    name: ManagerTrackingAddon_EndEffector
-  'dart::common::ManagerTrackingAddon<dart::dynamics::SingleDofJoint>':
-    name: ManagerTrackingAddon_SingleDofJoint
-  'dart::common::ManagerTrackingAddon<dart::dynamics::PlanarJoint>':
-    name: ManagerTrackingAddon_PlanarJoint
-  'dart::common::ManagerTrackingAddon<dart::dynamics::PrismaticJoint>':
-    name: ManagerTrackingAddon_PrismaticJoint
-  'dart::common::ManagerTrackingAddon<dart::dynamics::UniversalJoint>':
-    name: ManagerTrackingAddon_UniversalJoint
-  'dart::common::ManagerTrackingAddon<dart::dynamics::RevoluteJoint>':
-    name: ManagerTrackingAddon_RevoluteJoint
+  'dart::common::CompositeTrackingAspect<dart::dynamics::ShapeFrame>':
+    name: CompositeTrackingAspect_ShapeFrame
+  'dart::common::CompositeTrackingAspect<dart::dynamics::EulerJoint>':
+    name: CompositeTrackingAspect_EulerJoint
+  'dart::common::CompositeTrackingAspect<dart::dynamics::ScrewJoint>':
+    name: CompositeTrackingAspect_ScrewJoint
+  'dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>':
+    name: CompositeTrackingAspect_EndEffector
+  'dart::common::CompositeTrackingAspect<dart::dynamics::PlanarJoint>':
+    name: CompositeTrackingAspect_PlanarJoint
+  'dart::common::CompositeTrackingAspect<dart::dynamics::PrismaticJoint>':
+    name: CompositeTrackingAspect_PrismaticJoint
+  'dart::common::CompositeTrackingAspect<dart::dynamics::UniversalJoint>':
+    name: CompositeTrackingAspect_UniversalJoint
+  'dart::common::CompositeTrackingAspect<dart::dynamics::RevoluteJoint>':
+    name: CompositeTrackingAspect_RevoluteJoint
 
   # Joints
   'dart::dynamics::Joint':
     held_type: dart::dynamics::JointPtr
-  'dart::dynamics::MultiDofJoint<2>':
-    name: TwoDofJoint
-  'dart::dynamics::MultiDofJoint<3>':
-    name: ThreeDofJoint
-  'dart::dynamics::MultiDofJoint<6>':
-    name: SixDofJoint
-  'dart::dynamics::detail::MultiDofJointAddon<2>':
-    name: ThreeDofJointAddon
-  'dart::dynamics::detail::MultiDofJointAddon<3>':
-    name: ThreeDofJointAddon
-  'dart::dynamics::detail::MultiDofJointAddon<6>':
-    name: SixDofJoint
-
+  'dart::dynamics::GenericJoint<dart::math::R1Space>':
+    name: RealOneJoint
+  'dart::dynamics::GenericJoint<dart::math::R2Space>':
+    name: RealTwoJoint
+  'dart::dynamics::GenericJoint<dart::math::R3Space>':
+    name: RealThreeJoint
+  'dart::dynamics::GenericJoint<dart::math::SO3Space>':
+    name: SOThreeJoint
+  'dart::dynamics::GenericJoint<dart::math::SE3Space>':
+    name: SEThreeJoint
+  'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect':
+    name: RealOneJointAspect
+  'dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect':
+    name: RealTwoJointAspect
+  'dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect':
+    name: RealThreeJointAspect
+  'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect':
+    name: SOThreeJointAspect
+  'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect':
+    name: SEThreeJointAspect
 
   # DegreeOfFreedoms
   'dart::dynamics::DegreeOfFreedom':
@@ -537,8 +562,8 @@ classes:
     held_type: std::shared_ptr<dart::common::ResourceRetriever>
   'dart::common::LocalResourceRetriever':
     held_type: std::shared_ptr<dart::common::LocalResourceRetriever>
-  'dart::utils::PackageResourceRetriever':
-    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
+#  'dart::utils::PackageResourceRetriever':
+#    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
 
   'dart::dynamics::SkeletonSpecializedFor<dart::dynamics::ShapeNode>':
     name: SkeletonSpecializedForShapeNode
@@ -554,85 +579,96 @@ classes:
     name: NodeManagerJoinerForSkeleton_VirtualSkeletonSpecializedForShapeNode_VirtualSkeletonSpecializedForEndEffector
   'dart::dynamics::SkeletonSpecializedFor<dart::dynamics::ShapeNode, dart::dynamics::EndEffector>':
     name: SkeletonSpecializedFor_ShapeNode_EndEffector
-  'dart::common::SpecializedForAddon<dart::dynamics::VisualAddon>':
-    name: SpecializedForAddonVisualAddon
-  'dart::common::Virtual<dart::common::SpecializedForAddon<dart::dynamics::VisualAddon> >':
-    name: VirtualSpecializedForAddonVisualAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::CollisionAddon>':
-    name: SpecializedForAddonCollisionAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::DynamicsAddon>':
-    name: SpecializedForAddonDynamicsAddon
-  'dart::common::Virtual<dart::common::SpecializedForAddon<dart::dynamics::CollisionAddon> >':
-    name: VirtualSpecializedForAddonCollisionAddon
-  'dart::common::Virtual<dart::common::SpecializedForAddon<dart::dynamics::DynamicsAddon> >':
-    name: VirtualSpecializedForAddonDynamicsAddon
-  'dart::common::AddonManagerJoiner<dart::common::Virtual<dart::common::SpecializedForAddon<dart::dynamics::CollisionAddon> >, dart::common::Virtual<dart::common::SpecializedForAddon<dart::dynamics::DynamicsAddon> > >':
-    name: AddonManagerJoiner_VirtualSpecializedForAddonCollisionAddon_VirtualSpecializedForAddonDynamicsAddon
-  'dart::common::AddonManagerJoiner<dart::common::Virtual<dart::common::SpecializedForAddon<dart::dynamics::VisualAddon> >, dart::common::Virtual<dart::common::SpecializedForAddon<dart::dynamics::CollisionAddon, dart::dynamics::DynamicsAddon> > >':
-    name: AddonManagerJoiner_VirtualSpecializedForAddonVisualAddon_VirtualSpecializedForAddonCollisionAddon_DynamicsAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::VisualAddon, dart::dynamics::CollisionAddon, dart::dynamics::DynamicsAddon>':
-    name: SpecializedForAddon_VisualAddon_DynamicsAddon
+  'dart::common::SpecializedForAspect<dart::dynamics::VisualAspect>':
+    name: SpecializedForAspectVisualAspect
+  'dart::common::Virtual<dart::common::SpecializedForAspect<dart::dynamics::VisualAspect> >':
+    name: VirtualSpecializedForAspectVisualAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::CollisionAspect>':
+    name: SpecializedForAspectCollisionAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::DynamicsAspect>':
+    name: SpecializedForAspectDynamicsAspect
+  'dart::common::Virtual<dart::common::SpecializedForAspect<dart::dynamics::CollisionAspect> >':
+    name: VirtualSpecializedForAspectCollisionAspect
+  'dart::common::Virtual<dart::common::SpecializedForAspect<dart::dynamics::DynamicsAspect> >':
+    name: VirtualSpecializedForAspectDynamicsAspect
+  'dart::common::CompositeJoiner<dart::common::Virtual<dart::common::SpecializedForAspect<dart::dynamics::CollisionAspect> >, dart::common::Virtual<dart::common::SpecializedForAspect<dart::dynamics::DynamicsAspect> > >':
+    name: CompositeJoiner_VirtualSpecializedForAspectCollisionAspect_VirtualSpecializedForAspectDynamicsAspect
+  'dart::common::CompositeJoiner<dart::common::Virtual<dart::common::SpecializedForAspect<dart::dynamics::VisualAspect> >, dart::common::Virtual<dart::common::SpecializedForAspect<dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect> > >':
+    name: CompositeJoiner_VirtualSpecializedForAspectVisualAspect_VirtualSpecializedForAspectCollisionAspect_DynamicsAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>':
+    name: SpecializedForAspect_VisualAspect_DynamicsAspect
   'dart::dynamics::AccessoryNode<dart::dynamics::ShapeNode>':
     name: AccessoryShapeNode
 
-  'dart::common::RequiresAddon<dart::dynamics::detail::SingleDofJointAddon>':
-    name: RequiresSingleDofJointAddon
-  'dart::common::AddonManagerJoiner<dart::dynamics::Joint, dart::common::RequiresAddon<dart::dynamics::detail::SingleDofJointAddon> >':
-    name: AddonManagerJoiner_Joint_RequiresSingleDofJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::MultiDofJointAddon<3> >':
-    name: SpecializedForThreeDofJointAddon
-  'dart::common::RequiresAddon<dart::dynamics::detail::MultiDofJointAddon<3> >':
-    name: RequiresThreeDofJointAddon
+  'dart::common::RequiresAspect<dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect >':
+    name: RequiresRealOneJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect >':
+    name: SpecializedForRealOneJointAspect
 
-  'dart::common::RequiresAddon<dart::dynamics::detail::PlanarJointAddon>':
-    name: RequiresPlanarJointAddon
-  'dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<3>, dart::common::RequiresAddon<dart::dynamics::detail::PlanarJointAddon> >':
-    name: AddonManagerJoiner_ThreeDofJoint_RequiresPlanarJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::PrismaticJointAddon>':
-    name: SpecializedForPrismaticJointAddon
-  'dart::common::RequiresAddon<dart::dynamics::detail::PrismaticJointAddon>':
-    name: RequiresPrismaticJointAddon
-  'dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::RequiresAddon<dart::dynamics::detail::PrismaticJointAddon> >':
-    name: AddonManagerJoiner_SingleDofJoint_RequiresPrismaticJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::MultiDofJointAddon<2> >':
-    name: SpecializedForTwoDofJointAddon
-  'dart::common::RequiresAddon<dart::dynamics::detail::MultiDofJointAddon<2> >':
-    name: RequiresTwoDofJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::UniversalJointAddon>':
-    name: SpecializedForUniversalJointAddon
-  'dart::common::RequiresAddon<dart::dynamics::detail::UniversalJointAddon>':
-    name: RequiresUniversalJointAddon
-  'dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<2>, dart::common::RequiresAddon<dart::dynamics::detail::UniversalJointAddon> >':
-    name: AddonManagerJoiner_TwoDofJoint_RequiresUniversalJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::RevoluteJointAddon>':
-    name: 'SpecializedForAddonRevoluteJointAddon'
-  'dart::common::RequiresAddon<dart::dynamics::detail::RevoluteJointAddon>':
-    name: RequiresRevoluteJointAddon
-  'dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::RequiresAddon<dart::dynamics::detail::RevoluteJointAddon> >':
-    name: AddonManagerJoiner_SingleDofJoint_RequiresRevoluteJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::EulerJointAddon>':
-    name: SpecializedForEulerJointAddon
-  'dart::common::RequiresAddon<dart::dynamics::detail::EulerJointAddon>':
-    name: RequiresEulerJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::ScrewJointAddon>':
-    name: SpecializedForScrewJointAddon
-  'dart::common::RequiresAddon<dart::dynamics::detail::ScrewJointAddon>':
-    name: RequiresScrewJointAddon
-  'dart::common::AddonManagerJoiner<dart::dynamics::SingleDofJoint, dart::common::RequiresAddon<dart::dynamics::detail::ScrewJointAddon> >':
-    name: AddonManagerJoiner_SingleDofJoint_RequiresScrewJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::MultiDofJointAddon<6> >':
-    name: SpecializedForSixDofJointAddon
-  'dart::common::RequiresAddon<dart::dynamics::detail::MultiDofJointAddon<6> >':
-    name: RequiresSixDofJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::SingleDofJointAddon>':
-    name: SpecializedForSingleDofJointAddon
-  'dart::common::SpecializedForAddon<dart::dynamics::detail::PlanarJointAddon>':
-    name: SpecializedForPlanarJointAddon
-  'dart::common::AddonManagerJoiner<dart::dynamics::MultiDofJoint<3>, dart::common::RequiresAddon<dart::dynamics::detail::EulerJointAddon> >':
-    name: AddonManagerJoiner_ThreeDofJoint_EulerJointAddon
+  'dart::common::RequiresAspect<dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect >':
+    name: RequiresRealTwoJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect >':
+    name: SpecializedForRealTwoJointAspect
 
-  'dart::common::detail::AddonWithState<dart::common::ManagerTrackingAddon<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>':
-    name: AddonWithState_EndEffector_Support_SupportStateData_EndEffector_SupportUpdate
+  'dart::common::RequiresAspect<dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect >':
+    name: RequiresRealThreeJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect >':
+    name: SpecializedForRealThreeJointAspect
+
+  'dart::common::RequiresAspect<dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect >':
+    name: RequiresSOThreeJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect >':
+    name: SpecializedForSOThreeJointAspect
+
+  'dart::common::RequiresAspect<dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect >':
+    name: RequiresSEThreeJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect >':
+    name: SpecializedForSEThreeJointAspect
+
+  'dart::common::RequiresAspect<dart::dynamics::RevoluteJoint::Aspect>':
+    name: RequiresRevoluteJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::RevoluteJoint::Aspect>':
+    name: 'SpecializedForAspectRevoluteJointAspect'
+  'dart::common::CompositeJoiner<dart::dynamics::GenericJoint<dart::math::R1Space>, dart::common::RequiresAspect<dart::dynamics::RevoluteJoint::Aspect> >':
+    name: CompositeJoiner_RealOneJoint_RequiresRevoluteJointAspect
+
+  'dart::common::RequiresAspect<dart::dynamics::PrismaticJoint::Aspect>':
+    name: RequiresPrismaticJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::PrismaticJoint::Aspect>':
+    name: SpecializedForPrismaticJointAspect
+  'dart::common::CompositeJoiner<dart::dynamics::GenericJoint<dart::math::R1Space>, dart::common::RequiresAspect<dart::dynamics::PrismaticJoint::Aspect> >':
+    name: CompositeJoiner_RealOneJoint_RequiresPrismaticJointAspect
+
+  'dart::common::RequiresAspect<dart::dynamics::ScrewJoint::Aspect>':
+    name: RequiresScrewJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::ScrewJoint::Aspect>':
+    name: SpecializedForScrewJointAspect
+  'dart::common::CompositeJoiner<dart::dynamics::GenericJoint<dart::math::R1Space>, dart::common::RequiresAspect<dart::dynamics::ScrewJoint::Aspect> >':
+    name: CompositeJoiner_RealOneJoint_RequiresScrewJointAspect
+
+  'dart::common::RequiresAspect<dart::dynamics::UniversalJoint::Aspect>':
+    name: RequiresUniversalJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::UniversalJoint::Aspect>':
+    name: SpecializedForUniversalJointAspect
+  'dart::common::CompositeJoiner<dart::dynamics::GenericJoint<dart::math::R2Space>, dart::common::RequiresAspect<dart::dynamics::UniversalJoint::Aspect> >':
+    name: CompositeJoiner_RealTwoJoint_RequiresUniversalJointAspect
+
+  'dart::common::RequiresAspect<dart::dynamics::EulerJoint::Aspect>':
+    name: RequiresEulerJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::EulerJoint::Aspect>':
+    name: SpecializedForEulerJointAspect
+  'dart::common::CompositeJoiner<dart::dynamics::GenericJoint<dart::math::R3Space>, dart::common::RequiresAspect<dart::dynamics::EulerJoint::Aspect> >':
+    name: CompositeJoiner_RealThreeJoint_EulerJointAspect
+
+  'dart::common::RequiresAspect<dart::dynamics::PlanarJoint::Aspect>':
+    name: RequiresPlanarJointAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::PlanarJoint::Aspect>':
+    name: SpecializedForPlanarJointAspect
+  'dart::common::CompositeJoiner<dart::dynamics::GenericJoint<dart::math::R3Space>, dart::common::RequiresAspect<dart::dynamics::PlanarJoint::Aspect> >':
+    name: CompositeJoiner_RealThreeJoint_RequiresPlanarJointAspect
+
+  'dart::common::detail::AspectWithState<dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>':
+    name: AspectWithState_EndEffector_Support_SupportStateData_EndEffector_SupportUpdate
 
   'dart::common::Signal<void (const dart::dynamics::Entity *), dart::common::signal::detail::DefaultCombiner>':
     name: EntitySignal
@@ -694,9 +730,9 @@ classes:
   'dart::dynamics::TemplateWeakBodyNodePtr<dart::dynamics::BodyNode>': null
   'dart::dynamics::TemplateWeakNodePtr<dart::dynamics::ShapeNode, dart::dynamics::BodyNode>': null
 
-  'dart::common::ExtensibleMapHolder<std::map<std::type_index, std::unique_ptr<dart::common::Addon::State, std::default_delete<dart::common::Addon::State> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Addon::State, std::default_delete<dart::common::Addon::State> > > > > >': null
-  'dart::common::ExtensibleMapHolder<std::map<std::type_index, std::unique_ptr<dart::common::Addon::Properties, std::default_delete<dart::common::Addon::Properties> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Addon::Properties, std::default_delete<dart::common::Addon::Properties> > > > > >': null
-  'dart::common::ExtensibleMapHolder<std::map<std::type_index, std::unique_ptr<dart::common::ExtensibleVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::ExtensibleVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::ExtensibleVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::ExtensibleVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > > > > > >': null
+  'dart::common::CloneableMap<std::map<std::type_index, std::unique_ptr<dart::common::Aspect::State, std::default_delete<dart::common::Aspect::State> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Aspect::State, std::default_delete<dart::common::Aspect::State> > > > > >': null
+  'dart::common::CloneableMap<std::map<std::type_index, std::unique_ptr<dart::common::Aspect::Properties, std::default_delete<dart::common::Aspect::Properties> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Aspect::Properties, std::default_delete<dart::common::Aspect::Properties> > > > > >': null
+  'dart::common::CloneableMap<std::map<std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > > > > > >': null
 
   # Shapes
   'dart::dynamics::Shape':
@@ -734,15 +770,15 @@ classes:
   'dart::dynamics::Linkage':
     held_type: 'dart::dynamics::LinkagePtr'
 
-  # Extensible<T> names
-  'dart::common::Extensible<dart::common::Addon::Properties>':
-    name: ExtensibleAddonProperties
-  'dart::common::Extensible<dart::common::Addon::State>':
-    name: ExtensibleAddonState
-  'dart::common::Extensible<dart::dynamics::Node::Properties>':
-    name: ExtensibleNodeProperties
-  'dart::common::Extensible<dart::dynamics::Node::State>':
-    name: ExtensibleNodeState
+  # Cloneable<T> names
+  'dart::common::Cloneable<dart::common::Aspect::Properties>':
+    name: CloneableAspectProperties
+  'dart::common::Cloneable<dart::common::Aspect::State>':
+    name: CloneableAspectState
+  'dart::common::Cloneable<dart::dynamics::Node::Properties>':
+    name: CloneableNodeProperties
+  'dart::common::Cloneable<dart::dynamics::Node::State>':
+    name: CloneableNodeState
 
   # NameManager<T> names
   'dart::common::NameManager<dart::dynamics::EndEffector*>':
@@ -764,18 +800,26 @@ classes:
   'dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton>>':
     name: NameManagerSkeleton
 
-  'dart::dynamics::detail::MultiDofJointProperties<2ul>':
-    name: TwoDofJointProperties
-  'dart::dynamics::detail::MultiDofJointProperties<3ul>':
-    name: ThreeDofJointProperties
-  'dart::dynamics::detail::MultiDofJointProperties<6ul>':
-    name: SixDofJointProperties
-  'dart::dynamics::detail::MultiDofJointUniqueProperties<2ul>':
-    name: TwoDofJointUniqueProperties
-  'dart::dynamics::detail::MultiDofJointUniqueProperties<3ul>':
-    name: ThreeDofJointUniqueProperties
-  'dart::dynamics::detail::MultiDofJointUniqueProperties<6ul>':
-    name: SixDofJointUniqueProperties
+  'dart::dynamics::detail::GenericJointProperties<dart::math::R1Space>':
+    name: RealOneJointProperties
+  'dart::dynamics::detail::GenericJointProperties<dart::math::R2Space>':
+    name: RealTwoJointProperties
+  'dart::dynamics::detail::GenericJointProperties<dart::math::R3Space>':
+    name: RealThreeJointProperties
+  'dart::dynamics::detail::GenericJointProperties<dart::math::SO3Space>':
+    name: SOThreeJointProperties
+  'dart::dynamics::detail::GenericJointProperties<dart::math::SE3Space>':
+    name: SEThreeJointProperties
+  'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space>':
+    name: RealOneJointUniqueProperties
+  'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space>':
+    name: RealTwoJointUniqueProperties
+  'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space>':
+    name: RealThreeJointUniqueProperties
+  'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space>':
+    name: SOThreeJointUniqueProperties
+  'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space>':
+    name: SEThreeJointUniqueProperties
 
   'dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>':
     name: EndEffectorAccessoryNode
@@ -787,16 +831,16 @@ classes:
   # Suppressed because these are optional components.
   'Assimp::IOStream': null
   'dart::dynamics::AssimpInputResourceAdaptor': null
-  'dart::optimizer::IpoptSolver': null
-  'dart::optimizer::NloptSolver': null
-  'dart::optimizer::DartTNLP': null
+#  'dart::optimizer::IpoptSolver': null
+#  'dart::optimizer::NloptSolver': null
+#  'dart::optimizer::DartTNLP': null
 
   # Workarounds for bugs in Chimera.
   'dart::dynamics::ShapeFrame':
     bases:
     - qualified_name: 'dart::dynamics::Frame'
     - qualified_name: 'dart::common::VersionCounter'
-    - qualified_name: 'dart::common::SpecializedForAddon<dart::dynamics::VisualAddon, dart::dynamics::CollisionAddon, dart::dynamics::DynamicsAddon>'
+    - qualified_name: 'dart::common::SpecializedForAspect<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>'
       last: true
 
 functions:
@@ -820,6 +864,9 @@ functions:
   'Eigen::Matrix3d dart::dynamics::Shape::computeInertiaFromMass(double) const': null
   'Eigen::Matrix3d dart::dynamics::Shape::computeInertiaFromDensity(double) const': null
   'bool dart::dynamics::Group::removeJoints(std::vector<dart::dynamics::Joint*, std::allocator<dart::dynamics::Joint*> > const&, bool, bool)': null
-  'template<> dart::dynamics::MultiDofJoint<2>::Addon *dart::dynamics::MultiDofJoint<2>::getMultiDofJointAddon(const bool)': null
-  'template<> dart::dynamics::MultiDofJoint<3>::Addon *dart::dynamics::MultiDofJoint<3>::getMultiDofJointAddon(const bool)': null
-  'template<> dart::dynamics::MultiDofJoint<6>::Addon *dart::dynamics::MultiDofJoint<6>::getMultiDofJointAddon(const bool)': null
+  'template<> dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect *dart::dynamics::GenericJoint<dart::math::R1Space>::getGenericJointAspect(const bool)': null
+  'template<> dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect *dart::dynamics::GenericJoint<dart::math::R2Space>::getGenericJointAspect(const bool)': null
+  'template<> dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::R3Space>::getGenericJointAspect(const bool)': null
+  'template<> dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::SO3Space>::getGenericJointAspect(const bool)': null
+  'template<> dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::SE3Space>::getGenericJointAspect(const bool)': null
+
