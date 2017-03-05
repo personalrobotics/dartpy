@@ -24,9 +24,12 @@ template:
       #include <dartpy/pointers.h>
       #include <dartpy/template_registry.h>
       #include <dart/dart.hpp>
-      #include <dart/utils/utils.hpp>
+      #include <dart/collision/bullet/bullet.hpp>
       #include <dart/optimizer/optimizer.hpp>
       #include <dart/optimizer/nlopt/nlopt.hpp>
+      #include <dart/planning/planning.hpp>
+      #include <dart/utils/utils.hpp>
+      #include <dart/gui/gui.hpp>
     postinclude:
       '/* postinclude */'
     footer:
@@ -41,9 +44,12 @@ template:
       #include <dartpy/collections.h>
       #include <dartpy/util.h>
       #include <dart/dart.hpp>
-      #include <dart/utils/utils.hpp>
+      #include <dart/collision/bullet/bullet.hpp>
       #include <dart/optimizer/optimizer.hpp>
       #include <dart/optimizer/nlopt/nlopt.hpp>
+      #include <dart/planning/planning.hpp>
+      #include <dart/utils/utils.hpp>
+      #include <dart/gui/gui.hpp>
     postinclude:
       '/* main postinclude */'
     precontent: |
@@ -154,8 +160,6 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const dart::dynamics::Inertia &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::Entity::Properties &':
-    return_value_policy: boost::python::copy_const_reference
   'const dart::dynamics::Skeleton::Properties &':
     return_value_policy: boost::python::copy_const_reference
   'const dart::dynamics::ArrowShape::Properties &':
@@ -194,25 +198,25 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const std::vector<Eigen::VectorXd> &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect::BoolArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space>::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect::BoolArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space>::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect::BoolArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space>::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect::BoolArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space>::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect::BoolArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space>::BoolArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect::StringArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space>::StringArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect::StringArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space>::StringArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect::StringArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space>::StringArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect::StringArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space>::StringArray &':
     return_value_policy: boost::python::copy_const_reference
-  'const dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect::StringArray &':
+  'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space>::StringArray &':
     return_value_policy: boost::python::copy_const_reference
 
    # Aspects
@@ -439,10 +443,10 @@ classes:
     held_type: std::shared_ptr<dart::common::ResourceRetriever>
   'dart::common::LocalResourceRetriever':
     held_type: std::shared_ptr<dart::common::LocalResourceRetriever>
-#  'dart::utils::PackageResourceRetriever':
-#    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
   'dart::dynamics::InverseKinematics':
     held_type: 'std::shared_ptr<dart::dynamics::InverseKinematics>'
+  'dart::utils::PackageResourceRetriever':
+    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
 
     # Frames
   'dart::dynamics::Frame':
@@ -562,8 +566,8 @@ classes:
     held_type: std::shared_ptr<dart::common::ResourceRetriever>
   'dart::common::LocalResourceRetriever':
     held_type: std::shared_ptr<dart::common::LocalResourceRetriever>
-#  'dart::utils::PackageResourceRetriever':
-#    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
+  'dart::utils::PackageResourceRetriever':
+    held_type: std::shared_ptr<dart::utils::PackageResourceRetriever>
 
   'dart::dynamics::SkeletonSpecializedFor<dart::dynamics::ShapeNode>':
     name: SkeletonSpecializedForShapeNode
@@ -831,8 +835,8 @@ classes:
   # Suppressed because these are optional components.
   'Assimp::IOStream': null
   'dart::dynamics::AssimpInputResourceAdaptor': null
+  'dart::optimizer::NloptSolver': null
 #  'dart::optimizer::IpoptSolver': null
-#  'dart::optimizer::NloptSolver': null
 #  'dart::optimizer::DartTNLP': null
 
   # Workarounds for bugs in Chimera.
@@ -852,8 +856,8 @@ functions:
   'std::ostream &dart::common::colorErr(const std::string &, const std::string &, unsigned int, int)': null
 
   # Incompete argument types.
-  'void dart::renderer::RenderInterface::readFrameBuffer(dart::renderer::DecoBufferType, dart::renderer::DecoColorChannel, void*)': null
-  'void dart::renderer::OpenGLRenderInterface::readFrameBuffer(dart::renderer::DecoBufferType, dart::renderer::DecoColorChannel, void*)': null
+  'void dart::gui::RenderInterface::readFrameBuffer(dart::gui::DecoBufferType, dart::gui::DecoColorChannel, void*)': null
+  'void dart::gui::OpenGLRenderInterface::readFrameBuffer(dart::gui::DecoBufferType, dart::gui::DecoColorChannel, void*)': null
   'size_t dart::common::Resource::read(void *, size_t, size_t)': null
   'size_t dart::common::LocalResource::read(void *, size_t, size_t)': null
 

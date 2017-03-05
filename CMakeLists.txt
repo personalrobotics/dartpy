@@ -13,7 +13,8 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
 )
 
 find_package(Boost REQUIRED COMPONENTS python thread)
-find_package(DART REQUIRED optimizer-nlopt utils-urdf)
+find_package(DART REQUIRED
+    COMPONENTS collision-bullet optimizer-nlopt planning utils-urdf gui)
 find_package(PythonLibs REQUIRED)
 
 include_directories(SYSTEM
