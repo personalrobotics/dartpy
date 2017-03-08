@@ -34,8 +34,11 @@ struct Skeleton_createJointAndBodyNodePair
     typename NodeType::Properties bodyProperties;
     if (!_bodyPropertiesPython.is_none())
     {
-      bodyProperties = boost::python::extract<typename NodeType::Properties>(
-        _bodyPropertiesPython);
+      // Workaround for the ambiguous overload error of operator=
+      const typename NodeType::Properties tmp
+        = boost::python::extract<typename NodeType::Properties>(
+          _bodyPropertiesPython);
+      bodyProperties = std::move(tmp);
     }
 
     auto ret = _skeleton->createJointAndBodyNodePair<JointType, NodeType>(
