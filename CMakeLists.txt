@@ -67,6 +67,7 @@ add_chimera_binding(TARGET "${PROJECT_NAME}"
     src/BodyNode.cpp
     src/Skeleton.cpp
     src/template_registry.cpp
+  LINK_LIBRARIES ${DART_LIBRARIES}
   DEBUG
 )
 target_link_libraries("${PROJECT_NAME}"
