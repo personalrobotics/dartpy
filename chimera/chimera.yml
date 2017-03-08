@@ -220,6 +220,10 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space>::StringArray &':
     return_value_policy: boost::python::copy_const_reference
+  'dart::dynamics::PointMass::State &':
+    return_value_policy: boost::python::copy_non_const_reference
+  'const dart::dynamics::PointMass::State &':
+    return_value_policy: boost::python::copy_const_reference
 
    # Aspects
   'dart::dynamics::DynamicsAspect *':
@@ -515,18 +519,10 @@ classes:
   'dart::dynamics::SimpleFrame':
     held_type: 'std::shared_ptr<dart::dynamics::SimpleFrame>'
 
-  'dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::ShapeNode>':
-    name: BodyNodeSpecializedForShapeNode
-  'dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::EndEffector>':
-    name: BodyNodeSpecializedForEndEffector
   'dart::common::Virtual<dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::EndEffector>>':
     name: VirtualBodyNodeSpecializedForEndEffector
-  'dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::ShapeNode, dart::dynamics::EndEffector>':
-    name: BodyNodeSpecializedFor_ShapeNode_EndEffector
   'dart::common::Virtual<dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::ShapeNode>>':
     name: VirtualBodyNodeSpecializedForShapeNode
-  'dart::dynamics::NodeManagerJoinerForBodyNode<dart::common::Virtual<dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::ShapeNode>>, dart::common::Virtual<dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::EndEffector>>>':
-    name: NodeManagerJoinerForBodyNode_VirtualBodyNodeSpecializedForShapeNode_VirtualBodyNodeSpecializedForEndEffector
   'dart::common::SpecializedForAspect<dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>':
     name: SpecializedForAspect_CollisionAspect_DynamicsAspect
   'dart::common::Virtual<dart::common::SpecializedForAspect<dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>>':
@@ -604,6 +600,18 @@ classes:
   'dart::common::MakeCloneable<dart::dynamics::Node::Properties, dart::common::detail::CompositeData<std::map<std::type_index, std::unique_ptr<dart::common::Aspect::Properties, std::default_delete<dart::common::Aspect::Properties> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Aspect::Properties, std::default_delete<dart::common::Aspect::Properties> > > > >, dart::common::detail::GetProperties> >':
     name: MakeCloneable_NodeProperties_Map_TypeIndex_AspectProperties
 
+  'dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::ShapeNode>':
+    name: BodyNodeSpecializedForShapeNode
+  'dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::EndEffector>':
+    name: BodyNodeSpecializedForEndEffector
+  'dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::Marker>':
+    name: BodyNodeSpecializedForMarker
+  'dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::ShapeNode, dart::dynamics::EndEffector>':
+    name: BodyNodeSpecializedFor_ShapeNode_EndEffector
+
+  'dart::dynamics::NodeManagerJoinerForBodyNode<dart::common::Virtual<dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::ShapeNode>>, dart::common::Virtual<dart::dynamics::BodyNodeSpecializedFor<dart::dynamics::EndEffector>>>':
+    name: NodeManagerJoinerForBodyNode_VirtualBodyNodeSpecializedForShapeNode_VirtualBodyNodeSpecializedForEndEffector
+
   'dart::dynamics::detail::GenericJointState<dart::math::RealVectorSpace<1> >':
     name: RealOneJointState
   'dart::dynamics::detail::GenericJointState<dart::math::RealVectorSpace<2> >':
@@ -664,6 +672,12 @@ classes:
 
   'dart::common::detail::GetProperties<dart::dynamics::BodyNode>':
     name: GetProperties_BodyNode
+
+  'dart::common::EmbedProperties<dart::dynamics::FixedFrame, dart::dynamics::detail::FixedFrameProperties>':
+    name: EmbedProperties_FixedFrame_FixedFrameProperties
+
+  'dart::common::Virtual<dart::dynamics::FixedFrame>':
+    name: Virtual_FixedFrame
 
   # Joints
   'dart::dynamics::Joint':
@@ -730,10 +744,26 @@ classes:
     name: SkeletonSpecializedForEndEffector
   'dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::EndEffector> >':
     name: VirtualSkeletonSpecializedForEndEffector
+  'dart::dynamics::SkeletonSpecializedFor<dart::dynamics::Marker>':
+    name: SkeletonSpecializedForMarker
+  'dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::Marker> >':
+    name: VirtualSkeletonSpecializedForMarker
+
   'dart::dynamics::NodeManagerJoinerForBodyNode<dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::ShapeNode> >, dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::EndEffector> > >':
     name: NodeManagerJoinerForBodyNode_VirtualSkeletonSpecializedForShapeNode_VirtualSkeletonSpecializedForEndEffector
   'dart::dynamics::NodeManagerJoinerForSkeleton<dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::ShapeNode> >, dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::EndEffector> > >':
     name: NodeManagerJoinerForSkeleton_VirtualSkeletonSpecializedForShapeNode_VirtualSkeletonSpecializedForEndEffector
+
+  'dart::dynamics::NodeManagerJoinerForBodyNode<dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::EndEffector> >, dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::Marker> > >':
+    name: NodeManagerJoinerForBodyNode_VirtualSkeletonSpecializedForEndEffector_VirtualSkeletonSpecializedForMarker
+  'dart::dynamics::NodeManagerJoinerForSkeleton<dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::EndEffector> >, dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::Marker> > >':
+    name: NodeManagerJoinerForSkeleton_VirtualSkeletonSpecializedForEndEffector_VirtualSkeletonSpecializedForMarker
+
+  'dart::dynamics::SkeletonSpecializedFor<dart::dynamics::EndEffector, dart::dynamics::Marker>':
+    name: SkeletonSpecializedFor_EndEffector_Marker
+  'dart::common::Virtual<dart::dynamics::SkeletonSpecializedFor<dart::dynamics::EndEffector, dart::dynamics::Marker> >':
+    name: VirtualSkeletonSpecializedFor_EndEffector_Marker
+
   'dart::dynamics::SkeletonSpecializedFor<dart::dynamics::ShapeNode, dart::dynamics::EndEffector>':
     name: SkeletonSpecializedFor_ShapeNode_EndEffector
   'dart::common::SpecializedForAspect<dart::dynamics::VisualAspect>':
@@ -883,6 +913,9 @@ classes:
   'dart::common::SlotRegister<dart::common::Signal<void (const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &, const std::basic_string<char, std::char_traits<char>, std::allocator<char> > &), dart::common::signal::detail::DefaultCombiner> >':
     name: NameChangedSlotRegister
 
+  'dart::dynamics::CompositeNode<dart::common::CompositeJoiner<dart::dynamics::FixedJacobianNode, dart::dynamics::ShapeFrame> >': null
+  'dart::dynamics::CompositePropertiesNode<dart::dynamics::CompositeStateNode<dart::common::CompositeJoiner<dart::dynamics::FixedJacobianNode, dart::dynamics::ShapeFrame> > >': null
+  'dart::dynamics::CompositeStateNode<dart::common::CompositeJoiner<dart::dynamics::FixedJacobianNode, dart::dynamics::ShapeFrame> >': null
 
   'dart::dynamics::TemplateWeakBodyNodePtr<dart::dynamics::BodyNode>': null
   'dart::dynamics::TemplateWeakNodePtr<dart::dynamics::ShapeNode, dart::dynamics::BodyNode>': null
@@ -1016,6 +1049,10 @@ functions:
 
   # std::unique_ptr arguments.
   #'void dart::constraint::ConstraintSolver::setLCPSolver(std::unique_ptr<dart::constraint::LCPSolver>)': null
+
+  # suppressed because rvalue references don't make sense in Python
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::JointProperties>::MakeCloneable(dart::dynamics::detail::JointProperties &&, dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::JointProperties> &&)': null
+  'dart::dynamics::detail::FixedFrameProperties::FixedFrameProperties(dart::dynamics::detail::FixedFrameProperties &&)': null
 
   # Workarounds for bugs in DART.
   'Eigen::Matrix3d dart::dynamics::Shape::computeInertiaFromMass(double) const': null
