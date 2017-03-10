@@ -1,4 +1,4 @@
-# dartpy #
+# dartpy [![Build Status](https://travis-ci.com/personalrobotics/dartpy.svg?token=1MmAniN9fkMcwpRUTdFq&branch=master)](https://travis-ci.com/personalrobotics/dartpy) #
 
 > :warning: **Warning:** `dartpy` is under heavy development. See the open
 > issues on [`dartpy`](https://github.com/personalrobotics/dartpy/issues) and
