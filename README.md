@@ -4,7 +4,8 @@
 > issues on [`dartpy`](https://github.com/personalrobotics/dartpy/issues) and
 > [Chimera](https://github.com/personalrobotics/chimera/issues) for insight
 > into the current state of the project. Please report any issues you
-> encounter on the appropriate repository.
+> encounter on the appropriate repository. This repo will be mreged into the
+> main repository of DART once becomes stable.
 
 Python bindings for [DART][dart], the Dynamic Animation and Robotics Toolkit.
 
