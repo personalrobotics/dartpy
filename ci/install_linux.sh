@@ -14,7 +14,7 @@ sudo apt-get install llvm-3.6-dev llvm-3.6-tools libclang-3.6-dev libedit-dev li
 cd ..
 git clone https://github.com/personalrobotics/chimera.git
 cd chimera
-git checkout bugfix/target_link_libraries
+git checkout bugfix/rectify_angle_brackets
 mkdir build
 cd build
 cmake -DLLVM_DIR="/usr/share/llvm-3.6/cmake/" ..
