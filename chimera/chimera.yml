@@ -758,9 +758,9 @@ classes:
   'dart::dynamics::GenericJoint<dart::math::R3Space>':
     name: R3Joint
   'dart::dynamics::GenericJoint<dart::math::SO3Space>':
-    name: SOThreeJoint
+    name: SO3Joint
   'dart::dynamics::GenericJoint<dart::math::SE3Space>':
-    name: SEThreeJoint
+    name: SE3Joint
   'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect':
     name: R1JointAspect
   'dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect':
@@ -768,9 +768,9 @@ classes:
   'dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect':
     name: R3JointAspect
   'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect':
-    name: SOThreeJointAspect
+    name: SO3JointAspect
   'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect':
-    name: SEThreeJointAspect
+    name: SE3JointAspect
 
   # DegreeOfFreedoms
   'dart::dynamics::DegreeOfFreedom':
@@ -877,14 +877,14 @@ classes:
     name: SpecializedForR3JointAspect
 
   'dart::common::RequiresAspect<dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect >':
-    name: RequiresSOThreeJointAspect
+    name: RequiresSO3JointAspect
   'dart::common::SpecializedForAspect<dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect >':
-    name: SpecializedForSOThreeJointAspect
+    name: SpecializedForSO3JointAspect
 
   'dart::common::RequiresAspect<dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect >':
-    name: RequiresSEThreeJointAspect
+    name: RequiresSE3JointAspect
   'dart::common::SpecializedForAspect<dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect >':
-    name: SpecializedForSEThreeJointAspect
+    name: SpecializedForSE3JointAspect
 
   'dart::common::RequiresAspect<dart::dynamics::RevoluteJoint::Aspect>':
     name: RequiresRevoluteJointAspect
@@ -1071,9 +1071,9 @@ classes:
   'dart::dynamics::detail::GenericJointProperties<dart::math::R3Space>':
     name: R3JointProperties
   'dart::dynamics::detail::GenericJointProperties<dart::math::SO3Space>':
-    name: SOThreeJointProperties
+    name: SO3JointProperties
   'dart::dynamics::detail::GenericJointProperties<dart::math::SE3Space>':
-    name: SEThreeJointProperties
+    name: SE3JointProperties
   'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space>':
     name: R1JointUniqueProperties
   'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space>':
@@ -1081,9 +1081,9 @@ classes:
   'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space>':
     name: R3JointUniqueProperties
   'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space>':
-    name: SOThreeJointUniqueProperties
+    name: SO3JointUniqueProperties
   'dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space>':
-    name: SEThreeJointUniqueProperties
+    name: SE3JointUniqueProperties
 
   'dart::dynamics::AccessoryNode<dart::dynamics::EndEffector>':
     name: EndEffectorAccessoryNode
