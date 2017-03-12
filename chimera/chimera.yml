@@ -31,7 +31,7 @@ template:
       #include <dart/utils/utils.hpp>
       #include <dart/gui/gui.hpp>
     precontent:
-      '/* precontent */'
+      ''
     postinclude:
       '/* postinclude */'
     footer:
