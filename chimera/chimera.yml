@@ -30,6 +30,8 @@ template:
       #include <dart/planning/planning.hpp>
       #include <dart/utils/utils.hpp>
       #include <dart/gui/gui.hpp>
+    precontent:
+      '/* precontent */'
     postinclude:
       '/* postinclude */'
     footer:
@@ -52,6 +54,8 @@ template:
       #include <dart/gui/gui.hpp>
     postinclude:
       '/* main postinclude */'
+    prebody:
+      '/* main prebody */'
     precontent: |
       boost::python::import("boost_numpy_eigen");
 
@@ -1137,4 +1141,5 @@ functions:
   'template<> dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::R3Space>::getGenericJointAspect(const bool)': null
   'template<> dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::SO3Space>::getGenericJointAspect(const bool)': null
   'template<> dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::SE3Space>::getGenericJointAspect(const bool)': null
+
 
