@@ -1103,6 +1103,13 @@ classes:
 #  'dart::optimizer::IpoptSolver': null
 #  'dart::optimizer::DartTNLP': null
 
+  # Suppressed because these don't have default constructor.
+  'dart::common::detail::AspectWithVersionedProperties<dart::common::CompositeTrackingAspect<dart::dynamics::ShapeFrame>, dart::dynamics::VisualAspect, dart::dynamics::detail::VisualAspectProperties, dart::dynamics::ShapeFrame, &dart::common::detail::NoOp>': null
+  'dart::common::detail::AspectWithVersionedProperties<dart::common::CompositeTrackingAspect<dart::dynamics::ShapeFrame>, dart::dynamics::CollisionAspect, dart::dynamics::detail::CollisionAspectProperties, dart::dynamics::ShapeFrame, &dart::common::detail::NoOp>': null
+  'dart::common::detail::AspectWithVersionedProperties<dart::common::CompositeTrackingAspect<dart::dynamics::ShapeFrame>, dart::dynamics::DynamicsAspect, dart::dynamics::detail::DynamicsAspectProperties, dart::dynamics::ShapeFrame, &dart::common::detail::NoOp>': null
+  'dart::common::detail::AspectWithVersionedProperties<dart::common::detail::AspectWithState<dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>, dart::dynamics::Support, dart::dynamics::detail::SupportPropertiesData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>': null
+  'dart::common::AspectWithStateAndVersionedProperties<dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::detail::SupportPropertiesData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate, &dart::dynamics::detail::SupportUpdate>': null
+
   # Workarounds for bugs in Chimera.
   'dart::dynamics::ShapeFrame':
     bases:
