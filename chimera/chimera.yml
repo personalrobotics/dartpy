@@ -261,6 +261,11 @@ types:
   'dart::common::Aspect::State *':
     return_value_policy: boost::python::reference_existing_object
 
+  'dart::gui::osg::WorldNode *':
+    return_value_policy: boost::python::reference_existing_object
+  'osgGA::GUIEventAdapter *':
+    return_value_policy: boost::python::reference_existing_object
+
   'const dart::common::detail::EmbeddedStateAspect<dart::common::CompositeTrackingAspect<dart::dynamics::BodyNode>, dart::common::EmbeddedStateAndPropertiesAspect<dart::dynamics::BodyNode, dart::dynamics::detail::BodyNodeState, dart::dynamics::detail::BodyNodeAspectProperties>, dart::dynamics::detail::BodyNodeState, dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::BodyNodeState>, &dart::common::detail::DefaultSetEmbeddedState, &dart::common::detail::DefaultGetEmbeddedState>::State &':
     return_value_policy: boost::python::copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::BodyNodeState>&':
@@ -304,6 +309,18 @@ types:
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space> >&':
     return_value_policy: boost::python::copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::EulerJointUniqueProperties>&':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::PlanarJointUniqueProperties>&':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::PrismaticJointUniqueProperties>&':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::RevoluteJointUniqueProperties>&':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::UniversalJointUniqueProperties>&':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>&':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::SoftBodyNodeUniqueProperties>&':
     return_value_policy: boost::python::copy_const_reference
 
   # Disable const Aspects
@@ -1162,6 +1179,18 @@ classes:
     - qualified_name: 'dart::common::SpecializedForAspect<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>'
       last: true
 
+  # OSG
+
+  'dart::gui::osg::WorldNode': null
+  'osgGA::GUIEventAdapter': null
+#  'dart::gui::osg::WorldNode':
+#    held_type: ::osg::ref_ptr<dart::gui::osg::WorldNode>
+#  '::osgGA::GUIEventAdapter':
+#    held_type: ::osg::ref_ptr<::osgGA::GUIEventAdapter>
+
+  # TODO(JS)
+  'dart::gui::osg::ImGuiHandler': null
+
 functions:
   'dart::dynamics::Frame *dart::dynamics::Frame::World()':
     return_value_policy: boost::python::reference_existing_object
@@ -1175,6 +1204,9 @@ functions:
   'void dart::gui::OpenGLRenderInterface::readFrameBuffer(dart::gui::DecoBufferType, dart::gui::DecoColorChannel, void*)': null
   'size_t dart::common::Resource::read(void *, size_t, size_t)': null
   'size_t dart::common::LocalResource::read(void *, size_t, size_t)': null
+
+  'bool dart::gui::osg::DefaultEventHandler::handle(const osgGA::GUIEventAdapter &, osgGA::GUIActionAdapter &)': null
+  'void dart::gui::osg::DefaultEventHandler::pick(std::vector<dart::gui::osg::PickInfo> &, const osgGA::GUIEventAdapter &)': null
 
   # std::unique_ptr arguments.
   #'void dart::constraint::ConstraintSolver::setLCPSolver(std::unique_ptr<dart::constraint::LCPSolver>)': null
