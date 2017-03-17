@@ -109,7 +109,7 @@ joint = bodynode.moveTo(dartpy.dynamics.FreeJoint, newParent)
 ```
 
 Due to limitations of C++, this functionality requires the template arguments
-to be registered with `dartpy`. Follow [the instructions below](#Template Member Functions)
+to be registered with `dartpy`. Follow [the instructions below](#template-member-functions)
 to register your custom types for use as template arguments.
 
 
