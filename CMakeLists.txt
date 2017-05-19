@@ -14,7 +14,7 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
 
 find_package(Boost REQUIRED COMPONENTS python thread)
 find_package(DART REQUIRED
-    COMPONENTS collision-bullet optimizer-nlopt planning utils-urdf gui)
+    COMPONENTS collision-bullet optimizer-nlopt planning utils-urdf gui-osg)
 find_package(PythonLibs REQUIRED)
 find_package(chimera REQUIRED)
 

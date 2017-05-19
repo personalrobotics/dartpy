@@ -127,7 +127,7 @@ template:
 namespaces:
   'dart':
     name: null  # Collapse the 'dart' namespace into its parent.
-  'dart::gui::osg': null
+  #'dart::gui::osg': null
 
 # Selected types that need special handling.
 types:
@@ -421,6 +421,8 @@ types:
     return_value_policy: boost::python::reference_existing_object
   'dart::collision::Contact &':
     return_value_policy: boost::python::reference_existing_object
+  'dart::collision::CollisionDetector::Factory *':
+    return_value_policy: boost::python::reference_existing_object
 
   'dart::dynamics::Skeleton *':
     return_value_policy: boost::python::reference_existing_object
@@ -493,6 +495,10 @@ types:
 
   # FCL
   'fcl::CollisionObject *':
+    return_value_policy: boost::python::reference_existing_object
+
+  # Bullet
+  'const btCollisionObject *':
     return_value_policy: boost::python::reference_existing_object
 
   # OSG
@@ -574,6 +580,8 @@ types:
 
 # Selected function and class declarations that need custom parameters.
 classes:
+  #'dart::common::Factory<std::string, dart::collision::CollisionDetector, std::shared_ptr<dart::collision::CollisionDetector>>': null
+
   'dart::common::ResourceRetriever':
     held_type: std::shared_ptr<dart::common::ResourceRetriever>
   'dart::common::LocalResourceRetriever':
