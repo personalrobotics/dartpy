@@ -4,21 +4,16 @@ arguments:
   - "-I/usr/lib/clang/3.6/include"
 
 template:
-  module:
-    source:
-      'templates/module.mstch.cpp'
-  cxx_record:
-    source:
-      'templates/cxx_record.mstch.cpp'
-  enum:
-    source:
-      'templates/enum.mstch.cpp'
-  function:
-    source:
-      'templates/function.mstch.cpp'
-  variable:
-    source:
-      'templates/variable.mstch.cpp'
+  module: !file
+    'templates/module.mstch.cpp'
+  class: !file
+    'templates/cxx_record.mstch.cpp'
+  enum: !file
+    'templates/enum.mstch.cpp'
+  function: !file
+    'templates/function.mstch.cpp'
+  variable: !file
+    'templates/variable.mstch.cpp'
   file:
     header: |
       #include <dartpy/pointers.h>
