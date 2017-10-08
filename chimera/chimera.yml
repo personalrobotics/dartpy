@@ -1191,6 +1191,12 @@ classes:
     - qualified_name: 'dart::common::VersionCounter'
     - qualified_name: 'dart::common::SpecializedForAspect<dart::dynamics::VisualAspect, dart::dynamics::CollisionAspect, dart::dynamics::DynamicsAspect>'
       last: true
+  'dart::dynamics::FixedFrame':
+    bases:
+    - qualified_name: 'dart::dynamics::Frame'
+    - qualified_name: 'dart::common::VersionCounter'
+    - qualified_name: 'dart::common::EmbedProperties<dart::dynamics::FixedFrame, dart::dynamics::detail::FixedFrameProperties>'
+      last: true
 
   # OSG
   #'dart::gui::osg::WorldNode':
