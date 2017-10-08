@@ -5,7 +5,7 @@
 
 #include <boost/python.hpp>
 #include <cmath>
-#include <stdio.h>
+#include <iostream>
 
 /* main postinclude */
 
@@ -27,7 +27,7 @@ BOOST_PYTHON_MODULE({{module.name}})
   try {
     {{.}}();
   } catch(...) {
-    printf("Exception in: {{.}}\n");
+    std::cerr << "Exception in: {{.}}" << std::endl;
     throw;
   }
 
