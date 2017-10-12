@@ -13,8 +13,13 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
 )
 
 find_package(Boost REQUIRED COMPONENTS python thread)
-find_package(DART 6.2.0 REQUIRED
-  COMPONENTS collision-bullet optimizer-nlopt planning utils-urdf gui-osg
+find_package(DART 6.3.0 REQUIRED
+  COMPONENTS
+    collision-bullet
+    optimizer-nlopt
+    planning
+    utils-urdf
+    gui-osg
   CONFIG
 )
 find_package(PythonLibs REQUIRED)

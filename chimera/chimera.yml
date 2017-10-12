@@ -24,6 +24,7 @@ template:
       #include <dart/optimizer/nlopt/nlopt.hpp>
       #include <dart/planning/planning.hpp>
       #include <dart/utils/utils.hpp>
+      #include <dart/utils/urdf/urdf.hpp>
       #include <dart/gui/gui.hpp>
     precontent:
       '/* precontent */'
@@ -46,6 +47,7 @@ template:
       #include <dart/optimizer/nlopt/nlopt.hpp>
       #include <dart/planning/planning.hpp>
       #include <dart/utils/utils.hpp>
+      #include <dart/utils/urdf/urdf.hpp>
       #include <dart/gui/gui.hpp>
     postinclude:
       '/* main postinclude */'
@@ -122,7 +124,6 @@ template:
 namespaces:
   'dart':
     name: null  # Collapse the 'dart' namespace into its parent.
-  #'dart::gui::osg': null
 
 # Selected types that need special handling.
 types:
@@ -313,26 +314,36 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::SoftBodyNodeUniqueProperties>&':
     return_value_policy: boost::python::copy_const_reference
+  'const dart::common::detail::AspectWithState<dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>::State &':
+    return_value_policy: boost::python::copy_const_reference
 
-  # Disable const Aspects
-  'const dart::dynamics::DynamicsAspect *': null
+  # Disable const pointers
+  'const dart::common::Aspect::State *': null
+  'const dart::common::EmbedStateAndPropertiesOnTopOf<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties, dart::dynamics::BodyNode>::Aspect *': null
+  'const dart::common::EmbedStateAndPropertiesOnTopOf<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties, dart::dynamics::BodyNode>::Aspect *': null
+  'const dart::common::EmbedStateAndPropertiesOnTopOf<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties, dart::dynamics::BodyNode>::Aspect *': null
+  'const dart::common::EmbedStateAndPropertiesOnTopOf<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties, dart::dynamics::BodyNode>::Aspect *': null
+  'const dart::common::EmbedProperties<dart::dynamics::Joint, dart::dynamics::detail::JointProperties>::Aspect *': null
+  'const dart::common::EmbedProperties<dart::dynamics::Joint, dart::dynamics::detail::JointProperties>::Aspect *': null
+  'const dart::common::EmbedProperties<dart::dynamics::Joint, dart::dynamics::detail::JointProperties>::Aspect *': null
+  'const dart::common::EmbedProperties<dart::dynamics::Joint, dart::dynamics::detail::JointProperties>::Aspect *': null
   'const dart::dynamics::CollisionAspect *': null
-  'const dart::dynamics::VisualAspect *': null
-  'const dart::dynamics::ScrewJoint::Aspect *': null
+  'const dart::dynamics::DynamicsAspect *': null
   'const dart::dynamics::EulerJoint::Aspect *': null
-  'const dart::dynamics::RevoluteJoint::Aspect *': null
-  'const dart::dynamics::UniversalJoint::Aspect *': null
-  'const dart::dynamics::PrismaticJoint::Aspect *': null
-  'const dart::dynamics::PlanarJoint::Aspect *': null
+  'const dart::dynamics::FixedFrame *': null
   'const dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect *': null
   'const dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect *': null
   'const dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect *': null
   'const dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect *': null
   'const dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *': null
-
-  'const dart::common::Aspect::State *': null
-  'const dart::common::detail::AspectWithState<dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>::State &':
-    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::PrismaticJoint::Aspect *': null
+  'const dart::dynamics::PlanarJoint::Aspect *': null
+  'const dart::dynamics::RevoluteJoint::Aspect *': null
+  'const dart::dynamics::ScrewJoint::Aspect *': null
+  'const dart::dynamics::Skeleton *': null
+  'const dart::dynamics::UniversalJoint::Aspect *': null
+  'const dart::dynamics::VisualAspect *': null
+  'const dart::collision::CollisionDetector *': null
 
   # smart pointers
   'dart::dynamics::BodyNode *':
@@ -460,6 +471,8 @@ types:
   'dart::dynamics::Shape *':
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::Entity *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::FixedFrame *':
     return_value_policy: boost::python::reference_existing_object
 
   'dart::planning::PathSegment *':
@@ -1483,7 +1496,7 @@ classes:
   # Suppressed because these are optional components.
   'Assimp::IOStream': null
   'dart::dynamics::AssimpInputResourceAdaptor': null
-  'dart::optimizer::NloptSolver': null
+  #'dart::optimizer::NloptSolver': null
 #  'dart::optimizer::IpoptSolver': null
 #  'dart::optimizer::DartTNLP': null
 
