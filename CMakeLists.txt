@@ -65,12 +65,6 @@ include_directories(
   "${CMAKE_CURRENT_BINARY_DIR}/include"
 )
 
-set(dartpy_LINK_LIBRARIES
-  ${Boost_PYTHON_LIBRARIES}
-  ${DART_LIBRARIES}
-  ${PYTHON_LIBRARIES}
-)
-
 # If chimera is available on this system, create a target to build bindings.
 if (chimera_FOUND)
   add_chimera_binding(TARGET "${PROJECT_NAME}_CHIMERA"
