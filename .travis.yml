@@ -20,7 +20,6 @@ script:
   - make -j4
   - if [ "$TRAVIS_BRANCH" != "*-binding" ]; then make binding; fi
   - make -j4
-  - make test
   - sudo make install
 
 after_failure: 
