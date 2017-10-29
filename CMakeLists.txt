@@ -66,7 +66,7 @@ include_directories(
 )
 
 # If chimera is available on this system, create a target to build bindings.
-if (chimera_FOUND)
+if(chimera_FOUND)
   add_chimera_binding(TARGET "${PROJECT_NAME}_CHIMERA"
     MODULE "${PROJECT_NAME}"
     CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.yml"
