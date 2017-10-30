@@ -16,7 +16,15 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-find_package(Boost REQUIRED COMPONENTS python thread)
+if(${PYTHON_VERSION_MAJOR} EQUAL 3)
+  find_package(Boost COMPONENTS python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} thread)
+  if (NOT Boost_FOUND)
+    find_package(Boost REQUIRED COMPONENTS python3 thread)
+  endif()
+else()
+  find_package(Boost REQUIRED COMPONENTS python thread)
+endif()
+
 find_package(DART 6.3.0 REQUIRED
   COMPONENTS
     collision-bullet
