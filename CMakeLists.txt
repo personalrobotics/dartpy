@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 project(dartpy)
 
+if(NOT DARTPY_PYTHON_VERSION)
+  set(DARTPY_PYTHON_VERSION 3.4 CACHE STRING "Choose the target Python version (e.g., 3.4, 2.7)" FORCE)
+endif()
+
 # TODO: This should be set by DART.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated -Wno-deprecated-declarations")
 
-find_package(PythonInterp REQUIRED)
+find_package(PythonInterp ${DARTPY_PYTHON_VERSION} REQUIRED)
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
   "from distutils.sysconfig import get_python_lib;\
   print(get_python_lib(plat_specific=True, prefix=''))"
@@ -22,7 +26,7 @@ find_package(DART 6.3.0 REQUIRED
     gui-osg
   CONFIG
 )
-find_package(PythonLibs REQUIRED)
+find_package(PythonLibs ${DARTPY_PYTHON_VERSION} REQUIRED)
 find_package(chimera QUIET)
 
 include_directories(SYSTEM
