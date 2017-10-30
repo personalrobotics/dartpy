@@ -5,6 +5,7 @@
 
 #include <boost/python.hpp>
 #include <cmath>
+#include <iostream>
 
 /* main postinclude */
 
@@ -23,7 +24,12 @@ BOOST_PYTHON_MODULE({{module.name}})
 
 {{#module.bindings}}
   void {{.}}();
-  {{.}}();
+  try {
+    {{.}}();
+  } catch(...) {
+    std::cerr << "Exception in: {{.}}" << std::endl;
+    throw;
+  }
 
 {{/module.bindings}}
 }

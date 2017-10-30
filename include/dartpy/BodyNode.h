@@ -1,7 +1,7 @@
 #ifndef DARTPY_BODYNODE_H_
 #define DARTPY_BODYNODE_H_
 #include <boost/python.hpp>
-#include <dart/dynamics/dynamics.h>
+#include <dart/dynamics/dynamics.hpp>
 
 namespace dart {
 namespace python {
