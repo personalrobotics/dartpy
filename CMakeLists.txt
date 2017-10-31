@@ -25,6 +25,7 @@ if(${PYTHON_VERSION_MAJOR} EQUAL 3)
   endif()
 else()
   find_package(Boost REQUIRED COMPONENTS python thread)
+  set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON_LIBRARIES})
 endif()
 
 find_package(DART 6.3.0 REQUIRED
