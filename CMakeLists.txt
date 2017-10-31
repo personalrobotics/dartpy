@@ -18,8 +18,10 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
 
 if(${PYTHON_VERSION_MAJOR} EQUAL 3)
   find_package(Boost COMPONENTS python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} thread)
+  set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON-PY${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}_LIBRARIES})
   if (NOT Boost_FOUND)
     find_package(Boost REQUIRED COMPONENTS python3 thread)
+    set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON3_LIBRARIES})
   endif()
 else()
   find_package(Boost REQUIRED COMPONENTS python thread)
@@ -87,7 +89,7 @@ if(chimera_FOUND)
     DEBUG EXCLUDE_FROM_ALL
   )
   target_link_libraries("${PROJECT_NAME}_CHIMERA"
-    ${Boost_PYTHON_LIBRARIES}
+    ${DARTPY_Boost_PYTHON_LIBRARIES}
     ${DART_LIBRARIES}
     ${PYTHON_LIBRARIES}
   )
@@ -116,7 +118,7 @@ if(EXISTS "${SOURCES_TXT}")
     src/template_registry.cpp
   )
   target_link_libraries("${PROJECT_NAME}"
-    ${Boost_PYTHON_LIBRARIES}
+    ${DARTPY_Boost_PYTHON_LIBRARIES}
     ${DART_LIBRARIES}
     ${PYTHON_LIBRARIES}
   )
