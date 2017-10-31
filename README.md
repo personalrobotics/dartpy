@@ -35,7 +35,7 @@ checkout Chimera, Boost.Python, Boost.NumPy/Eigen, and DART from source:
 - git:
     local-name: dart
     uri: https://github.com/dartsim/dart.git
-    version: release-6.1
+    version: release-6.3
 - git:
     local-name: dartpy
     uri: https://github.com/personalrobotics/dartpy.git
