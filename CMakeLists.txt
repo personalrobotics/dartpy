@@ -115,9 +115,6 @@ if(EXISTS "${SOURCES_TXT}")
   install(TARGETS "${PROJECT_NAME}"
     LIBRARY DESTINATION "${PYTHON_SITE_PACKAGES}"
   )
-  install(DIRECTORY "include/" "${CMAKE_CURRENT_BINARY_DIR}/include/"
-    DESTINATION "include"
-  )
 else()
   add_custom_target(${PROJECT_NAME} ALL
     COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --red "ERROR: Generate bindings using \\'make binding\\' before attempting to build."
