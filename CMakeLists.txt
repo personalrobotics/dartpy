@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 project(dartpy)
 
+if(NOT DARTPY_PYTHON_VERSION)
+  set(DARTPY_PYTHON_VERSION 3.4 CACHE STRING "Choose the target Python version (e.g., 3.4, 2.7)" FORCE)
+endif()
+
 # TODO: This should be set by DART.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated -Wno-deprecated-declarations")
 
-find_package(PythonInterp REQUIRED)
+find_package(PythonInterp ${DARTPY_PYTHON_VERSION} REQUIRED)
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
   "from distutils.sysconfig import get_python_lib;\
   print(get_python_lib(plat_specific=True, prefix=''))"
@@ -12,13 +16,29 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-find_package(Boost REQUIRED COMPONENTS python thread)
-find_package(DART 6.2.0 REQUIRED
-  COMPONENTS collision-bullet optimizer-nlopt planning utils-urdf gui-osg
+if(${PYTHON_VERSION_MAJOR} EQUAL 3)
+  find_package(Boost COMPONENTS python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} thread)
+  set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON-PY${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}_LIBRARIES})
+  if (NOT Boost_FOUND)
+    find_package(Boost REQUIRED COMPONENTS python3 thread)
+    set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON3_LIBRARIES})
+  endif()
+else()
+  find_package(Boost REQUIRED COMPONENTS python thread)
+  set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON_LIBRARIES})
+endif()
+
+find_package(DART 6.3.0 REQUIRED
+  COMPONENTS
+    collision-bullet
+    optimizer-nlopt
+    planning
+    utils-urdf
+    gui-osg
   CONFIG
 )
-find_package(PythonLibs REQUIRED)
-find_package(chimera REQUIRED)
+find_package(PythonLibs ${DARTPY_PYTHON_VERSION} REQUIRED)
+find_package(chimera QUIET)
 
 include_directories(SYSTEM
   ${Boost_INCLUDE_DIRS}
@@ -60,29 +80,59 @@ include_directories(
   "${CMAKE_CURRENT_BINARY_DIR}/include"
 )
 
-add_chimera_binding(TARGET "${PROJECT_NAME}"
-  MODULE "${PROJECT_NAME}"
-  CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.yml"
-  NAMESPACES "dart"
-  SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.cpp"
-  EXTRA_SOURCES
+# If chimera is available on this system, create a target to build bindings.
+if(chimera_FOUND)
+  add_chimera_binding(TARGET "${PROJECT_NAME}_CHIMERA"
+    MODULE "${PROJECT_NAME}"
+    CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.yml"
+    SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.cpp"
+    DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/src/generated"
+    DEBUG EXCLUDE_FROM_ALL
+  )
+  target_link_libraries("${PROJECT_NAME}_CHIMERA"
+    ${DARTPY_Boost_PYTHON_LIBRARIES}
+    ${DART_LIBRARIES}
+    ${PYTHON_LIBRARIES}
+  )
+  add_custom_target(binding DEPENDS "${PROJECT_NAME}_CHIMERA_REBUILD")
+else()
+  add_custom_target(binding
+    COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --red "ERROR: Cannot generate bindings without \\'chimera\\' installed."
+    COMMAND false
+  )
+endif()
+
+# Create a target to build generated bindings.
+set(SOURCES_TXT "${CMAKE_CURRENT_SOURCE_DIR}/src/generated/sources.txt")
+if(EXISTS "${SOURCES_TXT}")
+  file(STRINGS "${SOURCES_TXT}" SOURCES_GENERATED_RELATIVE NO_HEX_CONVERSION)
+
+  set(SOURCES_GENERATED)
+  foreach(relative_path ${SOURCES_GENERATED_RELATIVE})
+    list(APPEND SOURCES_GENERATED "${CMAKE_CURRENT_SOURCE_DIR}/src/generated/${relative_path}")
+  endforeach()
+
+  add_library("${PROJECT_NAME}" MODULE
+    ${SOURCES_GENERATED}
     src/BodyNode.cpp
     src/Skeleton.cpp
     src/template_registry.cpp
-  DEBUG
-)
-target_link_libraries("${PROJECT_NAME}"
-  ${Boost_PYTHON_LIBRARIES}
-  ${DART_LIBRARIES}
-  ${PYTHON_LIBRARIES}
-)
-set_target_properties("${PROJECT_NAME}" PROPERTIES
-  PREFIX ""
-)
+  )
+  target_link_libraries("${PROJECT_NAME}"
+    ${DARTPY_Boost_PYTHON_LIBRARIES}
+    ${DART_LIBRARIES}
+    ${PYTHON_LIBRARIES}
+  )
+  set_target_properties("${PROJECT_NAME}" PROPERTIES
+    PREFIX ""
+  )
 
-install(TARGETS "${PROJECT_NAME}"
-  LIBRARY DESTINATION "${PYTHON_SITE_PACKAGES}"
-)
-install(DIRECTORY "include/" "${CMAKE_CURRENT_BINARY_DIR}/include/"
-  DESTINATION "include"
-)
+  install(TARGETS "${PROJECT_NAME}"
+    LIBRARY DESTINATION "${PYTHON_SITE_PACKAGES}"
+  )
+else()
+  add_custom_target(${PROJECT_NAME} ALL
+    COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --red "ERROR: Generate bindings using \\'make binding\\' before attempting to build."
+    COMMAND false
+  )
+endif()

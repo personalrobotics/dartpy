@@ -5,4 +5,5 @@
 //#include <dart/optimizer/nlopt/ipopt.hpp> TODO: make this optional
 #include <dart/planning/planning.hpp>
 #include <dart/utils/utils.hpp>
+#include <dart/utils/urdf/urdf.hpp>
 #include <dart/gui/gui.hpp>
