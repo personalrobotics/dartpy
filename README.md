@@ -151,6 +151,10 @@ Institute][ri] at [Carnegie Mellon University][cmu] by [Michael Koval][mkoval]
 ([**@mkoval**][mkoval_github]) and [Pras Velagapudi][psigen]
 ([**@psigen**][psigen_github]).
 
+## License
+
+`dartpy` is licensed under [the BSD-2-Clause license](https://opensource.org/licenses/BSD-2-Clause). See [LICENSE](https://github.com/personalrobotics/dartpy/blob/master/LICENSE) for more information.
+
 
 [boost_numpy]: https://github.com/personalrobotics/Boost.NumPy
 [boost_numpy_eigen]: https://github.com/personalrobotics/Boost.NumPy_Eigen
