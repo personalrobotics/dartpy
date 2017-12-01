@@ -44,7 +44,6 @@ include_directories(SYSTEM
   ${Boost_INCLUDE_DIRS}
   ${DART_INCLUDE_DIRS}
   ${PYTHON_INCLUDE_DIRS}
-  "/opt/ros/indigo/include" # TODO: This should not be necessary.
 )
 
 # Check whether the CXX compiler and boost::python support get_pointer for
