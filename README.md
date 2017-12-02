@@ -111,7 +111,7 @@ process:
 ```console
 $ mkdir build
 $ cd build
-$ cmake ..
+$ cmake .. -DDARTPY_PYTHON_VERSION=3  # Use -DDARTPY_PYTHON_VERSION=2 to build for Python 2
 $ make
 $ make install
 ```
