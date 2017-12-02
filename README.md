@@ -12,8 +12,7 @@ Python bindings for [DART][dart], the Dynamic Animation and Robotics Toolkit.
 
 ### On Ubuntu using `apt-get`
 
-#### Artful, Zesty
-> Installing `dartpy` on Xenial using `apt-get` is not available for now, but we're working on it.
+#### Artful, Zesty, Xenial
 
 ```shell
 $ sudo add-apt-repository ppa:dartsim/ppa
