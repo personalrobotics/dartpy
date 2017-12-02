@@ -144,6 +144,10 @@ different extension libraries. If this is necessary, you need to modify one of
 the libraries to call `register_type` on that pair of `BodyNode` and `Joint`
 types.
 
+## License
+
+`dartpy` is licensed under [the BSD-2-Clause license](https://opensource.org/licenses/BSD-2-Clause). See [LICENSE](https://github.com/personalrobotics/dartpy/blob/master/LICENSE) for more information.
+
 ### Authors ###
 
 `dartpy` is developed by the [Personal Robotics Lab][prl] in the [Robotics
