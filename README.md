@@ -89,7 +89,7 @@ $ sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for
 > potential issues. If you are on [Ubuntu 14.04][ubuntu1404], builds of Clang
 > are available in the [LLVM Apt repository][llvm_apt].
 
-`dartpy` uses [CMake][cmake] build system. You should follow the standard CMake build
+`dartpy` uses the [CMake][cmake] build system. You should follow the standard CMake build
 process. :
 ```console
 $ cd <dartpy_root_directory>
@@ -98,11 +98,11 @@ $ cd build
 $ cmake .. -DDARTPY_PYTHON_VERSION=3  # Use -DDARTPY_PYTHON_VERSION=2 to build for Python 2
 ```
 
-Once the CMake configuration is complete, you can generate Boost.Python bindings of `dartpy` by running:
+Once the CMake configuration is complete, you can generate the Boost.Python bindings of `dartpy` by running:
 ```console
 $ make binding
 ```
-If you are using `dart-<version>-binding` (e.g., `dart-6.3-binding`) branch, you don't need to generate bindings as those brances already include generated bindings.
+If you are using `dart-<version>-binding` (e.g., `dart-6.3-binding`) branch, you don't need to generate bindings as those branches already include generated bindings.
 
 Once the binding generation is done, you can build and install `dartpy` by running:
 ```console
