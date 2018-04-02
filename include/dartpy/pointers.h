@@ -1,7 +1,6 @@
 #ifndef DART_PYTHON_POINTERS_H_
 #define DART_PYTHON_POINTERS_H_
 #include <memory>
-#include <dart/dynamics/dynamics.hpp>
 #include <dartpy/config.h>
 #include "types.h"
 
@@ -10,6 +9,7 @@
 #endif
 
 #include "get_signature.h"
+#include <dart/dynamics/dynamics.hpp>
 
 namespace boost {
 
