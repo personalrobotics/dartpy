@@ -18,6 +18,10 @@ matrix:
       services: docker
     - os: linux
       python: "3.4"
+      env: DOCKER_FILE="ubuntu-artful"
+      services: docker
+    - os: linux
+      python: "3.4"
       env: DOCKER_FILE="ubuntu-bionic"
       services: docker
 
