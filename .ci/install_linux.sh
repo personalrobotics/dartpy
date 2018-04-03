@@ -26,9 +26,8 @@ if [ `lsb_release -sc` = "trusty" ]; then
   make -j4
   sudo make install
   cd ../../dartpy
-else;
+else
   sudo apt-add-repository ppa:personalrobotics -y
   sudo apt-get update -q
   sudo apt-get install chimera -y
 fi
-
