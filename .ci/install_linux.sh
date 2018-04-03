@@ -2,8 +2,10 @@
 set -ex
 
 # Install DART
-sudo apt-add-repository ppa:libccd-debs -y
-sudo apt-add-repository ppa:fcl-debs -y
+if [ `lsb_release -sc` = "trusty" ]; then
+  sudo apt-add-repository ppa:libccd-debs -y
+  sudo apt-add-repository ppa:fcl-debs -y
+fi
 sudo apt-add-repository ppa:dartsim -y
 sudo apt-get update -q
 sudo apt-get install libdart6-all-dev -y
