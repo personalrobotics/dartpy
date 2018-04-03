@@ -9,6 +9,7 @@ RUN apt-get install -y \
     build-essential \
     cmake \
     pkg-config \
+    wget \
     libdart6-all-dev
 
 RUN sudo add-apt-repository 'deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main' -y
