@@ -19,7 +19,7 @@ configuration:
 init:
   - sh: cmake --version
   - sh: gcc --version
-  - sh: clang --version
+  #- sh: clang --version
 
 # branches to build
 branches:
