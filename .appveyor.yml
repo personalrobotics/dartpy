@@ -8,8 +8,8 @@ platform: x64
 
 # specify custom environment variables
 envinronment:
-  TRAVIS_BRANCH = $APPVEYOR_REPO_BRANCH
-  TRAVIS_OS_NAME = linux
+  TRAVIS_BRANCH: $APPVEYOR_REPO_BRANCH
+  TRAVIS_OS_NAME: linux
 
 # build configuration, i.e. Debug, Release, etc.
 configuration:
