@@ -16,7 +16,7 @@ RUN apt-get install -y \
 RUN sudo add-apt-repository 'deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main' -y
 RUN wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
 RUN apt-get update -q
-RUN apt-get install llvm-3.6-dev llvm-3.6-tools libclang-3.6-dev libedit-dev libyaml-cpp-dev libboost-dev -y
+RUN apt-get install llvm-3.6-dev llvm-3.6-tools libclang-3.6-dev libedit-dev libyaml-cpp-dev libboost-dev zlib1g-dev -y
 
 RUN cd /tmp \
     && git clone https://github.com/personalrobotics/chimera.git \
