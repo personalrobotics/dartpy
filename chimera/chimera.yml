@@ -235,6 +235,8 @@ types:
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::ScrewJoint::Aspect *':
     return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::TranslationalJoint2D::Aspect *':
+    return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::EulerJoint::Aspect *':
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::RevoluteJoint::Aspect *':
@@ -312,6 +314,8 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>&':
     return_value_policy: boost::python::copy_const_reference
+  'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>&':
+    return_value_policy: boost::python::copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::SoftBodyNodeUniqueProperties>&':
     return_value_policy: boost::python::copy_const_reference
   'const dart::common::detail::AspectWithState<dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>::State &':
@@ -340,6 +344,7 @@ types:
   'const dart::dynamics::PlanarJoint::Aspect *': null
   'const dart::dynamics::RevoluteJoint::Aspect *': null
   'const dart::dynamics::ScrewJoint::Aspect *': null
+  'const dart::dynamics::TranslationalJoint2D::Aspect *': null
   'const dart::dynamics::Skeleton *': null
   'const dart::dynamics::UniversalJoint::Aspect *': null
   'const dart::dynamics::VisualAspect *': null
@@ -381,6 +386,8 @@ types:
   'dart::dynamics::RevoluteJoint *':
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::ScrewJoint *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::dynamics::TranslationalJoint2D *':
     return_value_policy: boost::python::reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R1Space> *':
     return_value_policy: boost::python::reference_existing_object
@@ -537,6 +544,7 @@ types:
   'const dart::common::Aspect::Properties *': null
 
   'const dart::dynamics::ScrewJoint::Aspect *': null
+  'const dart::dynamics::TranslationalJoint2D::Aspect *': null
   'const dart::dynamics::EulerJoint::Aspect *': null
   'const dart::dynamics::Joint *': null
   'const dart::dynamics::PlanarJoint *': null
@@ -544,6 +552,7 @@ types:
   'const dart::dynamics::UniversalJoint *': null
   'const dart::dynamics::EulerJoint *': null
   'const dart::dynamics::ScrewJoint *': null
+  'const dart::dynamics::TranslationalJoint2D *': null
   'const dart::dynamics::RevoluteJoint *': null
   'const dart::dynamics::GenericJoint<dart::math::R1Space> *': null
   'const dart::dynamics::GenericJoint<dart::math::R2Space> *': null
@@ -665,6 +674,8 @@ classes:
     name: MakeCloneable_AspectProperties_EulerJointUniqueProperties
   'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>':
     name: MakeCloneable_AspectProperties_ScrewJointUniqueProperties
+  'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>':
+    name: MakeCloneable_AspectProperties_TranslationalJoint2DUniqueProperties
   'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::JointProperties>':
     name: MakeCloneable_AspectProperties_JointProperties
   'dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::FixedFrameProperties>':
@@ -751,6 +762,8 @@ classes:
     name: CompositeTrackingAspect_EulerJoint
   'dart::common::CompositeTrackingAspect<dart::dynamics::ScrewJoint>':
     name: CompositeTrackingAspect_ScrewJoint
+  'dart::common::CompositeTrackingAspect<dart::dynamics::TranslationalJoint2D>':
+    name: CompositeTrackingAspect_TranslationalJoint2D
   'dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>':
     name: CompositeTrackingAspect_EndEffector
   'dart::common::CompositeTrackingAspect<dart::dynamics::PlanarJoint>':
@@ -838,6 +851,9 @@ classes:
 
   'dart::common::detail::EmbeddedPropertiesAspect<dart::common::CompositeTrackingAspect<dart::dynamics::ScrewJoint>, dart::common::EmbeddedPropertiesAspect<dart::dynamics::ScrewJoint, dart::dynamics::detail::ScrewJointUniqueProperties>, dart::dynamics::detail::ScrewJointUniqueProperties, dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>, &dart::common::detail::DefaultSetEmbeddedProperties, &dart::common::detail::DefaultGetEmbeddedProperties>':
     name: EmbeddedPropertiesAspect_ScrewJoint
+
+  'dart::common::detail::EmbeddedPropertiesAspect<dart::common::CompositeTrackingAspect<dart::dynamics::TranslationalJoint2D>, dart::common::EmbeddedPropertiesAspect<dart::dynamics::TranslationalJoint2D, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>, dart::dynamics::detail::TranslationalJoint2DUniqueProperties, dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>, &dart::common::detail::DefaultSetEmbeddedProperties, &dart::common::detail::DefaultGetEmbeddedProperties>':
+    name: EmbeddedPropertiesAspect_TranslationalJoint2D
 
   # Joints
   'dart::dynamics::Joint':
@@ -997,6 +1013,13 @@ classes:
     name: SpecializedForScrewJointAspect
   'dart::common::CompositeJoiner<dart::dynamics::GenericJoint<dart::math::R1Space>, dart::common::RequiresAspect<dart::dynamics::ScrewJoint::Aspect> >':
     name: CompositeJoiner_R1Joint_RequiresScrewJointAspect
+
+  'dart::common::RequiresAspect<dart::dynamics::TranslationalJoint2D::Aspect>':
+    name: RequiresTranslationalJoint2DAspect
+  'dart::common::SpecializedForAspect<dart::dynamics::TranslationalJoint2D::Aspect>':
+    name: SpecializedForTranslationalJoint2DAspect
+  'dart::common::CompositeJoiner<dart::dynamics::GenericJoint<dart::math::R1Space>, dart::common::RequiresAspect<dart::dynamics::TranslationalJoint2D::Aspect> >':
+    name: CompositeJoiner_R1Joint_RequiresTranslationalJoint2DAspect
 
   'dart::common::RequiresAspect<dart::dynamics::UniversalJoint::Aspect>':
     name: RequiresUniversalJointAspect
@@ -1205,6 +1228,8 @@ classes:
   'dart::common::EmbedStateAndPropertiesOnTopOf<dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> >, dart::dynamics::detail::GenericJointState<dart::math::RealVectorSpace<1> >, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::RealVectorSpace<1> >, dart::dynamics::Joint>': null
   'dart::common::EmbedProperties<dart::dynamics::ScrewJoint, dart::dynamics::detail::ScrewJointUniqueProperties>': null
   'dart::common::CompositeJoiner<dart::common::EmbedProperties<dart::dynamics::ScrewJoint, dart::dynamics::detail::ScrewJointUniqueProperties>, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > >': null
+  'dart::common::EmbedProperties<dart::dynamics::TranslationalJoint2D, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>': null
+  'dart::common::CompositeJoiner<dart::common::EmbedProperties<dart::dynamics::TranslationalJoint2D, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > >': null
   'dart::common::SpecializedForAspect<dart::common::EmbeddedStateAndPropertiesAspect<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties> >': null
   'dart::common::RequiresAspect<dart::common::EmbeddedStateAndPropertiesAspect<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties> >': null
   'dart::common::EmbedStateAndProperties<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties>': null
@@ -1269,6 +1294,7 @@ classes:
     dart::math::RealVectorSpace<1> > >, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::RealVectorSpace<1> >, dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::RealVectorSpace<1> > >, &dart::common::detail::DefaultSetEmbeddedProperties, &dart::common::detail::DefaultGetEmbeddedProperties>
   : null
   'dart::common::detail::EmbeddedPropertiesAspect<dart::common::CompositeTrackingAspect<dart::dynamics::ScrewJoint>, dart::common::EmbeddedPropertiesAspect<dart::dynamics::ScrewJoint, dart::dynamics::detail::ScrewJointUniqueProperties>, dart::dynamics::detail::ScrewJointUniqueProperties, dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>, &dart::common::detail::DefaultSetEmbeddedProperties, &dart::common::detail::DefaultGetEmbeddedProperties>::ConvertIfProperties<dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ScrewJointUniqueProperties> >': null
+  'dart::common::detail::EmbeddedPropertiesAspect<dart::common::CompositeTrackingAspect<dart::dynamics::TranslationalJoint2D>, dart::common::EmbeddedPropertiesAspect<dart::dynamics::TranslationalJoint2D, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>, dart::dynamics::detail::TranslationalJoint2DUniqueProperties, dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>, &dart::common::detail::DefaultSetEmbeddedProperties, &dart::common::detail::DefaultGetEmbeddedProperties>::ConvertIfProperties<dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::TranslationalJoint2DUniqueProperties> >': null
   ? |
     dart::common::detail::EmbeddedPropertiesAspect<dart::common::detail::EmbeddedStateAspect<dart::common::CompositeTrackingAspect<dart::dynamics::SoftBodyNode>, dart::common::EmbeddedStateAndPropertiesAspect<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties>, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::SoftBodyNodeUniqueState>, &dart::common::detail::DefaultSetEmbeddedState, &dart::common::detail::DefaultGetEmbeddedState>, dart::common::EmbeddedStateAndPropertiesAspect<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties>, dart::dynamics::detail::SoftBodyNodeUniqueProperties, dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::SoftBodyNodeUniqueProperties>, &dart::common::detail::DefaultSetEmbeddedProperties,
     &dart::common::detail::DefaultGetEmbeddedProperties>
@@ -1335,6 +1361,7 @@ classes:
   'dart::common::EmbeddedPropertiesAspect<dart::dynamics::Marker, dart::dynamics::detail::MarkerProperties>': null
   'dart::common::EmbeddedPropertiesAspect<dart::dynamics::Skeleton, dart::dynamics::detail::SkeletonAspectProperties>': null
   'dart::common::EmbeddedPropertiesAspect<dart::dynamics::ScrewJoint, dart::dynamics::detail::ScrewJointUniqueProperties>': null
+  'dart::common::EmbeddedPropertiesAspect<dart::dynamics::TranslationalJoint2D, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>': null
   'dart::common::EmbeddedPropertiesAspect<dart::dynamics::EulerJoint, dart::dynamics::detail::EulerJointUniqueProperties>': null
   'dart::common::EmbeddedPropertiesAspect<dart::dynamics::RevoluteJoint, dart::dynamics::detail::RevoluteJointUniqueProperties>': null
   'dart::common::EmbeddedPropertiesAspect<dart::dynamics::PlanarJoint, dart::dynamics::detail::PlanarJointUniqueProperties>': null
@@ -1350,6 +1377,7 @@ classes:
     dart::common::Aspect::Properties, std::default_delete<dart::common::Aspect::Properties> > > > >, dart::common::detail::GetProperties> > >, &dart::dynamics::detail::setAllJointProperties, &dart::dynamics::detail::getAllJointProperties> > > >
   : null
   'dart::common::EmbedPropertiesOnTopOf<dart::dynamics::ScrewJoint, dart::dynamics::detail::ScrewJointUniqueProperties, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > >': null
+  'dart::common::EmbedPropertiesOnTopOf<dart::dynamics::TranslationalJoint2D, dart::dynamics::detail::TranslationalJoint2DUniqueProperties, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<2> > >': null
   'dart::common::EmbedPropertiesOnTopOf<dart::dynamics::EulerJoint, dart::dynamics::detail::EulerJointUniqueProperties, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > >': null
   'dart::common::EmbedPropertiesOnTopOf<dart::dynamics::RevoluteJoint, dart::dynamics::detail::RevoluteJointUniqueProperties, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > >': null
   'dart::common::EmbedPropertiesOnTopOf<dart::dynamics::PlanarJoint, dart::dynamics::detail::PlanarJointUniqueProperties, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > >': null
@@ -1772,3 +1800,5 @@ functions:
   'template<> dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::R3Space>::getGenericJointAspect(const bool)': null
   'template<> dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::SO3Space>::getGenericJointAspect(const bool)': null
   'template<> dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::SE3Space>::getGenericJointAspect(const bool)': null
+
+  'dart::common::SharedLibrary::SharedLibrary(dart::common::SharedLibrary::ProtectedConstructionTag, const boost::filesystem::path&)': null
