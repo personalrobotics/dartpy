@@ -1,0 +1,45 @@
+# Specify version format
+version: "{build}"
+
+image:
+  - Ubuntu
+
+platform: x64
+
+# specify custom environment variables
+envinronment:
+  TRAVIS_BRANCH = $APPVEYOR_REPO_BRANCH
+  TRAVIS_OS_NAME = linux
+
+# build configuration, i.e. Debug, Release, etc.
+configuration:
+  - Release
+
+# scripts that are called at very beginning, before repo cloning
+init:
+  - sh: cmake --version
+  - sh: gcc --version
+  - sh: clang --version
+
+# branches to build
+branches:
+  # blacklist
+  except:
+    - gh-pages
+
+# scripts that run after cloning repository
+install:
+  #------------------
+  # Ubuntu 16.04 LTS 
+  #------------------
+  - sh: '.ci/install.sh'
+
+build_script:
+  #------------------
+  # Ubuntu 16.04 LTS
+  #------------------
+  - sh: '.ci/script.sh'
+
+test_script:
+  #- cmd: ctest --build-config %configuration% --parallel 4 --output-on-failure
+  - sh: ctest -j4

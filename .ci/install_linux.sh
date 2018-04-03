@@ -1,3 +1,6 @@
+#!/bin/sh
+set -ex
+
 # Install DART
 sudo apt-add-repository ppa:libccd-debs -y
 sudo apt-add-repository ppa:fcl-debs -y
