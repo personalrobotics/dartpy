@@ -1,0 +1,26 @@
+FROM ubuntu:xenial
+
+RUN apt-get -y update
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:dartsim/ppa -y
+RUN apt-get -y update
+RUN apt-get install -y \
+    sudo \
+    build-essential \
+    cmake \
+    pkg-config \
+    libdart6-all-dev
+
+RUN sudo add-apt-repository 'deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main' -y
+RUN wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
+RUN apt-get update -q
+RUN apt-get install llvm-3.6-dev llvm-3.6-tools libclang-3.6-dev libedit-dev libyaml-cpp-dev libboost-dev -y
+
+RUN cd /tmp
+RUN git clone https://github.com/personalrobotics/chimera.git
+RUN cd chimera
+RUN mkdir build
+RUN cd build
+RUN cmake -DLLVM_DIR="/usr/share/llvm-3.6/cmake/" ..
+RUN make -j4
+RUN make install
