@@ -9,7 +9,11 @@
 #endif
 
 #include "get_signature.h"
+
 #include <dart/dynamics/dynamics.hpp>
+// TODO(JS): This includes Boost headers, which conflicts with 
+// the above ifdef statement. Confirm whether this doesn't cause
+// any issues.
 
 namespace boost {
 
