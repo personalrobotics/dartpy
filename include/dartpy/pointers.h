@@ -9,7 +9,6 @@
 #endif
 
 #include "get_signature.h"
-#include <dart/dynamics/dynamics.hpp>
 
 #include <dart/dynamics/dynamics.hpp>
 // TODO(JS): This includes Boost headers, which conflicts with 
