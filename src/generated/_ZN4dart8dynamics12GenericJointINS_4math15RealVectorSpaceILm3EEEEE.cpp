@@ -1,0 +1,151 @@
+#include <dartpy/pointers.h>
+#include <dartpy/template_registry.h>
+#include <dart/dart.hpp>
+#include <dart/collision/bullet/bullet.hpp>
+#include <dart/optimizer/optimizer.hpp>
+#include <dart/optimizer/nlopt/nlopt.hpp>
+#include <dart/planning/planning.hpp>
+#include <dart/utils/utils.hpp>
+#include <dart/utils/urdf/urdf.hpp>
+#include <dart/gui/gui.hpp>
+
+/* precontent */
+#include <boost/python.hpp>
+#include <cmath>
+
+namespace {
+
+
+
+} // namespace
+
+void _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEE()
+{
+::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
+::boost::python::scope parent_scope(parent_object);
+
+::boost::python::class_<dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >, ::boost::noncopyable >("R3Joint", boost::python::no_init)
+.def("hasGenericJointAspect", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> bool { return self->hasGenericJointAspect(); })
+.def("getGenericJointAspect", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Aspect * { return self->getGenericJointAspect(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("setGenericJointAspect", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Aspect * aspect) -> void { return self->setGenericJointAspect(aspect); }, (::boost::python::arg("aspect")))
+.def("removeGenericJointAspect", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> void { return self->removeGenericJointAspect(); })
+.def("releaseGenericJointAspect", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> std::unique_ptr<dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Aspect> { return self->releaseGenericJointAspect(); })
+.def("setProperties", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Properties & properties) -> void { return self->setProperties(properties); }, (::boost::python::arg("properties")))
+.def("setProperties", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::UniqueProperties & properties) -> void { return self->setProperties(properties); }, (::boost::python::arg("properties")))
+.def("setAspectState", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::AspectState & state) -> void { return self->setAspectState(state); }, (::boost::python::arg("state")))
+.def("setAspectProperties", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::AspectProperties & properties) -> void { return self->setAspectProperties(properties); }, (::boost::python::arg("properties")))
+.def("getGenericJointProperties", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Properties { return self->getGenericJointProperties(); })
+.def("copy", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::ThisClass & otherJoint) -> void { return self->copy(otherJoint); }, (::boost::python::arg("otherJoint")))
+.def("copy", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::ThisClass * otherJoint) -> void { return self->copy(otherJoint); }, (::boost::python::arg("otherJoint")))
+.def("getDof", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> dart::dynamics::DegreeOfFreedom * { return self->getDof(index); }, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr> >(), (::boost::python::arg("index")))
+.def("getNumDofs", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> std::size_t { return self->getNumDofs(); })
+.def("setDofName", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, const std::string & name) -> const std::string & { return self->setDofName(index, name); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("index"), ::boost::python::arg("name")))
+.def("setDofName", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, const std::string & name, bool preserveName) -> const std::string & { return self->setDofName(index, name, preserveName); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("index"), ::boost::python::arg("name"), ::boost::python::arg("preserveName")))
+.def("preserveDofName", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, bool preserve) -> void { return self->preserveDofName(index, preserve); }, (::boost::python::arg("index"), ::boost::python::arg("preserve")))
+.def("isDofNamePreserved", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> bool { return self->isDofNamePreserved(index); }, (::boost::python::arg("index")))
+.def("getDofName", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> const std::string & { return self->getDofName(index); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("index")))
+.def("getIndexInSkeleton", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> std::size_t { return self->getIndexInSkeleton(index); }, (::boost::python::arg("index")))
+.def("getIndexInTree", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> std::size_t { return self->getIndexInTree(index); }, (::boost::python::arg("index")))
+.def("setCommand", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double command) -> void { return self->setCommand(index, command); }, (::boost::python::arg("index"), ::boost::python::arg("command")))
+.def("getCommand", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getCommand(index); }, (::boost::python::arg("index")))
+.def("setCommands", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & commands) -> void { return self->setCommands(commands); }, (::boost::python::arg("commands")))
+.def("getCommands", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getCommands(); })
+.def("resetCommands", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> void { return self->resetCommands(); })
+.def("setPosition", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double position) -> void { return self->setPosition(index, position); }, (::boost::python::arg("index"), ::boost::python::arg("position")))
+.def("getPosition", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getPosition(index); }, (::boost::python::arg("index")))
+.def("setPositions", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & positions) -> void { return self->setPositions(positions); }, (::boost::python::arg("positions")))
+.def("getPositions", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getPositions(); })
+.def("setPositionLowerLimit", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double position) -> void { return self->setPositionLowerLimit(index, position); }, (::boost::python::arg("index"), ::boost::python::arg("position")))
+.def("getPositionLowerLimit", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getPositionLowerLimit(index); }, (::boost::python::arg("index")))
+.def("setPositionLowerLimits", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & lowerLimits) -> void { return self->setPositionLowerLimits(lowerLimits); }, (::boost::python::arg("lowerLimits")))
+.def("getPositionLowerLimits", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getPositionLowerLimits(); })
+.def("setPositionUpperLimit", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double position) -> void { return self->setPositionUpperLimit(index, position); }, (::boost::python::arg("index"), ::boost::python::arg("position")))
+.def("getPositionUpperLimit", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getPositionUpperLimit(index); }, (::boost::python::arg("index")))
+.def("setPositionUpperLimits", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & upperLimits) -> void { return self->setPositionUpperLimits(upperLimits); }, (::boost::python::arg("upperLimits")))
+.def("getPositionUpperLimits", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getPositionUpperLimits(); })
+.def("hasPositionLimit", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> bool { return self->hasPositionLimit(index); }, (::boost::python::arg("index")))
+.def("resetPosition", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> void { return self->resetPosition(index); }, (::boost::python::arg("index")))
+.def("resetPositions", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> void { return self->resetPositions(); })
+.def("setInitialPosition", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double initial) -> void { return self->setInitialPosition(index, initial); }, (::boost::python::arg("index"), ::boost::python::arg("initial")))
+.def("getInitialPosition", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getInitialPosition(index); }, (::boost::python::arg("index")))
+.def("setInitialPositions", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & initial) -> void { return self->setInitialPositions(initial); }, (::boost::python::arg("initial")))
+.def("getInitialPositions", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getInitialPositions(); })
+.def("setPositionsStatic", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector & positions) -> void { return self->setPositionsStatic(positions); }, (::boost::python::arg("positions")))
+.def("getPositionsStatic", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector & { return self->getPositionsStatic(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("setVelocitiesStatic", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector & velocities) -> void { return self->setVelocitiesStatic(velocities); }, (::boost::python::arg("velocities")))
+.def("getVelocitiesStatic", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector & { return self->getVelocitiesStatic(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("setAccelerationsStatic", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector & accels) -> void { return self->setAccelerationsStatic(accels); }, (::boost::python::arg("accels")))
+.def("getAccelerationsStatic", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector & { return self->getAccelerationsStatic(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("setVelocity", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double velocity) -> void { return self->setVelocity(index, velocity); }, (::boost::python::arg("index"), ::boost::python::arg("velocity")))
+.def("getVelocity", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getVelocity(index); }, (::boost::python::arg("index")))
+.def("setVelocities", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & velocities) -> void { return self->setVelocities(velocities); }, (::boost::python::arg("velocities")))
+.def("getVelocities", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getVelocities(); })
+.def("setVelocityLowerLimit", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double velocity) -> void { return self->setVelocityLowerLimit(index, velocity); }, (::boost::python::arg("index"), ::boost::python::arg("velocity")))
+.def("getVelocityLowerLimit", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getVelocityLowerLimit(index); }, (::boost::python::arg("index")))
+.def("setVelocityLowerLimits", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & lowerLimits) -> void { return self->setVelocityLowerLimits(lowerLimits); }, (::boost::python::arg("lowerLimits")))
+.def("getVelocityLowerLimits", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getVelocityLowerLimits(); })
+.def("setVelocityUpperLimit", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double velocity) -> void { return self->setVelocityUpperLimit(index, velocity); }, (::boost::python::arg("index"), ::boost::python::arg("velocity")))
+.def("getVelocityUpperLimit", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getVelocityUpperLimit(index); }, (::boost::python::arg("index")))
+.def("setVelocityUpperLimits", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & upperLimits) -> void { return self->setVelocityUpperLimits(upperLimits); }, (::boost::python::arg("upperLimits")))
+.def("getVelocityUpperLimits", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getVelocityUpperLimits(); })
+.def("resetVelocity", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> void { return self->resetVelocity(index); }, (::boost::python::arg("index")))
+.def("resetVelocities", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> void { return self->resetVelocities(); })
+.def("setInitialVelocity", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double initial) -> void { return self->setInitialVelocity(index, initial); }, (::boost::python::arg("index"), ::boost::python::arg("initial")))
+.def("getInitialVelocity", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getInitialVelocity(index); }, (::boost::python::arg("index")))
+.def("setInitialVelocities", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & initial) -> void { return self->setInitialVelocities(initial); }, (::boost::python::arg("initial")))
+.def("getInitialVelocities", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getInitialVelocities(); })
+.def("setAcceleration", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double acceleration) -> void { return self->setAcceleration(index, acceleration); }, (::boost::python::arg("index"), ::boost::python::arg("acceleration")))
+.def("getAcceleration", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getAcceleration(index); }, (::boost::python::arg("index")))
+.def("setAccelerations", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & accelerations) -> void { return self->setAccelerations(accelerations); }, (::boost::python::arg("accelerations")))
+.def("getAccelerations", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getAccelerations(); })
+.def("setAccelerationLowerLimit", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double acceleration) -> void { return self->setAccelerationLowerLimit(index, acceleration); }, (::boost::python::arg("index"), ::boost::python::arg("acceleration")))
+.def("getAccelerationLowerLimit", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getAccelerationLowerLimit(index); }, (::boost::python::arg("index")))
+.def("setAccelerationLowerLimits", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & lowerLimits) -> void { return self->setAccelerationLowerLimits(lowerLimits); }, (::boost::python::arg("lowerLimits")))
+.def("getAccelerationLowerLimits", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getAccelerationLowerLimits(); })
+.def("setAccelerationUpperLimit", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double acceleration) -> void { return self->setAccelerationUpperLimit(index, acceleration); }, (::boost::python::arg("index"), ::boost::python::arg("acceleration")))
+.def("getAccelerationUpperLimit", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getAccelerationUpperLimit(index); }, (::boost::python::arg("index")))
+.def("setAccelerationUpperLimits", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & upperLimits) -> void { return self->setAccelerationUpperLimits(upperLimits); }, (::boost::python::arg("upperLimits")))
+.def("getAccelerationUpperLimits", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getAccelerationUpperLimits(); })
+.def("resetAccelerations", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> void { return self->resetAccelerations(); })
+.def("setForce", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double force) -> void { return self->setForce(index, force); }, (::boost::python::arg("index"), ::boost::python::arg("force")))
+.def("getForce", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getForce(index); }, (::boost::python::arg("index")))
+.def("setForces", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & forces) -> void { return self->setForces(forces); }, (::boost::python::arg("forces")))
+.def("getForces", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getForces(); })
+.def("setForceLowerLimit", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double force) -> void { return self->setForceLowerLimit(index, force); }, (::boost::python::arg("index"), ::boost::python::arg("force")))
+.def("getForceLowerLimit", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getForceLowerLimit(index); }, (::boost::python::arg("index")))
+.def("setForceLowerLimits", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & lowerLimits) -> void { return self->setForceLowerLimits(lowerLimits); }, (::boost::python::arg("lowerLimits")))
+.def("getForceLowerLimits", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getForceLowerLimits(); })
+.def("setForceUpperLimit", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double force) -> void { return self->setForceUpperLimit(index, force); }, (::boost::python::arg("index"), ::boost::python::arg("force")))
+.def("getForceUpperLimit", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getForceUpperLimit(index); }, (::boost::python::arg("index")))
+.def("setForceUpperLimits", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & upperLimits) -> void { return self->setForceUpperLimits(upperLimits); }, (::boost::python::arg("upperLimits")))
+.def("getForceUpperLimits", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::VectorXd { return self->getForceUpperLimits(); })
+.def("resetForces", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> void { return self->resetForces(); })
+.def("setVelocityChange", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double velocityChange) -> void { return self->setVelocityChange(index, velocityChange); }, (::boost::python::arg("index"), ::boost::python::arg("velocityChange")))
+.def("getVelocityChange", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getVelocityChange(index); }, (::boost::python::arg("index")))
+.def("resetVelocityChanges", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> void { return self->resetVelocityChanges(); })
+.def("setConstraintImpulse", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double impulse) -> void { return self->setConstraintImpulse(index, impulse); }, (::boost::python::arg("index"), ::boost::python::arg("impulse")))
+.def("getConstraintImpulse", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getConstraintImpulse(index); }, (::boost::python::arg("index")))
+.def("resetConstraintImpulses", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> void { return self->resetConstraintImpulses(); })
+.def("integratePositions", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, double dt) -> void { return self->integratePositions(dt); }, (::boost::python::arg("dt")))
+.def("integrateVelocities", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, double dt) -> void { return self->integrateVelocities(dt); }, (::boost::python::arg("dt")))
+.def("getPositionDifferences", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & q2, const Eigen::VectorXd & q1) -> Eigen::VectorXd { return self->getPositionDifferences(q2, q1); }, (::boost::python::arg("q2"), ::boost::python::arg("q1")))
+.def("getPositionDifferencesStatic", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector & q2, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector & q1) -> dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector { return self->getPositionDifferencesStatic(q2, q1); }, (::boost::python::arg("q2"), ::boost::python::arg("q1")))
+.def("setSpringStiffness", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double k) -> void { return self->setSpringStiffness(index, k); }, (::boost::python::arg("index"), ::boost::python::arg("k")))
+.def("getSpringStiffness", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getSpringStiffness(index); }, (::boost::python::arg("index")))
+.def("setRestPosition", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double q0) -> void { return self->setRestPosition(index, q0); }, (::boost::python::arg("index"), ::boost::python::arg("q0")))
+.def("getRestPosition", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getRestPosition(index); }, (::boost::python::arg("index")))
+.def("setDampingCoefficient", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double d) -> void { return self->setDampingCoefficient(index, d); }, (::boost::python::arg("index"), ::boost::python::arg("d")))
+.def("getDampingCoefficient", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getDampingCoefficient(index); }, (::boost::python::arg("index")))
+.def("setCoulombFriction", [](dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index, double friction) -> void { return self->setCoulombFriction(index, friction); }, (::boost::python::arg("index"), ::boost::python::arg("friction")))
+.def("getCoulombFriction", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, std::size_t index) -> double { return self->getCoulombFriction(index); }, (::boost::python::arg("index")))
+.def("computePotentialEnergy", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> double { return self->computePotentialEnergy(); })
+.def("getBodyConstraintWrench", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> Eigen::Vector6d { return self->getBodyConstraintWrench(); })
+.def("getRelativeJacobian", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> const dart::math::Jacobian { return self->getRelativeJacobian(); })
+.def("getRelativeJacobian", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const Eigen::VectorXd & _positions) -> dart::math::Jacobian { return self->getRelativeJacobian(_positions); }, (::boost::python::arg("_positions")))
+.def("getRelativeJacobianStatic", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self, const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::Vector & positions) -> dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::JacobianMatrix { return self->getRelativeJacobianStatic(positions); }, (::boost::python::arg("positions")))
+.def("getRelativeJacobianTimeDeriv", [](const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> > *self) -> const dart::math::Jacobian { return self->getRelativeJacobianTimeDeriv(); })
+.add_static_property("NumDofs", ::boost::python::make_getter(dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::NumDofs))
+;
+}
+
+/* footer */
