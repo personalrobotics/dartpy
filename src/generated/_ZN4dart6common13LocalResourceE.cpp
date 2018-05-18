@@ -29,7 +29,7 @@ void _ZN4dart6common13LocalResourceE()
 .def("isGood", [](const dart::common::LocalResource *self) -> bool { return self->isGood(); })
 .def("getSize", [](dart::common::LocalResource *self) -> std::size_t { return self->getSize(); })
 .def("tell", [](dart::common::LocalResource *self) -> std::size_t { return self->tell(); })
-.def("seek", [](dart::common::LocalResource *self, ptrdiff_t _origin, dart::common::Resource::SeekType _mode) -> bool { return self->seek(_origin, _mode); }, (::boost::python::arg("_origin"), ::boost::python::arg("_mode")))
+.def("seek", [](dart::common::LocalResource *self, std::ptrdiff_t _origin, dart::common::Resource::SeekType _mode) -> bool { return self->seek(_origin, _mode); }, (::boost::python::arg("_origin"), ::boost::python::arg("_mode")))
 ;
 }
 

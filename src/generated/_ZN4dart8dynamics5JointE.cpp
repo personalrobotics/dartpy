@@ -24,7 +24,7 @@ void _ZN4dart8dynamics5JointE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::Joint, ::boost::noncopyable, dart::dynamics::JointPtr, ::boost::python::bases<dart::common::Subject, dart::common::VersionCounter > >("Joint", boost::python::no_init)
+::boost::python::class_<dart::dynamics::Joint, ::boost::noncopyable, dart::dynamics::JointPtr, ::boost::python::bases<dart::common::VersionCounter, dart::common::Subject > >("Joint", boost::python::no_init)
 .def("hasJointAspect", [](const dart::dynamics::Joint *self) -> bool { return self->hasJointAspect(); })
 .def("setJointAspect", [](dart::dynamics::Joint *self, const dart::common::EmbedProperties<dart::dynamics::Joint, dart::dynamics::detail::JointProperties>::Aspect * aspect) -> void { return self->setJointAspect(aspect); }, (::boost::python::arg("aspect")))
 .def("removeJointAspect", [](dart::dynamics::Joint *self) -> void { return self->removeJointAspect(); })

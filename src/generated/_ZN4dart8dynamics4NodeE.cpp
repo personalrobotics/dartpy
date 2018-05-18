@@ -24,7 +24,7 @@ void _ZN4dart8dynamics4NodeE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::Node, ::boost::noncopyable, ::boost::python::bases<dart::common::Subject, dart::common::VersionCounter > >("Node", boost::python::no_init)
+::boost::python::class_<dart::dynamics::Node, ::boost::noncopyable, ::boost::python::bases<dart::common::VersionCounter, dart::common::Subject > >("Node", boost::python::no_init)
 .def("setName", [](dart::dynamics::Node *self, const std::string & newName) -> const std::string & { return self->setName(newName); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("newName")))
 .def("getName", [](const dart::dynamics::Node *self) -> const std::string & { return self->getName(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
 .def("setNodeState", [](dart::dynamics::Node *self, const dart::dynamics::Node::State & otherState) -> void { return self->setNodeState(otherState); }, (::boost::python::arg("otherState")))

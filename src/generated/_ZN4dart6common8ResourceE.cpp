@@ -27,7 +27,7 @@ void _ZN4dart6common8ResourceE()
 ::boost::python::class_<dart::common::Resource, ::boost::noncopyable >("Resource", boost::python::no_init)
 .def("getSize", [](dart::common::Resource *self) -> std::size_t { return self->getSize(); })
 .def("tell", [](dart::common::Resource *self) -> std::size_t { return self->tell(); })
-.def("seek", [](dart::common::Resource *self, ptrdiff_t _offset, dart::common::Resource::SeekType _origin) -> bool { return self->seek(_offset, _origin); }, (::boost::python::arg("_offset"), ::boost::python::arg("_origin")))
+.def("seek", [](dart::common::Resource *self, std::ptrdiff_t _offset, dart::common::Resource::SeekType _origin) -> bool { return self->seek(_offset, _origin); }, (::boost::python::arg("_offset"), ::boost::python::arg("_origin")))
 .def("readAll", [](dart::common::Resource *self) -> std::string { return self->readAll(); })
 ;
 }

@@ -24,7 +24,7 @@ void _ZN4dart8dynamics8SkeletonE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::Skeleton, ::boost::noncopyable, dart::dynamics::SkeletonPtr, ::boost::python::bases<dart::common::VersionCounter, dart::dynamics::MetaSkeleton > >("Skeleton", boost::python::no_init)
+::boost::python::class_<dart::dynamics::Skeleton, ::boost::noncopyable, dart::dynamics::SkeletonPtr, ::boost::python::bases<dart::dynamics::MetaSkeleton, dart::common::VersionCounter > >("Skeleton", boost::python::no_init)
 .def("getPtr", [](dart::dynamics::Skeleton *self) -> dart::dynamics::SkeletonPtr { return self->getPtr(); })
 .def("getSkeleton", [](dart::dynamics::Skeleton *self) -> dart::dynamics::SkeletonPtr { return self->getSkeleton(); })
 .def("getLockableReference", [](const dart::dynamics::Skeleton *self) -> std::unique_ptr<dart::common::LockableReference> { return self->getLockableReference(); })

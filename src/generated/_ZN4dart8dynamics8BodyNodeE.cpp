@@ -24,7 +24,7 @@ void _ZN4dart8dynamics8BodyNodeE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::BodyNode, ::boost::noncopyable, dart::dynamics::BodyNodePtr, ::boost::python::bases<dart::dynamics::TemplatedJacobianNode<dart::dynamics::BodyNode>, dart::dynamics::SkeletonRefCountingBase > >("BodyNode", boost::python::no_init)
+::boost::python::class_<dart::dynamics::BodyNode, ::boost::noncopyable, dart::dynamics::BodyNodePtr, ::boost::python::bases<dart::dynamics::SkeletonRefCountingBase, dart::dynamics::TemplatedJacobianNode<dart::dynamics::BodyNode> > >("BodyNode", boost::python::no_init)
 .def("asSoftBodyNode", [](dart::dynamics::BodyNode *self) -> dart::dynamics::SoftBodyNode * { return self->asSoftBodyNode(); }, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::SoftBodyNodePtr> >())
 .def("setAllNodeStates", [](dart::dynamics::BodyNode *self, const dart::dynamics::BodyNode::AllNodeStates & states) -> void { return self->setAllNodeStates(states); }, (::boost::python::arg("states")))
 .def("getAllNodeStates", [](const dart::dynamics::BodyNode *self) -> dart::dynamics::BodyNode::AllNodeStates { return self->getAllNodeStates(); })
