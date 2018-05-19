@@ -11,6 +11,7 @@
 
 namespace dart {
 namespace utils {
+
 namespace skel {
 
 /// Read World from skel file
@@ -39,5 +40,6 @@ dynamics::SkeletonPtr readSkeleton(
 }
 
 } // namespace skel
+
 } // namespace utils
 } // namespace dart

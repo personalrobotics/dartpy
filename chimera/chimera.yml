@@ -229,6 +229,38 @@ types:
     return_value_policy: boost::python::copy_non_const_reference
   'const dart::dynamics::PointMass::State &':
     return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::MultiSphereConvexHullShape::Spheres &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> >::Vector &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<2> >::JacobianMatrix &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::GenericJoint<dart::math::RealVectorSpace<3> >::JacobianMatrix &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::dynamics::GenericJoint<dart::math::SO3Space>::JacobianMatrix &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::collision::CollisionOption &':
+    return_value_policy: boost::python::copy_const_reference
+  'dart::collision::CollisionOption &':
+    return_value_policy: boost::python::copy_non_const_reference
+  'const dart::collision::CollisionResult &':
+    return_value_policy: boost::python::copy_const_reference
+  'dart::collision::CollisionResult &':
+    return_value_policy: boost::python::copy_non_const_reference
+  'const dart::collision::Contact &':
+    return_value_policy: boost::python::copy_const_reference
+  'const std::unordered_set<const dart::dynamics::ShapeFrame *> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const std::unordered_set<const dart::dynamics::BodyNode *> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const std::vector<dart::collision::Contact> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const std::vector<dart::dynamics::PointMass *> &':
+    return_value_policy: boost::python::copy_const_reference
+  'const dart::common::Uri &':
+    return_value_policy: boost::python::copy_const_reference
+  'const Eigen::Matrix<double, 3, 2> &':
+    return_value_policy: boost::python::copy_const_reference
 
    # Aspects
   'dart::dynamics::DynamicsAspect *':
@@ -262,6 +294,10 @@ types:
   'dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
   'dart::common::Aspect::State *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::common::EmbedProperties<dart::dynamics::Joint, dart::dynamics::detail::JointProperties>::Aspect *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::common::EmbedStateAndPropertiesOnTopOf<dart::dynamics::SoftBodyNode, dart::dynamics::detail::SoftBodyNodeUniqueState, dart::dynamics::detail::SoftBodyNodeUniqueProperties, dart::dynamics::BodyNode>::Aspect *':
     return_value_policy: boost::python::reference_existing_object
 
   'const dart::common::detail::EmbeddedStateAspect<dart::common::CompositeTrackingAspect<dart::dynamics::BodyNode>, dart::common::EmbeddedStateAndPropertiesAspect<dart::dynamics::BodyNode, dart::dynamics::detail::BodyNodeState, dart::dynamics::detail::BodyNodeAspectProperties>, dart::dynamics::detail::BodyNodeState, dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::BodyNodeState>, &dart::common::detail::DefaultSetEmbeddedState, &dart::common::detail::DefaultGetEmbeddedState>::State &':
@@ -352,7 +388,9 @@ types:
   'const dart::dynamics::Skeleton *': null
   'const dart::dynamics::UniversalJoint::Aspect *': null
   'const dart::dynamics::VisualAspect *': null
+  'const dart::dynamics::InverseKinematics *': null
   'const dart::collision::CollisionDetector *': null
+  'const dart::collision::fcl::CollisionObject *': null
 
   # smart pointers
   'dart::dynamics::BodyNode *':
@@ -598,6 +636,12 @@ types:
   'const char *': null
 
   'dart::dynamics::ConstSkeletonPtr': null
+
+  'const boost::filesystem::path &':
+    return_value_policy: boost::python::copy_const_reference
+
+  #'void (*const)(Derived *, const Properties &)': null
+  #'const Properties &(*const)(const Derived *)': null
 
 # Selected function and class declarations that need custom parameters.
 classes:
