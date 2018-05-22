@@ -350,9 +350,6 @@ types:
   'const dart::dynamics::VisualAspect *': null
   'const dart::collision::CollisionDetector *': null
 
-  # TODO: testing if PrismaticJoint::getNumDofs() works
-  'const dart::dynamics::PrismaticJoint *': null
-
   # smart pointers
   'dart::dynamics::BodyNode *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr>
@@ -1121,7 +1118,7 @@ classes:
   # 'dart::common::EmbedProperties<dart::dynamics::EntityNode<dart::dynamics::TemplatedJacobianNode<dart::dynamics::FixedJacobianNode> >, dart::dynamics::detail::EntityNodeProperties>': null
   # 'dart::dynamics::detail::EntityNodeBase<dart::dynamics::TemplatedJacobianNode<dart::dynamics::FixedJacobianNode>, false>': null
   # 'dart::dynamics::EntityNode<dart::dynamics::TemplatedJacobianNode<dart::dynamics::FixedJacobianNode> >': null
-  # 'dart::common::CompositeJoiner<dart::dynamics::EntityNode<dart::dynamics::TemplatedJacobianNode<dart::dynamics::FixedJacobianNode> >, dart::common::Virtual<dart::dynamics::FixedFrame> >': null
+  'dart::common::CompositeJoiner<dart::dynamics::EntityNode<dart::dynamics::TemplatedJacobianNode<dart::dynamics::FixedJacobianNode> >, dart::common::Virtual<dart::dynamics::FixedFrame> >': null
   # 'dart::dynamics::AccessoryNode<dart::dynamics::FixedJacobianNode>': null
   # 'dart::common::CompositeJoiner<dart::dynamics::FixedJacobianNode, dart::dynamics::ShapeFrame>': null
   # 'dart::common::CompositeJoiner<dart::dynamics::FixedJacobianNode, dart::common::SpecializedForAspect<dart::dynamics::Support> >': null
