@@ -39,8 +39,8 @@ template:
     header: |
       #include <vector>
 
+      #include <dartpy/pointers.h> // should be included before any other non-STL headers
       #include <dartpy/collections.h>
-      #include <dartpy/pointers.h>
       #include <dartpy/template_registry.h>
       #include <dartpy/util.h>
 
