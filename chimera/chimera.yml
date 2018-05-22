@@ -20,6 +20,8 @@ template:
     header: |
       #include <dartpy/pointers.h>
       #include <dartpy/template_registry.h>
+      #include <dartpy/parsers.h>
+
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
       #include <dart/optimizer/optimizer.hpp>
@@ -34,15 +36,15 @@ template:
       '/* postinclude */'
     footer:
       '/* footer */'
-    # TODO: Put this at the bottom of the module:
-    # dart::python::JointTemplateRegistry::register_default_types();
-    # dart::python::JointAndNodeTemplateRegistry::register_default_types();
   main:
     header: |
       #include <vector>
-      #include <dartpy/pointers.h>
+
+      #include <dartpy/pointers.h> // should be included first than any other headers
       #include <dartpy/collections.h>
+      #include <dartpy/template_registry.h>
       #include <dartpy/util.h>
+
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
       #include <dart/optimizer/optimizer.hpp>
@@ -119,6 +121,9 @@ template:
         dart::dynamics::DegreeOfFreedom*, dart::dynamics::DegreeOfFreedomPtr>();
       dart::python::util::collection_from_python<
         std::vector<dart::dynamics::DegreeOfFreedom*> >();
+    postcontent: |
+      dart::python::JointTemplateRegistry::register_default_types();
+      dart::python::JointAndNodeTemplateRegistry::register_default_types();
     footer: |
       // main footer
 

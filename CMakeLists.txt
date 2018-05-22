@@ -84,7 +84,9 @@ if(chimera_FOUND)
   add_chimera_binding(TARGET "${PROJECT_NAME}_CHIMERA"
     MODULE "${PROJECT_NAME}"
     CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.yml"
-    SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.cpp"
+    SOURCES
+      "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.cpp"
+      "${CMAKE_CURRENT_SOURCE_DIR}/include/dartpy/parsers.h"
     DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/src/generated"
     DEBUG EXCLUDE_FROM_ALL
   )
