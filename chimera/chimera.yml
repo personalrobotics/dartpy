@@ -20,6 +20,7 @@ template:
     header: |
       #include <dartpy/pointers.h>
       #include <dartpy/template_registry.h>
+      #include <dartpy/parsers.h>
 
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
@@ -39,8 +40,8 @@ template:
     header: |
       #include <vector>
 
+      #include <dartpy/pointers.h> // should be included first than any other headers
       #include <dartpy/collections.h>
-      #include <dartpy/pointers.h>
       #include <dartpy/template_registry.h>
       #include <dartpy/util.h>
 

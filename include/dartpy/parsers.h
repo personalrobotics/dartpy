@@ -1,3 +1,6 @@
+#ifndef DARTPY_PARSERS_H_
+#define DARTPY_PARSERS_H_
+
 #include <dart/dart.hpp>
 #include <dart/collision/bullet/bullet.hpp>
 #include <dart/optimizer/optimizer.hpp>
@@ -14,7 +17,7 @@ namespace utils {
 namespace skel {
 
 /// Read World from skel file
-simulation::WorldPtr readWorld(
+inline simulation::WorldPtr readWorld(
   const common::Uri& uri,
   const common::ResourceRetrieverPtr& retriever = nullptr)
 {
@@ -22,7 +25,7 @@ simulation::WorldPtr readWorld(
 }
 
 /// Read World from an xml-formatted string
-simulation::WorldPtr readWorldXML(
+inline simulation::WorldPtr readWorldXML(
   const std::string& xmlString,
   const common::Uri& baseUri = "",
   const common::ResourceRetrieverPtr& retriever = nullptr)
@@ -31,7 +34,7 @@ simulation::WorldPtr readWorldXML(
 }
 
 /// Read Skeleton from skel file
-dynamics::SkeletonPtr readSkeleton(
+inline dynamics::SkeletonPtr readSkeleton(
   const common::Uri& uri,
   const common::ResourceRetrieverPtr& retriever = nullptr)
 {
@@ -41,3 +44,5 @@ dynamics::SkeletonPtr readSkeleton(
 } // namespace skel
 } // namespace utils
 } // namespace dart
+
+#endif // DARTPY_PARSERS_H_
