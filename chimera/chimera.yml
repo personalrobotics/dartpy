@@ -542,38 +542,36 @@ types:
 
   # suppressed to disable const overloads
   'const dart::common::Aspect::Properties *': null
-
-  'const dart::dynamics::ScrewJoint::Aspect *': null
-  'const dart::dynamics::TranslationalJoint2D::Aspect *': null
-  'const dart::dynamics::EulerJoint::Aspect *': null
-  'const dart::dynamics::Joint *': null
-  'const dart::dynamics::PlanarJoint *': null
-  'const dart::dynamics::PrismaticJoint *': null
-  'const dart::dynamics::UniversalJoint *': null
-  'const dart::dynamics::EulerJoint *': null
-  'const dart::dynamics::ScrewJoint *': null
-  'const dart::dynamics::TranslationalJoint2D *': null
-  'const dart::dynamics::RevoluteJoint *': null
-  'const dart::dynamics::GenericJoint<dart::math::R1Space> *': null
-  'const dart::dynamics::GenericJoint<dart::math::R2Space> *': null
-  'const dart::dynamics::GenericJoint<dart::math::R3Space> *': null
-  'const dart::dynamics::GenericJoint<dart::math::SO3Space> *': null
-  'const dart::dynamics::GenericJoint<dart::math::SE3Space> *': null
-  'const dart::dynamics::InverseKinematics::GradientMethod &': null
-  'const dart::dynamics::InverseKinematics::Analytical *': null
-  'const dart::dynamics::JacobianNode *': null
-  'const dart::dynamics::ShapeFrame *': null
-  'const dart::dynamics::InverseKinematics::ErrorMethod &': null
-  'const dart::dynamics::PointMass *': null
-  'const dart::dynamics::Frame *': null
-  'const dart::dynamics::BodyNode *': null
-  'const dart::dynamics::ShapeNode *': null
-  'const dart::dynamics::Marker *': null
-  'const dart::dynamics::DegreeOfFreedom *': null
+  # 'const dart::dynamics::ScrewJoint::Aspect *': null
+  # 'const dart::dynamics::TranslationalJoint2D::Aspect *': null
+  # 'const dart::dynamics::EulerJoint::Aspect *': null
+  # 'const dart::dynamics::Joint *': null
+  # 'const dart::dynamics::PlanarJoint *': null
+  # 'const dart::dynamics::PrismaticJoint *': null
+  # 'const dart::dynamics::UniversalJoint *': null
+  # 'const dart::dynamics::EulerJoint *': null
+  # 'const dart::dynamics::ScrewJoint *': null
+  # 'const dart::dynamics::TranslationalJoint2D *': null
+  # 'const dart::dynamics::RevoluteJoint *': null
+  # 'const dart::dynamics::GenericJoint<dart::math::R1Space> *': null
+  # 'const dart::dynamics::GenericJoint<dart::math::R2Space> *': null
+  # 'const dart::dynamics::GenericJoint<dart::math::R3Space> *': null
+  # 'const dart::dynamics::GenericJoint<dart::math::SO3Space> *': null
+  # 'const dart::dynamics::GenericJoint<dart::math::SE3Space> *': null
+  # 'const dart::dynamics::InverseKinematics::GradientMethod &': null
+  # 'const dart::dynamics::InverseKinematics::Analytical *': null
+  # 'const dart::dynamics::JacobianNode *': null
+  # 'const dart::dynamics::ShapeFrame *': null
+  # 'const dart::dynamics::InverseKinematics::ErrorMethod &': null
+  # 'const dart::dynamics::PointMass *': null
+  # 'const dart::dynamics::Frame *': null
+  # 'const dart::dynamics::BodyNode *': null
+  # 'const dart::dynamics::ShapeNode *': null
+  # 'const dart::dynamics::Marker *': null
+  # 'const dart::dynamics::DegreeOfFreedom *': null
   'const dart::dynamics::EndEffector *': null
   'const dart::dynamics::Support *': null
-  'const dart::dynamics::SoftBodyNode *': null
-
+  # 'const dart::dynamics::SoftBodyNode *': null
   #'const dart::gui::osg::ImGuiHandler *': null
   #'const dart::gui::osg::InteractiveFrame *': null
   #'const dart::gui::osg::ShapeFrameNode *': null
