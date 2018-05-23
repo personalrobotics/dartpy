@@ -14,6 +14,9 @@ sudo apt-get install python-dev python-numpy python-boost-numpy-eigen    # for P
 sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for Python 3
 sudo apt-get install python3-pytest
 
+# Install dartpy for running Python tests without building dartpy
+sudo apt-get install python3-dartpy
+
 # Install Chimera
 if [ `lsb_release -sc` = "trusty" ]; then
   sudo add-apt-repository 'deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main' -y

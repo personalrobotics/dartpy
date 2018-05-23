@@ -16,6 +16,4 @@ fi
 # $SUDO make install
 
 # Run pytest for Python tests of dartpy
-# Install dartpy using apt-get instead
-sudo apt-get install python3-dartpy
 make pytest
