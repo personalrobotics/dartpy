@@ -49,13 +49,7 @@ set(DARTPY_TEST_FILES
 )
 
 # Add custom target to run the tests
-if(DARTPY_PYTEST_FOUND AND DARTPY_DARTPY_FOUND)
-  add_custom_target(pytest
-    COMMAND ${PYTHON_EXECUTABLE} -m pytest ${DARTPY_TEST_FILES}
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  )
-else()
-  add_custom_target(pytest
-    COMMAND echo "Testing is disabled."
-  )
-endif()
+add_custom_target(pytest
+  COMMAND ${PYTHON_EXECUTABLE} -m pytest ${DARTPY_TEST_FILES}
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
