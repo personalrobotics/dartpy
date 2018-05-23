@@ -15,7 +15,7 @@ sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for P
 sudo apt-get install python3-pytest
 
 # Install dartpy for running Python tests without building dartpy
-if ! [ $(lsb_release -sc) = "trusty" ]; then
+if [ ! $(lsb_release -sc) = "trusty" ]; then
   sudo apt-get install python3-dartpy
 fi
 
