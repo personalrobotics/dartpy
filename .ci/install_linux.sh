@@ -12,7 +12,10 @@ sudo apt-get update -q
 sudo apt-get install cmake libboost-dev libboost-python-dev libboost-python-numpy-dev libdart6-all-dev
 sudo apt-get install python-dev python-numpy python-boost-numpy-eigen    # for Python 2
 sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for Python 3
+
+# Install dependencies for unittests
 sudo apt-get install python3-pytest
+sudo apt-get install python3-opengl
 
 # Install dartpy for running Python tests without building dartpy
 sudo apt-get install python3-dartpy
