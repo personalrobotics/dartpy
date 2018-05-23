@@ -1,5 +1,30 @@
 import os
 import os.path
+from enum import Enum
+
+import numpy as np
+from dartpy.dynamics import Skeleton
+from dartpy.utils import DartLoader
+
+TypeOfDof = Enum('TypeOfDof', 'DOF_X, DOF_Y, DOF_Z, DOF_ROLL, DOF_PITCH, DOF_YAW')
+
+
+def _get_unit(index):
+    unit_x = np.zeros(3)
+    unit_x[index] = 1
+    return unit_x
+
+
+def get_unit_x():
+    return _get_unit(0)
+
+
+def get_unit_y():
+    return _get_unit(0)
+
+
+def get_unit_z():
+    return _get_unit(0)
 
 
 def get_current_file_path():
@@ -17,7 +42,7 @@ def get_asset_path(rel_path, check_existing=False):
     return full_path
 
 
-def get_skeleton_list():
+def get_skeleton_paths():
     skeleton_list = []
     skeleton_list += ['skel/chainwhipa.skel']
     skeleton_list += ['skel/single_pendulum.skel']
@@ -40,3 +65,22 @@ def get_skeleton_list():
     # skeleton_list += ['skelbody1.skel']
 
     return skeleton_list
+
+
+def get_skeletons():
+    loader = DartLoader()
+    paths = get_skeleton_paths()
+
+    skeletons = []
+    for path in paths:
+        world = loader.parseWorld(path)
+        for i in range(world.getNumSkeletons()):
+            skeletons += [world.getSkeleton(i)]
+
+    return skeletons
+
+
+def create_three_link_robot(dim1, type1, dim2, type2, dim3, type3):
+    skel = Skeleton.create()
+    dim_ee = dim1
+    return skel

@@ -1,13 +1,11 @@
-import math
-
 import pytest
-from dartpy.utils import DartLoader
-from tests import get_asset_path
-from tests.util import get_skeleton_list
+
+from tests.util import create_three_link_robot, get_unit_x, TypeOfDof, get_unit_y, get_unit_z
 
 
-def test_parse_skeleton_non_existing_path_returns_null():
-    skel_list = get_skeleton_list()
+def test_configurations():
+    skel = create_three_link_robot(get_unit_x(), TypeOfDof.DOF_X, get_unit_y(), TypeOfDof.DOF_Y, get_unit_z(), TypeOfDof.DOF_Z)
+    assert skel is not None
 
 
 if __name__ == "__main__":
