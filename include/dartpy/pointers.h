@@ -1,7 +1,6 @@
 #ifndef DART_PYTHON_POINTERS_H_
 #define DART_PYTHON_POINTERS_H_
 #include <memory>
-#include <dart/dynamics/dynamics.h>
 #include <dartpy/config.h>
 #include "types.h"
 
@@ -10,6 +9,12 @@
 #endif
 
 #include "get_signature.h"
+#include <dart/dynamics/dynamics.hpp>
+
+#include <dart/dynamics/dynamics.hpp>
+// TODO(JS): This includes Boost headers, which conflicts with 
+// the above ifdef statement. Confirm whether this doesn't cause
+// any issues.
 
 namespace boost {
 
