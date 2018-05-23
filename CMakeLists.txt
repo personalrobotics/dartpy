@@ -125,6 +125,9 @@ if(EXISTS "${SOURCES_TXT}")
   set_target_properties("${PROJECT_NAME}" PROPERTIES
     PREFIX ""
   )
+  target_compile_options("${PROJECT_NAME}"
+    PRIVATE -fabi-version=6
+  )
 
   install(TARGETS "${PROJECT_NAME}"
     LIBRARY DESTINATION "${PYTHON_SITE_PACKAGES}"
@@ -135,3 +138,5 @@ else()
     COMMAND false
   )
 endif()
+
+add_subdirectory(tests)
