@@ -40,6 +40,7 @@ execute_process(
   RESULT_VARIABLE dartpy_not_found2
   ERROR_QUIET
 )
+message(STATUS "PYTHON_EXECUTABLE: ${PYTHON_EXECUTABLE}")
 message(STATUS "dartpy_not_found: ${dartpy_not_found}")
 message(STATUS "dartpy_not_found2: ${dartpy_not_found2}")
 
