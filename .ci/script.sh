@@ -16,4 +16,6 @@ fi
 # $SUDO make install
 
 # Run pytest for Python tests of dartpy
-make pytest
+if ! [ $(lsb_release -sc) = "trusty" ]; then
+  make pytest
+fi
