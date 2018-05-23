@@ -7,28 +7,25 @@ dist: trusty
 matrix:
   include:
     - os: linux
-      python: "2.7"
-      env: SUDO=sudo
-    - os: linux
       python: "3.4"
-      env: SUDO=sudo
+      env: 
+        - SUDO=sudo
+        - PYTHON_VERSION=3.4
     - os: linux
-      python: "3.4"
-      env: DOCKER_FILE="ubuntu-xenial"
       services: docker
+      env:
+        - DOCKER_FILE="ubuntu-xenial"
+        - PYTHON_VERSION=3.5
     - os: linux
-      python: "3.4"
-      env: DOCKER_FILE="ubuntu-artful"
       services: docker
-    - os: linux
-      python: "3.4"
-      env: DOCKER_FILE="ubuntu-bionic"
-      services: docker
+      env:
+        - DOCKER_FILE="ubuntu-bionic"
+        - PYTHON_VERSION=3.6
 
 install:
   - if [ -n "$DOCKER_FILE" ]; then
       docker build -t "$DOCKER_FILE" -f ".ci/docker/$DOCKER_FILE" .;
-      docker run -itd -v $TRAVIS_BUILD_DIR:$TRAVIS_BUILD_DIR --env-file .ci/env.list --name dartpy-docker "$DOCKER_FILE";
+      docker run -itd -v $TRAVIS_BUILD_DIR:$TRAVIS_BUILD_DIR --env-file .ci/docker/env.list --name dartpy-docker "$DOCKER_FILE";
     else
       '.ci/install.sh';
     fi
