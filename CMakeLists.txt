@@ -16,33 +16,16 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-# Find boost with python components. The name of python component varies
-# depending on the platform, boost version, and python version.
-if(APPLE)
-  find_package(Boost REQUIRED
-    COMPONENTS
-      python${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} thread
-  )
-  set(DARTPY_Boost_PYTHON_LIBRARIES
-    ${Boost_PYTHON${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}_LIBRARIES}
-  )
-else() # LINUX assumed
-  if(${PYTHON_VERSION_MAJOR} EQUAL 3)
-    find_package(Boost
-      COMPONENTS
-        python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} thread
-    )
-    set(DARTPY_Boost_PYTHON_LIBRARIES
-      ${Boost_PYTHON-PY${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}_LIBRARIES}
-    )
-    if(NOT Boost_FOUND)
-      find_package(Boost REQUIRED COMPONENTS python3 thread)
-      set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON3_LIBRARIES})
-    endif()
-  else() # Python 2 assumed
-    find_package(Boost REQUIRED COMPONENTS python thread)
-    set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON_LIBRARIES})
+if(${PYTHON_VERSION_MAJOR} EQUAL 3)
+  find_package(Boost COMPONENTS python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} thread)
+  set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON-PY${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR}_LIBRARIES})
+  if (NOT Boost_FOUND)
+    find_package(Boost REQUIRED COMPONENTS python3 thread)
+    set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON3_LIBRARIES})
   endif()
+else()
+  find_package(Boost REQUIRED COMPONENTS python thread)
+  set(DARTPY_Boost_PYTHON_LIBRARIES ${Boost_PYTHON_LIBRARIES})
 endif()
 
 find_package(DART 6.3.0 REQUIRED
@@ -54,7 +37,6 @@ find_package(DART 6.3.0 REQUIRED
     gui-osg
   CONFIG
 )
-
 find_package(PythonLibs ${DARTPY_PYTHON_VERSION} REQUIRED)
 find_package(chimera QUIET)
 
@@ -143,9 +125,6 @@ if(EXISTS "${SOURCES_TXT}")
   set_target_properties("${PROJECT_NAME}" PROPERTIES
     PREFIX ""
   )
-  target_compile_options("${PROJECT_NAME}"
-    PRIVATE -fabi-version=6
-  )
 
   install(TARGETS "${PROJECT_NAME}"
     LIBRARY DESTINATION "${PYTHON_SITE_PACKAGES}"
@@ -156,5 +135,3 @@ else()
     COMMAND false
   )
 endif()
-
-add_subdirectory(tests)
