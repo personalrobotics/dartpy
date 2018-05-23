@@ -119,6 +119,9 @@ template:
         dart::dynamics::DegreeOfFreedom*, dart::dynamics::DegreeOfFreedomPtr>();
       dart::python::util::collection_from_python<
         std::vector<dart::dynamics::DegreeOfFreedom*> >();
+    postcontent: |
+      void skel_parser();
+      skel_parser();
     footer: |
       // main footer
 
