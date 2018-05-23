@@ -138,3 +138,5 @@ else()
     COMMAND false
   )
 endif()
+
+add_subdirectory(tests)
