@@ -10,31 +10,17 @@ Python bindings for [DART][dart], the Dynamic Animation and Robotics Toolkit.
 
 ## Installation
 
-### On Ubuntu using `apt-get`
+### On Ubuntu 14.04 / 16.04 / 18.04
 
-#### Adding PPA
-
-Several PPAs should be added to install the dependencies and `dartpy`.
-
-##### Artful, Zesty, Xenial
+You can install `dartpy` using `apt-get` as:
 
 ```shell
-$ sudo add-apt-repository ppa:dartsim/ppa
-$ sudo add-apt-repository ppa:personalrobotics/ppa
-```
-
-##### Trusty
-
-```shell
+# Only on Ubuntu 14.04
 $ sudo add-apt-repository ppa:libccd-debs/ppa
 $ sudo add-apt-repository ppa:fcl-debs/ppa
+
 $ sudo add-apt-repository ppa:dartsim/ppa
 $ sudo add-apt-repository ppa:personalrobotics/ppa
-```
-
-#### Installing `dartpy`
-
-```shell
 $ sudo apt-get update
 $ sudo apt-get install python-dartpy  # for Python 2
 $ sudo apt-get install python3-dartpy # for Python 3
