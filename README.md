@@ -28,6 +28,8 @@ $ sudo apt-get install python3-dartpy # for Python 3
 
 All set! Import `dartpy` in Python and enjoy! Please see [Usage](#usage) section for more information.
 
+If you want to build `dartpy` from source, please see this [wiki page](https://github.com/personalrobotics/dartpy/wiki/Building-from-Source).
+
 ## Usage
 
 Once `dartpy` is installed, you should be able to open a Python terminal and
