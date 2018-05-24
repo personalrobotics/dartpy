@@ -119,6 +119,14 @@ template:
         dart::dynamics::DegreeOfFreedom*, dart::dynamics::DegreeOfFreedomPtr>();
       dart::python::util::collection_from_python<
         std::vector<dart::dynamics::DegreeOfFreedom*> >();
+
+      dart::python::util::vector_to_python<dart::simulation::WorldPtr>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::simulation::WorldPtr> >();
+    postcontent: |
+      ::boost::python::scope().attr("utils").attr("skel") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.utils.skel"))));
+      void skel_parser();
+      skel_parser();
     footer: |
       // main footer
 
@@ -1378,7 +1386,7 @@ classes:
 
 
 
-# Shapes
+  # Shapes
   'dart::dynamics::Shape':
     held_type: 'std::shared_ptr<dart::dynamics::Shape>'
   'dart::dynamics::BoxShape':
@@ -1413,6 +1421,10 @@ classes:
     held_type: 'dart::dynamics::GroupPtr'
   'dart::dynamics::Linkage':
     held_type: 'dart::dynamics::LinkagePtr'
+
+  # World
+  'dart::simulation::World':
+    held_type: 'dart::simulation::WorldPtr'
 
   # Cloneable<T> names
   'dart::common::Cloneable<dart::common::Aspect::Properties>':
