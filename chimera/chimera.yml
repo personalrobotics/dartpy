@@ -1507,11 +1507,13 @@ classes:
     noncopyable: true
   'dart::gui::osg::WorldNode':
     held_type: ::osg::ref_ptr<dart::gui::osg::WorldNode>
+    noncopyable: true
   'dart::gui::osg::ShapeFrameNode':
     noncopyable: true
   'dart::gui::osg::render::CylinderShapeNode': null
   '::osgGA::GUIEventAdapter': null
   #'dart::gui::osg::ImGuiHandler': null
+  'dart::gui::osg::DefaultEventHandler': null
 
   'dart::common::CompositeTrackingAspect<dart::dynamics::EntityNode<dart::dynamics::TemplatedJacobianNode<dart::dynamics::FixedJacobianNode> > >': null
   'dart::common::detail::ComposeData<dart::common::detail::CompositeData<std::map<std::type_index, std::unique_ptr<dart::common::Aspect::Properties, std::default_delete<dart::common::Aspect::Properties> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Aspect::Properties, std::default_delete<dart::common::Aspect::Properties> > > > >, dart::common::detail::GetProperties>, dart::common::detail::GetProperties>': null
@@ -1754,5 +1756,7 @@ functions:
   'dart::common::SharedLibrary::SharedLibrary(dart::common::SharedLibrary::ProtectedConstructionTag, const boost::filesystem::path&)': null
 
   # [functions] OSG
-  #'bool dart::gui::osg::DefaultEventHandler::handle(const osgGA::GUIEventAdapter &, osgGA::GUIActionAdapter &)': null
-  #'void dart::gui::osg::DefaultEventHandler::pick(std::vector<dart::gui::osg::PickInfo> &, const osgGA::GUIEventAdapter &)': null
+  'bool dart::gui::osg::DefaultEventHandler::handle(const osgGA::GUIEventAdapter &, osgGA::GUIActionAdapter &)': null
+  'void dart::gui::osg::DefaultEventHandler::pick(std::vector<dart::gui::osg::PickInfo> &, const osgGA::GUIEventAdapter &)': null
+  'bool dart::gui::osg::DefaultEventHandler::handle(const osgGA::GUIEventAdapter &, osgGA::GUIActionAdapter &)': null
+  'bool dart::gui::osg::ImGuiHandler::handle(const osgGA::GUIEventAdapter &, osgGA::GUIActionAdapter &, ::osg::Object *, ::osg::NodeVisitor *)': null
