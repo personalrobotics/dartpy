@@ -1489,12 +1489,17 @@ classes:
       last: true
 
   # [classes] OSG
+  'dart::gui::osg::ImGuiHandler':
+    noncopyable: true
   'dart::gui::osg::WorldNode':
     held_type: ::osg::ref_ptr<dart::gui::osg::WorldNode>
   'dart::gui::osg::ShapeFrameNode':
-    held_type: ::osg::ref_ptr<dart::gui::osg::ShapeFrameNode>
-  '::osgGA::GUIEventAdapter':
-    held_type: ::osg::ref_ptr<::osgGA::GUIEventAdapter>
+    noncopyable: true
+    #held_type: ::osg::ref_ptr<dart::gui::osg::ShapeFrameNode>
+  'dart::gui::osg::render::CylinderShapeNode': null
+    #noncopyable: true
+  '::osgGA::GUIEventAdapter': null
+    #held_type: ::osg::ref_ptr<::osgGA::GUIEventAdapter>
   #'dart::gui::osg::ImGuiHandler': null
 
   'dart::common::CompositeTrackingAspect<dart::dynamics::EntityNode<dart::dynamics::TemplatedJacobianNode<dart::dynamics::FixedJacobianNode> > >': null
