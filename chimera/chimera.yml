@@ -28,6 +28,7 @@ template:
       #include <dart/utils/utils.hpp>
       #include <dart/utils/urdf/urdf.hpp>
       #include <dart/gui/gui.hpp>
+      #include <dart/gui/osg/osg.hpp>
     precontent:
       '/* precontent */'
     postinclude:
@@ -51,6 +52,7 @@ template:
       #include <dart/utils/utils.hpp>
       #include <dart/utils/urdf/urdf.hpp>
       #include <dart/gui/gui.hpp>
+      #include <dart/gui/osg/osg.hpp>
     postinclude:
       '/* main postinclude */'
     prebody:
@@ -366,13 +368,6 @@ types:
   'dart::dynamics::ShapeNode *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::ShapeNodePtr>
 
-  #'dart::gui::osg::WorldNode *':
-    #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<dart::gui::osg::WorldNode> >
-  #'dart::gui::osg::ShapeFrameNode *':
-    #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<dart::gui::osg::ShapeFrameNode> >
-  #'::osgGA::GUIEventAdapter *':
-    #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<::osgGA::GUIEventAdapter> >
-
   # joint smart pointers
   'dart::dynamics::Joint *':
     return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
@@ -487,29 +482,6 @@ types:
   'dart::planning::PathSegment *':
     return_value_policy: boost::python::reference_existing_object
 
-  #'dart::gui::osg::ImGuiHandler *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::InteractiveFrame *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::ShapeFrameNode *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::Viewer *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::WorldNode *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::DragAndDrop *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::SimpleFrameDnD *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::SimpleFrameShapeDnD *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::InteractiveFrameDnD *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::BodyNodeDnD *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'dart::gui::osg::InteractiveTool *':
-    #return_value_policy: boost::python::reference_existing_object
-
   # FCL
   'fcl::CollisionObject *':
     return_value_policy: boost::python::reference_existing_object
@@ -517,18 +489,6 @@ types:
   # Bullet
   'const btCollisionObject *':
     return_value_policy: boost::python::reference_existing_object
-
-  # OSG
-  #'::osg::Object *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'::osg::Group *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'::osg::Material *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'::osg::Node *':
-    #return_value_policy: boost::python::reference_existing_object
-  #'::osgGA::GUIEventAdapter *':
-    #return_value_policy: boost::python::reference_existing_object
 
   # TODO: temporarily disabled
   'std::mutex &': null
@@ -574,19 +534,10 @@ types:
   'const dart::dynamics::EndEffector *': null
   'const dart::dynamics::Support *': null
   # 'const dart::dynamics::SoftBodyNode *': null
-  #'const dart::gui::osg::ImGuiHandler *': null
-  #'const dart::gui::osg::InteractiveFrame *': null
-  #'const dart::gui::osg::ShapeFrameNode *': null
-  #'const dart::gui::osg::Viewer *': null
-  #'const dart::gui::osg::WorldNode *': null
-  #'const dart::gui::osg::InteractiveTool *': null
 
   'const std::vector<dart::dynamics::ConstShapePtr> &': null
   'const std::vector<const dart::dynamics::DegreeOfFreedom *> &': null
   'const std::vector<const dart::dynamics::BodyNode *> &': null
-
-  #'const osg::Group *': null
-  #'const osg::Node *': null
 
   'std::vector<const dart::dynamics::BodyNode *>': null
 
@@ -594,6 +545,54 @@ types:
   'const char *': null
 
   'dart::dynamics::ConstSkeletonPtr': null
+
+  # [types] OSG
+  '::osg::Object *':
+    return_value_policy: boost::python::reference_existing_object
+  '::osg::Group *':
+    return_value_policy: boost::python::reference_existing_object
+  '::osg::Material *':
+    return_value_policy: boost::python::reference_existing_object
+  '::osg::Node *':
+  #'::osgGA::GUIEventAdapter *':
+    #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<::osgGA::GUIEventAdapter> >
+  #'const osg::Group *': null
+  #'const osg::Node *': null
+    return_value_policy: boost::python::reference_existing_object
+  '::osgGA::GUIEventAdapter *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::ImGuiHandler *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::InteractiveFrame *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::ShapeFrameNode *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::Viewer *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::WorldNode *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::DragAndDrop *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::SimpleFrameDnD *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::SimpleFrameShapeDnD *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::InteractiveFrameDnD *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::BodyNodeDnD *':
+    return_value_policy: boost::python::reference_existing_object
+  'dart::gui::osg::InteractiveTool *':
+    return_value_policy: boost::python::reference_existing_object
+  #'dart::gui::osg::WorldNode *':
+    #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<dart::gui::osg::WorldNode> >
+  #'dart::gui::osg::ShapeFrameNode *':
+    #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<dart::gui::osg::ShapeFrameNode> >
+  #'const dart::gui::osg::ImGuiHandler *': null
+  #'const dart::gui::osg::InteractiveFrame *': null
+  #'const dart::gui::osg::ShapeFrameNode *': null
+  #'const dart::gui::osg::Viewer *': null
+  #'const dart::gui::osg::WorldNode *': null
+  #'const dart::gui::osg::InteractiveTool *': null
 
 # Selected function and class declarations that need custom parameters.
 classes:
@@ -1367,18 +1366,7 @@ classes:
   # 'dart::dynamics::SkeletonSpecializedFor<dart::dynamics::ShapeNode, dart::dynamics::EndEffector, dart::dynamics::Marker>': null
   'dart::collision::detail::UnorderedPairs<dart::dynamics::BodyNode>': null
 
-
-
-
-
-
-
-
-
-
-
-
-# Shapes
+  # Shapes
   'dart::dynamics::Shape':
     held_type: 'std::shared_ptr<dart::dynamics::Shape>'
   'dart::dynamics::BoxShape':
@@ -1500,15 +1488,13 @@ classes:
     - qualified_name: 'dart::common::EmbedProperties<dart::dynamics::FixedFrame, dart::dynamics::detail::FixedFrameProperties>'
       last: true
 
-  # OSG
-  #'dart::gui::osg::WorldNode':
-    #held_type: ::osg::ref_ptr<dart::gui::osg::WorldNode>
-  #'dart::gui::osg::ShapeFrameNode':
-    #held_type: ::osg::ref_ptr<dart::gui::osg::ShapeFrameNode>
-  #'::osgGA::GUIEventAdapter':
-    #held_type: ::osg::ref_ptr<::osgGA::GUIEventAdapter>
-
-  # TODO(JS)
+  # [classes] OSG
+  'dart::gui::osg::WorldNode':
+    held_type: ::osg::ref_ptr<dart::gui::osg::WorldNode>
+  'dart::gui::osg::ShapeFrameNode':
+    held_type: ::osg::ref_ptr<dart::gui::osg::ShapeFrameNode>
+  '::osgGA::GUIEventAdapter':
+    held_type: ::osg::ref_ptr<::osgGA::GUIEventAdapter>
   #'dart::gui::osg::ImGuiHandler': null
 
   'dart::common::CompositeTrackingAspect<dart::dynamics::EntityNode<dart::dynamics::TemplatedJacobianNode<dart::dynamics::FixedJacobianNode> > >': null
@@ -1732,9 +1718,6 @@ functions:
   'size_t dart::common::Resource::read(void *, size_t, size_t)': null
   'size_t dart::common::LocalResource::read(void *, size_t, size_t)': null
 
-  #'bool dart::gui::osg::DefaultEventHandler::handle(const osgGA::GUIEventAdapter &, osgGA::GUIActionAdapter &)': null
-  #'void dart::gui::osg::DefaultEventHandler::pick(std::vector<dart::gui::osg::PickInfo> &, const osgGA::GUIEventAdapter &)': null
-
   # std::unique_ptr arguments.
   #'void dart::constraint::ConstraintSolver::setLCPSolver(std::unique_ptr<dart::constraint::LCPSolver>)': null
 
@@ -1753,3 +1736,7 @@ functions:
   'template<> dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *dart::dynamics::GenericJoint<dart::math::SE3Space>::getGenericJointAspect(const bool)': null
 
   'dart::common::SharedLibrary::SharedLibrary(dart::common::SharedLibrary::ProtectedConstructionTag, const boost::filesystem::path&)': null
+
+  # [functions] OSG
+  #'bool dart::gui::osg::DefaultEventHandler::handle(const osgGA::GUIEventAdapter &, osgGA::GUIActionAdapter &)': null
+  #'void dart::gui::osg::DefaultEventHandler::pick(std::vector<dart::gui::osg::PickInfo> &, const osgGA::GUIEventAdapter &)': null
