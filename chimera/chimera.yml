@@ -1511,6 +1511,7 @@ classes:
   'dart::gui::osg::ShapeFrameNode':
     noncopyable: true
   'dart::gui::osg::render::CylinderShapeNode': null
+  'dart::gui::osg::render::CapsuleShapeNode': null
   '::osgGA::GUIEventAdapter': null
   #'dart::gui::osg::ImGuiHandler': null
   'dart::gui::osg::DefaultEventHandler': null
