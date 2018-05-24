@@ -554,11 +554,13 @@ types:
   '::osg::Material *':
     return_value_policy: boost::python::reference_existing_object
   '::osg::Node *':
-  #'::osgGA::GUIEventAdapter *':
+    return_value_policy: boost::python::reference_existing_object
+  #'::osgGA::GUIEventAdapter':
     #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<::osgGA::GUIEventAdapter> >
   #'const osg::Group *': null
   #'const osg::Node *': null
-    return_value_policy: boost::python::reference_existing_object
+  'const ::osgGA::GUIEventAdapter &':
+    return_value_policy: boost::python::copy_const_reference
   '::osgGA::GUIEventAdapter *':
     return_value_policy: boost::python::reference_existing_object
   'dart::gui::osg::ImGuiHandler *':
@@ -1495,11 +1497,8 @@ classes:
     held_type: ::osg::ref_ptr<dart::gui::osg::WorldNode>
   'dart::gui::osg::ShapeFrameNode':
     noncopyable: true
-    #held_type: ::osg::ref_ptr<dart::gui::osg::ShapeFrameNode>
   'dart::gui::osg::render::CylinderShapeNode': null
-    #noncopyable: true
   '::osgGA::GUIEventAdapter': null
-    #held_type: ::osg::ref_ptr<::osgGA::GUIEventAdapter>
   #'dart::gui::osg::ImGuiHandler': null
 
   'dart::common::CompositeTrackingAspect<dart::dynamics::EntityNode<dart::dynamics::TemplatedJacobianNode<dart::dynamics::FixedJacobianNode> > >': null
