@@ -891,6 +891,9 @@ classes:
   'dart::dynamics::DegreeOfFreedom':
     held_type: dart::dynamics::DegreeOfFreedomPtr
 
+  'dart::dynamics::Skeleton::Configuration':
+    is_copyable: true
+
   # Nodes
   'dart::dynamics::JacobianNode':
     held_type: dart::dynamics::TemplateNodePtr<dart::dynamics::JacobianNode, dart::dynamics::BodyNode>
