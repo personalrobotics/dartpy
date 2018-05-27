@@ -421,6 +421,8 @@ types:
     return_value_policy: boost::python::copy_const_reference
   'const std::set<dart::dynamics::Entity *> &':
     return_value_policy: boost::python::copy_const_reference
+  'std::set<const dart::dynamics::Frame *>':
+    return_value_policy: boost::python::return_by_value
   'const std::set<dart::dynamics::Frame *> &':
     return_value_policy: boost::python::copy_const_reference
   'const std::pair<Eigen::Vector3d, Eigen::Vector3d> &':
