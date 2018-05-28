@@ -35,6 +35,7 @@ else()
 endif()
 
 set(DARTPY_TEST_FILES
+  regression/test_get_shape.py
   unit/test_dart_loader.py
 )
 
