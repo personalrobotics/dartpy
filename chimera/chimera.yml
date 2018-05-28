@@ -138,198 +138,198 @@ namespaces:
 # Selected types that need special handling.
 types:
   'const bool &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const double &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::string&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const Eigen::Vector3i &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const Eigen::Vector2d&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const Eigen::Vector3d&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const Eigen::Vector4d&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const Eigen::Vector6d &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const Eigen::VectorXd &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const Eigen::Isometry3d &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const Eigen::Matrix6d &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const Eigen::MatrixXd &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'Eigen::VectorXd &':
-    return_value_policy: boost::python::copy_non_const_reference
+    return_value_policy: copy_non_const_reference
   'std::vector<Eigen::VectorXd> &':
-    return_value_policy: boost::python::copy_non_const_reference
+    return_value_policy: copy_non_const_reference
   'const Eigen::aligned_vector<Eigen::Vector2i> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::math::Jacobian &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::Inertia &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::Skeleton::Properties &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::ArrowShape::Properties &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::Joint::Properties &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::shared_ptr<dart::optimizer::Function> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::shared_ptr<dart::optimizer::Problem> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::shared_ptr<dart::optimizer::Solver> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::shared_ptr<dart::dynamics::InverseKinematics> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::shared_ptr<dart::dynamics::Shape> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::shared_ptr<dart::dynamics::WholeBodyIK> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::vector<Eigen::MatrixXd> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::vector<dart::dynamics::InverseKinematics::Analytical::Solution> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::pair<Eigen::Vector6d, Eigen::Vector6d> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::math::BoundingBox &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::math::SupportPolygon &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::optimizer::Solver::Properties &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::PlaneType &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::AxisOrder &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::CompositeIK::ModuleSet &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::IKHierarchy &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::vector<Eigen::VectorXd> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space>::BoolArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space>::BoolArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space>::BoolArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space>::BoolArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space>::BoolArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space>::StringArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space>::StringArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space>::StringArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space>::StringArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space>::StringArray &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'dart::dynamics::PointMass::State &':
-    return_value_policy: boost::python::copy_non_const_reference
+    return_value_policy: copy_non_const_reference
   'const dart::dynamics::PointMass::State &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
 
    # Aspects
   'dart::dynamics::DynamicsAspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::CollisionAspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::VisualAspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::ScrewJoint::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::TranslationalJoint2D::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::EulerJoint::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::RevoluteJoint::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::UniversalJoint::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::PrismaticJoint::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::PlanarJoint::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::common::Aspect::State *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
 
   'const dart::common::detail::EmbeddedStateAspect<dart::common::CompositeTrackingAspect<dart::dynamics::BodyNode>, dart::common::EmbeddedStateAndPropertiesAspect<dart::dynamics::BodyNode, dart::dynamics::detail::BodyNodeState, dart::dynamics::detail::BodyNodeAspectProperties>, dart::dynamics::detail::BodyNodeState, dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::BodyNodeState>, &dart::common::detail::DefaultSetEmbeddedState, &dart::common::detail::DefaultGetEmbeddedState>::State &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::BodyNodeState>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::R1Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::R2Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::R3Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::SO3Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::SE3Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::SoftBodyNodeUniqueState>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::JointProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ShapeFrameProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::EntityNodeProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::FixedFrameProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::EndEffectorProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::MarkerProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::SkeletonAspectProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::BodyNodeAspectProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space> >&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::EulerJointUniqueProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::PlanarJointUniqueProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::PrismaticJointUniqueProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::RevoluteJointUniqueProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::UniversalJointUniqueProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::SoftBodyNodeUniqueProperties>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const dart::common::detail::AspectWithState<dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>::State &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
 
   # Disable const pointers
   'const dart::common::Aspect::State *': null
@@ -362,181 +362,181 @@ types:
 
   # smart pointers
   'dart::dynamics::BodyNode *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr>
+    return_value_policy: return_by_smart_ptr<dart::dynamics::BodyNodePtr>
   'dart::dynamics::SoftBodyNode *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::SoftBodyNodePtr>
+    return_value_policy: return_by_smart_ptr<dart::dynamics::SoftBodyNodePtr>
   'dart::dynamics::DegreeOfFreedom *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr>
+    return_value_policy: return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr>
   'dart::dynamics::EndEffector *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::EndEffectorPtr>
+    return_value_policy: return_by_smart_ptr<dart::dynamics::EndEffectorPtr>
   'dart::dynamics::Node *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::NodePtr>
+    return_value_policy: return_by_smart_ptr<dart::dynamics::NodePtr>
   'dart::dynamics::ShapeNode *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::ShapeNodePtr>
+    return_value_policy: return_by_smart_ptr<dart::dynamics::ShapeNodePtr>
 
   #'dart::gui::osg::WorldNode *':
-    #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<dart::gui::osg::WorldNode> >
+    #return_value_policy: return_by_smart_ptr<::osg::ref_ptr<dart::gui::osg::WorldNode> >
   #'dart::gui::osg::ShapeFrameNode *':
-    #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<dart::gui::osg::ShapeFrameNode> >
+    #return_value_policy: return_by_smart_ptr<::osg::ref_ptr<dart::gui::osg::ShapeFrameNode> >
   #'::osgGA::GUIEventAdapter *':
-    #return_value_policy: boost::python::return_by_smart_ptr<::osg::ref_ptr<::osgGA::GUIEventAdapter> >
+    #return_value_policy: return_by_smart_ptr<::osg::ref_ptr<::osgGA::GUIEventAdapter> >
 
   # joint smart pointers
   'dart::dynamics::Joint *':
-    return_value_policy: boost::python::return_by_smart_ptr<dart::dynamics::JointPtr>
+    return_value_policy: return_by_smart_ptr<dart::dynamics::JointPtr>
   # TODO: These should all use smart pointers.
   'dart::dynamics::EulerJoint *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::PlanarJoint *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::PrismaticJoint *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::UniversalJoint *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::RevoluteJoint *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::ScrewJoint *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::TranslationalJoint2D *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R1Space> *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R2Space> *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R3Space> *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::SO3Space> *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::SE3Space> *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
 
   # collections
   'const std::vector<dart::dynamics::BodyNode*>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::vector<dart::dynamics::DegreeOfFreedom*>&':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::vector<std::size_t> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::vector<dart::dynamics::ShapePtr> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::set<dart::dynamics::Entity *> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::set<dart::dynamics::Frame *> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::pair<Eigen::Vector3d, Eigen::Vector3d> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::vector<int> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
   'const std::vector<Eigen::Vector3d> &':
-    return_value_policy: boost::python::copy_const_reference
+    return_value_policy: copy_const_reference
 
   # allow unsafe access
   # TODO: Are there smart pointers for these?
   'dart::common::UriComponent::reference_type':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
 
   'dart::constraint::LCPSolver *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::constraint::ConstraintSolver *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
 
   'dart::collision::CollisionDetector *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::collision::Contact &':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::collision::CollisionDetector::Factory *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
 
   'dart::dynamics::Skeleton *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::simulation::Recording *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::ShapeFrame *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::PointMass *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::Support *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::Frame *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::Marker *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::InverseKinematics *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::JacobianNode *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::InverseKinematics::ErrorMethod &':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::InverseKinematics::GradientMethod &':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::PointMassNotifier *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R1Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R2Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::R3Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::SO3Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::GenericJoint<dart::math::SE3Space>::Aspect *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::InverseKinematics::Analytical *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::SimpleFrame *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::Shape *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::Entity *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'dart::dynamics::FixedFrame *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
 
   'dart::planning::PathSegment *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
 
   #'dart::gui::osg::ImGuiHandler *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::InteractiveFrame *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::ShapeFrameNode *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::Viewer *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::WorldNode *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::DragAndDrop *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::SimpleFrameDnD *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::SimpleFrameShapeDnD *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::InteractiveFrameDnD *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::BodyNodeDnD *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'dart::gui::osg::InteractiveTool *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
 
   # FCL
   'fcl::CollisionObject *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
 
   # Bullet
   'const btCollisionObject *':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
 
   # OSG
   #'::osg::Object *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'::osg::Group *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'::osg::Material *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'::osg::Node *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
   #'::osgGA::GUIEventAdapter *':
-    #return_value_policy: boost::python::reference_existing_object
+    #return_value_policy: reference_existing_object
 
   # TODO: temporarily disabled
   'std::mutex &': null
@@ -1735,7 +1735,7 @@ classes:
 
 functions:
   'dart::dynamics::Frame *dart::dynamics::Frame::World()':
-    return_value_policy: boost::python::reference_existing_object
+    return_value_policy: reference_existing_object
   'const tinyxml2::XMLElement *dart::utils::getElement(const tinyxml2::XMLElement *, const std::string &)': null
   'tinyxml2::XMLElement *dart::utils::getElement(tinyxml2::XMLElement *, const std::string &)': null
   'std::ostream &dart::common::colorMsg(const std::string &, int)': null
