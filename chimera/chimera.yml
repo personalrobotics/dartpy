@@ -137,6 +137,10 @@ namespaces:
 
 # Selected types that need special handling.
 types:
+  'std::set<dart::dynamics::Frame const*, std::less<dart::dynamics::Frame const*>, std::allocator<dart::dynamics::Frame const*> >':
+    is_copyable: true
+  'std::vector<dart::dynamics::ShapeNode const*, std::allocator<dart::dynamics::ShapeNode const*> >':
+    is_copyable: true
   'const bool &':
     return_value_policy: copy_const_reference
   'const double &':
@@ -367,12 +371,14 @@ types:
     return_value_policy: return_by_smart_ptr<dart::dynamics::SoftBodyNodePtr>
   'dart::dynamics::DegreeOfFreedom *':
     return_value_policy: return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr>
-  'dart::dynamics::EndEffector *':
-    return_value_policy: return_by_smart_ptr<dart::dynamics::EndEffectorPtr>
   'dart::dynamics::Node *':
     return_value_policy: return_by_smart_ptr<dart::dynamics::NodePtr>
+  'dart::dynamics::EndEffector *':
+    return_value_policy: reference_existing_object
   'dart::dynamics::ShapeNode *':
-    return_value_policy: return_by_smart_ptr<dart::dynamics::ShapeNodePtr>
+    return_value_policy: reference_existing_object
+  'dart::dynamics::Marker *':
+    return_value_policy: reference_existing_object
 
   #'dart::gui::osg::WorldNode *':
     #return_value_policy: return_by_smart_ptr<::osg::ref_ptr<dart::gui::osg::WorldNode> >
@@ -411,6 +417,14 @@ types:
     return_value_policy: reference_existing_object
 
   # collections
+  'const std::vector<dart::dynamics::ShapeNode *>':
+    return_value_policy: return_by_value
+  'const std::vector<const dart::dynamics::ShapeNode *>':
+    return_value_policy: return_by_value
+  'std::set<const dart::dynamics::Frame *>':
+    return_value_policy: return_by_value
+  'std::set<dart::dynamics::Frame const*, std::less<dart::dynamics::Frame const*>, std::allocator<dart::dynamics::Frame const*> >':
+    return_value_policy: return_by_value
   'const std::vector<dart::dynamics::BodyNode*>&':
     return_value_policy: copy_const_reference
   'const std::vector<dart::dynamics::DegreeOfFreedom*>&':
@@ -487,6 +501,10 @@ types:
     return_value_policy: reference_existing_object
   'dart::dynamics::Shape *':
     return_value_policy: reference_existing_object
+  'std::shared_ptr<dart::dynamics::Shape>':
+    return_value_policy: return_by_value
+  'std::shared_ptr<const dart::dynamics::Shape>':
+    return_value_policy: return_by_value
   'dart::dynamics::Entity *':
     return_value_policy: reference_existing_object
   'dart::dynamics::FixedFrame *':
@@ -606,6 +624,13 @@ types:
 # Selected function and class declarations that need custom parameters.
 classes:
   #'dart::common::Factory<std::string, dart::collision::CollisionDetector, std::shared_ptr<dart::collision::CollisionDetector>>': null
+
+  'std::set<dart::dynamics::Frame const*, std::less<dart::dynamics::Frame const*>, std::allocator<dart::dynamics::Frame const*> >':
+    held_type: std::set<dart::dynamics::Frame const*, std::less<dart::dynamics::Frame const*>, std::allocator<dart::dynamics::Frame const*> >
+    is_copyable: true
+  'std::vector<dart::dynamics::ShapeNode const*, std::allocator<dart::dynamics::ShapeNode const*> >':
+    held_type: std::vector<dart::dynamics::ShapeNode const*, std::allocator<dart::dynamics::ShapeNode const*> >
+    is_copyable: true
 
   'dart::common::ResourceRetriever':
     held_type: std::shared_ptr<dart::common::ResourceRetriever>
@@ -1378,20 +1403,10 @@ classes:
   # 'dart::dynamics::SkeletonSpecializedFor<dart::dynamics::ShapeNode, dart::dynamics::EndEffector, dart::dynamics::Marker>': null
   'dart::collision::detail::UnorderedPairs<dart::dynamics::BodyNode>': null
 
-
-
-
-
-
-
-
-
-
-
-
   # Shapes
   'dart::dynamics::Shape':
     held_type: 'std::shared_ptr<dart::dynamics::Shape>'
+    is_copyable: true
   'dart::dynamics::BoxShape':
     held_type: 'std::shared_ptr<dart::dynamics::BoxShape>'
   'dart::dynamics::CylinderShape':
