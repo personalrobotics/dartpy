@@ -15,7 +15,7 @@ sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for P
 
 # Install dependencies for unittests
 #sudo apt-get install python3-pytest
-sudo pip3 install pytest -U
+sudo pip install pytest -U
 sudo apt-get install python3-opengl
 
 # Install dartpy for running Python tests without building dartpy
