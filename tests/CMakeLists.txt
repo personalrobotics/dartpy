@@ -34,18 +34,8 @@ else()
   set(DARTPY_DARTPY_FOUND TRUE)
 endif()
 
-# For debug
-execute_process(
-  COMMAND ${PYTHON_EXECUTABLE} -c "import dartpy"
-  RESULT_VARIABLE dartpy_not_found2
-  ERROR_QUIET
-)
-message(STATUS "PYTHON_EXECUTABLE: ${PYTHON_EXECUTABLE}")
-message(STATUS "dartpy_not_found: ${dartpy_not_found}")
-message(STATUS "dartpy_not_found2: ${dartpy_not_found2}")
-
 set(DARTPY_TEST_FILES
-  test_dart_loader.py
+  unit/test_dart_loader.py
 )
 
 # Add custom target to run the tests
