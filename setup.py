@@ -53,5 +53,5 @@ setup(
         'License :: BSD',
         'Intended Audience :: Developers',
     ],
-    cmdclass={'build_ext': cmake_build_ext},
+    cmdclass={'build_ext': cmake_build_ext}, install_requires=['numpy', 'vispy', 'PyQt5]
 )
