@@ -2,7 +2,8 @@ import math
 
 import pytest
 from dartpy.utils import DartLoader
-from tests import get_asset_path
+
+from tests.util import get_asset_path
 
 
 def test_parse_skeleton_non_existing_path_returns_null():
