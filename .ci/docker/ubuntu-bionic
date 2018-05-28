@@ -21,4 +21,4 @@ RUN apt-get install -y \
     python3-numpy \
     python3-boost-numpy-eigen \
     chimera
-RUN pip install -U pytest
+RUN pip3 install -U pytest
