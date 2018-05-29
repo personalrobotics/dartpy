@@ -129,6 +129,13 @@ if(EXISTS "${SOURCES_TXT}")
     list(APPEND SOURCES_GENERATED "${CMAKE_CURRENT_SOURCE_DIR}/src/generated/${relative_path}")
   endforeach()
 
+  # Workaround for requiring space between literal and suffix for gcc 4.8 (see: https://github.com/personalrobotics/chimera/issues/186)
+  foreach(source ${SOURCES_GENERATED})
+    file(READ ${source} source_str)
+    string(REPLACE "::operator\"\"" "::operator\"\" " source_str ${source_str})
+    file(WRITE ${source} ${source_str})
+  endforeach()
+
   add_library("${PROJECT_NAME}" MODULE
     ${SOURCES_GENERATED}
     src/BodyNode.cpp
