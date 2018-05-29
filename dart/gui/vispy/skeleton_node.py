@@ -1,47 +1,31 @@
 from collections import deque
-
-from vispy.scene import Node
-
+from dart.gui.vispy.refreshable_node import RefreshableNode
 from dart.gui.vispy.shape_frame_node import ShapeFrameNode
 
 
-class SkeletonNode(Node):
+class SkeletonNode(RefreshableNode):
     def __init__(self, skeleton, parent=None):
-        self.isModifyingShapeFrameNode = False
-        self.index = 0
         super().__init__(parent=parent)
         if skeleton is None:
             raise ValueError("World is None.")
         self.skeleton = skeleton
 
-        self.name = self.skeleton.getName()
         self.utilized = False
 
         self.shapeFrameNameToNode = {}
-        self.shapeFrames = []
 
         self.refresh()
 
-    def wasUtilized(self):
-        return self.utilized
-
-    def unutilize(self):
-        self.utilized = False
-
     def refresh(self):
-        if self.isModifyingShapeFrameNode:
-            return
-
-        self.utilized = True
-
-        self._unutilizeAllChildren()
-
+        # self._markSkeletonNodesStale()
         self._refreshFrames()
-
-        self._removeNotUtilizedChildren()
+        # self._removeStaleSkeletonNodes()
+        self.markFresh()
 
     def _unutilizeAllChildren(self):
         pass
+        # for shapeFrameNode in self.shapeFrameNameToNode.values():
+        #     shapeFrameNode.markToRemove()
 
     def _refreshFrames(self):
         for i in range(self.skeleton.getNumTrees()):
@@ -81,13 +65,24 @@ class SkeletonNode(Node):
     def _refreshFrameNode(self, shapeFrame):
         # TODO(JS): Name uniqueness is assumed, which isn't true. Needs correct equality checking for ShapeFrame.
         # TODO(JS): Use shape.getID() instead of name.
-        if shapeFrame.getName() in self.shapeFrameNameToNode:
-            self.shapeFrameNameToNode[shapeFrame.getName()].refresh()
+        if shapeFrame.getShape().getID() in self.shapeFrameNameToNode:
+            self.shapeFrameNameToNode[shapeFrame.getShape().getID()].refresh()
         else:
             self.isModifyingShapeFrameNode = True
             node = ShapeFrameNode(shapeFrame, parent=self)
-            self.shapeFrameNameToNode[shapeFrame.getName()] = node
+            self.shapeFrameNameToNode[shapeFrame.getShape().getID()] = node
             self.isModifyingShapeFrameNode = False
 
     def _removeNotUtilizedChildren(self):
         pass
+        # unusedSkeletonNames = []
+        # for skeletonName, skeletonNode in self.skeletonNameToNode.items():
+        #     if not skeletonNode.needsToRemove():
+        #         unusedSkeletonNames += [skeletonName]
+        #
+        # self.isModifyingSkeletonNode = True
+        # for unusedSkeletonName in unusedSkeletonNames:
+        #     skeletonNode = self.skeletonNameToNode[unusedSkeletonName]
+        #     skeletonNode.parent = None
+        #     del self.skeletonNameToNode[unusedSkeletonName]
+        # self.isModifyingSkeletonNode = False

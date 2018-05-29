@@ -1,68 +1,65 @@
-from dartpy.dynamics import SphereShape, BoxShape, EllipsoidShape, CylinderShape, CapsuleShape, ConeShape, PlaneShape, \
-    MultiSphereConvexHullShape, SoftMeshShape, LineSegmentShape
+#
+# Copyright (c) 2015-2018, The dartpy development contributors
+# All Rights Reserved.
+# Distributed under the BSD 2-Clause License. See LICENSE for more info.
+#
 
+from dartpy import dynamics
 from dart.gui.vispy.frame_node import FrameNode
+from dart.gui.vispy.shapes.box_shape_node import BoxShapeNode
+from vispy.visuals.transforms import MatrixTransform
 
 
 class ShapeFrameNode(FrameNode):
-    utilized: bool
-
     def __init__(self, shapeFrame, parent=None):
-        self.index = 0
         super().__init__(frame=shapeFrame, parent=parent)
         if shapeFrame is None:
             raise ValueError("ShapeFrame is None.")
         self.shapeFrame = shapeFrame
 
-        self.name = self.shapeFrame.getName()
         self.shapeNode = None
-        self.utilized = False
+
+        self.refresh()
+
+    def getShapeFrame(self):
+        return self.shapeFrame
 
     def refresh(self):
-        if self.utilized:
-            return
-        self.utilized = True
-
-        shape = self.shapeFrame.getShape()
-
-        if shape is not None:
-            self._refreshShapeNode(shape)
-        print('A shape frame has been utilized')
+        self._refreshShapeNode(self.shapeFrame.getShape())
+        self.markFresh()
 
     def _refreshShapeNode(self, shape):
         if self.shapeNode:
+            # vispy uses row-major matrix while Eigen uses column-major matrix.
+            self.shapeNode.transform.reset()
+            self.shapeNode.transform.matrix = self.shapeFrame.getTransform().transpose()
             self.shapeNode.refresh()
         else:
             self._createShapeNode(shape)
 
     def _createShapeNode(self, shape):
-        type = shape.getType()
-        if type is SphereShape.getStaticType():
-            print("it's a sphere!")
-        elif type is BoxShape.getStaticType():
-            print("it's a sphere!")
-        elif type is EllipsoidShape.getStaticType():
-            print("it's a sphere!")
-        elif type is CylinderShape.getStaticType():
-            print("it's a sphere!")
-        elif type is CapsuleShape.getStaticType():
-            print("it's a sphere!")
-        elif type is ConeShape.getStaticType():
-            print("it's a sphere!")
-        elif type is PlaneShape.getStaticType():
-            print("it's a sphere!")
-        elif type is MultiSphereConvexHullShape.getStaticType():
-            print("it's a sphere!")
-        elif type is SoftMeshShape.getStaticType():
-            print("it's a sphere!")
-        elif type is LineSegmentShape.getStaticType():
-            print("it's a sphere!")
+        shapeType = shape.getType()
+        if shapeType == dynamics.SphereShape.getStaticType():
+            print(dynamics.SphereShape.getStaticType())
+        elif shapeType == dynamics.BoxShape.getStaticType():
+            self.shapeNode = BoxShapeNode(shape, parent=self)
+        elif shapeType == dynamics.EllipsoidShape.getStaticType():
+            print(dynamics.EllipsoidShape.getStaticType())
+        elif shapeType == dynamics.CylinderShape.getStaticType():
+            print(dynamics.CylinderShape.getStaticType())
+        elif shapeType == dynamics.CapsuleShape.getStaticType():
+            print(dynamics.CapsuleShape.getStaticType())
+        elif shapeType == dynamics.ConeShape.getStaticType():
+            print(dynamics.ConeShape.getStaticType())
+        elif shapeType == dynamics.PlaneShape.getStaticType():
+            print(dynamics.PlaneShape.getStaticType())
+        elif shapeType == dynamics.MultiSphereConvexHullShape.getStaticType():
+            print(dynamics.MultiSphereConvexHullShape.getStaticType())
+        elif shapeType == dynamics.SoftMeshShape.getStaticType():
+            print(dynamics.SoftMeshShape.getStaticType())
+        elif shapeType == dynamics.LineSegmentShape.getStaticType():
+            print(dynamics.LineSegmentShape.getStaticType())
         else:
             print("Unsupported shape!")
 
-    def wasUtilized(self):
-        return self.utilized
-
-    def clearUtilization(self):
-        self.utilized = False
-
+        self.shapeNode.transform = MatrixTransform()
