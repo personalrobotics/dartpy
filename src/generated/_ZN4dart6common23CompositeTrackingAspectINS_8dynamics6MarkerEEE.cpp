@@ -25,7 +25,7 @@ void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics6MarkerEEE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::common::CompositeTrackingAspect<dart::dynamics::Marker>, ::boost::noncopyable, ::boost::python::bases<dart::common::Aspect > >("CompositeTrackingAspect_Marker", boost::python::no_init)
-.def("getComposite", [](dart::common::CompositeTrackingAspect<dart::dynamics::Marker> *self) -> dart::dynamics::Marker * { return self->getComposite(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("getComposite", [](dart::common::CompositeTrackingAspect<dart::dynamics::Marker> *self) -> dart::dynamics::Marker * { return self->getComposite(); }, ::boost::python::return_value_policy<::boost::python::reference_existing_object >())
 .def("hasComposite", [](const dart::common::CompositeTrackingAspect<dart::dynamics::Marker> *self) -> bool { return self->hasComposite(); })
 ;
 }

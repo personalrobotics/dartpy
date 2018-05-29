@@ -34,8 +34,8 @@ void _ZN4dart8dynamics17PointMassNotifierE()
 .def("dirtyTransform", [](dart::dynamics::PointMassNotifier *self) -> void { return self->dirtyTransform(); })
 .def("dirtyVelocity", [](dart::dynamics::PointMassNotifier *self) -> void { return self->dirtyVelocity(); })
 .def("dirtyAcceleration", [](dart::dynamics::PointMassNotifier *self) -> void { return self->dirtyAcceleration(); })
-.def("setName", [](dart::dynamics::PointMassNotifier *self, const std::string & _name) -> const std::string & { return self->setName(_name); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name")))
-.def("getName", [](const dart::dynamics::PointMassNotifier *self) -> const std::string & { return self->getName(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("setName", [](dart::dynamics::PointMassNotifier *self, const std::string & _name) -> const std::string & { return self->setName(_name); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >(), (::boost::python::arg("_name")))
+.def("getName", [](const dart::dynamics::PointMassNotifier *self) -> const std::string & { return self->getName(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 ;
 }
 

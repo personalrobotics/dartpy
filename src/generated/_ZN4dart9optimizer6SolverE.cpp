@@ -29,7 +29,7 @@ void _ZN4dart9optimizer6SolverE()
 .def("getType", [](const dart::optimizer::Solver *self) -> std::string { return self->getType(); })
 .def("clone", [](const dart::optimizer::Solver *self) -> std::shared_ptr<dart::optimizer::Solver> { return self->clone(); })
 .def("setProperties", [](dart::optimizer::Solver *self, const dart::optimizer::Solver::Properties & _properties) -> void { return self->setProperties(_properties); }, (::boost::python::arg("_properties")))
-.def("getSolverProperties", [](const dart::optimizer::Solver *self) -> const dart::optimizer::Solver::Properties & { return self->getSolverProperties(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getSolverProperties", [](const dart::optimizer::Solver *self) -> const dart::optimizer::Solver::Properties & { return self->getSolverProperties(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 .def("copy", [](dart::optimizer::Solver *self, const dart::optimizer::Solver & _otherSolver) -> void { return self->copy(_otherSolver); }, (::boost::python::arg("_otherSolver")))
 .def("setProblem", [](dart::optimizer::Solver *self, std::shared_ptr<dart::optimizer::Problem> _newProblem) -> void { return self->setProblem(_newProblem); }, (::boost::python::arg("_newProblem")))
 .def("getProblem", [](const dart::optimizer::Solver *self) -> std::shared_ptr<dart::optimizer::Problem> { return self->getProblem(); })
@@ -43,7 +43,7 @@ void _ZN4dart9optimizer6SolverE()
 .def("setPrintFinalResult", [](dart::optimizer::Solver *self, bool _print) -> void { return self->setPrintFinalResult(_print); }, (::boost::python::arg("_print")))
 .def("getPrintFinalResult", [](const dart::optimizer::Solver *self) -> bool { return self->getPrintFinalResult(); })
 .def("setResultFileName", [](dart::optimizer::Solver *self, const std::string & _resultFile) -> void { return self->setResultFileName(_resultFile); }, (::boost::python::arg("_resultFile")))
-.def("getResultFileName", [](const dart::optimizer::Solver *self) -> const std::string & { return self->getResultFileName(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getResultFileName", [](const dart::optimizer::Solver *self) -> const std::string & { return self->getResultFileName(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 ;
 }
 

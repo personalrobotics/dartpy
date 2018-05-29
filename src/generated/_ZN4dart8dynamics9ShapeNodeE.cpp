@@ -24,7 +24,7 @@ void _ZN4dart8dynamics9ShapeNodeE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::ShapeNode, ::boost::noncopyable, dart::dynamics::ShapeNodePtr >("ShapeNode", boost::python::no_init)
+::boost::python::class_<dart::dynamics::ShapeNode, ::boost::noncopyable, dart::dynamics::ShapeNodePtr, ::boost::python::bases<dart::dynamics::CompositeNode<dart::common::CompositeJoiner<dart::dynamics::FixedJacobianNode, dart::dynamics::ShapeFrame> > > >("ShapeNode", boost::python::no_init)
 .def("setProperties", [](dart::dynamics::ShapeNode *self, const dart::dynamics::ShapeNode::Properties & properties) -> void { return self->setProperties(properties); }, (::boost::python::arg("properties")))
 .def("getShapeNodeProperties", [](const dart::dynamics::ShapeNode *self) -> const dart::dynamics::ShapeNode::Properties { return self->getShapeNodeProperties(); })
 .def("copy", [](dart::dynamics::ShapeNode *self, const dart::dynamics::ShapeNode & other) -> void { return self->copy(other); }, (::boost::python::arg("other")))
@@ -36,7 +36,7 @@ void _ZN4dart8dynamics9ShapeNodeE()
 .def("setOffset", [](dart::dynamics::ShapeNode *self, const Eigen::Vector3d & offset) -> void { return self->setOffset(offset); }, (::boost::python::arg("offset")))
 .def("getRelativeTranslation", [](const dart::dynamics::ShapeNode *self) -> Eigen::Vector3d { return self->getRelativeTranslation(); })
 .def("getOffset", [](const dart::dynamics::ShapeNode *self) -> Eigen::Vector3d { return self->getOffset(); })
-.def("asShapeNode", [](dart::dynamics::ShapeNode *self) -> dart::dynamics::ShapeNode * { return self->asShapeNode(); }, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::ShapeNodePtr> >())
+.def("asShapeNode", [](dart::dynamics::ShapeNode *self) -> dart::dynamics::ShapeNode * { return self->asShapeNode(); }, ::boost::python::return_value_policy<::boost::python::return_by_smart_ptr<dart::dynamics::ShapeNodePtr> >())
 ;
 }
 

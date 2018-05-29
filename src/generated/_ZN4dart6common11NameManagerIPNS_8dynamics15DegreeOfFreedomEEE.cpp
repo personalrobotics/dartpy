@@ -39,13 +39,13 @@ void _ZN4dart6common11NameManagerIPNS_8dynamics15DegreeOfFreedomEEE()
 .def("hasName", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self, const std::string & _name) -> bool { return self->hasName(_name); }, (::boost::python::arg("_name")))
 .def("hasObject", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self, dart::dynamics::DegreeOfFreedom *const & _obj) -> bool { return self->hasObject(_obj); }, (::boost::python::arg("_obj")))
 .def("getCount", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self) -> std::size_t { return self->getCount(); })
-.def("getObject", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self, const std::string & _name) -> dart::dynamics::DegreeOfFreedom * { return self->getObject(_name); }, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr> >(), (::boost::python::arg("_name")))
+.def("getObject", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self, const std::string & _name) -> dart::dynamics::DegreeOfFreedom * { return self->getObject(_name); }, ::boost::python::return_value_policy<::boost::python::return_by_smart_ptr<dart::dynamics::DegreeOfFreedomPtr> >(), (::boost::python::arg("_name")))
 .def("getName", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self, dart::dynamics::DegreeOfFreedom *const & _obj) -> std::string { return self->getName(_obj); }, (::boost::python::arg("_obj")))
 .def("changeObjectName", [](dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self, dart::dynamics::DegreeOfFreedom *const & _obj, const std::string & _newName) -> std::string { return self->changeObjectName(_obj, _newName); }, (::boost::python::arg("_obj"), ::boost::python::arg("_newName")))
 .def("setDefaultName", [](dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self, const std::string & _defaultName) -> void { return self->setDefaultName(_defaultName); }, (::boost::python::arg("_defaultName")))
-.def("getDefaultName", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self) -> const std::string & { return self->getDefaultName(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getDefaultName", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self) -> const std::string & { return self->getDefaultName(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 .def("setManagerName", [](dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self, const std::string & _managerName) -> void { return self->setManagerName(_managerName); }, (::boost::python::arg("_managerName")))
-.def("getManagerName", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self) -> const std::string & { return self->getManagerName(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getManagerName", [](const dart::common::NameManager<dart::dynamics::DegreeOfFreedom *> *self) -> const std::string & { return self->getManagerName(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 ;
 }
 

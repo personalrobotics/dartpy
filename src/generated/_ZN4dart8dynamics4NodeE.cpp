@@ -25,8 +25,8 @@ void _ZN4dart8dynamics4NodeE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::dynamics::Node, ::boost::noncopyable, ::boost::python::bases<dart::common::VersionCounter, dart::common::Subject > >("Node", boost::python::no_init)
-.def("setName", [](dart::dynamics::Node *self, const std::string & newName) -> const std::string & { return self->setName(newName); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("newName")))
-.def("getName", [](const dart::dynamics::Node *self) -> const std::string & { return self->getName(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("setName", [](dart::dynamics::Node *self, const std::string & newName) -> const std::string & { return self->setName(newName); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >(), (::boost::python::arg("newName")))
+.def("getName", [](const dart::dynamics::Node *self) -> const std::string & { return self->getName(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 .def("setNodeState", [](dart::dynamics::Node *self, const dart::dynamics::Node::State & otherState) -> void { return self->setNodeState(otherState); }, (::boost::python::arg("otherState")))
 .def("getNodeState", [](const dart::dynamics::Node *self) -> std::unique_ptr<dart::dynamics::Node::State> { return self->getNodeState(); })
 .def("copyNodeStateTo", [](const dart::dynamics::Node *self, std::unique_ptr<dart::dynamics::Node::State> & outputState) -> void { return self->copyNodeStateTo(outputState); }, (::boost::python::arg("outputState")))

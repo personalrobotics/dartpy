@@ -24,7 +24,7 @@ void _ZN4dart8dynamics8Skeleton13ConfigurationE()
 ::boost::python::object parent_object(::boost::python::scope().attr("dynamics").attr("Skeleton"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::dynamics::Skeleton::Configuration, ::boost::noncopyable >("Configuration", boost::python::no_init)
+::boost::python::class_<dart::dynamics::Skeleton::Configuration >("Configuration", boost::python::no_init)
 .def("__init__", ::boost::python::make_constructor([]() -> dart::dynamics::Skeleton::Configuration * { return new dart::dynamics::Skeleton::Configuration(); }, ::boost::python::default_call_policies()))
 .def("__init__", ::boost::python::make_constructor([](const Eigen::VectorXd & positions) -> dart::dynamics::Skeleton::Configuration * { return new dart::dynamics::Skeleton::Configuration(positions); }, ::boost::python::default_call_policies(), (::boost::python::arg("positions"))))
 .def("__init__", ::boost::python::make_constructor([](const Eigen::VectorXd & positions, const Eigen::VectorXd & velocities) -> dart::dynamics::Skeleton::Configuration * { return new dart::dynamics::Skeleton::Configuration(positions, velocities); }, ::boost::python::default_call_policies(), (::boost::python::arg("positions"), ::boost::python::arg("velocities"))))

@@ -25,8 +25,8 @@ void _ZN4dart10constraint15JointConstraintE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::constraint::JointConstraint, ::boost::noncopyable, ::boost::python::bases<dart::constraint::ConstraintBase > >("JointConstraint", boost::python::no_init)
-.def("getBodyNode1", [](const dart::constraint::JointConstraint *self) -> dart::dynamics::BodyNode * { return self->getBodyNode1(); }, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
-.def("getBodyNode2", [](const dart::constraint::JointConstraint *self) -> dart::dynamics::BodyNode * { return self->getBodyNode2(); }, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
+.def("getBodyNode1", [](const dart::constraint::JointConstraint *self) -> dart::dynamics::BodyNode * { return self->getBodyNode1(); }, ::boost::python::return_value_policy<::boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
+.def("getBodyNode2", [](const dart::constraint::JointConstraint *self) -> dart::dynamics::BodyNode * { return self->getBodyNode2(); }, ::boost::python::return_value_policy<::boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
 .def("setErrorAllowance", [](double _allowance) -> void { return dart::constraint::JointConstraint::setErrorAllowance(_allowance); }, (::boost::python::arg("_allowance")))
 .def("getErrorAllowance", []() -> double { return dart::constraint::JointConstraint::getErrorAllowance(); })
 .def("setErrorReductionParameter", [](double _erp) -> void { return dart::constraint::JointConstraint::setErrorReductionParameter(_erp); }, (::boost::python::arg("_erp")))

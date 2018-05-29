@@ -39,7 +39,7 @@ void _ZN4dart10constraint17BalanceConstraintE()
 .def("getOptimizationTolerance", [](const dart::constraint::BalanceConstraint *self) -> double { return self->getOptimizationTolerance(); })
 .def("setPseudoInverseDamping", [](dart::constraint::BalanceConstraint *self, double _damping) -> void { return self->setPseudoInverseDamping(_damping); }, (::boost::python::arg("_damping")))
 .def("getPseudoInverseDamping", [](const dart::constraint::BalanceConstraint *self) -> double { return self->getPseudoInverseDamping(); })
-.def("getLastError", [](const dart::constraint::BalanceConstraint *self) -> const Eigen::Vector3d & { return self->getLastError(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getLastError", [](const dart::constraint::BalanceConstraint *self) -> const Eigen::Vector3d & { return self->getLastError(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 .def("clearCaches", [](dart::constraint::BalanceConstraint *self) -> void { return self->clearCaches(); })
 ;
 }

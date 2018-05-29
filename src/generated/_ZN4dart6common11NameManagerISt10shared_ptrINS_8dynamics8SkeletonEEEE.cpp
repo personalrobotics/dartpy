@@ -43,9 +43,9 @@ void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE()
 .def("getName", [](const dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > *self, const std::shared_ptr<dart::dynamics::Skeleton> & _obj) -> std::string { return self->getName(_obj); }, (::boost::python::arg("_obj")))
 .def("changeObjectName", [](dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > *self, const std::shared_ptr<dart::dynamics::Skeleton> & _obj, const std::string & _newName) -> std::string { return self->changeObjectName(_obj, _newName); }, (::boost::python::arg("_obj"), ::boost::python::arg("_newName")))
 .def("setDefaultName", [](dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > *self, const std::string & _defaultName) -> void { return self->setDefaultName(_defaultName); }, (::boost::python::arg("_defaultName")))
-.def("getDefaultName", [](const dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > *self) -> const std::string & { return self->getDefaultName(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getDefaultName", [](const dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > *self) -> const std::string & { return self->getDefaultName(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 .def("setManagerName", [](dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > *self, const std::string & _managerName) -> void { return self->setManagerName(_managerName); }, (::boost::python::arg("_managerName")))
-.def("getManagerName", [](const dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > *self) -> const std::string & { return self->getManagerName(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getManagerName", [](const dart::common::NameManager<std::shared_ptr<dart::dynamics::Skeleton> > *self) -> const std::string & { return self->getManagerName(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 ;
 }
 

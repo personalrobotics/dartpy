@@ -30,7 +30,7 @@ void _ZN4dart8planning11PathSegmentE()
 .def("getTangent", [](const dart::planning::PathSegment *self, double s) -> Eigen::VectorXd { return self->getTangent(s); }, (::boost::python::arg("s")))
 .def("getCurvature", [](const dart::planning::PathSegment *self, double s) -> Eigen::VectorXd { return self->getCurvature(s); }, (::boost::python::arg("s")))
 .def("getSwitchingPoints", [](const dart::planning::PathSegment *self) -> std::list<double> { return self->getSwitchingPoints(); })
-.def("clone", [](const dart::planning::PathSegment *self) -> dart::planning::PathSegment * { return self->clone(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("clone", [](const dart::planning::PathSegment *self) -> dart::planning::PathSegment * { return self->clone(); }, ::boost::python::return_value_policy<::boost::python::reference_existing_object >())
 .def_readwrite("position", &dart::planning::PathSegment::position)
 ;
 }

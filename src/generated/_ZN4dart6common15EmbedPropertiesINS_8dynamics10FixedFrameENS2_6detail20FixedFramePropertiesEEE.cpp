@@ -25,7 +25,7 @@ void _ZN4dart6common15EmbedPropertiesINS_8dynamics10FixedFrameENS2_6detail20Fixe
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::common::EmbedProperties<dart::dynamics::FixedFrame, dart::dynamics::detail::FixedFrameProperties>, ::boost::noncopyable, ::boost::python::bases<dart::common::RequiresAspect<dart::common::EmbeddedPropertiesAspect<dart::dynamics::FixedFrame, dart::dynamics::detail::FixedFrameProperties> > > >("EmbedProperties_FixedFrame_FixedFrameProperties", boost::python::no_init)
-.def("getAspectProperties", [](const dart::common::EmbedProperties<dart::dynamics::FixedFrame, dart::dynamics::detail::FixedFrameProperties> *self) -> const dart::common::EmbedProperties<dart::dynamics::FixedFrame, dart::dynamics::detail::FixedFrameProperties>::AspectProperties & { return self->getAspectProperties(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getAspectProperties", [](const dart::common::EmbedProperties<dart::dynamics::FixedFrame, dart::dynamics::detail::FixedFrameProperties> *self) -> const dart::common::EmbedProperties<dart::dynamics::FixedFrame, dart::dynamics::detail::FixedFrameProperties>::AspectProperties & { return self->getAspectProperties(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 ;
 }
 

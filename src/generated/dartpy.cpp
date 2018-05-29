@@ -86,14 +86,18 @@ dart::python::util::vector_to_python<
 dart::python::util::collection_from_python<
   std::vector<dart::dynamics::DegreeOfFreedom*> >();
 
+dart::python::util::vector_to_python<dart::simulation::WorldPtr>();
+dart::python::util::collection_from_python<
+  std::vector<dart::simulation::WorldPtr> >();
+
   ::boost::python::scope().attr("common") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.common"))));
   ::boost::python::scope().attr("common").attr("detail") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.common.detail"))));
+  ::boost::python::scope().attr("math") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.math"))));
   ::boost::python::scope().attr("common").attr("signal") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.common.signal"))));
   ::boost::python::scope().attr("common").attr("signal").attr("detail") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.common.signal.detail"))));
-  ::boost::python::scope().attr("math") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.math"))));
+  ::boost::python::scope().attr("math").attr("detail") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.math.detail"))));
   ::boost::python::scope().attr("math").attr("suffixes") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.math.suffixes"))));
   ::boost::python::scope().attr("Color") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.Color"))));
-  ::boost::python::scope().attr("math").attr("detail") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.math.detail"))));
   ::boost::python::scope().attr("integration") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.integration"))));
   ::boost::python::scope().attr("collision") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.collision"))));
   ::boost::python::scope().attr("dynamics") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.dynamics"))));
@@ -106,8 +110,8 @@ dart::python::util::collection_from_python<
   ::boost::python::scope().attr("simulation") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.simulation"))));
   ::boost::python::scope().attr("planning") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.planning"))));
   ::boost::python::scope().attr("utils") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.utils"))));
-  ::boost::python::scope().attr("utils").attr("VskParser") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.utils.VskParser"))));
   ::boost::python::scope().attr("utils").attr("SkelParser") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.utils.SkelParser"))));
+  ::boost::python::scope().attr("utils").attr("VskParser") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.utils.VskParser"))));
   ::boost::python::scope().attr("utils").attr("SdfParser") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.utils.SdfParser"))));
   ::boost::python::scope().attr("utils").attr("urdf_parsing") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.utils.urdf_parsing"))));
   ::boost::python::scope().attr("gui") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.gui"))));
@@ -184,75 +188,27 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
   try {
-    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
-  try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
-  try {
-    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
-  try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
-  try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
-  try {
-    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
-  try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
     throw;
   }
 
@@ -280,6 +236,30 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  try {
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+  try {
+    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  try {
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    throw;
+  }
+
   void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   try {
     _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
@@ -301,6 +281,30 @@ dart::python::util::collection_from_python<
     _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  try {
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+  try {
+    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  try {
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
     throw;
   }
 
@@ -360,51 +364,51 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
   try {
-    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail36TranslationalJoint2DUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS8_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+  void _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
   try {
-    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
+    _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEJRKNS0_13MakeCloneableINS0_6Aspect10PropertiesES6_EEEEESt10unique_ptrIT_St14default_deleteISF_EEDpOT0_" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+  void _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   try {
-    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
+    _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common11make_uniqueINS0_13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEEJRKS7_EEESt10unique_ptrIT_St14default_deleteISC_EEDpOT0_" << std::endl;
     throw;
   }
 
@@ -448,22 +452,6 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common7SubjectE();
-  try {
-    _ZN4dart6common7SubjectE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common7SubjectE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common8ObserverE();
-  try {
-    _ZN4dart6common8ObserverE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common8ObserverE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart6common9CloneableINS0_6Aspect5StateEEE();
   try {
     _ZN4dart6common9CloneableINS0_6Aspect5StateEEE();
@@ -496,14 +484,6 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics6detail15JointPropertiesE();
-  try {
-    _ZN4dart8dynamics6detail15JointPropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail15JointPropertiesE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart6common6AspectE();
   try {
     _ZN4dart6common6AspectE();
@@ -517,6 +497,14 @@ dart::python::util::collection_from_python<
     _ZN4dart6common6Aspect10PropertiesE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart6common6Aspect10PropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail15JointPropertiesE();
+  try {
+    _ZN4dart8dynamics6detail15JointPropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail15JointPropertiesE" << std::endl;
     throw;
   }
 
@@ -632,6 +620,14 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common7SubjectE();
+  try {
+    _ZN4dart6common7SubjectE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common7SubjectE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart8dynamics4NodeE();
   try {
     _ZN4dart8dynamics4NodeE();
@@ -645,6 +641,14 @@ dart::python::util::collection_from_python<
     _ZN4dart8dynamics4Node5StateE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics4Node5StateE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_6Aspect5StateESt14default_deleteIS6_EESt4lessIS3_ESaISt4pairIKS3_S9_EEEEE();
+  try {
+    _ZN4dart6common12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_6Aspect5StateESt14default_deleteIS6_EESt4lessIS3_ESaISt4pairIKS3_S9_EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_6Aspect5StateESt14default_deleteIS6_EESt4lessIS3_ESaISt4pairIKS3_S9_EEEEE" << std::endl;
     throw;
   }
 
@@ -672,6 +676,14 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_6Aspect10PropertiesESt14default_deleteIS6_EESt4lessIS3_ESaISt4pairIKS3_S9_EEEEE();
+  try {
+    _ZN4dart6common12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_6Aspect10PropertiesESt14default_deleteIS6_EESt4lessIS3_ESaISt4pairIKS3_S9_EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_6Aspect10PropertiesESt14default_deleteIS6_EESt4lessIS3_ESaISt4pairIKS3_S9_EEEEE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart6common6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrINS0_6Aspect10PropertiesESt14default_deleteIS7_EESt4lessIS4_ESaISt4pairIKS4_SA_EEENS1_13GetPropertiesEEE();
   try {
     _ZN4dart6common6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrINS0_6Aspect10PropertiesESt14default_deleteIS7_EESt4lessIS4_ESaISt4pairIKS4_SA_EEENS1_13GetPropertiesEEE();
@@ -688,19 +700,19 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics6detail16SupportStateDataE();
-  try {
-    _ZN4dart8dynamics6detail16SupportStateDataE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail16SupportStateDataE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart6common6Aspect5StateE();
   try {
     _ZN4dart6common6Aspect5StateE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart6common6Aspect5StateE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail16SupportStateDataE();
+  try {
+    _ZN4dart8dynamics6detail16SupportStateDataE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail16SupportStateDataE" << std::endl;
     throw;
   }
 
@@ -872,6 +884,182 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart8dynamics6detail26EulerJointUniquePropertiesE();
+  try {
+    _ZN4dart8dynamics6detail26EulerJointUniquePropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail26EulerJointUniquePropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEE();
+  try {
+    _ZN4dart8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEE();
+  try {
+    _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail27PlanarJointUniquePropertiesE();
+  try {
+    _ZN4dart8dynamics6detail27PlanarJointUniquePropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail27PlanarJointUniquePropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail27PlanarJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail27PlanarJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail27PlanarJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEE();
+  try {
+    _ZN4dart8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEE();
+  try {
+    _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail30PrismaticJointUniquePropertiesE();
+  try {
+    _ZN4dart8dynamics6detail30PrismaticJointUniquePropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail30PrismaticJointUniquePropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail29RevoluteJointUniquePropertiesE();
+  try {
+    _ZN4dart8dynamics6detail29RevoluteJointUniquePropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail29RevoluteJointUniquePropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail26ScrewJointUniquePropertiesE();
+  try {
+    _ZN4dart8dynamics6detail26ScrewJointUniquePropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail26ScrewJointUniquePropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail23SoftBodyNodeUniqueStateE();
+  try {
+    _ZN4dart8dynamics6detail23SoftBodyNodeUniqueStateE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail23SoftBodyNodeUniqueStateE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail23SoftBodyNodeUniqueStateEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail23SoftBodyNodeUniqueStateEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail23SoftBodyNodeUniqueStateEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail28SoftBodyNodeUniquePropertiesE();
+  try {
+    _ZN4dart8dynamics6detail28SoftBodyNodeUniquePropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail28SoftBodyNodeUniquePropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28SoftBodyNodeUniquePropertiesEEE();
+  try {
+    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28SoftBodyNodeUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28SoftBodyNodeUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm2EEEEE();
   try {
     _ZN4dart8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm2EEEEE();
@@ -933,182 +1121,6 @@ dart::python::util::collection_from_python<
     _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30UniversalJointUniquePropertiesEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEE();
-  try {
-    _ZN4dart8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math15RealVectorSpaceILm1EEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEE();
-  try {
-    _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math15RealVectorSpaceILm1EEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail30PrismaticJointUniquePropertiesE();
-  try {
-    _ZN4dart8dynamics6detail30PrismaticJointUniquePropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail30PrismaticJointUniquePropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail30PrismaticJointUniquePropertiesEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail27PlanarJointUniquePropertiesE();
-  try {
-    _ZN4dart8dynamics6detail27PlanarJointUniquePropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail27PlanarJointUniquePropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail27PlanarJointUniquePropertiesEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail27PlanarJointUniquePropertiesEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail27PlanarJointUniquePropertiesEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail29RevoluteJointUniquePropertiesE();
-  try {
-    _ZN4dart8dynamics6detail29RevoluteJointUniquePropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail29RevoluteJointUniquePropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail29RevoluteJointUniquePropertiesEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail23SoftBodyNodeUniqueStateE();
-  try {
-    _ZN4dart8dynamics6detail23SoftBodyNodeUniqueStateE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail23SoftBodyNodeUniqueStateE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail23SoftBodyNodeUniqueStateEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail23SoftBodyNodeUniqueStateEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail23SoftBodyNodeUniqueStateEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail28SoftBodyNodeUniquePropertiesE();
-  try {
-    _ZN4dart8dynamics6detail28SoftBodyNodeUniquePropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail28SoftBodyNodeUniquePropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28SoftBodyNodeUniquePropertiesEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28SoftBodyNodeUniquePropertiesEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28SoftBodyNodeUniquePropertiesEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail26ScrewJointUniquePropertiesE();
-  try {
-    _ZN4dart8dynamics6detail26ScrewJointUniquePropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail26ScrewJointUniquePropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26ScrewJointUniquePropertiesEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail26EulerJointUniquePropertiesE();
-  try {
-    _ZN4dart8dynamics6detail26EulerJointUniquePropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail26EulerJointUniquePropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail26EulerJointUniquePropertiesEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEE();
-  try {
-    _ZN4dart8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect5StateENS_8dynamics6detail17GenericJointStateINS_4math8SE3SpaceEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEE();
-  try {
-    _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEEEE();
-  try {
-    _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13MakeCloneableINS0_6Aspect10PropertiesENS_8dynamics6detail28GenericJointUniquePropertiesINS_4math8SE3SpaceEEEEE" << std::endl;
     throw;
   }
 
@@ -1216,6 +1228,70 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10EulerJointEEE();
+  try {
+    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10EulerJointEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10EulerJointEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEE();
+  try {
+    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics11PlanarJointEEE();
+  try {
+    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics11PlanarJointEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics11PlanarJointEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEE();
+  try {
+    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEE();
+  try {
+    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEE();
+  try {
+    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10ScrewJointEEE();
+  try {
+    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10ScrewJointEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10ScrewJointEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEE();
+  try {
+    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEE();
   try {
     _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEE();
@@ -1240,235 +1316,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEE();
+  void _ZN4dart6common6detail15AspectWithStateINS0_23CompositeTrackingAspectINS_8dynamics11EndEffectorEEENS4_7SupportENS4_6detail16SupportStateDataES5_XadL_ZNS8_13SupportUpdateEPS7_EEEE();
   try {
-    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEE();
+    _ZN4dart6common6detail15AspectWithStateINS0_23CompositeTrackingAspectINS_8dynamics11EndEffectorEEENS4_7SupportENS4_6detail16SupportStateDataES5_XadL_ZNS8_13SupportUpdateEPS7_EEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEE();
-  try {
-    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics11PlanarJointEEE();
-  try {
-    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics11PlanarJointEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics11PlanarJointEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEE();
-  try {
-    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEE();
-  try {
-    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10ScrewJointEEE();
-  try {
-    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10ScrewJointEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10ScrewJointEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10EulerJointEEE();
-  try {
-    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10EulerJointEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics10EulerJointEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEE();
-  try {
-    _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6signal6detail18ConnectionBodyBaseE();
-  try {
-    _ZN4dart6common6signal6detail18ConnectionBodyBaseE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6signal6detail18ConnectionBodyBaseE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common10ConnectionE();
-  try {
-    _ZN4dart6common10ConnectionE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common10ConnectionE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEE();
-  try {
-    _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEPKNS2_5FrameES8_ENS0_6signal6detail15DefaultCombinerEEE();
-  try {
-    _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEPKNS2_5FrameES8_ENS0_6signal6detail15DefaultCombinerEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEPKNS2_5FrameES8_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESD_ENS0_6signal6detail15DefaultCombinerEEE();
-  try {
-    _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESD_ENS0_6signal6detail15DefaultCombinerEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESD_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEE();
-  try {
-    _ZN4dart6common6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS2_5ShapeEESA_ENS0_6signal6detail15DefaultCombinerEEE();
-  try {
-    _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS2_5ShapeEESA_ENS0_6signal6detail15DefaultCombinerEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS2_5ShapeEESA_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESA_ENS0_6signal6detail15DefaultCombinerEEE();
-  try {
-    _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESA_ENS0_6signal6detail15DefaultCombinerEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESA_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS2_5ShapeEEENS0_6signal6detail15DefaultCombinerEEE();
-  try {
-    _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS2_5ShapeEEENS0_6signal6detail15DefaultCombinerEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS2_5ShapeEEENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEE();
-  try {
-    _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ENS0_6signal6detail15DefaultCombinerEEE();
-  try {
-    _ZN4dart6common6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ENS0_6signal6detail15DefaultCombinerEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common16ScopedConnectionE();
-  try {
-    _ZN4dart6common16ScopedConnectionE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common16ScopedConnectionE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEPKNS3_5FrameES9_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  try {
-    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEPKNS3_5FrameES9_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEPKNS3_5FrameES9_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  try {
-    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEEEE();
-  try {
-    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESF_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  try {
-    _ZN4dart6common12SlotRegisterINS0_6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESF_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESF_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS3_5ShapeEESB_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  try {
-    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS3_5ShapeEESB_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS3_5ShapeEESB_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESB_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  try {
-    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESB_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESB_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS3_5ShapeEEENS0_6signal6detail15DefaultCombinerEEEEE();
-  try {
-    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS3_5ShapeEEENS0_6signal6detail15DefaultCombinerEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS3_5ShapeEEENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEEEE();
-  try {
-    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  try {
-    _ZN4dart6common12SlotRegisterINS0_6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_ENS0_6signal6detail15DefaultCombinerEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail15AspectWithStateINS0_23CompositeTrackingAspectINS_8dynamics11EndEffectorEEENS4_7SupportENS4_6detail16SupportStateDataES5_XadL_ZNS8_13SupportUpdateEPS7_EEEE" << std::endl;
     throw;
   }
 
@@ -1712,43 +1564,43 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEE();
+  void _ZN4dart6common20SpecializedForAspectIJNS_8dynamics12VisualAspectENS2_15CollisionAspectENS2_14DynamicsAspectEEEE();
   try {
-    _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEE();
+    _ZN4dart6common20SpecializedForAspectIJNS_8dynamics12VisualAspectENS2_15CollisionAspectENS2_14DynamicsAspectEEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS_8dynamics12VisualAspectENS2_15CollisionAspectENS2_14DynamicsAspectEEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics10ShapeFrameENS3_6detail20ShapeFramePropertiesEEENS0_20SpecializedForAspectIJNS3_12VisualAspectENS3_15CollisionAspectENS3_14DynamicsAspectEEEEEEE();
   try {
-    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics10ShapeFrameENS3_6detail20ShapeFramePropertiesEEENS0_20SpecializedForAspectIJNS3_12VisualAspectENS3_15CollisionAspectENS3_14DynamicsAspectEEEEEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics10ShapeFrameENS3_6detail20ShapeFramePropertiesEEENS0_20SpecializedForAspectIJNS3_12VisualAspectENS3_15CollisionAspectENS3_14DynamicsAspectEEEEEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE();
+  void _ZN4dart8dynamics13AccessoryNodeINS0_17FixedJacobianNodeEEE();
   try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE();
+    _ZN4dart8dynamics13AccessoryNodeINS0_17FixedJacobianNodeEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart8dynamics13AccessoryNodeINS0_17FixedJacobianNodeEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE();
+  void _ZN4dart8dynamics17FixedJacobianNodeE();
   try {
-    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE();
+    _ZN4dart8dynamics17FixedJacobianNodeE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart8dynamics17FixedJacobianNodeE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common15EmbedPropertiesINS_8dynamics10FixedFrameENS2_6detail20FixedFramePropertiesEEE();
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics10ShapeFrameENS2_6detail20ShapeFramePropertiesEJNS0_20SpecializedForAspectIJNS2_12VisualAspectENS2_15CollisionAspectENS2_14DynamicsAspectEEEEEEE();
   try {
-    _ZN4dart6common15EmbedPropertiesINS_8dynamics10FixedFrameENS2_6detail20FixedFramePropertiesEEE();
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics10ShapeFrameENS2_6detail20ShapeFramePropertiesEJNS0_20SpecializedForAspectIJNS2_12VisualAspectENS2_15CollisionAspectENS2_14DynamicsAspectEEEEEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics10FixedFrameENS2_6detail20FixedFramePropertiesEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics10ShapeFrameENS2_6detail20ShapeFramePropertiesEJNS0_20SpecializedForAspectIJNS2_12VisualAspectENS2_15CollisionAspectENS2_14DynamicsAspectEEEEEEE" << std::endl;
     throw;
   }
 
@@ -1768,19 +1620,603 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics10FixedFrameE();
+  void _ZN4dart8dynamics10ShapeFrameE();
   try {
-    _ZN4dart8dynamics10FixedFrameE();
+    _ZN4dart8dynamics10ShapeFrameE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics10FixedFrameE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart8dynamics10ShapeFrameE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common7VirtualINS_8dynamics10FixedFrameEEE();
+  void _ZN4dart6common15CompositeJoinerIJNS_8dynamics17FixedJacobianNodeENS2_10ShapeFrameEEEE();
   try {
-    _ZN4dart6common7VirtualINS_8dynamics10FixedFrameEEE();
+    _ZN4dart6common15CompositeJoinerIJNS_8dynamics17FixedJacobianNodeENS2_10ShapeFrameEEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics10FixedFrameEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS_8dynamics17FixedJacobianNodeENS2_10ShapeFrameEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS_8dynamics7SupportEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS_8dynamics7SupportEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS_8dynamics7SupportEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS_8dynamics17FixedJacobianNodeENS0_20SpecializedForAspectIJNS2_7SupportEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS_8dynamics17FixedJacobianNodeENS0_20SpecializedForAspectIJNS2_7SupportEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS_8dynamics17FixedJacobianNodeENS0_20SpecializedForAspectIJNS2_7SupportEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS2_20SpecializedForAspectIJNS0_7SupportEEEEEEEEE();
+  try {
+    _ZN4dart8dynamics18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS2_20SpecializedForAspectIJNS0_7SupportEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS2_20SpecializedForAspectIJNS0_7SupportEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics23CompositePropertiesNodeINS0_18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS3_20SpecializedForAspectIJNS0_7SupportEEEEEEEEEEE();
+  try {
+    _ZN4dart8dynamics23CompositePropertiesNodeINS0_18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS3_20SpecializedForAspectIJNS0_7SupportEEEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics23CompositePropertiesNodeINS0_18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS3_20SpecializedForAspectIJNS0_7SupportEEEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics13CompositeNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS2_20SpecializedForAspectIJNS0_7SupportEEEEEEEEE();
+  try {
+    _ZN4dart8dynamics13CompositeNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS2_20SpecializedForAspectIJNS0_7SupportEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics13CompositeNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS2_20SpecializedForAspectIJNS0_7SupportEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11EndEffectorENS3_6detail21EndEffectorPropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11EndEffectorENS3_6detail21EndEffectorPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11EndEffectorENS3_6detail21EndEffectorPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11EndEffectorENS3_6detail21EndEffectorPropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11EndEffectorENS3_6detail21EndEffectorPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11EndEffectorENS3_6detail21EndEffectorPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics11EndEffectorENS2_6detail21EndEffectorPropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics11EndEffectorENS2_6detail21EndEffectorPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics11EndEffectorENS2_6detail21EndEffectorPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics11EndEffectorENS3_6detail21EndEffectorPropertiesEEENS3_13CompositeNodeINS1_IJNS3_17FixedJacobianNodeENS0_20SpecializedForAspectIJNS3_7SupportEEEEEEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics11EndEffectorENS3_6detail21EndEffectorPropertiesEEENS3_13CompositeNodeINS1_IJNS3_17FixedJacobianNodeENS0_20SpecializedForAspectIJNS3_7SupportEEEEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics11EndEffectorENS3_6detail21EndEffectorPropertiesEEENS3_13CompositeNodeINS1_IJNS3_17FixedJacobianNodeENS0_20SpecializedForAspectIJNS3_7SupportEEEEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics6MarkerENS3_6detail16MarkerPropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics6MarkerENS3_6detail16MarkerPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics6MarkerENS3_6detail16MarkerPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics6MarkerENS3_6detail16MarkerPropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics6MarkerENS3_6detail16MarkerPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics6MarkerENS3_6detail16MarkerPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics6MarkerENS2_6detail16MarkerPropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics6MarkerENS2_6detail16MarkerPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics6MarkerENS2_6detail16MarkerPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics6MarkerENS3_6detail16MarkerPropertiesEEENS3_17FixedJacobianNodeEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics6MarkerENS3_6detail16MarkerPropertiesEEENS3_17FixedJacobianNodeEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics6MarkerENS3_6detail16MarkerPropertiesEEENS3_17FixedJacobianNodeEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics8SkeletonENS3_6detail24SkeletonAspectPropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics8SkeletonENS3_6detail24SkeletonAspectPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics8SkeletonENS3_6detail24SkeletonAspectPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics8SkeletonENS3_6detail24SkeletonAspectPropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics8SkeletonENS3_6detail24SkeletonAspectPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics8SkeletonENS3_6detail24SkeletonAspectPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics8SkeletonENS2_6detail24SkeletonAspectPropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics8SkeletonENS2_6detail24SkeletonAspectPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics8SkeletonENS2_6detail24SkeletonAspectPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_7VirtualINS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8SkeletonENS0_14ProxyCloneableINS0_6Aspect5StateES6_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrIS9_St14default_deleteIS9_EESt4lessISE_ESaISt4pairIKSE_SI_EEENSB_8GetStateEEESaISR_EEXadL_ZNS5_6detail20setAllBodyNodeStatesEPS6_RKST_EEXadL_ZNSU_20getAllBodyNodeStatesEPKS6_EEEENS7_INS8_10PropertiesES6_SA_INSC_ISD_ISE_SF_IS11_SG_IS11_EESK_SaISL_ISM_S13_EEENSB_13GetPropertiesEEESaIS18_EEXadL_ZNSU_24setAllBodyNodePropertiesESV_RKS1A_EEXadL_ZNSU_24getAllBodyNodePropertiesESZ_EEEEEEEEEEENS2_INS3_IJNS4_IS6_NS7_IS9_S6_ST_XadL_ZNSU_17setAllJointStatesESV_SX_EEXadL_ZNSU_17getAllJointStatesESZ_EEEENS7_IS11_S6_S1A_XadL_ZNSU_21setAllJointPropertiesESV_S1C_EEXadL_ZNSU_21getAllJointPropertiesESZ_EEEEEEEEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_7VirtualINS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8SkeletonENS0_14ProxyCloneableINS0_6Aspect5StateES6_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrIS9_St14default_deleteIS9_EESt4lessISE_ESaISt4pairIKSE_SI_EEENSB_8GetStateEEESaISR_EEXadL_ZNS5_6detail20setAllBodyNodeStatesEPS6_RKST_EEXadL_ZNSU_20getAllBodyNodeStatesEPKS6_EEEENS7_INS8_10PropertiesES6_SA_INSC_ISD_ISE_SF_IS11_SG_IS11_EESK_SaISL_ISM_S13_EEENSB_13GetPropertiesEEESaIS18_EEXadL_ZNSU_24setAllBodyNodePropertiesESV_RKS1A_EEXadL_ZNSU_24getAllBodyNodePropertiesESZ_EEEEEEEEEEENS2_INS3_IJNS4_IS6_NS7_IS9_S6_ST_XadL_ZNSU_17setAllJointStatesESV_SX_EEXadL_ZNSU_17getAllJointStatesESZ_EEEENS7_IS11_S6_S1A_XadL_ZNSU_21setAllJointPropertiesESV_S1C_EEXadL_ZNSU_21getAllJointPropertiesESZ_EEEEEEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_7VirtualINS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8SkeletonENS0_14ProxyCloneableINS0_6Aspect5StateES6_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrIS9_St14default_deleteIS9_EESt4lessISE_ESaISt4pairIKSE_SI_EEENSB_8GetStateEEESaISR_EEXadL_ZNS5_6detail20setAllBodyNodeStatesEPS6_RKST_EEXadL_ZNSU_20getAllBodyNodeStatesEPKS6_EEEENS7_INS8_10PropertiesES6_SA_INSC_ISD_ISE_SF_IS11_SG_IS11_EESK_SaISL_ISM_S13_EEENSB_13GetPropertiesEEESaIS18_EEXadL_ZNSU_24setAllBodyNodePropertiesESV_RKS1A_EEXadL_ZNSU_24getAllBodyNodePropertiesESZ_EEEEEEEEEEENS2_INS3_IJNS4_IS6_NS7_IS9_S6_ST_XadL_ZNSU_17setAllJointStatesESV_SX_EEXadL_ZNSU_17getAllJointStatesESZ_EEEENS7_IS11_S6_S1A_XadL_ZNSU_21setAllJointPropertiesESV_S1C_EEXadL_ZNSU_21getAllJointPropertiesESZ_EEEEEEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8SkeletonENS0_14ProxyCloneableINS0_6Aspect5StateES4_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrIS7_St14default_deleteIS7_EESt4lessISC_ESaISt4pairIKSC_SG_EEENS9_8GetStateEEESaISP_EEXadL_ZNS3_6detail20setAllBodyNodeStatesEPS4_RKSR_EEXadL_ZNSS_20getAllBodyNodeStatesEPKS4_EEEENS5_INS6_10PropertiesES4_S8_INSA_ISB_ISC_SD_ISZ_SE_ISZ_EESI_SaISJ_ISK_S11_EEENS9_13GetPropertiesEEESaIS16_EEXadL_ZNSS_24setAllBodyNodePropertiesEST_RKS18_EEXadL_ZNSS_24getAllBodyNodePropertiesESX_EEEEEENS2_IS4_NS5_IS7_S4_SR_XadL_ZNSS_17setAllJointStatesEST_SV_EEXadL_ZNSS_17getAllJointStatesESX_EEEENS5_ISZ_S4_S18_XadL_ZNSS_21setAllJointPropertiesEST_S1A_EEXadL_ZNSS_21getAllJointPropertiesESX_EEEEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8SkeletonENS0_14ProxyCloneableINS0_6Aspect5StateES4_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrIS7_St14default_deleteIS7_EESt4lessISC_ESaISt4pairIKSC_SG_EEENS9_8GetStateEEESaISP_EEXadL_ZNS3_6detail20setAllBodyNodeStatesEPS4_RKSR_EEXadL_ZNSS_20getAllBodyNodeStatesEPKS4_EEEENS5_INS6_10PropertiesES4_S8_INSA_ISB_ISC_SD_ISZ_SE_ISZ_EESI_SaISJ_ISK_S11_EEENS9_13GetPropertiesEEESaIS16_EEXadL_ZNSS_24setAllBodyNodePropertiesEST_RKS18_EEXadL_ZNSS_24getAllBodyNodePropertiesESX_EEEEEENS2_IS4_NS5_IS7_S4_SR_XadL_ZNSS_17setAllJointStatesEST_SV_EEXadL_ZNSS_17getAllJointStatesESX_EEEENS5_ISZ_S4_S18_XadL_ZNSS_21setAllJointPropertiesEST_S1A_EEXadL_ZNSS_21getAllJointPropertiesESX_EEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8SkeletonENS0_14ProxyCloneableINS0_6Aspect5StateES4_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrIS7_St14default_deleteIS7_EESt4lessISC_ESaISt4pairIKSC_SG_EEENS9_8GetStateEEESaISP_EEXadL_ZNS3_6detail20setAllBodyNodeStatesEPS4_RKSR_EEXadL_ZNSS_20getAllBodyNodeStatesEPKS4_EEEENS5_INS6_10PropertiesES4_S8_INSA_ISB_ISC_SD_ISZ_SE_ISZ_EESI_SaISJ_ISK_S11_EEENS9_13GetPropertiesEEESaIS16_EEXadL_ZNSS_24setAllBodyNodePropertiesEST_RKS18_EEXadL_ZNSS_24getAllBodyNodePropertiesESX_EEEEEENS2_IS4_NS5_IS7_S4_SR_XadL_ZNSS_17setAllJointStatesEST_SV_EEXadL_ZNSS_17getAllJointStatesESX_EEEENS5_ISZ_S4_S18_XadL_ZNSS_21setAllJointPropertiesEST_S1A_EEXadL_ZNSS_21getAllJointPropertiesESX_EEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics8SkeletonENS3_6detail24SkeletonAspectPropertiesEEENS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS4_NS0_14ProxyCloneableINS0_6Aspect5StateES4_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrISC_St14default_deleteISC_EESt4lessISH_ESaISt4pairIKSH_SL_EEENSE_8GetStateEEESaISU_EEXadL_ZNS5_20setAllBodyNodeStatesEPS4_RKSW_EEXadL_ZNS5_20getAllBodyNodeStatesEPKS4_EEEENSA_INSB_10PropertiesES4_SD_INSF_ISG_ISH_SI_IS13_SJ_IS13_EESN_SaISO_ISP_S15_EEENSE_13GetPropertiesEEESaIS1A_EEXadL_ZNS5_24setAllBodyNodePropertiesESX_RKS1C_EEXadL_ZNS5_24getAllBodyNodePropertiesES11_EEEEEENS9_IS4_NSA_ISC_S4_SW_XadL_ZNS5_17setAllJointStatesESX_SZ_EEXadL_ZNS5_17getAllJointStatesES11_EEEENSA_IS13_S4_S1C_XadL_ZNS5_21setAllJointPropertiesESX_S1E_EEXadL_ZNS5_21getAllJointPropertiesES11_EEEEEEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics8SkeletonENS3_6detail24SkeletonAspectPropertiesEEENS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS4_NS0_14ProxyCloneableINS0_6Aspect5StateES4_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrISC_St14default_deleteISC_EESt4lessISH_ESaISt4pairIKSH_SL_EEENSE_8GetStateEEESaISU_EEXadL_ZNS5_20setAllBodyNodeStatesEPS4_RKSW_EEXadL_ZNS5_20getAllBodyNodeStatesEPKS4_EEEENSA_INSB_10PropertiesES4_SD_INSF_ISG_ISH_SI_IS13_SJ_IS13_EESN_SaISO_ISP_S15_EEENSE_13GetPropertiesEEESaIS1A_EEXadL_ZNS5_24setAllBodyNodePropertiesESX_RKS1C_EEXadL_ZNS5_24getAllBodyNodePropertiesES11_EEEEEENS9_IS4_NSA_ISC_S4_SW_XadL_ZNS5_17setAllJointStatesESX_SZ_EEXadL_ZNS5_17getAllJointStatesES11_EEEENSA_IS13_S4_S1C_XadL_ZNS5_21setAllJointPropertiesESX_S1E_EEXadL_ZNS5_21getAllJointPropertiesES11_EEEEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics8SkeletonENS3_6detail24SkeletonAspectPropertiesEEENS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS4_NS0_14ProxyCloneableINS0_6Aspect5StateES4_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrISC_St14default_deleteISC_EESt4lessISH_ESaISt4pairIKSH_SL_EEENSE_8GetStateEEESaISU_EEXadL_ZNS5_20setAllBodyNodeStatesEPS4_RKSW_EEXadL_ZNS5_20getAllBodyNodeStatesEPKS4_EEEENSA_INSB_10PropertiesES4_SD_INSF_ISG_ISH_SI_IS13_SJ_IS13_EESN_SaISO_ISP_S15_EEENSE_13GetPropertiesEEESaIS1A_EEXadL_ZNS5_24setAllBodyNodePropertiesESX_RKS1C_EEXadL_ZNS5_24getAllBodyNodePropertiesES11_EEEEEENS9_IS4_NSA_ISC_S4_SW_XadL_ZNS5_17setAllJointStatesESX_SZ_EEXadL_ZNS5_17getAllJointStatesES11_EEEENSA_IS13_S4_S1C_XadL_ZNS5_21setAllJointPropertiesESX_S1E_EEXadL_ZNS5_21getAllJointPropertiesES11_EEEEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics8BodyNodeENS3_6detail13BodyNodeStateENS5_24BodyNodeAspectPropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics8BodyNodeENS3_6detail13BodyNodeStateENS5_24BodyNodeAspectPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics8BodyNodeENS3_6detail13BodyNodeStateENS5_24BodyNodeAspectPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics8BodyNodeENS3_6detail13BodyNodeStateENS5_24BodyNodeAspectPropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics8BodyNodeENS3_6detail13BodyNodeStateENS5_24BodyNodeAspectPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics8BodyNodeENS3_6detail13BodyNodeStateENS5_24BodyNodeAspectPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEEE();
+  try {
+    _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8BodyNodeENS0_14ProxyCloneableINS0_6Aspect5StateES4_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISB_INS3_4Node5StateESt14default_deleteISE_EEEESF_ISI_EESt4lessISA_ESaISt4pairIKSA_SK_EEEEEXadL_ZNS3_6detail16setAllNodeStatesEPS4_RKSS_EEXadL_ZNST_16getAllNodeStatesEPKS4_EEEENS5_INS6_10PropertiesES4_NS8_IS9_ISA_SB_INSC_ISB_INSD_10PropertiesESF_IS11_EEEESF_IS14_EESM_SaISN_ISO_S16_EEEEEXadL_ZNST_20setAllNodePropertiesESU_RKS1A_EEXadL_ZNST_20getAllNodePropertiesESY_EEEEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8BodyNodeENS0_14ProxyCloneableINS0_6Aspect5StateES4_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISB_INS3_4Node5StateESt14default_deleteISE_EEEESF_ISI_EESt4lessISA_ESaISt4pairIKSA_SK_EEEEEXadL_ZNS3_6detail16setAllNodeStatesEPS4_RKSS_EEXadL_ZNST_16getAllNodeStatesEPKS4_EEEENS5_INS6_10PropertiesES4_NS8_IS9_ISA_SB_INSC_ISB_INSD_10PropertiesESF_IS11_EEEESF_IS14_EESM_SaISN_ISO_S16_EEEEEXadL_ZNST_20setAllNodePropertiesESU_RKS1A_EEXadL_ZNST_20getAllNodePropertiesESY_EEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8BodyNodeENS0_14ProxyCloneableINS0_6Aspect5StateES4_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISB_INS3_4Node5StateESt14default_deleteISE_EEEESF_ISI_EESt4lessISA_ESaISt4pairIKSA_SK_EEEEEXadL_ZNS3_6detail16setAllNodeStatesEPS4_RKSS_EEXadL_ZNST_16getAllNodeStatesEPKS4_EEEENS5_INS6_10PropertiesES4_NS8_IS9_ISA_SB_INSC_ISB_INSD_10PropertiesESF_IS11_EEEESF_IS14_EESM_SaISN_ISO_S16_EEEEEXadL_ZNST_20setAllNodePropertiesESU_RKS1A_EEXadL_ZNST_20getAllNodePropertiesESY_EEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8BodyNodeENS0_14ProxyCloneableINS0_6Aspect5StateES4_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISB_INS3_4Node5StateESt14default_deleteISE_EEEESF_ISI_EESt4lessISA_ESaISt4pairIKSA_SK_EEEEEXadL_ZNS3_6detail16setAllNodeStatesEPS4_RKSS_EEXadL_ZNST_16getAllNodeStatesEPKS4_EEEENS5_INS6_10PropertiesES4_NS8_IS9_ISA_SB_INSC_ISB_INSD_10PropertiesESF_IS11_EEEESF_IS14_EESM_SaISN_ISO_S16_EEEEEXadL_ZNST_20setAllNodePropertiesESU_RKS1A_EEXadL_ZNST_20getAllNodePropertiesESY_EEEEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8BodyNodeENS0_14ProxyCloneableINS0_6Aspect5StateES4_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISB_INS3_4Node5StateESt14default_deleteISE_EEEESF_ISI_EESt4lessISA_ESaISt4pairIKSA_SK_EEEEEXadL_ZNS3_6detail16setAllNodeStatesEPS4_RKSS_EEXadL_ZNST_16getAllNodeStatesEPKS4_EEEENS5_INS6_10PropertiesES4_NS8_IS9_ISA_SB_INSC_ISB_INSD_10PropertiesESF_IS11_EEEESF_IS14_EESM_SaISN_ISO_S16_EEEEEXadL_ZNST_20setAllNodePropertiesESU_RKS1A_EEXadL_ZNST_20getAllNodePropertiesESY_EEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectINS_8dynamics8BodyNodeENS0_14ProxyCloneableINS0_6Aspect5StateES4_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISB_INS3_4Node5StateESt14default_deleteISE_EEEESF_ISI_EESt4lessISA_ESaISt4pairIKSA_SK_EEEEEXadL_ZNS3_6detail16setAllNodeStatesEPS4_RKSS_EEXadL_ZNST_16getAllNodeStatesEPKS4_EEEENS5_INS6_10PropertiesES4_NS8_IS9_ISA_SB_INSC_ISB_INSD_10PropertiesESF_IS11_EEEESF_IS14_EESM_SaISN_ISO_S16_EEEEEXadL_ZNST_20setAllNodePropertiesESU_RKS1A_EEXadL_ZNST_20getAllNodePropertiesESY_EEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics8BodyNodeENS3_6detail13BodyNodeStateENS5_24BodyNodeAspectPropertiesEEENS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS4_NS0_14ProxyCloneableINS0_6Aspect5StateES4_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISH_INS3_4Node5StateESt14default_deleteISK_EEEESL_ISO_EESt4lessISG_ESaISt4pairIKSG_SQ_EEEEEXadL_ZNS5_16setAllNodeStatesEPS4_RKSY_EEXadL_ZNS5_16getAllNodeStatesEPKS4_EEEENSB_INSC_10PropertiesES4_NSE_ISF_ISG_SH_INSI_ISH_INSJ_10PropertiesESL_IS16_EEEESL_IS19_EESS_SaIST_ISU_S1B_EEEEEXadL_ZNS5_20setAllNodePropertiesESZ_RKS1F_EEXadL_ZNS5_20getAllNodePropertiesES13_EEEEEEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics8BodyNodeENS3_6detail13BodyNodeStateENS5_24BodyNodeAspectPropertiesEEENS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS4_NS0_14ProxyCloneableINS0_6Aspect5StateES4_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISH_INS3_4Node5StateESt14default_deleteISK_EEEESL_ISO_EESt4lessISG_ESaISt4pairIKSG_SQ_EEEEEXadL_ZNS5_16setAllNodeStatesEPS4_RKSY_EEXadL_ZNS5_16getAllNodeStatesEPKS4_EEEENSB_INSC_10PropertiesES4_NSE_ISF_ISG_SH_INSI_ISH_INSJ_10PropertiesESL_IS16_EEEESL_IS19_EESS_SaIST_ISU_S1B_EEEEEXadL_ZNS5_20setAllNodePropertiesESZ_RKS1F_EEXadL_ZNS5_20getAllNodePropertiesES13_EEEEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics8BodyNodeENS3_6detail13BodyNodeStateENS5_24BodyNodeAspectPropertiesEEENS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS4_NS0_14ProxyCloneableINS0_6Aspect5StateES4_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISH_INS3_4Node5StateESt14default_deleteISK_EEEESL_ISO_EESt4lessISG_ESaISt4pairIKSG_SQ_EEEEEXadL_ZNS5_16setAllNodeStatesEPS4_RKSY_EEXadL_ZNS5_16getAllNodeStatesEPKS4_EEEENSB_INSC_10PropertiesES4_NSE_ISF_ISG_SH_INSI_ISH_INSJ_10PropertiesESL_IS16_EEEESL_IS19_EESS_SaIST_ISU_S1B_EEEEEXadL_ZNS5_20setAllNodePropertiesESZ_RKS1F_EEXadL_ZNS5_20getAllNodePropertiesES13_EEEEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE();
+  try {
+    _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics5JointENS3_6detail15JointPropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics5JointENS3_6detail15JointPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics5JointENS3_6detail15JointPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics5JointENS3_6detail15JointPropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics5JointENS3_6detail15JointPropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics5JointENS3_6detail15JointPropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics5JointENS2_6detail15JointPropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics5JointENS2_6detail15JointPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics5JointENS2_6detail15JointPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics5JointE();
+  try {
+    _ZN4dart8dynamics5JointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics5JointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEENS3_5JointEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEENS3_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEENS3_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+  try {
+    _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS3_5JointEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS3_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS3_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics10EulerJointENS2_6detail26EulerJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics10EulerJointENS2_6detail26EulerJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics10EulerJointENS2_6detail26EulerJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEJNS2_5JointEEEE();
+  try {
+    _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEJNS2_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEJNS2_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEE();
+  try {
+    _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE();
+  try {
+    _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEENS3_5JointEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEENS3_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEENS3_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics11PlanarJointENS2_6detail27PlanarJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics11PlanarJointENS2_6detail27PlanarJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics11PlanarJointENS2_6detail27PlanarJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+  try {
+    _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS3_5JointEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS3_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS3_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics14PrismaticJointENS2_6detail30PrismaticJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics14PrismaticJointENS2_6detail30PrismaticJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics14PrismaticJointENS2_6detail30PrismaticJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEJNS2_5JointEEEE();
+  try {
+    _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEJNS2_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEJNS2_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEE();
+  try {
+    _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics13RevoluteJointENS2_6detail29RevoluteJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics13RevoluteJointENS2_6detail29RevoluteJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics13RevoluteJointENS2_6detail29RevoluteJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics10ScrewJointENS2_6detail26ScrewJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics10ScrewJointENS2_6detail26ScrewJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics10ScrewJointENS2_6detail26ScrewJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS3_6detail23SoftBodyNodeUniqueStateENS5_28SoftBodyNodeUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS3_6detail23SoftBodyNodeUniqueStateENS5_28SoftBodyNodeUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS3_6detail23SoftBodyNodeUniqueStateENS5_28SoftBodyNodeUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS3_6detail23SoftBodyNodeUniqueStateENS5_28SoftBodyNodeUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS3_6detail23SoftBodyNodeUniqueStateENS5_28SoftBodyNodeUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS3_6detail23SoftBodyNodeUniqueStateENS5_28SoftBodyNodeUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12SoftBodyNodeENS2_6detail23SoftBodyNodeUniqueStateENS4_28SoftBodyNodeUniquePropertiesEEE();
+  try {
+    _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12SoftBodyNodeENS2_6detail23SoftBodyNodeUniqueStateENS4_28SoftBodyNodeUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12SoftBodyNodeENS2_6detail23SoftBodyNodeUniqueStateENS4_28SoftBodyNodeUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics23SkeletonRefCountingBaseE();
+  try {
+    _ZN4dart8dynamics23SkeletonRefCountingBaseE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics23SkeletonRefCountingBaseE" << std::endl;
     throw;
   }
 
@@ -1800,27 +2236,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics6detail27BasicNodeManagerForSkeletonE();
+  void _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_9ShapeNodeEEEEEE();
   try {
-    _ZN4dart8dynamics6detail27BasicNodeManagerForSkeletonE();
+    _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_9ShapeNodeEEEEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail27BasicNodeManagerForSkeletonE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_9ShapeNodeEEEE();
-  try {
-    _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_9ShapeNodeEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_9ShapeNodeEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_9ShapeNodeEEEEEE();
-  try {
-    _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_9ShapeNodeEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_9ShapeNodeEEEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_9ShapeNodeEEEEEE" << std::endl;
     throw;
   }
 
@@ -1832,19 +2252,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorEEEE();
+  void _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_11EndEffectorEEEEEE();
   try {
-    _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorEEEE();
+    _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_11EndEffectorEEEEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorEEEEEE();
-  try {
-    _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorEEEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_11EndEffectorEEEEEE" << std::endl;
     throw;
   }
 
@@ -1853,70 +2265,6 @@ dart::python::util::collection_from_python<
     _ZN4dart8dynamics22BodyNodeSpecializedForIJNS0_6MarkerEEEE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics22BodyNodeSpecializedForIJNS0_6MarkerEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_6MarkerEEEE();
-  try {
-    _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_6MarkerEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_6MarkerEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_6MarkerEEEEEE();
-  try {
-    _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_6MarkerEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_6MarkerEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE();
-  try {
-    _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics28NodeManagerJoinerForSkeletonIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE();
-  try {
-    _ZN4dart8dynamics28NodeManagerJoinerForSkeletonIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics28NodeManagerJoinerForSkeletonIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorENS0_6MarkerEEEE();
-  try {
-    _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorENS0_6MarkerEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorENS0_6MarkerEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorENS2_6MarkerEEEEEE();
-  try {
-    _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorENS2_6MarkerEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorENS2_6MarkerEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_9ShapeNodeEEEEEE();
-  try {
-    _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_9ShapeNodeEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_9ShapeNodeEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_11EndEffectorEEEEEE();
-  try {
-    _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_11EndEffectorEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22BodyNodeSpecializedForIJNS2_11EndEffectorEEEEEE" << std::endl;
     throw;
   }
 
@@ -1952,35 +2300,59 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common20SpecializedForAspectIJNS_8dynamics12VisualAspectENS2_15CollisionAspectENS2_14DynamicsAspectEEEE();
+  void _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22BodyNodeSpecializedForIJNS0_9ShapeNodeEEEEEENS3_INS4_IJNS0_11EndEffectorENS0_6MarkerEEEEEEEEE();
   try {
-    _ZN4dart6common20SpecializedForAspectIJNS_8dynamics12VisualAspectENS2_15CollisionAspectENS2_14DynamicsAspectEEEE();
+    _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22BodyNodeSpecializedForIJNS0_9ShapeNodeEEEEEENS3_INS4_IJNS0_11EndEffectorENS0_6MarkerEEEEEEEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS_8dynamics12VisualAspectENS2_15CollisionAspectENS2_14DynamicsAspectEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22BodyNodeSpecializedForIJNS0_9ShapeNodeEEEEEENS3_INS4_IJNS0_11EndEffectorENS0_6MarkerEEEEEEEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common20SpecializedForAspectIJNS_8dynamics7SupportEEEE();
+  void _ZN4dart8dynamics22BodyNodeSpecializedForIJNS0_9ShapeNodeENS0_11EndEffectorENS0_6MarkerEEEE();
   try {
-    _ZN4dart6common20SpecializedForAspectIJNS_8dynamics7SupportEEEE();
+    _ZN4dart8dynamics22BodyNodeSpecializedForIJNS0_9ShapeNodeENS0_11EndEffectorENS0_6MarkerEEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS_8dynamics7SupportEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart8dynamics22BodyNodeSpecializedForIJNS0_9ShapeNodeENS0_11EndEffectorENS0_6MarkerEEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+  void _ZN4dart8dynamics12JacobianNodeE();
   try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
+    _ZN4dart8dynamics12JacobianNodeE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart8dynamics12JacobianNodeE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  void _ZN4dart8dynamics21TemplatedJacobianNodeINS0_8BodyNodeEEE();
   try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+    _ZN4dart8dynamics21TemplatedJacobianNodeINS0_8BodyNodeEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart8dynamics21TemplatedJacobianNodeINS0_8BodyNodeEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEJNS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS3_NS0_14ProxyCloneableINS0_6Aspect5StateES3_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISF_INS2_4Node5StateESt14default_deleteISI_EEEESJ_ISM_EESt4lessISE_ESaISt4pairIKSE_SO_EEEEEXadL_ZNS4_16setAllNodeStatesEPS3_RKSW_EEXadL_ZNS4_16getAllNodeStatesEPKS3_EEEENS9_INSA_10PropertiesES3_NSC_ISD_ISE_SF_INSG_ISF_INSH_10PropertiesESJ_IS14_EEEESJ_IS17_EESQ_SaISR_ISS_S19_EEEEEXadL_ZNS4_20setAllNodePropertiesESX_RKS1D_EEXadL_ZNS4_20getAllNodePropertiesES11_EEEEEEEEEEEE();
+  try {
+    _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEJNS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS3_NS0_14ProxyCloneableINS0_6Aspect5StateES3_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISF_INS2_4Node5StateESt14default_deleteISI_EEEESJ_ISM_EESt4lessISE_ESaISt4pairIKSE_SO_EEEEEXadL_ZNS4_16setAllNodeStatesEPS3_RKSW_EEXadL_ZNS4_16getAllNodeStatesEPKS3_EEEENS9_INSA_10PropertiesES3_NSC_ISD_ISE_SF_INSG_ISF_INSH_10PropertiesESJ_IS14_EEEESJ_IS17_EESQ_SaISR_ISS_S19_EEEEEXadL_ZNS4_20setAllNodePropertiesESX_RKS1D_EEXadL_ZNS4_20getAllNodePropertiesES11_EEEEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEJNS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS3_NS0_14ProxyCloneableINS0_6Aspect5StateES3_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISF_INS2_4Node5StateESt14default_deleteISI_EEEESJ_ISM_EESt4lessISE_ESaISt4pairIKSE_SO_EEEEEXadL_ZNS4_16setAllNodeStatesEPS3_RKSW_EEXadL_ZNS4_16getAllNodeStatesEPKS3_EEEENS9_INSA_10PropertiesES3_NSC_ISD_ISE_SF_INSG_ISF_INSH_10PropertiesESJ_IS14_EEEESJ_IS17_EESQ_SaISR_ISS_S19_EEEEEXadL_ZNS4_20setAllNodePropertiesESX_RKS1D_EEXadL_ZNS4_20getAllNodePropertiesES11_EEEEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics8BodyNodeE();
+  try {
+    _ZN4dart8dynamics8BodyNodeE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics8BodyNodeE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12SoftBodyNodeENS3_6detail23SoftBodyNodeUniqueStateENS5_28SoftBodyNodeUniquePropertiesEEENS3_8BodyNodeEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12SoftBodyNodeENS3_6detail23SoftBodyNodeUniqueStateENS5_28SoftBodyNodeUniquePropertiesEEENS3_8BodyNodeEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12SoftBodyNodeENS3_6detail23SoftBodyNodeUniqueStateENS5_28SoftBodyNodeUniquePropertiesEEENS3_8BodyNodeEEEE" << std::endl;
     throw;
   }
 
@@ -1992,99 +2364,35 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
-  try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
-  try {
-    _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
-  try {
-    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
-  try {
-    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
   try {
     _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+  try {
+    _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS3_5JointEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS3_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_23EmbedStateAndPropertiesINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS3_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEEEEE" << std::endl;
     throw;
   }
 
@@ -2096,6 +2404,46 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS2_6detail36TranslationalJoint2DUniquePropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS2_6detail36TranslationalJoint2DUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS2_6detail36TranslationalJoint2DUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEJNS2_5JointEEEE();
+  try {
+    _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEJNS2_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEJNS2_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEE();
+  try {
+    _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
+  try {
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEEEE();
   try {
     _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEEEEE();
@@ -2104,187 +2452,19 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics14UniversalJointENS2_6detail30UniversalJointUniquePropertiesEEE();
   try {
-    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE();
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics14UniversalJointENS2_6detail30UniversalJointUniquePropertiesEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS3_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEEEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics14UniversalJointENS2_6detail30UniversalJointUniquePropertiesEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE();
+  void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
   try {
-    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE();
+    _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS3_6detail30PrismaticJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS3_6detail27PlanarJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS3_6detail29RevoluteJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS3_6detail26ScrewJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE();
-  try {
-    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS3_6detail26EulerJointUniquePropertiesEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
-  try {
-    _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS3_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common8ResourceE();
-  try {
-    _ZN4dart6common8ResourceE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common8ResourceE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common8Resource8SeekTypeE();
-  try {
-    _ZN4dart6common8Resource8SeekTypeE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common8Resource8SeekTypeE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common12UriComponentE();
-  try {
-    _ZN4dart6common12UriComponentE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common12UriComponentE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common3UriE();
-  try {
-    _ZN4dart6common3UriE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common3UriE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common17ResourceRetrieverE();
-  try {
-    _ZN4dart6common17ResourceRetrieverE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common17ResourceRetrieverE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common22LocalResourceRetrieverE();
-  try {
-    _ZN4dart6common22LocalResourceRetrieverE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common22LocalResourceRetrieverE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common13SharedLibraryE();
-  try {
-    _ZN4dart6common13SharedLibraryE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common13SharedLibraryE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11NameManagerIPNS_8dynamics4NodeEEE();
-  try {
-    _ZN4dart6common11NameManagerIPNS_8dynamics4NodeEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics4NodeEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11NameManagerIPNS_8dynamics8BodyNodeEEE();
-  try {
-    _ZN4dart6common11NameManagerIPNS_8dynamics8BodyNodeEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics8BodyNodeEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11NameManagerIPNS_8dynamics5JointEEE();
-  try {
-    _ZN4dart6common11NameManagerIPNS_8dynamics5JointEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics5JointEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11NameManagerIPNS_8dynamics15DegreeOfFreedomEEE();
-  try {
-    _ZN4dart6common11NameManagerIPNS_8dynamics15DegreeOfFreedomEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics15DegreeOfFreedomEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11NameManagerIPNS_8dynamics12SoftBodyNodeEEE();
-  try {
-    _ZN4dart6common11NameManagerIPNS_8dynamics12SoftBodyNodeEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics12SoftBodyNodeEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE();
-  try {
-    _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE();
-  try {
-    _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6detail15AspectWithStateINS0_23CompositeTrackingAspectINS_8dynamics11EndEffectorEEENS4_7SupportENS4_6detail16SupportStateDataES5_XadL_ZNS8_13SupportUpdateEPS7_EEEE();
-  try {
-    _ZN4dart6common6detail15AspectWithStateINS0_23CompositeTrackingAspectINS_8dynamics11EndEffectorEEENS4_7SupportENS4_6detail16SupportStateDataES5_XadL_ZNS8_13SupportUpdateEPS7_EEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail15AspectWithStateINS0_23CompositeTrackingAspectINS_8dynamics11EndEffectorEEENS4_7SupportENS4_6detail16SupportStateDataES5_XadL_ZNS8_13SupportUpdateEPS7_EEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common17LockableReferenceE();
-  try {
-    _ZN4dart6common17LockableReferenceE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common17LockableReferenceE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics14UniversalJointENS3_6detail30UniversalJointUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE" << std::endl;
     throw;
   }
 
@@ -2312,11 +2492,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEEvPT_RKT0_();
+  void _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEEvPT_RKT0_();
   try {
-    _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEEvPT_RKT0_();
+    _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEEvPT_RKT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEEvPT_RKT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEEvPT_RKT0_" << std::endl;
     throw;
   }
 
@@ -2336,11 +2516,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEEvPT_RKT0_();
+  void _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEEvPT_RKT0_();
   try {
-    _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEEvPT_RKT0_();
+    _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEEvPT_RKT0_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEEvPT_RKT0_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail23DefaultSetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEEvPT_RKT0_" << std::endl;
     throw;
   }
 
@@ -2368,11 +2548,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEERKT0_PKT_();
   try {
-    _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEERKT0_PKT_();
+    _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEERKT0_PKT_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEERKT0_PKT_" << std::endl;
     throw;
   }
 
@@ -2392,11 +2572,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEERKT0_PKT_();
   try {
-    _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEERKT0_PKT_();
+    _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEERKT0_PKT_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect5StateESB_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail23DefaultGetEmbeddedStateINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect5StateESC_EEEERKT0_PKT_" << std::endl;
     throw;
   }
 
@@ -2480,6 +2660,70 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  try {
+    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEEvPT_RKT0_();
+  try {
+    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEEvPT_RKT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEEvPT_RKT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  try {
+    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEEvPT_RKT0_();
+  try {
+    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEEvPT_RKT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEEvPT_RKT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  try {
+    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  try {
+    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  try {
+    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEEvPT_RKT0_();
+  try {
+    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEEvPT_RKT0_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEEvPT_RKT0_" << std::endl;
+    throw;
+  }
+
   void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEEvPT_RKT0_();
   try {
     _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEEvPT_RKT0_();
@@ -2501,70 +2745,6 @@ dart::python::util::collection_from_python<
     _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS4_6detail30UniversalJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS4_6detail30UniversalJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEEvPT_RKT0_();
-  try {
-    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEEvPT_RKT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEEvPT_RKT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  try {
-    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  try {
-    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  try {
-    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEEvPT_RKT0_();
-  try {
-    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEEvPT_RKT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEEvPT_RKT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  try {
-    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  try {
-    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEEvPT_RKT0_" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEEvPT_RKT0_();
-  try {
-    _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEEvPT_RKT0_();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultSetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEEvPT_RKT0_" << std::endl;
     throw;
   }
 
@@ -2648,6 +2828,70 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  try {
+    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEERKT0_PKT_();
+  try {
+    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEERKT0_PKT_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEERKT0_PKT_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  try {
+    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEERKT0_PKT_();
+  try {
+    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEERKT0_PKT_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEERKT0_PKT_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  try {
+    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  try {
+    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  try {
+    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEERKT0_PKT_();
+  try {
+    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEERKT0_PKT_();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEERKT0_PKT_" << std::endl;
+    throw;
+  }
+
   void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEERKT0_PKT_();
   try {
     _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEERKT0_PKT_();
@@ -2672,67 +2916,123 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics8BodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail13BodyNodeStateENS8_24BodyNodeAspectPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEEE();
   try {
-    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEERKT0_PKT_();
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics8BodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail13BodyNodeStateENS8_24BodyNodeAspectPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEENS4_6detail17GenericJointStateIS8_EENSA_28GenericJointUniquePropertiesIS8_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESE_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics8BodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail13BodyNodeStateENS8_24BodyNodeAspectPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics8BodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail13BodyNodeStateENS8_24BodyNodeAspectPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEE11DelegateTagE();
   try {
-    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics8BodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail13BodyNodeStateENS8_24BodyNodeAspectPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEE11DelegateTagE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS4_6detail30PrismaticJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics8BodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail13BodyNodeStateENS8_24BodyNodeAspectPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEE11DelegateTagE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEEE();
   try {
-    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS4_6detail27PlanarJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEE11DelegateTagE();
   try {
-    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEE11DelegateTagE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS4_6detail29RevoluteJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEE11DelegateTagE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEE();
   try {
-    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEERKT0_PKT_();
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS4_6detail23SoftBodyNodeUniqueStateENS6_28SoftBodyNodeUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES8_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEE11DelegateTagE();
   try {
-    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEE11DelegateTagE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS4_6detail26ScrewJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEE11DelegateTagE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEEE();
   try {
-    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_();
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS4_6detail26EulerJointUniquePropertiesEEENS0_13MakeCloneableINS0_6Aspect10PropertiesES7_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEERKT0_PKT_();
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEE11DelegateTagE();
   try {
-    _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEERKT0_PKT_();
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEE11DelegateTagE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS4_6detail17GenericJointStateIS7_EENS9_28GenericJointUniquePropertiesIS7_EEEENS0_13MakeCloneableINS0_6Aspect10PropertiesESD_EEEERKT0_PKT_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS8_NS4_6detail17GenericJointStateIS7_EENSB_28GenericJointUniquePropertiesIS7_EEEESD_NS0_13MakeCloneableINS0_6Aspect5StateESD_EEXadL_ZNS1_23DefaultSetEmbeddedStateISG_SK_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISG_SK_EESQ_PKSM_EEE11DelegateTagE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEE();
+  try {
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEE11DelegateTagE();
+  try {
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEE11DelegateTagE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEE11DelegateTagE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail23SoftBodyNodeUniqueStateENS8_28SoftBodyNodeUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEEE();
+  try {
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail23SoftBodyNodeUniqueStateENS8_28SoftBodyNodeUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail23SoftBodyNodeUniqueStateENS8_28SoftBodyNodeUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail23SoftBodyNodeUniqueStateENS8_28SoftBodyNodeUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEE11DelegateTagE();
+  try {
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail23SoftBodyNodeUniqueStateENS8_28SoftBodyNodeUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEE11DelegateTagE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail23SoftBodyNodeUniqueStateENS8_28SoftBodyNodeUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEE11DelegateTagE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail23SoftBodyNodeUniqueStateENS8_28SoftBodyNodeUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEE14ConvertIfStateIS9_EE();
+  try {
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail23SoftBodyNodeUniqueStateENS8_28SoftBodyNodeUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEE14ConvertIfStateIS9_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS5_NS4_6detail23SoftBodyNodeUniqueStateENS8_28SoftBodyNodeUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect5StateES9_EEXadL_ZNS1_23DefaultSetEmbeddedStateISB_SF_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISB_SF_EESL_PKSH_EEE14ConvertIfStateIS9_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEE();
+  try {
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEE11DelegateTagE();
+  try {
+    _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEE11DelegateTagE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS4_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEE11DelegateTagE" << std::endl;
     throw;
   }
 
@@ -2741,6 +3041,22 @@ dart::python::util::collection_from_python<
     _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics5JointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail15JointPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics5JointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail15JointPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics5JointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail15JointPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics5JointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail15JointPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics5JointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail15JointPropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10FixedFrameEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail20FixedFramePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10FixedFrameEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail20FixedFramePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10FixedFrameEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail20FixedFramePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
     throw;
   }
 
@@ -2792,19 +3108,99 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics20TranslationalJoint2DEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail36TranslationalJoint2DUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS5_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEESH_SG_NSI_INSJ_10PropertiesESG_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISH_SX_EEvSO_SR_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISH_SX_EESR_SU_EEEE();
   try {
-    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics20TranslationalJoint2DEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail36TranslationalJoint2DUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS5_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEESH_SG_NSI_INSJ_10PropertiesESG_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISH_SX_EEvSO_SR_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISH_SX_EESR_SU_EEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics20TranslationalJoint2DEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail36TranslationalJoint2DUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS5_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEESH_SG_NSI_INSJ_10PropertiesESG_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISH_SX_EEvSO_SR_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISH_SX_EESR_SU_EEEE" << std::endl;
     throw;
   }
 
-  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14UniversalJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30UniversalJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEENS0_32EmbeddedStateAndPropertiesAspectISA_NS5_6detail17GenericJointStateIS9_EENSD_28GenericJointUniquePropertiesIS9_EEEESF_NS0_13MakeCloneableINS0_6Aspect5StateESF_EEXadL_ZNS1_23DefaultSetEmbeddedStateISI_SM_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISI_SM_EESS_PKSO_EEEESI_SH_NSJ_INSK_10PropertiesESH_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISI_SY_EEvSP_SS_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISI_SY_EESS_SV_EEEE();
   try {
-    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14UniversalJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30UniversalJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEENS0_32EmbeddedStateAndPropertiesAspectISA_NS5_6detail17GenericJointStateIS9_EENSD_28GenericJointUniquePropertiesIS9_EEEESF_NS0_13MakeCloneableINS0_6Aspect5StateESF_EEXadL_ZNS1_23DefaultSetEmbeddedStateISI_SM_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISI_SM_EESS_PKSO_EEEESI_SH_NSJ_INSK_10PropertiesESH_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISI_SY_EEvSP_SS_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISI_SY_EESS_SV_EEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14UniversalJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30UniversalJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEENS0_32EmbeddedStateAndPropertiesAspectISA_NS5_6detail17GenericJointStateIS9_EENSD_28GenericJointUniquePropertiesIS9_EEEESF_NS0_13MakeCloneableINS0_6Aspect5StateESF_EEXadL_ZNS1_23DefaultSetEmbeddedStateISI_SM_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISI_SM_EESS_PKSO_EEEESI_SH_NSJ_INSK_10PropertiesESH_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISI_SY_EEvSP_SS_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISI_SY_EESS_SV_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10EulerJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail26EulerJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10EulerJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail26EulerJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10EulerJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail26EulerJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10EulerJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail26EulerJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10EulerJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail26EulerJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10EulerJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail26EulerJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS5_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEESH_SG_NSI_INSJ_10PropertiesESG_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISH_SX_EEvSO_SR_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISH_SX_EESR_SU_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS5_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEESH_SG_NSI_INSJ_10PropertiesESG_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISH_SX_EEvSO_SR_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISH_SX_EESR_SU_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEEEENS0_32EmbeddedStateAndPropertiesAspectIS9_NS5_6detail17GenericJointStateIS8_EENSC_28GenericJointUniquePropertiesIS8_EEEESE_NS0_13MakeCloneableINS0_6Aspect5StateESE_EEXadL_ZNS1_23DefaultSetEmbeddedStateISH_SL_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISH_SL_EESR_PKSN_EEEESH_SG_NSI_INSJ_10PropertiesESG_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISH_SX_EEvSO_SR_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISH_SX_EESR_SU_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics11PlanarJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail27PlanarJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics11PlanarJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail27PlanarJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics11PlanarJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail27PlanarJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics11PlanarJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail27PlanarJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics11PlanarJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail27PlanarJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics11PlanarJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail27PlanarJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEENS0_32EmbeddedStateAndPropertiesAspectISA_NS5_6detail17GenericJointStateIS9_EENSD_28GenericJointUniquePropertiesIS9_EEEESF_NS0_13MakeCloneableINS0_6Aspect5StateESF_EEXadL_ZNS1_23DefaultSetEmbeddedStateISI_SM_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISI_SM_EESS_PKSO_EEEESI_SH_NSJ_INSK_10PropertiesESH_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISI_SY_EEvSP_SS_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISI_SY_EESS_SV_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEENS0_32EmbeddedStateAndPropertiesAspectISA_NS5_6detail17GenericJointStateIS9_EENSD_28GenericJointUniquePropertiesIS9_EEEESF_NS0_13MakeCloneableINS0_6Aspect5StateESF_EEXadL_ZNS1_23DefaultSetEmbeddedStateISI_SM_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISI_SM_EESS_PKSO_EEEESI_SH_NSJ_INSK_10PropertiesESH_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISI_SY_EEvSP_SS_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISI_SY_EESS_SV_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEENS0_32EmbeddedStateAndPropertiesAspectISA_NS5_6detail17GenericJointStateIS9_EENSD_28GenericJointUniquePropertiesIS9_EEEESF_NS0_13MakeCloneableINS0_6Aspect5StateESF_EEXadL_ZNS1_23DefaultSetEmbeddedStateISI_SM_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISI_SM_EESS_PKSO_EEEESI_SH_NSJ_INSK_10PropertiesESH_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISI_SY_EEvSP_SS_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISI_SY_EESS_SV_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30PrismaticJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30PrismaticJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30PrismaticJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30PrismaticJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30PrismaticJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14PrismaticJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30PrismaticJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail29RevoluteJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail29RevoluteJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail29RevoluteJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail29RevoluteJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail29RevoluteJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail29RevoluteJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE" << std::endl;
     throw;
   }
 
@@ -2816,6 +3212,446 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10ScrewJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail26ScrewJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10ScrewJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail26ScrewJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics10ScrewJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail26ScrewJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS6_NS5_6detail23SoftBodyNodeUniqueStateENS9_28SoftBodyNodeUniquePropertiesEEESA_NS0_13MakeCloneableINS0_6Aspect5StateESA_EEXadL_ZNS1_23DefaultSetEmbeddedStateISC_SG_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISC_SG_EESM_PKSI_EEEESC_SB_NSD_INSE_10PropertiesESB_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISC_SS_EEvSJ_SM_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISC_SS_EESM_SP_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS6_NS5_6detail23SoftBodyNodeUniqueStateENS9_28SoftBodyNodeUniquePropertiesEEESA_NS0_13MakeCloneableINS0_6Aspect5StateESA_EEXadL_ZNS1_23DefaultSetEmbeddedStateISC_SG_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISC_SG_EESM_PKSI_EEEESC_SB_NSD_INSE_10PropertiesESB_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISC_SS_EEvSJ_SM_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISC_SS_EESM_SP_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS6_NS5_6detail23SoftBodyNodeUniqueStateENS9_28SoftBodyNodeUniquePropertiesEEESA_NS0_13MakeCloneableINS0_6Aspect5StateESA_EEXadL_ZNS1_23DefaultSetEmbeddedStateISC_SG_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISC_SG_EESM_PKSI_EEEESC_SB_NSD_INSE_10PropertiesESB_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISC_SS_EEvSJ_SM_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISC_SS_EESM_SP_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS6_NS5_6detail23SoftBodyNodeUniqueStateENS9_28SoftBodyNodeUniquePropertiesEEESA_NS0_13MakeCloneableINS0_6Aspect5StateESA_EEXadL_ZNS1_23DefaultSetEmbeddedStateISC_SG_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISC_SG_EESM_PKSI_EEEESC_SB_NSD_INSE_10PropertiesESB_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISC_SS_EEvSJ_SM_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISC_SS_EESM_SP_EEE19ConvertIfPropertiesISA_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS6_NS5_6detail23SoftBodyNodeUniqueStateENS9_28SoftBodyNodeUniquePropertiesEEESA_NS0_13MakeCloneableINS0_6Aspect5StateESA_EEXadL_ZNS1_23DefaultSetEmbeddedStateISC_SG_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISC_SG_EESM_PKSI_EEEESC_SB_NSD_INSE_10PropertiesESB_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISC_SS_EEvSJ_SM_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISC_SS_EESM_SP_EEE19ConvertIfPropertiesISA_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS6_NS5_6detail23SoftBodyNodeUniqueStateENS9_28SoftBodyNodeUniquePropertiesEEESA_NS0_13MakeCloneableINS0_6Aspect5StateESA_EEXadL_ZNS1_23DefaultSetEmbeddedStateISC_SG_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISC_SG_EESM_PKSI_EEEESC_SB_NSD_INSE_10PropertiesESB_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISC_SS_EEvSJ_SM_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISC_SS_EESM_SP_EEE19ConvertIfPropertiesISA_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS6_NS5_6detail23SoftBodyNodeUniqueStateENS9_28SoftBodyNodeUniquePropertiesEEESA_NS0_13MakeCloneableINS0_6Aspect5StateESA_EEXadL_ZNS1_23DefaultSetEmbeddedStateISC_SG_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISC_SG_EESM_PKSI_EEEESC_SB_NSD_INSE_10PropertiesESB_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISC_SS_EEvSJ_SM_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISC_SS_EESM_SP_EEE19ConvertIfPropertiesISB_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS6_NS5_6detail23SoftBodyNodeUniqueStateENS9_28SoftBodyNodeUniquePropertiesEEESA_NS0_13MakeCloneableINS0_6Aspect5StateESA_EEXadL_ZNS1_23DefaultSetEmbeddedStateISC_SG_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISC_SG_EESM_PKSI_EEEESC_SB_NSD_INSE_10PropertiesESB_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISC_SS_EEvSJ_SM_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISC_SS_EESM_SP_EEE19ConvertIfPropertiesISB_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12SoftBodyNodeEEENS0_32EmbeddedStateAndPropertiesAspectIS6_NS5_6detail23SoftBodyNodeUniqueStateENS9_28SoftBodyNodeUniquePropertiesEEESA_NS0_13MakeCloneableINS0_6Aspect5StateESA_EEXadL_ZNS1_23DefaultSetEmbeddedStateISC_SG_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISC_SG_EESM_PKSI_EEEESC_SB_NSD_INSE_10PropertiesESB_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISC_SS_EEvSJ_SM_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISC_SS_EESM_SP_EEE19ConvertIfPropertiesISB_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEENS0_32EmbeddedStateAndPropertiesAspectISA_NS5_6detail17GenericJointStateIS9_EENSD_28GenericJointUniquePropertiesIS9_EEEESF_NS0_13MakeCloneableINS0_6Aspect5StateESF_EEXadL_ZNS1_23DefaultSetEmbeddedStateISI_SM_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISI_SM_EESS_PKSO_EEEESI_SH_NSJ_INSK_10PropertiesESH_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISI_SY_EEvSP_SS_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISI_SY_EESS_SV_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEENS0_32EmbeddedStateAndPropertiesAspectISA_NS5_6detail17GenericJointStateIS9_EENSD_28GenericJointUniquePropertiesIS9_EEEESF_NS0_13MakeCloneableINS0_6Aspect5StateESF_EEXadL_ZNS1_23DefaultSetEmbeddedStateISI_SM_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISI_SM_EESS_PKSO_EEEESI_SH_NSJ_INSK_10PropertiesESH_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISI_SY_EEvSP_SS_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISI_SY_EESS_SV_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS1_19EmbeddedStateAspectINS0_23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEENS0_32EmbeddedStateAndPropertiesAspectISA_NS5_6detail17GenericJointStateIS9_EENSD_28GenericJointUniquePropertiesIS9_EEEESF_NS0_13MakeCloneableINS0_6Aspect5StateESF_EEXadL_ZNS1_23DefaultSetEmbeddedStateISI_SM_EEvPT_RKT0_EEXadL_ZNS1_23DefaultGetEmbeddedStateISI_SM_EESS_PKSO_EEEESI_SH_NSJ_INSK_10PropertiesESH_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISI_SY_EEvSP_SS_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISI_SY_EESS_SV_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics20TranslationalJoint2DEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail36TranslationalJoint2DUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics20TranslationalJoint2DEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail36TranslationalJoint2DUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics20TranslationalJoint2DEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail36TranslationalJoint2DUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics20TranslationalJoint2DEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail36TranslationalJoint2DUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics20TranslationalJoint2DEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail36TranslationalJoint2DUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics20TranslationalJoint2DEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail36TranslationalJoint2DUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14UniversalJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30UniversalJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14UniversalJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30UniversalJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14UniversalJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30UniversalJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14UniversalJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30UniversalJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  try {
+    _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14UniversalJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30UniversalJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6detail24EmbeddedPropertiesAspectINS0_23CompositeTrackingAspectINS_8dynamics14UniversalJointEEENS0_24EmbeddedPropertiesAspectIS5_NS4_6detail30UniversalJointUniquePropertiesEEES9_NS0_13MakeCloneableINS0_6Aspect10PropertiesES9_EEXadL_ZNS1_28DefaultSetEmbeddedPropertiesISA_SE_EEvPT_RKT0_EEXadL_ZNS1_28DefaultGetEmbeddedPropertiesISA_SE_EESK_PKSG_EEE19ConvertIfPropertiesISE_EE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS3_6detail20FixedFramePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics10FixedFrameENS2_6detail20FixedFramePropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics10FixedFrameENS2_6detail20FixedFramePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics10FixedFrameENS2_6detail20FixedFramePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics10FixedFrameE();
+  try {
+    _ZN4dart8dynamics10FixedFrameE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics10FixedFrameE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common7VirtualINS_8dynamics10FixedFrameEEE();
+  try {
+    _ZN4dart6common7VirtualINS_8dynamics10FixedFrameEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics10FixedFrameEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail27BasicNodeManagerForSkeletonE();
+  try {
+    _ZN4dart8dynamics6detail27BasicNodeManagerForSkeletonE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail27BasicNodeManagerForSkeletonE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_9ShapeNodeEEEE();
+  try {
+    _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_9ShapeNodeEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_9ShapeNodeEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_9ShapeNodeEEEEEE();
+  try {
+    _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_9ShapeNodeEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_9ShapeNodeEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorEEEE();
+  try {
+    _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorEEEEEE();
+  try {
+    _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_6MarkerEEEE();
+  try {
+    _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_6MarkerEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_6MarkerEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_6MarkerEEEEEE();
+  try {
+    _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_6MarkerEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_6MarkerEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE();
+  try {
+    _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics28NodeManagerJoinerForSkeletonIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE();
+  try {
+    _ZN4dart8dynamics28NodeManagerJoinerForSkeletonIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics28NodeManagerJoinerForSkeletonIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_11EndEffectorEEEEEENS3_INS4_IJNS0_6MarkerEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorENS0_6MarkerEEEE();
+  try {
+    _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorENS0_6MarkerEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_11EndEffectorENS0_6MarkerEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorENS2_6MarkerEEEEEE();
+  try {
+    _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorENS2_6MarkerEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common7VirtualINS_8dynamics22SkeletonSpecializedForIJNS2_11EndEffectorENS2_6MarkerEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EntityNodeINS3_21TemplatedJacobianNodeINS3_17FixedJacobianNodeEEEEENS3_6detail20EntityNodePropertiesEEEEEE();
+  try {
+    _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EntityNodeINS3_21TemplatedJacobianNodeINS3_17FixedJacobianNodeEEEEENS3_6detail20EntityNodePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common20SpecializedForAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EntityNodeINS3_21TemplatedJacobianNodeINS3_17FixedJacobianNodeEEEEENS3_6detail20EntityNodePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ShapeFrameENS3_6detail20ShapeFramePropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ShapeFrameENS3_6detail20ShapeFramePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10ShapeFrameENS3_6detail20ShapeFramePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EntityNodeINS3_21TemplatedJacobianNodeINS3_17FixedJacobianNodeEEEEENS3_6detail20EntityNodePropertiesEEEEEE();
+  try {
+    _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EntityNodeINS3_21TemplatedJacobianNodeINS3_17FixedJacobianNodeEEEEENS3_6detail20EntityNodePropertiesEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common14RequiresAspectIJNS0_24EmbeddedPropertiesAspectINS_8dynamics10EntityNodeINS3_21TemplatedJacobianNodeINS3_17FixedJacobianNodeEEEEENS3_6detail20EntityNodePropertiesEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics5JointENS2_6detail15JointPropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics5JointENS2_6detail15JointPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics5JointENS2_6detail15JointPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS2_6detail20FixedFramePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS2_6detail20FixedFramePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10FixedFrameENS2_6detail20FixedFramePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10ShapeFrameENS2_6detail20ShapeFramePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10ShapeFrameENS2_6detail20ShapeFramePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10ShapeFrameENS2_6detail20ShapeFramePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10EntityNodeINS2_21TemplatedJacobianNodeINS2_17FixedJacobianNodeEEEEENS2_6detail20EntityNodePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10EntityNodeINS2_21TemplatedJacobianNodeINS2_17FixedJacobianNodeEEEEENS2_6detail20EntityNodePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10EntityNodeINS2_21TemplatedJacobianNodeINS2_17FixedJacobianNodeEEEEENS2_6detail20EntityNodePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics11EndEffectorENS2_6detail21EndEffectorPropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics11EndEffectorENS2_6detail21EndEffectorPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics11EndEffectorENS2_6detail21EndEffectorPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics6MarkerENS2_6detail16MarkerPropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics6MarkerENS2_6detail16MarkerPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics6MarkerENS2_6detail16MarkerPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics8SkeletonENS2_6detail24SkeletonAspectPropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics8SkeletonENS2_6detail24SkeletonAspectPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics8SkeletonENS2_6detail24SkeletonAspectPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS2_6detail26EulerJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS2_6detail26EulerJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10EulerJointENS2_6detail26EulerJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS2_6detail27PlanarJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS2_6detail27PlanarJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics11PlanarJointENS2_6detail27PlanarJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS2_6detail30PrismaticJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS2_6detail30PrismaticJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics14PrismaticJointENS2_6detail30PrismaticJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS2_6detail29RevoluteJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS2_6detail29RevoluteJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics13RevoluteJointENS2_6detail29RevoluteJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS2_6detail26ScrewJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS2_6detail26ScrewJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics10ScrewJointENS2_6detail26ScrewJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS2_6detail36TranslationalJoint2DUniquePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS2_6detail36TranslationalJoint2DUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics20TranslationalJoint2DENS2_6detail36TranslationalJoint2DUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS2_6detail30UniversalJointUniquePropertiesEEE();
+  try {
+    _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS2_6detail30UniversalJointUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common24EmbeddedPropertiesAspectINS_8dynamics14UniversalJointENS2_6detail30UniversalJointUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common15EmbedPropertiesINS_8dynamics10EntityNodeINS2_21TemplatedJacobianNodeINS2_17FixedJacobianNodeEEEEENS2_6detail20EntityNodePropertiesEEE();
+  try {
+    _ZN4dart6common15EmbedPropertiesINS_8dynamics10EntityNodeINS2_21TemplatedJacobianNodeINS2_17FixedJacobianNodeEEEEENS2_6detail20EntityNodePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common15EmbedPropertiesINS_8dynamics10EntityNodeINS2_21TemplatedJacobianNodeINS2_17FixedJacobianNodeEEEEENS2_6detail20EntityNodePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics11EndEffectorENS2_6detail21EndEffectorPropertiesEJNS2_13CompositeNodeINS0_15CompositeJoinerIJNS2_17FixedJacobianNodeENS0_20SpecializedForAspectIJNS2_7SupportEEEEEEEEEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics11EndEffectorENS2_6detail21EndEffectorPropertiesEJNS2_13CompositeNodeINS0_15CompositeJoinerIJNS2_17FixedJacobianNodeENS0_20SpecializedForAspectIJNS2_7SupportEEEEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics11EndEffectorENS2_6detail21EndEffectorPropertiesEJNS2_13CompositeNodeINS0_15CompositeJoinerIJNS2_17FixedJacobianNodeENS0_20SpecializedForAspectIJNS2_7SupportEEEEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics6MarkerENS2_6detail16MarkerPropertiesEJNS2_17FixedJacobianNodeEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics6MarkerENS2_6detail16MarkerPropertiesEJNS2_17FixedJacobianNodeEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics6MarkerENS2_6detail16MarkerPropertiesEJNS2_17FixedJacobianNodeEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics8SkeletonENS2_6detail24SkeletonAspectPropertiesEJNS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS3_NS0_14ProxyCloneableINS0_6Aspect5StateES3_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrISA_St14default_deleteISA_EESt4lessISF_ESaISt4pairIKSF_SJ_EEENSC_8GetStateEEESaISS_EEXadL_ZNS4_20setAllBodyNodeStatesEPS3_RKSU_EEXadL_ZNS4_20getAllBodyNodeStatesEPKS3_EEEENS8_INS9_10PropertiesES3_SB_INSD_ISE_ISF_SG_IS11_SH_IS11_EESL_SaISM_ISN_S13_EEENSC_13GetPropertiesEEESaIS18_EEXadL_ZNS4_24setAllBodyNodePropertiesESV_RKS1A_EEXadL_ZNS4_24getAllBodyNodePropertiesESZ_EEEEEENS7_IS3_NS8_ISA_S3_SU_XadL_ZNS4_17setAllJointStatesESV_SX_EEXadL_ZNS4_17getAllJointStatesESZ_EEEENS8_IS11_S3_S1A_XadL_ZNS4_21setAllJointPropertiesESV_S1C_EEXadL_ZNS4_21getAllJointPropertiesESZ_EEEEEEEEEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics8SkeletonENS2_6detail24SkeletonAspectPropertiesEJNS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS3_NS0_14ProxyCloneableINS0_6Aspect5StateES3_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrISA_St14default_deleteISA_EESt4lessISF_ESaISt4pairIKSF_SJ_EEENSC_8GetStateEEESaISS_EEXadL_ZNS4_20setAllBodyNodeStatesEPS3_RKSU_EEXadL_ZNS4_20getAllBodyNodeStatesEPKS3_EEEENS8_INS9_10PropertiesES3_SB_INSD_ISE_ISF_SG_IS11_SH_IS11_EESL_SaISM_ISN_S13_EEENSC_13GetPropertiesEEESaIS18_EEXadL_ZNS4_24setAllBodyNodePropertiesESV_RKS1A_EEXadL_ZNS4_24getAllBodyNodePropertiesESZ_EEEEEENS7_IS3_NS8_ISA_S3_SU_XadL_ZNS4_17setAllJointStatesESV_SX_EEXadL_ZNS4_17getAllJointStatesESZ_EEEENS8_IS11_S3_S1A_XadL_ZNS4_21setAllJointPropertiesESV_S1C_EEXadL_ZNS4_21getAllJointPropertiesESZ_EEEEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics8SkeletonENS2_6detail24SkeletonAspectPropertiesEJNS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS3_NS0_14ProxyCloneableINS0_6Aspect5StateES3_St6vectorINS0_6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrISA_St14default_deleteISA_EESt4lessISF_ESaISt4pairIKSF_SJ_EEENSC_8GetStateEEESaISS_EEXadL_ZNS4_20setAllBodyNodeStatesEPS3_RKSU_EEXadL_ZNS4_20getAllBodyNodeStatesEPKS3_EEEENS8_INS9_10PropertiesES3_SB_INSD_ISE_ISF_SG_IS11_SH_IS11_EESL_SaISM_ISN_S13_EEENSC_13GetPropertiesEEESaIS18_EEXadL_ZNS4_24setAllBodyNodePropertiesESV_RKS1A_EEXadL_ZNS4_24getAllBodyNodePropertiesESZ_EEEEEENS7_IS3_NS8_ISA_S3_SU_XadL_ZNS4_17setAllJointStatesESV_SX_EEXadL_ZNS4_17getAllJointStatesESZ_EEEENS8_IS11_S3_S1A_XadL_ZNS4_21setAllJointPropertiesESV_S1C_EEXadL_ZNS4_21getAllJointPropertiesESZ_EEEEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics10EulerJointENS2_6detail26EulerJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics10EulerJointENS2_6detail26EulerJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics10EulerJointENS2_6detail26EulerJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics11PlanarJointENS2_6detail27PlanarJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics11PlanarJointENS2_6detail27PlanarJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics11PlanarJointENS2_6detail27PlanarJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm3EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics14PrismaticJointENS2_6detail30PrismaticJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics14PrismaticJointENS2_6detail30PrismaticJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics14PrismaticJointENS2_6detail30PrismaticJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics13RevoluteJointENS2_6detail29RevoluteJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics13RevoluteJointENS2_6detail29RevoluteJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics13RevoluteJointENS2_6detail29RevoluteJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics10ScrewJointENS2_6detail26ScrewJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics10ScrewJointENS2_6detail26ScrewJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics10ScrewJointENS2_6detail26ScrewJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm1EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics20TranslationalJoint2DENS2_6detail36TranslationalJoint2DUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics20TranslationalJoint2DENS2_6detail36TranslationalJoint2DUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics20TranslationalJoint2DENS2_6detail36TranslationalJoint2DUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics14UniversalJointENS2_6detail30UniversalJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
+  try {
+    _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics14UniversalJointENS2_6detail30UniversalJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22EmbedPropertiesOnTopOfINS_8dynamics14UniversalJointENS2_6detail30UniversalJointUniquePropertiesEJNS2_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEEE();
+  try {
+    _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE();
+  try {
+    _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
   try {
     _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
@@ -2824,11 +3660,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+  void _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE();
   try {
-    _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+    _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEEE" << std::endl;
     throw;
   }
 
@@ -2840,6 +3676,62 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS2_6detail23SoftBodyNodeUniqueStateENS4_28SoftBodyNodeUniquePropertiesEEE();
+  try {
+    _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS2_6detail23SoftBodyNodeUniqueStateENS4_28SoftBodyNodeUniquePropertiesEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12SoftBodyNodeENS2_6detail23SoftBodyNodeUniqueStateENS4_28SoftBodyNodeUniquePropertiesEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+  try {
+    _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common32EmbeddedStateAndPropertiesAspectINS_8dynamics12GenericJointINS_4math15RealVectorSpaceILm2EEEEENS2_6detail17GenericJointStateIS6_EENS8_28GenericJointUniquePropertiesIS6_EEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEJNS2_5JointEEEE();
+  try {
+    _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEJNS2_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math8SO3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEJNS2_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEJNS2_5JointEEEE();
+  try {
+    _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEJNS2_5JointEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12GenericJointINS_4math8SE3SpaceEEENS2_6detail17GenericJointStateIS5_EENS7_28GenericJointUniquePropertiesIS5_EEJNS2_5JointEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12SoftBodyNodeENS2_6detail23SoftBodyNodeUniqueStateENS4_28SoftBodyNodeUniquePropertiesEJNS2_8BodyNodeEEEE();
+  try {
+    _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12SoftBodyNodeENS2_6detail23SoftBodyNodeUniqueStateENS4_28SoftBodyNodeUniquePropertiesEJNS2_8BodyNodeEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics12SoftBodyNodeENS2_6detail23SoftBodyNodeUniqueStateENS4_28SoftBodyNodeUniquePropertiesEJNS2_8BodyNodeEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common8ResourceE();
+  try {
+    _ZN4dart6common8ResourceE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common8ResourceE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common8Resource8SeekTypeE();
+  try {
+    _ZN4dart6common8Resource8SeekTypeE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common8Resource8SeekTypeE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart6common13LocalResourceE();
   try {
     _ZN4dart6common13LocalResourceE();
@@ -2848,11 +3740,387 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart6common12UriComponentE();
+  try {
+    _ZN4dart6common12UriComponentE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12UriComponentE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common3UriE();
+  try {
+    _ZN4dart6common3UriE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common3UriE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common17ResourceRetrieverE();
+  try {
+    _ZN4dart6common17ResourceRetrieverE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common17ResourceRetrieverE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common22LocalResourceRetrieverE();
+  try {
+    _ZN4dart6common22LocalResourceRetrieverE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common22LocalResourceRetrieverE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common17LockableReferenceE();
+  try {
+    _ZN4dart6common17LockableReferenceE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common17LockableReferenceE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11NameManagerIPNS_8dynamics4NodeEEE();
+  try {
+    _ZN4dart6common11NameManagerIPNS_8dynamics4NodeEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics4NodeEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11NameManagerIPNS_8dynamics8BodyNodeEEE();
+  try {
+    _ZN4dart6common11NameManagerIPNS_8dynamics8BodyNodeEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics8BodyNodeEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11NameManagerIPNS_8dynamics5JointEEE();
+  try {
+    _ZN4dart6common11NameManagerIPNS_8dynamics5JointEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics5JointEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11NameManagerIPNS_8dynamics15DegreeOfFreedomEEE();
+  try {
+    _ZN4dart6common11NameManagerIPNS_8dynamics15DegreeOfFreedomEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics15DegreeOfFreedomEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11NameManagerIPNS_8dynamics12SoftBodyNodeEEE();
+  try {
+    _ZN4dart6common11NameManagerIPNS_8dynamics12SoftBodyNodeEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11NameManagerIPNS_8dynamics12SoftBodyNodeEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE();
+  try {
+    _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics8SkeletonEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE();
+  try {
+    _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common11NameManagerISt10shared_ptrINS_8dynamics11SimpleFrameEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common8ObserverE();
+  try {
+    _ZN4dart6common8ObserverE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common8ObserverE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common13SharedLibraryE();
+  try {
+    _ZN4dart6common13SharedLibraryE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common13SharedLibraryE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6signal6detail18ConnectionBodyBaseE();
+  try {
+    _ZN4dart6common6signal6detail18ConnectionBodyBaseE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6signal6detail18ConnectionBodyBaseE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common10ConnectionE();
+  try {
+    _ZN4dart6common10ConnectionE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common10ConnectionE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEE();
+  try {
+    _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEPKNS2_5FrameES8_ENS0_6signal6detail15DefaultCombinerEEE();
+  try {
+    _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEPKNS2_5FrameES8_ENS0_6signal6detail15DefaultCombinerEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityEPKNS2_5FrameES8_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESD_ENS0_6signal6detail15DefaultCombinerEEE();
+  try {
+    _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESD_ENS0_6signal6detail15DefaultCombinerEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESD_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEE();
+  try {
+    _ZN4dart6common6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS2_5ShapeEESA_ENS0_6signal6detail15DefaultCombinerEEE();
+  try {
+    _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS2_5ShapeEESA_ENS0_6signal6detail15DefaultCombinerEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS2_5ShapeEESA_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESA_ENS0_6signal6detail15DefaultCombinerEEE();
+  try {
+    _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESA_ENS0_6signal6detail15DefaultCombinerEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESA_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS2_5ShapeEEENS0_6signal6detail15DefaultCombinerEEE();
+  try {
+    _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS2_5ShapeEEENS0_6signal6detail15DefaultCombinerEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS2_5ShapeEEENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEE();
+  try {
+    _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ENS0_6signal6detail15DefaultCombinerEEE();
+  try {
+    _ZN4dart6common6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ENS0_6signal6detail15DefaultCombinerEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES9_ENS0_6signal6detail15DefaultCombinerEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common16ScopedConnectionE();
+  try {
+    _ZN4dart6common16ScopedConnectionE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common16ScopedConnectionE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEPKNS3_5FrameES9_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  try {
+    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEPKNS3_5FrameES9_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEPKNS3_5FrameES9_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  try {
+    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESE_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEEEE();
+  try {
+    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics6EntityEENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESF_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  try {
+    _ZN4dart6common12SlotRegisterINS0_6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESF_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvSt10shared_ptrIKNS_8dynamics12MetaSkeletonEERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESF_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS3_5ShapeEESB_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  try {
+    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS3_5ShapeEESB_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKSt10shared_ptrINS3_5ShapeEESB_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESB_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  try {
+    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESB_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics10ShapeFrameERKN5Eigen9TransformIdLi3ELi1ELi0EEESB_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS3_5ShapeEEENS0_6signal6detail15DefaultCombinerEEEEE();
+  try {
+    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS3_5ShapeEEENS0_6signal6detail15DefaultCombinerEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeESt10shared_ptrIKNS3_5ShapeEEENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEEEE();
+  try {
+    _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvPKNS_8dynamics8BodyNodeEENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart6common12SlotRegisterINS0_6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  try {
+    _ZN4dart6common12SlotRegisterINS0_6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_ENS0_6signal6detail15DefaultCombinerEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart6common12SlotRegisterINS0_6SignalIFvRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_ENS0_6signal6detail15DefaultCombinerEEEEE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart6common5TimerE();
   try {
     _ZN4dart6common5TimerE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart6common5TimerE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math8AxisTypeE();
+  try {
+    _ZN4dart4math8AxisTypeE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math8AxisTypeE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math8wrapToPiEd();
+  try {
+    _ZN4dart4math8wrapToPiEd();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math8wrapToPiEd" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math18IntersectionResultE();
+  try {
+    _ZN4dart4math18IntersectionResultE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math18IntersectionResultE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math11BoundingBoxE();
+  try {
+    _ZN4dart4math11BoundingBoxE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math11BoundingBoxE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math15RealVectorSpaceILm1EEE();
+  try {
+    _ZN4dart4math15RealVectorSpaceILm1EEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math15RealVectorSpaceILm1EEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math15RealVectorSpaceILm2EEE();
+  try {
+    _ZN4dart4math15RealVectorSpaceILm2EEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math15RealVectorSpaceILm2EEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math15RealVectorSpaceILm3EEE();
+  try {
+    _ZN4dart4math15RealVectorSpaceILm3EEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math15RealVectorSpaceILm3EEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math8SO3SpaceE();
+  try {
+    _ZN4dart4math8SO3SpaceE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math8SO3SpaceE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math8SE3SpaceE();
+  try {
+    _ZN4dart4math8SE3SpaceE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math8SE3SpaceE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math19MapsToManifoldPointE();
+  try {
+    _ZN4dart4math19MapsToManifoldPointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math19MapsToManifoldPointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math15toManifoldPointINS0_8SO3SpaceEEENT_5PointERKNS3_14EuclideanPointE();
+  try {
+    _ZN4dart4math15toManifoldPointINS0_8SO3SpaceEEENT_5PointERKNS3_14EuclideanPointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math15toManifoldPointINS0_8SO3SpaceEEENT_5PointERKNS3_14EuclideanPointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart4math15toManifoldPointINS0_8SE3SpaceEEENT_5PointERKNS3_14EuclideanPointE();
+  try {
+    _ZN4dart4math15toManifoldPointINS0_8SE3SpaceEEENT_5PointERKNS3_14EuclideanPointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart4math15toManifoldPointINS0_8SE3SpaceEEENT_5PointERKNS3_14EuclideanPointE" << std::endl;
     throw;
   }
 
@@ -2992,11 +4260,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi2ELi1ELi0ELi2ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_();
+  void _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi6ELi1ELi0ELi6ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_();
   try {
-    _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi2ELi1ELi0ELi2ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_();
+    _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi6ELi1ELi0ELi6ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi2ELi1ELi0ELi2ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi6ELi1ELi0ELi6ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_" << std::endl;
     throw;
   }
 
@@ -3008,11 +4276,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi6ELi1ELi0ELi6ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_();
+  void _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi2ELi1ELi0ELi2ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_();
   try {
-    _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi6ELi1ELi0ELi6ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_();
+    _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi2ELi1ELi0ELi2ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi6ELi1ELi0ELi6ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_" << std::endl;
+    std::cerr << "Exception in: _ZN4dart4math4clipIN5Eigen6MatrixIdLin1ELi1ELi0ELin1ELi1EEENS3_IdLi2ELi1ELi0ELi2ELi1EEEEENT_11PlainObjectERKNS2_10MatrixBaseIS6_EERKNS8_IT0_EESF_" << std::endl;
     throw;
   }
 
@@ -3296,102 +4564,6 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart4math8AxisTypeE();
-  try {
-    _ZN4dart4math8AxisTypeE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math8AxisTypeE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math8wrapToPiEd();
-  try {
-    _ZN4dart4math8wrapToPiEd();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math8wrapToPiEd" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math18IntersectionResultE();
-  try {
-    _ZN4dart4math18IntersectionResultE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math18IntersectionResultE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math11BoundingBoxE();
-  try {
-    _ZN4dart4math11BoundingBoxE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math11BoundingBoxE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math15RealVectorSpaceILm1EEE();
-  try {
-    _ZN4dart4math15RealVectorSpaceILm1EEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math15RealVectorSpaceILm1EEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math15RealVectorSpaceILm2EEE();
-  try {
-    _ZN4dart4math15RealVectorSpaceILm2EEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math15RealVectorSpaceILm2EEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math15RealVectorSpaceILm3EEE();
-  try {
-    _ZN4dart4math15RealVectorSpaceILm3EEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math15RealVectorSpaceILm3EEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math8SO3SpaceE();
-  try {
-    _ZN4dart4math8SO3SpaceE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math8SO3SpaceE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math8SE3SpaceE();
-  try {
-    _ZN4dart4math8SE3SpaceE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math8SE3SpaceE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math19MapsToManifoldPointE();
-  try {
-    _ZN4dart4math19MapsToManifoldPointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math19MapsToManifoldPointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math15toManifoldPointINS0_8SO3SpaceEEENT_5PointERKNS3_14EuclideanPointE();
-  try {
-    _ZN4dart4math15toManifoldPointINS0_8SO3SpaceEEENT_5PointERKNS3_14EuclideanPointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math15toManifoldPointINS0_8SO3SpaceEEENT_5PointERKNS3_14EuclideanPointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart4math15toManifoldPointINS0_8SE3SpaceEEENT_5PointERKNS3_14EuclideanPointE();
-  try {
-    _ZN4dart4math15toManifoldPointINS0_8SE3SpaceEEENT_5PointERKNS3_14EuclideanPointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart4math15toManifoldPointINS0_8SE3SpaceEEENT_5PointERKNS3_14EuclideanPointE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart11integration16IntegrableSystemE();
   try {
     _ZN4dart11integration16IntegrableSystemE();
@@ -3408,19 +4580,19 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart11integration13RK4IntegratorE();
-  try {
-    _ZN4dart11integration13RK4IntegratorE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart11integration13RK4IntegratorE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart11integration15EulerIntegratorE();
   try {
     _ZN4dart11integration15EulerIntegratorE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart11integration15EulerIntegratorE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart11integration13RK4IntegratorE();
+  try {
+    _ZN4dart11integration13RK4IntegratorE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart11integration13RK4IntegratorE" << std::endl;
     throw;
   }
 
@@ -3472,6 +4644,30 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_9ShapeNodeEEEEEENS3_INS4_IJNS0_11EndEffectorENS0_6MarkerEEEEEEEEE();
+  try {
+    _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_9ShapeNodeEEEEEENS3_INS4_IJNS0_11EndEffectorENS0_6MarkerEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics28NodeManagerJoinerForBodyNodeIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_9ShapeNodeEEEEEENS3_INS4_IJNS0_11EndEffectorENS0_6MarkerEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics28NodeManagerJoinerForSkeletonIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_9ShapeNodeEEEEEENS3_INS4_IJNS0_11EndEffectorENS0_6MarkerEEEEEEEEE();
+  try {
+    _ZN4dart8dynamics28NodeManagerJoinerForSkeletonIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_9ShapeNodeEEEEEENS3_INS4_IJNS0_11EndEffectorENS0_6MarkerEEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics28NodeManagerJoinerForSkeletonIJNS_6common7VirtualINS0_22SkeletonSpecializedForIJNS0_9ShapeNodeEEEEEENS3_INS4_IJNS0_11EndEffectorENS0_6MarkerEEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_9ShapeNodeENS0_11EndEffectorENS0_6MarkerEEEE();
+  try {
+    _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_9ShapeNodeENS0_11EndEffectorENS0_6MarkerEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics22SkeletonSpecializedForIJNS0_9ShapeNodeENS0_11EndEffectorENS0_6MarkerEEEE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart8dynamics12MetaSkeletonE();
   try {
     _ZN4dart8dynamics12MetaSkeletonE();
@@ -3496,14 +4692,6 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics23SkeletonRefCountingBaseE();
-  try {
-    _ZN4dart8dynamics23SkeletonRefCountingBaseE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics23SkeletonRefCountingBaseE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart8dynamicsL13INVALID_INDEXE();
   try {
     _ZN4dart8dynamicsL13INVALID_INDEXE();
@@ -3517,14 +4705,6 @@ dart::python::util::collection_from_python<
     _ZN4dart8dynamics14NodeDestructorE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics14NodeDestructorE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics10ShapeFrameE();
-  try {
-    _ZN4dart8dynamics10ShapeFrameE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics10ShapeFrameE" << std::endl;
     throw;
   }
 
@@ -3656,43 +4836,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics12JacobianNodeE();
-  try {
-    _ZN4dart8dynamics12JacobianNodeE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics12JacobianNodeE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics21TemplatedJacobianNodeINS0_8BodyNodeEEE();
-  try {
-    _ZN4dart8dynamics21TemplatedJacobianNodeINS0_8BodyNodeEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics21TemplatedJacobianNodeINS0_8BodyNodeEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics8BodyNodeE();
-  try {
-    _ZN4dart8dynamics8BodyNodeE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics8BodyNodeE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart8dynamics12SoftBodyNodeE();
   try {
     _ZN4dart8dynamics12SoftBodyNodeE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics12SoftBodyNodeE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics5JointE();
-  try {
-    _ZN4dart8dynamics5JointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics5JointE" << std::endl;
     throw;
   }
 
@@ -3709,6 +4857,30 @@ dart::python::util::collection_from_python<
     _ZN4dart8dynamics11EndEffectorE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics11EndEffectorE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS0_10ShapeFrameEEEEEE();
+  try {
+    _ZN4dart8dynamics18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS0_10ShapeFrameEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS0_10ShapeFrameEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics23CompositePropertiesNodeINS0_18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS0_10ShapeFrameEEEEEEEE();
+  try {
+    _ZN4dart8dynamics23CompositePropertiesNodeINS0_18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS0_10ShapeFrameEEEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics23CompositePropertiesNodeINS0_18CompositeStateNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS0_10ShapeFrameEEEEEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics13CompositeNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS0_10ShapeFrameEEEEEE();
+  try {
+    _ZN4dart8dynamics13CompositeNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS0_10ShapeFrameEEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics13CompositeNodeINS_6common15CompositeJoinerIJNS0_17FixedJacobianNodeENS0_10ShapeFrameEEEEEE" << std::endl;
     throw;
   }
 
@@ -3736,14 +4908,6 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart9collision15CollisionResultE();
-  try {
-    _ZN4dart9collision15CollisionResultE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart9collision15CollisionResultE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart9collision15CollisionFilterE();
   try {
     _ZN4dart9collision15CollisionFilterE();
@@ -3757,6 +4921,14 @@ dart::python::util::collection_from_python<
     _ZN4dart9collision15CollisionOptionE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart9collision15CollisionOptionE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart9collision15CollisionResultE();
+  try {
+    _ZN4dart9collision15CollisionResultE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart9collision15CollisionResultE" << std::endl;
     throw;
   }
 
@@ -3805,6 +4977,14 @@ dart::python::util::collection_from_python<
     _ZN4dart8dynamics10WorldFrameE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics10WorldFrameE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics21TemplatedJacobianNodeINS0_17FixedJacobianNodeEEE();
+  try {
+    _ZN4dart8dynamics21TemplatedJacobianNodeINS0_17FixedJacobianNodeEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics21TemplatedJacobianNodeINS0_17FixedJacobianNodeEEE" << std::endl;
     throw;
   }
 
@@ -4192,11 +5372,19 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics17FixedJacobianNodeE();
+  void _ZN4dart8dynamics6detail14EntityNodeBaseINS0_21TemplatedJacobianNodeINS0_17FixedJacobianNodeEEELb0EEE();
   try {
-    _ZN4dart8dynamics17FixedJacobianNodeE();
+    _ZN4dart8dynamics6detail14EntityNodeBaseINS0_21TemplatedJacobianNodeINS0_17FixedJacobianNodeEEELb0EEE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics17FixedJacobianNodeE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail14EntityNodeBaseINS0_21TemplatedJacobianNodeINS0_17FixedJacobianNodeEEELb0EEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics10EntityNodeINS0_21TemplatedJacobianNodeINS0_17FixedJacobianNodeEEEEE();
+  try {
+    _ZN4dart8dynamics10EntityNodeINS0_21TemplatedJacobianNodeINS0_17FixedJacobianNodeEEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics10EntityNodeINS0_21TemplatedJacobianNodeINS0_17FixedJacobianNodeEEEEE" << std::endl;
     throw;
   }
 
@@ -4237,22 +5425,6 @@ dart::python::util::collection_from_python<
     _ZN4dart8dynamics12GenericJointINS_4math8SO3SpaceEEE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics12GenericJointINS_4math8SO3SpaceEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEE();
-  try {
-    _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm3EEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEE();
-  try {
-    _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics12GenericJointINS_4math15RealVectorSpaceILm1EEEEE" << std::endl;
     throw;
   }
 
@@ -4392,14 +5564,6 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart10constraint20JointLimitConstraintE();
-  try {
-    _ZN4dart10constraint20JointLimitConstraintE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart10constraint20JointLimitConstraintE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart10constraint15JointConstraintE();
   try {
     _ZN4dart10constraint15JointConstraintE();
@@ -4408,35 +5572,19 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart10constraint19BallJointConstraintE();
+  try {
+    _ZN4dart10constraint19BallJointConstraintE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart10constraint19BallJointConstraintE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart10constraint16ConstrainedGroupE();
   try {
     _ZN4dart10constraint16ConstrainedGroupE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart10constraint16ConstrainedGroupE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart10constraint9LCPSolverE();
-  try {
-    _ZN4dart10constraint9LCPSolverE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart10constraint9LCPSolverE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart10constraint12PGSLCPSolverE();
-  try {
-    _ZN4dart10constraint12PGSLCPSolverE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart10constraint12PGSLCPSolverE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart10constraint9PGSOptionE();
-  try {
-    _ZN4dart10constraint9PGSOptionE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart10constraint9PGSOptionE" << std::endl;
     throw;
   }
 
@@ -4456,6 +5604,14 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart10constraint20JointLimitConstraintE();
+  try {
+    _ZN4dart10constraint20JointLimitConstraintE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart10constraint20JointLimitConstraintE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart10constraint20ServoMotorConstraintE();
   try {
     _ZN4dart10constraint20ServoMotorConstraintE();
@@ -4472,11 +5628,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart10constraint19BallJointConstraintE();
+  void _ZN4dart10constraint9LCPSolverE();
   try {
-    _ZN4dart10constraint19BallJointConstraintE();
+    _ZN4dart10constraint9LCPSolverE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart10constraint19BallJointConstraintE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart10constraint9LCPSolverE" << std::endl;
     throw;
   }
 
@@ -4504,6 +5660,22 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart10constraint12PGSLCPSolverE();
+  try {
+    _ZN4dart10constraint12PGSLCPSolverE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart10constraint12PGSLCPSolverE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart10constraint9PGSOptionE();
+  try {
+    _ZN4dart10constraint9PGSOptionE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart10constraint9PGSOptionE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart9optimizer21GradientDescentSolverE();
   try {
     _ZN4dart9optimizer21GradientDescentSolverE();
@@ -4525,6 +5697,86 @@ dart::python::util::collection_from_python<
     _ZN4dart9optimizer21GradientDescentSolver10PropertiesE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart9optimizer21GradientDescentSolver10PropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics9MeshShape9ColorModeE();
+  try {
+    _ZN4dart8dynamics9MeshShape9ColorModeE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics9MeshShape9ColorModeE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics10ArrowShape10PropertiesE();
+  try {
+    _ZN4dart8dynamics10ArrowShape10PropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics10ArrowShape10PropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics35AssimpInputResourceRetrieverAdaptorE();
+  try {
+    _ZN4dart8dynamics35AssimpInputResourceRetrieverAdaptorE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics35AssimpInputResourceRetrieverAdaptorE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SO3SpaceEEE();
+  try {
+    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SO3SpaceEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SO3SpaceEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm3EEEEE();
+  try {
+    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm3EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm3EEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SE3SpaceEEE();
+  try {
+    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SE3SpaceEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SE3SpaceEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm1EEEEE();
+  try {
+    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm1EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm1EEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm2EEEEE();
+  try {
+    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm2EEEEE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm2EEEEE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics9BallJointE();
+  try {
+    _ZN4dart8dynamics9BallJointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics9BallJointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics9BallJoint10PropertiesE();
+  try {
+    _ZN4dart8dynamics9BallJoint10PropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics9BallJoint10PropertiesE" << std::endl;
     throw;
   }
 
@@ -4568,331 +5820,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SO3SpaceEEE();
-  try {
-    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SO3SpaceEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SO3SpaceEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm3EEEEE();
-  try {
-    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm3EEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm3EEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm2EEEEE();
-  try {
-    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm2EEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm2EEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm1EEEEE();
-  try {
-    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm1EEEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math15RealVectorSpaceILm1EEEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SE3SpaceEEE();
-  try {
-    _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SE3SpaceEEE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail22GenericJointPropertiesINS_4math8SE3SpaceEEE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics9BallJointE();
-  try {
-    _ZN4dart8dynamics9BallJointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics9BallJointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics9BallJoint10PropertiesE();
-  try {
-    _ZN4dart8dynamics9BallJoint10PropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics9BallJoint10PropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics12ZeroDofJointE();
-  try {
-    _ZN4dart8dynamics12ZeroDofJointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics12ZeroDofJointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics12ZeroDofJoint10PropertiesE();
-  try {
-    _ZN4dart8dynamics12ZeroDofJoint10PropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics12ZeroDofJoint10PropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics11PlanarJointE();
-  try {
-    _ZN4dart8dynamics11PlanarJointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics11PlanarJointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail9PlaneTypeE();
-  try {
-    _ZN4dart8dynamics6detail9PlaneTypeE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail9PlaneTypeE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail21PlanarJointPropertiesE();
-  try {
-    _ZN4dart8dynamics6detail21PlanarJointPropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail21PlanarJointPropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics20TranslationalJoint2DE();
-  try {
-    _ZN4dart8dynamics20TranslationalJoint2DE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics20TranslationalJoint2DE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail30TranslationalJoint2DPropertiesE();
-  try {
-    _ZN4dart8dynamics6detail30TranslationalJoint2DPropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail30TranslationalJoint2DPropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6IkFastE();
-  try {
-    _ZN4dart8dynamics6IkFastE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6IkFastE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics14UniversalJointE();
-  try {
-    _ZN4dart8dynamics14UniversalJointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics14UniversalJointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail24UniversalJointPropertiesE();
-  try {
-    _ZN4dart8dynamics6detail24UniversalJointPropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail24UniversalJointPropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics9ConeShapeE();
-  try {
-    _ZN4dart8dynamics9ConeShapeE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics9ConeShapeE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics9MeshShape9ColorModeE();
-  try {
-    _ZN4dart8dynamics9MeshShape9ColorModeE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics9MeshShape9ColorModeE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics10ArrowShape10PropertiesE();
-  try {
-    _ZN4dart8dynamics10ArrowShape10PropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics10ArrowShape10PropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics11SphereShapeE();
-  try {
-    _ZN4dart8dynamics11SphereShapeE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics11SphereShapeE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics14PrismaticJointE();
-  try {
-    _ZN4dart8dynamics14PrismaticJointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics14PrismaticJointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail24PrismaticJointPropertiesE();
-  try {
-    _ZN4dart8dynamics6detail24PrismaticJointPropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail24PrismaticJointPropertiesE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart8dynamics12CapsuleShapeE();
   try {
     _ZN4dart8dynamics12CapsuleShapeE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics12CapsuleShapeE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics18TranslationalJointE();
-  try {
-    _ZN4dart8dynamics18TranslationalJointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics18TranslationalJointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics18TranslationalJoint10PropertiesE();
-  try {
-    _ZN4dart8dynamics18TranslationalJoint10PropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics18TranslationalJoint10PropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics13RevoluteJointE();
-  try {
-    _ZN4dart8dynamics13RevoluteJointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics13RevoluteJointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail23RevoluteJointPropertiesE();
-  try {
-    _ZN4dart8dynamics6detail23RevoluteJointPropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail23RevoluteJointPropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics17PointMassNotifierE();
-  try {
-    _ZN4dart8dynamics17PointMassNotifierE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics17PointMassNotifierE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics9PointMass5StateE();
-  try {
-    _ZN4dart8dynamics9PointMass5StateE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics9PointMass5StateE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics9PointMass10PropertiesE();
-  try {
-    _ZN4dart8dynamics9PointMass10PropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics9PointMass10PropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamicsL29DART_DEFAULT_VERTEX_STIFFNESSE();
-  try {
-    _ZN4dart8dynamicsL29DART_DEFAULT_VERTEX_STIFFNESSE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamicsL29DART_DEFAULT_VERTEX_STIFFNESSE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamicsL26DART_DEFAULT_EDGE_STIFNESSE();
-  try {
-    _ZN4dart8dynamicsL26DART_DEFAULT_EDGE_STIFNESSE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamicsL26DART_DEFAULT_EDGE_STIFNESSE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamicsL26DART_DEFAULT_DAMPING_COEFFE();
-  try {
-    _ZN4dart8dynamicsL26DART_DEFAULT_DAMPING_COEFFE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamicsL26DART_DEFAULT_DAMPING_COEFFE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail22SoftBodyNodePropertiesE();
-  try {
-    _ZN4dart8dynamics6detail22SoftBodyNodePropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail22SoftBodyNodePropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics18SoftBodyNodeHelperE();
-  try {
-    _ZN4dart8dynamics18SoftBodyNodeHelperE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics18SoftBodyNodeHelperE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics9WeldJointE();
-  try {
-    _ZN4dart8dynamics9WeldJointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics9WeldJointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics9WeldJoint10PropertiesE();
-  try {
-    _ZN4dart8dynamics9WeldJoint10PropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics9WeldJoint10PropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics10ScrewJointE();
-  try {
-    _ZN4dart8dynamics10ScrewJointE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics10ScrewJointE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics6detail20ScrewJointPropertiesE();
-  try {
-    _ZN4dart8dynamics6detail20ScrewJointPropertiesE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics6detail20ScrewJointPropertiesE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8dynamics35AssimpInputResourceRetrieverAdaptorE();
-  try {
-    _ZN4dart8dynamics35AssimpInputResourceRetrieverAdaptorE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics35AssimpInputResourceRetrieverAdaptorE" << std::endl;
     throw;
   }
 
@@ -4909,6 +5841,14 @@ dart::python::util::collection_from_python<
     _ZN4dart8dynamics5Chain14IncludeBothTagE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics5Chain14IncludeBothTagE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics9ConeShapeE();
+  try {
+    _ZN4dart8dynamics9ConeShapeE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics9ConeShapeE" << std::endl;
     throw;
   }
 
@@ -4952,11 +5892,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart8dynamics19SharedLibraryIkFastE();
+  void _ZN4dart8dynamics6IkFastE();
   try {
-    _ZN4dart8dynamics19SharedLibraryIkFastE();
+    _ZN4dart8dynamics6IkFastE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8dynamics19SharedLibraryIkFastE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart8dynamics6IkFastE" << std::endl;
     throw;
   }
 
@@ -4965,6 +5905,238 @@ dart::python::util::collection_from_python<
     _ZN4dart8dynamics26MultiSphereConvexHullShapeE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8dynamics26MultiSphereConvexHullShapeE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics11PlanarJointE();
+  try {
+    _ZN4dart8dynamics11PlanarJointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics11PlanarJointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail9PlaneTypeE();
+  try {
+    _ZN4dart8dynamics6detail9PlaneTypeE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail9PlaneTypeE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail21PlanarJointPropertiesE();
+  try {
+    _ZN4dart8dynamics6detail21PlanarJointPropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail21PlanarJointPropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics17PointMassNotifierE();
+  try {
+    _ZN4dart8dynamics17PointMassNotifierE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics17PointMassNotifierE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics9PointMass5StateE();
+  try {
+    _ZN4dart8dynamics9PointMass5StateE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics9PointMass5StateE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics9PointMass10PropertiesE();
+  try {
+    _ZN4dart8dynamics9PointMass10PropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics9PointMass10PropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics14PrismaticJointE();
+  try {
+    _ZN4dart8dynamics14PrismaticJointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics14PrismaticJointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail24PrismaticJointPropertiesE();
+  try {
+    _ZN4dart8dynamics6detail24PrismaticJointPropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail24PrismaticJointPropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics13RevoluteJointE();
+  try {
+    _ZN4dart8dynamics13RevoluteJointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics13RevoluteJointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail23RevoluteJointPropertiesE();
+  try {
+    _ZN4dart8dynamics6detail23RevoluteJointPropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail23RevoluteJointPropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics10ScrewJointE();
+  try {
+    _ZN4dart8dynamics10ScrewJointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics10ScrewJointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail20ScrewJointPropertiesE();
+  try {
+    _ZN4dart8dynamics6detail20ScrewJointPropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail20ScrewJointPropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics19SharedLibraryIkFastE();
+  try {
+    _ZN4dart8dynamics19SharedLibraryIkFastE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics19SharedLibraryIkFastE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamicsL29DART_DEFAULT_VERTEX_STIFFNESSE();
+  try {
+    _ZN4dart8dynamicsL29DART_DEFAULT_VERTEX_STIFFNESSE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamicsL29DART_DEFAULT_VERTEX_STIFFNESSE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamicsL26DART_DEFAULT_EDGE_STIFNESSE();
+  try {
+    _ZN4dart8dynamicsL26DART_DEFAULT_EDGE_STIFNESSE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamicsL26DART_DEFAULT_EDGE_STIFNESSE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamicsL26DART_DEFAULT_DAMPING_COEFFE();
+  try {
+    _ZN4dart8dynamicsL26DART_DEFAULT_DAMPING_COEFFE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamicsL26DART_DEFAULT_DAMPING_COEFFE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail22SoftBodyNodePropertiesE();
+  try {
+    _ZN4dart8dynamics6detail22SoftBodyNodePropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail22SoftBodyNodePropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics18SoftBodyNodeHelperE();
+  try {
+    _ZN4dart8dynamics18SoftBodyNodeHelperE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics18SoftBodyNodeHelperE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics11SphereShapeE();
+  try {
+    _ZN4dart8dynamics11SphereShapeE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics11SphereShapeE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics18TranslationalJointE();
+  try {
+    _ZN4dart8dynamics18TranslationalJointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics18TranslationalJointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics18TranslationalJoint10PropertiesE();
+  try {
+    _ZN4dart8dynamics18TranslationalJoint10PropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics18TranslationalJoint10PropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics20TranslationalJoint2DE();
+  try {
+    _ZN4dart8dynamics20TranslationalJoint2DE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics20TranslationalJoint2DE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail30TranslationalJoint2DPropertiesE();
+  try {
+    _ZN4dart8dynamics6detail30TranslationalJoint2DPropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail30TranslationalJoint2DPropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics14UniversalJointE();
+  try {
+    _ZN4dart8dynamics14UniversalJointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics14UniversalJointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics6detail24UniversalJointPropertiesE();
+  try {
+    _ZN4dart8dynamics6detail24UniversalJointPropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics6detail24UniversalJointPropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics12ZeroDofJointE();
+  try {
+    _ZN4dart8dynamics12ZeroDofJointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics12ZeroDofJointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics12ZeroDofJoint10PropertiesE();
+  try {
+    _ZN4dart8dynamics12ZeroDofJoint10PropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics12ZeroDofJoint10PropertiesE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics9WeldJointE();
+  try {
+    _ZN4dart8dynamics9WeldJointE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics9WeldJointE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8dynamics9WeldJoint10PropertiesE();
+  try {
+    _ZN4dart8dynamics9WeldJoint10PropertiesE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8dynamics9WeldJoint10PropertiesE" << std::endl;
     throw;
   }
 
@@ -4984,19 +6156,19 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart9collision21BulletCollisionObjectE();
-  try {
-    _ZN4dart9collision21BulletCollisionObjectE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart9collision21BulletCollisionObjectE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart9collision20BulletCollisionGroupE();
   try {
     _ZN4dart9collision20BulletCollisionGroupE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart9collision20BulletCollisionGroupE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart9collision21BulletCollisionObjectE();
+  try {
+    _ZN4dart9collision21BulletCollisionObjectE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart9collision21BulletCollisionObjectE" << std::endl;
     throw;
   }
 
@@ -5013,22 +6185,6 @@ dart::python::util::collection_from_python<
     _ZN4dart9optimizer11NloptSolverE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart9optimizer11NloptSolverE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8planning3RRTE();
-  try {
-    _ZN4dart8planning3RRTE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8planning3RRTE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart8planning3RRT10StepResultE();
-  try {
-    _ZN4dart8planning3RRT10StepResultE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart8planning3RRT10StepResultE" << std::endl;
     throw;
   }
 
@@ -5064,51 +6220,27 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart8planning3RRTE();
+  try {
+    _ZN4dart8planning3RRTE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8planning3RRTE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart8planning3RRT10StepResultE();
+  try {
+    _ZN4dart8planning3RRT10StepResultE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart8planning3RRT10StepResultE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart8planning13PathShortenerE();
   try {
     _ZN4dart8planning13PathShortenerE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart8planning13PathShortenerE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart5utils9VskParser7OptionsE();
-  try {
-    _ZN4dart5utils9VskParser7OptionsE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart5utils9VskParser7OptionsE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart5utils13FileInfoWorldE();
-  try {
-    _ZN4dart5utils13FileInfoWorldE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart5utils13FileInfoWorldE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart5utils11FileInfoC3DE();
-  try {
-    _ZN4dart5utils11FileInfoC3DE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart5utils11FileInfoC3DE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart5utils11FileInfoDofE();
-  try {
-    _ZN4dart5utils11FileInfoDofE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart5utils11FileInfoDofE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart5utils21DartResourceRetrieverE();
-  try {
-    _ZN4dart5utils21DartResourceRetrieverE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart5utils21DartResourceRetrieverE" << std::endl;
     throw;
   }
 
@@ -5144,6 +6276,46 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart5utils26CompositeResourceRetrieverE();
+  try {
+    _ZN4dart5utils26CompositeResourceRetrieverE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart5utils26CompositeResourceRetrieverE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart5utils21DartResourceRetrieverE();
+  try {
+    _ZN4dart5utils21DartResourceRetrieverE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart5utils21DartResourceRetrieverE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart5utils11FileInfoC3DE();
+  try {
+    _ZN4dart5utils11FileInfoC3DE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart5utils11FileInfoC3DE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart5utils11FileInfoDofE();
+  try {
+    _ZN4dart5utils11FileInfoDofE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart5utils11FileInfoDofE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart5utils13FileInfoWorldE();
+  try {
+    _ZN4dart5utils13FileInfoWorldE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart5utils13FileInfoWorldE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart5utils24PackageResourceRetrieverE();
   try {
     _ZN4dart5utils24PackageResourceRetrieverE();
@@ -5152,11 +6324,19 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart5utils26CompositeResourceRetrieverE();
+  void _ZN4dart5utils9VskParser7OptionsE();
   try {
-    _ZN4dart5utils26CompositeResourceRetrieverE();
+    _ZN4dart5utils9VskParser7OptionsE();
   } catch(...) {
-    std::cerr << "Exception in: _ZN4dart5utils26CompositeResourceRetrieverE" << std::endl;
+    std::cerr << "Exception in: _ZN4dart5utils9VskParser7OptionsE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart5utils10DartLoaderE();
+  try {
+    _ZN4dart5utils10DartLoaderE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart5utils10DartLoaderE" << std::endl;
     throw;
   }
 
@@ -5173,14 +6353,6 @@ dart::python::util::collection_from_python<
     _ZN4dart5utils12urdf_parsing5WorldE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart5utils12urdf_parsing5WorldE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart5utils10DartLoaderE();
-  try {
-    _ZN4dart5utils10DartLoaderE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart5utils10DartLoaderE" << std::endl;
     throw;
   }
 
@@ -5216,35 +6388,11 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-  void _ZN4dart3gui21OpenGLRenderInterfaceE();
-  try {
-    _ZN4dart3gui21OpenGLRenderInterfaceE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart3gui21OpenGLRenderInterfaceE" << std::endl;
-    throw;
-  }
-
   void _ZN4dart3gui10GlutWindowE();
   try {
     _ZN4dart3gui10GlutWindowE();
   } catch(...) {
     std::cerr << "Exception in: _ZN4dart3gui10GlutWindowE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart3gui9TrackballE();
-  try {
-    _ZN4dart3gui9TrackballE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart3gui9TrackballE" << std::endl;
-    throw;
-  }
-
-  void _ZN4dart3gui5Win3DE();
-  try {
-    _ZN4dart3gui5Win3DE();
-  } catch(...) {
-    std::cerr << "Exception in: _ZN4dart3gui5Win3DE" << std::endl;
     throw;
   }
 
@@ -5264,6 +6412,22 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart3gui9TrackballE();
+  try {
+    _ZN4dart3gui9TrackballE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart3gui9TrackballE" << std::endl;
+    throw;
+  }
+
+  void _ZN4dart3gui5Win3DE();
+  try {
+    _ZN4dart3gui5Win3DE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart3gui5Win3DE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart3gui9SimWindowE();
   try {
     _ZN4dart3gui9SimWindowE();
@@ -5280,6 +6444,14 @@ dart::python::util::collection_from_python<
     throw;
   }
 
+  void _ZN4dart3gui21OpenGLRenderInterfaceE();
+  try {
+    _ZN4dart3gui21OpenGLRenderInterfaceE();
+  } catch(...) {
+    std::cerr << "Exception in: _ZN4dart3gui21OpenGLRenderInterfaceE" << std::endl;
+    throw;
+  }
+
   void _ZN4dart3gui13SoftSimWindowE();
   try {
     _ZN4dart3gui13SoftSimWindowE();
@@ -5288,7 +6460,10 @@ dart::python::util::collection_from_python<
     throw;
   }
 
-}
+::boost::python::scope().attr("utils").attr("skel") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.utils.skel"))));
+void skel_parser();
+skel_parser();
 
+}
 // main footer
 

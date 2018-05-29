@@ -20,7 +20,7 @@ void _ZN4dart6common6detail28DefaultGetEmbeddedPropertiesINS0_24EmbeddedProperti
 ::boost::python::object parent_object(::boost::python::scope().attr("common").attr("detail"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::def("DefaultGetEmbeddedProperties", [](const dart::common::EmbeddedPropertiesAspect<dart::dynamics::Joint, dart::dynamics::detail::JointProperties> * aspect) -> const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::JointProperties> & { return dart::common::detail::DefaultGetEmbeddedProperties<dart::common::EmbeddedPropertiesAspect<dart::dynamics::Joint, dart::dynamics::detail::JointProperties>, dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::JointProperties>>(aspect); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("aspect")));
+::boost::python::def("DefaultGetEmbeddedProperties", [](const dart::common::EmbeddedPropertiesAspect<dart::dynamics::Joint, dart::dynamics::detail::JointProperties> * aspect) -> const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::JointProperties> & { return dart::common::detail::DefaultGetEmbeddedProperties<dart::common::EmbeddedPropertiesAspect<dart::dynamics::Joint, dart::dynamics::detail::JointProperties>, dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::JointProperties>>(aspect); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >(), (::boost::python::arg("aspect")));
 
 }
 

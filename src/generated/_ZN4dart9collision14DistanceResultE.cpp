@@ -31,6 +31,8 @@ void _ZN4dart9collision14DistanceResultE()
 .def("isMinDistanceClamped", [](const dart::collision::DistanceResult *self) -> bool { return self->isMinDistanceClamped(); })
 .def_readwrite("minDistance", &dart::collision::DistanceResult::minDistance)
 .def_readwrite("unclampedMinDistance", &dart::collision::DistanceResult::unclampedMinDistance)
+.def_readwrite("shapeFrame1", &dart::collision::DistanceResult::shapeFrame1)
+.def_readwrite("shapeFrame2", &dart::collision::DistanceResult::shapeFrame2)
 .def_readwrite("nearestPoint1", &dart::collision::DistanceResult::nearestPoint1)
 .def_readwrite("nearestPoint2", &dart::collision::DistanceResult::nearestPoint2)
 ;

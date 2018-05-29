@@ -25,8 +25,8 @@ void _ZN4dart8dynamics5ShapeE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::dynamics::Shape, ::boost::noncopyable, std::shared_ptr<dart::dynamics::Shape>, ::boost::python::bases<dart::common::Subject > >("Shape", boost::python::no_init)
-.def("getType", [](const dart::dynamics::Shape *self) -> const std::string & { return self->getType(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
-.def("getBoundingBox", [](const dart::dynamics::Shape *self) -> const dart::math::BoundingBox & { return self->getBoundingBox(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getType", [](const dart::dynamics::Shape *self) -> const std::string & { return self->getType(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
+.def("getBoundingBox", [](const dart::dynamics::Shape *self) -> const dart::math::BoundingBox & { return self->getBoundingBox(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 .def("computeInertia", [](const dart::dynamics::Shape *self, double mass) -> Eigen::Matrix3d { return self->computeInertia(mass); }, (::boost::python::arg("mass")))
 .def("getVolume", [](const dart::dynamics::Shape *self) -> double { return self->getVolume(); })
 .def("getID", [](const dart::dynamics::Shape *self) -> int { return self->getID(); })

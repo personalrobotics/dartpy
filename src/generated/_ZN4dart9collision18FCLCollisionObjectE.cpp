@@ -25,7 +25,7 @@ void _ZN4dart9collision18FCLCollisionObjectE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::collision::FCLCollisionObject, ::boost::noncopyable, ::boost::python::bases<dart::collision::CollisionObject > >("FCLCollisionObject", boost::python::no_init)
-.def("getFCLCollisionObject", [](dart::collision::FCLCollisionObject *self) -> dart::collision::fcl::CollisionObject * { return self->getFCLCollisionObject(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("getFCLCollisionObject", [](dart::collision::FCLCollisionObject *self) -> dart::collision::fcl::CollisionObject * { return self->getFCLCollisionObject(); }, ::boost::python::return_value_policy<::boost::python::reference_existing_object >())
 ;
 }
 

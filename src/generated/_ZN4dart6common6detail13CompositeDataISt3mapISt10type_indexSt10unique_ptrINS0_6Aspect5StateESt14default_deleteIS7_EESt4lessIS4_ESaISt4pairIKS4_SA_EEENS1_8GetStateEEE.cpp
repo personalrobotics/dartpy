@@ -24,7 +24,7 @@ void _ZN4dart6common6detail13CompositeDataISt3mapISt10type_indexSt10unique_ptrIN
 ::boost::python::object parent_object(::boost::python::scope().attr("common").attr("detail"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::common::detail::CompositeData<std::map<std::type_index, std::unique_ptr<dart::common::Aspect::State, std::default_delete<dart::common::Aspect::State> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Aspect::State, std::default_delete<dart::common::Aspect::State> > > > >, dart::common::detail::GetState>, ::boost::noncopyable >("CompositeData_Map_TypeIndex_AspectState", boost::python::no_init)
+::boost::python::class_<dart::common::detail::CompositeData<std::map<std::type_index, std::unique_ptr<dart::common::Aspect::State, std::default_delete<dart::common::Aspect::State> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Aspect::State, std::default_delete<dart::common::Aspect::State> > > > >, dart::common::detail::GetState>, ::boost::noncopyable, ::boost::python::bases<dart::common::CloneableMap<std::map<std::type_index, std::unique_ptr<dart::common::Aspect::State, std::default_delete<dart::common::Aspect::State> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Aspect::State, std::default_delete<dart::common::Aspect::State> > > > > > > >("CompositeData_Map_TypeIndex_AspectState", boost::python::no_init)
 ;
 }
 

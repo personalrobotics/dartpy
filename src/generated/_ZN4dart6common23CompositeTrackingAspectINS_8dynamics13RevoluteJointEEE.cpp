@@ -25,7 +25,7 @@ void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics13RevoluteJointEEE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::common::CompositeTrackingAspect<dart::dynamics::RevoluteJoint>, ::boost::noncopyable, ::boost::python::bases<dart::common::Aspect > >("CompositeTrackingAspect_RevoluteJoint", boost::python::no_init)
-.def("getComposite", [](dart::common::CompositeTrackingAspect<dart::dynamics::RevoluteJoint> *self) -> dart::dynamics::RevoluteJoint * { return self->getComposite(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("getComposite", [](dart::common::CompositeTrackingAspect<dart::dynamics::RevoluteJoint> *self) -> dart::dynamics::RevoluteJoint * { return self->getComposite(); }, ::boost::python::return_value_policy<::boost::python::reference_existing_object >())
 .def("hasComposite", [](const dart::common::CompositeTrackingAspect<dart::dynamics::RevoluteJoint> *self) -> bool { return self->hasComposite(); })
 ;
 }

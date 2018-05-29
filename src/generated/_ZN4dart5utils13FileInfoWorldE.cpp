@@ -28,7 +28,7 @@ void _ZN4dart5utils13FileInfoWorldE()
 .def("__init__", ::boost::python::make_constructor([]() -> dart::utils::FileInfoWorld * { return new dart::utils::FileInfoWorld(); }, ::boost::python::default_call_policies()))
 .def("loadFile", [](dart::utils::FileInfoWorld *self, const char * _fileName) -> bool { return self->loadFile(_fileName); }, (::boost::python::arg("_fileName")))
 .def("saveFile", [](dart::utils::FileInfoWorld *self, const char * _fileName, dart::simulation::Recording * _record) -> bool { return self->saveFile(_fileName, _record); }, (::boost::python::arg("_fileName"), ::boost::python::arg("_record")))
-.def("getRecording", [](const dart::utils::FileInfoWorld *self) -> dart::simulation::Recording * { return self->getRecording(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("getRecording", [](const dart::utils::FileInfoWorld *self) -> dart::simulation::Recording * { return self->getRecording(); }, ::boost::python::return_value_policy<::boost::python::reference_existing_object >())
 ;
 }
 

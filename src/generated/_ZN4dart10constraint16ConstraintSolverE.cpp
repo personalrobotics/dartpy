@@ -43,7 +43,7 @@ void _ZN4dart10constraint16ConstraintSolverE()
 .def("getCollisionDetector", [](const dart::constraint::ConstraintSolver *self) -> dart::collision::ConstCollisionDetectorPtr { return self->getCollisionDetector(); })
 .def("getCollisionGroup", [](dart::constraint::ConstraintSolver *self) -> dart::collision::CollisionGroupPtr { return self->getCollisionGroup(); })
 .def("getCollisionGroup", [](const dart::constraint::ConstraintSolver *self) -> dart::collision::ConstCollisionGroupPtr { return self->getCollisionGroup(); })
-.def("getLCPSolver", [](const dart::constraint::ConstraintSolver *self) -> dart::constraint::LCPSolver * { return self->getLCPSolver(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("getLCPSolver", [](const dart::constraint::ConstraintSolver *self) -> dart::constraint::LCPSolver * { return self->getLCPSolver(); }, ::boost::python::return_value_policy<::boost::python::reference_existing_object >())
 .def("solve", [](dart::constraint::ConstraintSolver *self) -> void { return self->solve(); })
 ;
 }

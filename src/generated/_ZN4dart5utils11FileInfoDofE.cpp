@@ -36,7 +36,7 @@ void _ZN4dart5utils11FileInfoDofE()
 .def("setFPS", [](dart::utils::FileInfoDof *self, double _fps) -> void { return self->setFPS(_fps); }, (::boost::python::arg("_fps")))
 .def("getFPS", [](const dart::utils::FileInfoDof *self) -> double { return self->getFPS(); })
 .def("getNumFrames", [](const dart::utils::FileInfoDof *self) -> int { return self->getNumFrames(); })
-.def("getSkel", [](const dart::utils::FileInfoDof *self) -> dart::dynamics::Skeleton * { return self->getSkel(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("getSkel", [](const dart::utils::FileInfoDof *self) -> dart::dynamics::Skeleton * { return self->getSkel(); }, ::boost::python::return_value_policy<::boost::python::reference_existing_object >())
 ;
 }
 

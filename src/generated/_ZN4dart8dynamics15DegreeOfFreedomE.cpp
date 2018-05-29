@@ -25,9 +25,9 @@ void _ZN4dart8dynamics15DegreeOfFreedomE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::dynamics::DegreeOfFreedom, ::boost::noncopyable, dart::dynamics::DegreeOfFreedomPtr, ::boost::python::bases<dart::common::Subject > >("DegreeOfFreedom", boost::python::no_init)
-.def("setName", [](dart::dynamics::DegreeOfFreedom *self, const std::string & _name) -> const std::string & { return self->setName(_name); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name")))
-.def("setName", [](dart::dynamics::DegreeOfFreedom *self, const std::string & _name, bool _preserveName) -> const std::string & { return self->setName(_name, _preserveName); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >(), (::boost::python::arg("_name"), ::boost::python::arg("_preserveName")))
-.def("getName", [](const dart::dynamics::DegreeOfFreedom *self) -> const std::string & { return self->getName(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("setName", [](dart::dynamics::DegreeOfFreedom *self, const std::string & _name) -> const std::string & { return self->setName(_name); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >(), (::boost::python::arg("_name")))
+.def("setName", [](dart::dynamics::DegreeOfFreedom *self, const std::string & _name, bool _preserveName) -> const std::string & { return self->setName(_name, _preserveName); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >(), (::boost::python::arg("_name"), ::boost::python::arg("_preserveName")))
+.def("getName", [](const dart::dynamics::DegreeOfFreedom *self) -> const std::string & { return self->getName(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 .def("preserveName", [](dart::dynamics::DegreeOfFreedom *self, bool _preserve) -> void { return self->preserveName(_preserve); }, (::boost::python::arg("_preserve")))
 .def("isNamePreserved", [](const dart::dynamics::DegreeOfFreedom *self) -> bool { return self->isNamePreserved(); })
 .def("getIndexInSkeleton", [](const dart::dynamics::DegreeOfFreedom *self) -> std::size_t { return self->getIndexInSkeleton(); })
@@ -97,10 +97,10 @@ void _ZN4dart8dynamics15DegreeOfFreedomE()
 .def("getDampingCoefficient", [](const dart::dynamics::DegreeOfFreedom *self) -> double { return self->getDampingCoefficient(); })
 .def("setCoulombFriction", [](dart::dynamics::DegreeOfFreedom *self, double _friction) -> void { return self->setCoulombFriction(_friction); }, (::boost::python::arg("_friction")))
 .def("getCoulombFriction", [](const dart::dynamics::DegreeOfFreedom *self) -> double { return self->getCoulombFriction(); })
-.def("getJoint", [](dart::dynamics::DegreeOfFreedom *self) -> dart::dynamics::Joint * { return self->getJoint(); }, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::JointPtr> >())
+.def("getJoint", [](dart::dynamics::DegreeOfFreedom *self) -> dart::dynamics::Joint * { return self->getJoint(); }, ::boost::python::return_value_policy<::boost::python::return_by_smart_ptr<dart::dynamics::JointPtr> >())
 .def("getSkeleton", [](dart::dynamics::DegreeOfFreedom *self) -> dart::dynamics::SkeletonPtr { return self->getSkeleton(); })
-.def("getChildBodyNode", [](dart::dynamics::DegreeOfFreedom *self) -> dart::dynamics::BodyNode * { return self->getChildBodyNode(); }, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
-.def("getParentBodyNode", [](dart::dynamics::DegreeOfFreedom *self) -> dart::dynamics::BodyNode * { return self->getParentBodyNode(); }, ::boost::python::return_value_policy<boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
+.def("getChildBodyNode", [](dart::dynamics::DegreeOfFreedom *self) -> dart::dynamics::BodyNode * { return self->getChildBodyNode(); }, ::boost::python::return_value_policy<::boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
+.def("getParentBodyNode", [](dart::dynamics::DegreeOfFreedom *self) -> dart::dynamics::BodyNode * { return self->getParentBodyNode(); }, ::boost::python::return_value_policy<::boost::python::return_by_smart_ptr<dart::dynamics::BodyNodePtr> >())
 ;
 }
 

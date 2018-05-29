@@ -25,7 +25,7 @@ void _ZN4dart9collision21BulletCollisionObjectE()
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::collision::BulletCollisionObject, ::boost::noncopyable, ::boost::python::bases<dart::collision::CollisionObject > >("BulletCollisionObject", boost::python::no_init)
-.def("getBulletCollisionObject", [](const dart::collision::BulletCollisionObject *self) -> const btCollisionObject * { return self->getBulletCollisionObject(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("getBulletCollisionObject", [](const dart::collision::BulletCollisionObject *self) -> const btCollisionObject * { return self->getBulletCollisionObject(); }, ::boost::python::return_value_policy<::boost::python::reference_existing_object >())
 ;
 }
 

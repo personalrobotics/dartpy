@@ -25,7 +25,7 @@ void _ZN4dart6common23CompositeTrackingAspectINS_8dynamics12GenericJointINS_4mat
 ::boost::python::scope parent_scope(parent_object);
 
 ::boost::python::class_<dart::common::CompositeTrackingAspect<dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > >, ::boost::noncopyable, ::boost::python::bases<dart::common::Aspect > >("CompositeTrackingAspect_R1Joint", boost::python::no_init)
-.def("getComposite", [](dart::common::CompositeTrackingAspect<dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > > *self) -> dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > * { return self->getComposite(); }, ::boost::python::return_value_policy<boost::python::reference_existing_object >())
+.def("getComposite", [](dart::common::CompositeTrackingAspect<dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > > *self) -> dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > * { return self->getComposite(); }, ::boost::python::return_value_policy<::boost::python::reference_existing_object >())
 .def("hasComposite", [](const dart::common::CompositeTrackingAspect<dart::dynamics::GenericJoint<dart::math::RealVectorSpace<1> > > *self) -> bool { return self->hasComposite(); })
 ;
 }

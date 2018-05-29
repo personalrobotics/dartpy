@@ -1,0 +1,31 @@
+#include <dartpy/pointers.h>
+#include <dartpy/template_registry.h>
+#include <dart/dart.hpp>
+#include <dart/collision/bullet/bullet.hpp>
+#include <dart/optimizer/optimizer.hpp>
+#include <dart/optimizer/nlopt/nlopt.hpp>
+#include <dart/planning/planning.hpp>
+#include <dart/utils/utils.hpp>
+#include <dart/utils/urdf/urdf.hpp>
+#include <dart/gui/gui.hpp>
+
+/* precontent */
+#include <boost/python.hpp>
+#include <cmath>
+
+namespace {
+
+
+
+} // namespace
+
+void _ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEJNS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS3_NS0_14ProxyCloneableINS0_6Aspect5StateES3_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISF_INS2_4Node5StateESt14default_deleteISI_EEEESJ_ISM_EESt4lessISE_ESaISt4pairIKSE_SO_EEEEEXadL_ZNS4_16setAllNodeStatesEPS3_RKSW_EEXadL_ZNS4_16getAllNodeStatesEPKS3_EEEENS9_INSA_10PropertiesES3_NSC_ISD_ISE_SF_INSG_ISF_INSH_10PropertiesESJ_IS14_EEEESJ_IS17_EESQ_SaISR_ISS_S19_EEEEEXadL_ZNS4_20setAllNodePropertiesESX_RKS1D_EEXadL_ZNS4_20getAllNodePropertiesES11_EEEEEEEEEEEE()
+{
+::boost::python::object parent_object(::boost::python::scope().attr("common"));
+::boost::python::scope parent_scope(parent_object);
+
+::boost::python::class_<dart::common::EmbedStateAndPropertiesOnTopOf<dart::dynamics::BodyNode, dart::dynamics::detail::BodyNodeState, dart::dynamics::detail::BodyNodeAspectProperties, dart::common::RequiresAspect<dart::common::ProxyStateAndPropertiesAspect<dart::dynamics::BodyNode, dart::common::ProxyCloneable<dart::common::Aspect::State, dart::dynamics::BodyNode, dart::common::CloneableMap<std::map<std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::State, std::default_delete<dart::dynamics::Node::State> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::State, std::default_delete<dart::dynamics::Node::State> > > > >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::State, std::default_delete<dart::dynamics::Node::State> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::State, std::default_delete<dart::dynamics::Node::State> > > > > > > > >, &dart::dynamics::detail::setAllNodeStates, &dart::dynamics::detail::getAllNodeStates>, dart::common::ProxyCloneable<dart::common::Aspect::Properties, dart::dynamics::BodyNode, dart::common::CloneableMap<std::map<std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > > > > > >, &dart::dynamics::detail::setAllNodeProperties, &dart::dynamics::detail::getAllNodeProperties> > > >, ::boost::noncopyable, ::boost::python::bases<dart::common::CompositeJoiner<dart::common::EmbedStateAndProperties<dart::dynamics::BodyNode, dart::dynamics::detail::BodyNodeState, dart::dynamics::detail::BodyNodeAspectProperties>, dart::common::RequiresAspect<dart::common::ProxyStateAndPropertiesAspect<dart::dynamics::BodyNode, dart::common::ProxyCloneable<dart::common::Aspect::State, dart::dynamics::BodyNode, dart::common::CloneableMap<std::map<std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::State, std::default_delete<dart::dynamics::Node::State> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::State, std::default_delete<dart::dynamics::Node::State> > > > >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::State, std::default_delete<dart::dynamics::Node::State> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::State, std::default_delete<dart::dynamics::Node::State> > > > > > > > >, &dart::dynamics::detail::setAllNodeStates, &dart::dynamics::detail::getAllNodeStates>, dart::common::ProxyCloneable<dart::common::Aspect::Properties, dart::dynamics::BodyNode, dart::common::CloneableMap<std::map<std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > >, std::default_delete<dart::common::CloneableVector<std::unique_ptr<dart::dynamics::Node::Properties, std::default_delete<dart::dynamics::Node::Properties> > > > > > > > >, &dart::dynamics::detail::setAllNodeProperties, &dart::dynamics::detail::getAllNodeProperties> > > > > >("_ZN4dart6common30EmbedStateAndPropertiesOnTopOfINS_8dynamics8BodyNodeENS2_6detail13BodyNodeStateENS4_24BodyNodeAspectPropertiesEJNS0_14RequiresAspectIJNS0_29ProxyStateAndPropertiesAspectIS3_NS0_14ProxyCloneableINS0_6Aspect5StateES3_NS0_12CloneableMapISt3mapISt10type_indexSt10unique_ptrINS0_15CloneableVectorISF_INS2_4Node5StateESt14default_deleteISI_EEEESJ_ISM_EESt4lessISE_ESaISt4pairIKSE_SO_EEEEEXadL_ZNS4_16setAllNodeStatesEPS3_RKSW_EEXadL_ZNS4_16getAllNodeStatesEPKS3_EEEENS9_INSA_10PropertiesES3_NSC_ISD_ISE_SF_INSG_ISF_INSH_10PropertiesESJ_IS14_EEEESJ_IS17_EESQ_SaISR_ISS_S19_EEEEEXadL_ZNS4_20setAllNodePropertiesESX_RKS1D_EEXadL_ZNS4_20getAllNodePropertiesES11_EEEEEEEEEEEE", boost::python::no_init)
+;
+}
+
+/* footer */

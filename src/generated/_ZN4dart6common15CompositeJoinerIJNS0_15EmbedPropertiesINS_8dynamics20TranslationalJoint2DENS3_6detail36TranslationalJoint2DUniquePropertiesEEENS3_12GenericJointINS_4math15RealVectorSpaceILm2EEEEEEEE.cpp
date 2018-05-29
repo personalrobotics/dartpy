@@ -24,7 +24,7 @@ void _ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics20Trans
 ::boost::python::object parent_object(::boost::python::scope().attr("common"));
 ::boost::python::scope parent_scope(parent_object);
 
-::boost::python::class_<dart::common::CompositeJoiner<dart::common::EmbedProperties<dart::dynamics::TranslationalJoint2D, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<2> > >, ::boost::noncopyable, ::boost::python::bases<dart::dynamics::GenericJoint<dart::math::RealVectorSpace<2> > > >("_ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE", boost::python::no_init)
+::boost::python::class_<dart::common::CompositeJoiner<dart::common::EmbedProperties<dart::dynamics::TranslationalJoint2D, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<2> > >, ::boost::noncopyable, ::boost::python::bases<dart::common::EmbedProperties<dart::dynamics::TranslationalJoint2D, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>, dart::dynamics::GenericJoint<dart::math::RealVectorSpace<2> > > >("_ZN4dart6common15CompositeJoinerIJNS0_15EmbedPropertiesINS_8dynamics20TranslationalJoint2DENS3_6detail36TranslationalJoint2DUniquePropertiesEEENS3_12GenericJointINS_4math15RealVectorSpaceILm2EEEEEEEE", boost::python::no_init)
 ;
 }
 

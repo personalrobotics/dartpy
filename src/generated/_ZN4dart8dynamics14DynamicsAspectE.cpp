@@ -28,9 +28,9 @@ void _ZN4dart8dynamics14DynamicsAspectE()
 .def("__init__", ::boost::python::make_constructor([]() -> dart::dynamics::DynamicsAspect * { return new dart::dynamics::DynamicsAspect(); }, ::boost::python::default_call_policies()))
 .def("__init__", ::boost::python::make_constructor([](const dart::common::detail::AspectWithVersionedProperties<dart::common::CompositeTrackingAspect<dart::dynamics::ShapeFrame>, dart::dynamics::DynamicsAspect, dart::dynamics::detail::DynamicsAspectProperties, dart::dynamics::ShapeFrame, &dart::common::detail::NoOp>::PropertiesData & properties) -> dart::dynamics::DynamicsAspect * { return new dart::dynamics::DynamicsAspect(properties); }, ::boost::python::default_call_policies(), (::boost::python::arg("properties"))))
 .def("setFrictionCoeff", [](dart::dynamics::DynamicsAspect *self, const double & value) -> void { return self->setFrictionCoeff(value); }, (::boost::python::arg("value")))
-.def("getFrictionCoeff", [](const dart::dynamics::DynamicsAspect *self) -> const double & { return self->getFrictionCoeff(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getFrictionCoeff", [](const dart::dynamics::DynamicsAspect *self) -> const double & { return self->getFrictionCoeff(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 .def("setRestitutionCoeff", [](dart::dynamics::DynamicsAspect *self, const double & value) -> void { return self->setRestitutionCoeff(value); }, (::boost::python::arg("value")))
-.def("getRestitutionCoeff", [](const dart::dynamics::DynamicsAspect *self) -> const double & { return self->getRestitutionCoeff(); }, ::boost::python::return_value_policy<boost::python::copy_const_reference >())
+.def("getRestitutionCoeff", [](const dart::dynamics::DynamicsAspect *self) -> const double & { return self->getRestitutionCoeff(); }, ::boost::python::return_value_policy<::boost::python::copy_const_reference >())
 ;
 }
 
