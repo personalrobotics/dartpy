@@ -1393,7 +1393,7 @@ classes:
   'dart::dynamics::Shape':
     held_type: 'std::shared_ptr<dart::dynamics::Shape>'
   'dart::dynamics::BoxShape':
-    held_type: 'std::shared_ptr<dart::dynamics::BoxShapeNode>'
+    held_type: 'std::shared_ptr<dart::dynamics::BoxShape>'
   'dart::dynamics::CylinderShape':
     held_type: 'std::shared_ptr<dart::dynamics::CylinderShape>'
   'dart::dynamics::EllipsoidShape':
