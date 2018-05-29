@@ -602,6 +602,7 @@ types:
   'const char *': null
 
   'dart::dynamics::ConstSkeletonPtr': null
+  'dart::dynamics::ConstShapePtr': null
 
 # Selected function and class declarations that need custom parameters.
 classes:
