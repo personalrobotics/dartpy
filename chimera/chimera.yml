@@ -541,6 +541,9 @@ types:
   # TODO: temporarily disabled
   'std::mutex &': null
 
+  'const dart::common::Uri &':
+    return_value_policy: copy_const_reference
+
   # suppressed because they don't make sense in Python
   'dart::gui::GlutWindow *': null
   'Assimp::IOStream': null
