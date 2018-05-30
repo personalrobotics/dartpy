@@ -541,13 +541,19 @@ types:
   # TODO: temporarily disabled
   'std::mutex &': null
 
+  'const dart::common::Uri &':
+    return_value_policy: copy_const_reference
+
+  'const aiMesh *':
+    return_value_policy: reference_existing_object
+  'const aiScene *':
+    return_value_policy: reference_existing_object
+
   # suppressed because they don't make sense in Python
   'dart::gui::GlutWindow *': null
   'Assimp::IOStream': null
   'const dart::dynamics::PointMassNotifier *': null
   'btCollisionObject *': null
-  'const aiScene *': null
-  'const aiMesh *': null
   'Assimp::IOStream *': null
 
   # suppressed to disable const overloads
@@ -581,7 +587,7 @@ types:
   # 'const dart::dynamics::DegreeOfFreedom *': null
   'const dart::dynamics::EndEffector *': null
   'const dart::dynamics::Support *': null
-  # 'const dart::dynamics::SoftBodyNode *': null
+  'const dart::dynamics::SoftBodyNode *': null
   #'const dart::gui::osg::ImGuiHandler *': null
   #'const dart::gui::osg::InteractiveFrame *': null
   #'const dart::gui::osg::ShapeFrameNode *': null
