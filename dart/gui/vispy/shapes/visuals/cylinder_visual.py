@@ -3,14 +3,11 @@
 # All Rights Reserved.
 # Distributed under the BSD 2-Clause License. See LICENSE for more info.
 # -----------------------------------------------------------------------------
-
-import re
-import weakref
-
+import numpy as np
 from vispy.geometry import create_cylinder
-from vispy.scene import visuals
-from vispy.visuals import CompoundVisual, MeshVisual
 from vispy.scene.visuals import create_visual_node
+from vispy.visuals import CompoundVisual, MeshVisual
+from vispy.visuals.transforms import MatrixTransform
 
 
 class CylinderVisual(CompoundVisual):
@@ -39,14 +36,14 @@ class CylinderVisual(CompoundVisual):
         cube edges are drawn.
     """
 
-    def __init__(self, radius, length, rows=8, cols=8,
+    def __init__(self, radius, length, rows=16, cols=16,
                  vertex_colors=None, face_colors=None,
                  color=(0.5, 0.5, 1, 1), edge_color=None, **kwargs):
         mesh_data = create_cylinder(
             rows, cols, radius, length, offset=False)
 
         self._mesh = MeshVisual(
-            mesh_data.get_vertices(),
+            mesh_data.get_vertices() + np.array([0, 0, -length*0.5]),
             mesh_data.get_faces(),
             vertex_colors,
             face_colors,
@@ -54,7 +51,7 @@ class CylinderVisual(CompoundVisual):
         )
         if edge_color:
             self._border = MeshVisual(
-                mesh_data.get_vertices(),
+                mesh_data.get_vertices() + np.array([0, 0, -length*0.5]),
                 mesh_data.get_faces(),
                 color=edge_color,
                 mode='lines'
