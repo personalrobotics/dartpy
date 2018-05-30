@@ -40,25 +40,27 @@ class ShapeFrameNode(FrameNode):
     def _createShapeNode(self, shape):
         shapeType = shape.getType()
         if shapeType == dynamics.SphereShape.getStaticType():
-            print(dynamics.SphereShape.getStaticType())
+            print(shapeType)
         elif shapeType == dynamics.BoxShape.getStaticType():
             self.shapeNode = BoxShapeNode(shape, parent=self)
         elif shapeType == dynamics.EllipsoidShape.getStaticType():
-            print(dynamics.EllipsoidShape.getStaticType())
+            print(shapeType)
         elif shapeType == dynamics.CylinderShape.getStaticType():
-            print(dynamics.CylinderShape.getStaticType())
+            print(shapeType)
         elif shapeType == dynamics.CapsuleShape.getStaticType():
-            print(dynamics.CapsuleShape.getStaticType())
+            print(shapeType)
         elif shapeType == dynamics.ConeShape.getStaticType():
-            print(dynamics.ConeShape.getStaticType())
+            print(shapeType)
         elif shapeType == dynamics.PlaneShape.getStaticType():
-            print(dynamics.PlaneShape.getStaticType())
+            print(shapeType)
         elif shapeType == dynamics.MultiSphereConvexHullShape.getStaticType():
-            print(dynamics.MultiSphereConvexHullShape.getStaticType())
+            print(shapeType)
+        elif shapeType == dynamics.MeshShape.getStaticType():
+            print(shapeType)
         elif shapeType == dynamics.SoftMeshShape.getStaticType():
-            print(dynamics.SoftMeshShape.getStaticType())
+            print(shapeType)
         elif shapeType == dynamics.LineSegmentShape.getStaticType():
-            print(dynamics.LineSegmentShape.getStaticType())
+            print(shapeType)
         else:
             print("Unsupported shape!")
 

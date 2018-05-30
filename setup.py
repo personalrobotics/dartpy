@@ -38,11 +38,11 @@ class cmake_build_ext(build_ext):
 
 # Set up the python package wrapping this extension.
 setup(
-    name='dartpy',
+    name='dart',
     version='0.0.1',
     description=description,
     long_description=long_description,
-    ext_modules=[Extension('dartpy', sources=[])],
+    ext_modules=[Extension('dart', sources=[])],
     url='https://github.com/personalrobotics/dartpy',
     author='Michael Koval',
     author_email='mkoval@cs.cmu.edu',
@@ -53,5 +53,6 @@ setup(
         'License :: BSD',
         'Intended Audience :: Developers',
     ],
-    cmdclass={'build_ext': cmake_build_ext}, install_requires=['numpy', 'vispy', 'PyQt5]
+    # cmdclass={'build_ext': cmake_build_ext},
+    install_requires=['numpy', 'vispy', 'PyQt5']
 )

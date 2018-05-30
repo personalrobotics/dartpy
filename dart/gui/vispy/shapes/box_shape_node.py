@@ -6,6 +6,7 @@
 
 from vispy.scene.visuals import Box
 
+import dartpy
 from dart.gui.vispy.shapes.shape_node import ShapeNode
 
 
