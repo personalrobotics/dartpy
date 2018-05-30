@@ -4,15 +4,14 @@
 # Distributed under the BSD 2-Clause License. See LICENSE for more info.
 # -----------------------------------------------------------------------------
 
-from vispy.scene.visuals import Box
-
+from dart.gui.vispy.shapes.visuals.cylinder_visual import Cylinder
 from dart.gui.vispy.shapes.shape_node import ShapeNode
 
 
-class BoxShapeNode(ShapeNode):
-    def __init__(self, boxShape, parent=None):
-        super().__init__(shape=boxShape, parent=parent)
-        self.boxShape = boxShape
+class CapsuleShapeNode(ShapeNode):
+    def __init__(self, capsuleShape, parent=None):
+        super().__init__(shape=capsuleShape, parent=parent)
+        self.capsuleShape = capsuleShape
         self.shapeVisualNode = None
         self.refresh()
 
@@ -20,18 +19,15 @@ class BoxShapeNode(ShapeNode):
         if self.shapeVisualNode:
             pass
         else:
-            size = self.boxShape.getSize()
+            radius = self.capsuleShape.getRadius()
+            length = self.capsuleShape.getHeight()
             color = self.visualAspect.getRGBA().flat
 
-            self.shapeVisualNode = Box(
+            # TODO(JS): Change this to Capsule
+            self.shapeVisualNode = Cylinder(
                 parent=self,
-                width=size[0], height=size[2], depth=size[1],
-                width_segments=1,
-                height_segments=1,
-                depth_segments=1,
-                planes=None,
-                vertex_colors=None,
-                face_colors=None,
+                radius=[radius, radius],
+                length=length,
                 color=color,
                 edge_color="black",
             )

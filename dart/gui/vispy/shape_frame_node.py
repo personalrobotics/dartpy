@@ -7,7 +7,10 @@
 from dart import dynamics
 from dart.gui.vispy.frame_node import FrameNode
 from dart.gui.vispy.shapes.box_shape_node import BoxShapeNode
+from dart.gui.vispy.shapes.capsule_shape_node import CapsuleShapeNode
+from dart.gui.vispy.shapes.cylinder_shape_node import CylinderShapeNode
 from dart.gui.vispy.shapes.mesh_shape_node import MeshShapeNode
+from dart.gui.vispy.shapes.sphere_shape_node import SphereShapeNode
 from vispy.visuals.transforms import MatrixTransform
 
 
@@ -41,28 +44,30 @@ class ShapeFrameNode(FrameNode):
     def _createShapeNode(self, shape):
         shapeType = shape.getType()
         if shapeType == dynamics.SphereShape.getStaticType():
-            print(shapeType)
+            self.shapeNode = SphereShapeNode(shape, parent=self)
         elif shapeType == dynamics.BoxShape.getStaticType():
             self.shapeNode = BoxShapeNode(shape, parent=self)
-        elif shapeType == dynamics.EllipsoidShape.getStaticType():
-            print(shapeType)
+        # elif shapeType == dynamics.EllipsoidShape.getStaticType():
+        #     print(shapeType)
         elif shapeType == dynamics.CylinderShape.getStaticType():
-            print(shapeType)
+            self.shapeNode = CylinderShapeNode(shape, parent=self)
         elif shapeType == dynamics.CapsuleShape.getStaticType():
-            print(shapeType)
-        elif shapeType == dynamics.ConeShape.getStaticType():
-            print(shapeType)
-        elif shapeType == dynamics.PlaneShape.getStaticType():
-            print(shapeType)
-        elif shapeType == dynamics.MultiSphereConvexHullShape.getStaticType():
-            print(shapeType)
+            self.shapeNode = CapsuleShapeNode(shape, parent=self)
+        # elif shapeType == dynamics.ConeShape.getStaticType():
+        #     print(shapeType)
+        # elif shapeType == dynamics.PlaneShape.getStaticType():
+        #     print(shapeType)
+        # elif shapeType == dynamics.MultiSphereConvexHullShape.getStaticType():
+        #     print(shapeType)
         elif shapeType == dynamics.MeshShape.getStaticType():
             self.shapeNode = MeshShapeNode(shape, parent=self)
-        elif shapeType == dynamics.SoftMeshShape.getStaticType():
-            print(shapeType)
-        elif shapeType == dynamics.LineSegmentShape.getStaticType():
-            print(shapeType)
+        # elif shapeType == dynamics.SoftMeshShape.getStaticType():
+        #     print(shapeType)
+        # elif shapeType == dynamics.LineSegmentShape.getStaticType():
+        #     print(shapeType)
         else:
-            print("Unsupported shape!")
+            print("{} is an unsupported shape type. Ping JS to implement this.")
 
+        if self.shapeNode is None:
+            return
         self.shapeNode.transform = MatrixTransform()

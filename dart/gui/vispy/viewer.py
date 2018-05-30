@@ -51,7 +51,15 @@ class Viewer(scene.SceneCanvas):
         super().on_draw(event=event)
 
     def on_key_press(self, event):
-        print('a key pressed')
+        if event.key.name == 'S':
+            self.unfreeze()
+            self.show(True)
+            self.freeze()
+        if event.key.name == 'H':
+            self.unfreeze()
+            self.show(False)
+            self.freeze()
+        print('\'{}\' key pressed'.format(event.key.name))
 
     def _refreshWorldNode(self):
         if not self.worldNode:
@@ -69,6 +77,16 @@ class Viewer(scene.SceneCanvas):
         if not self.world:
             return
 
+        self.unfreeze()
+        self.worldNode = WorldNode(self.world, parent=self.viewBox.scene)
+        self.freeze()
+
+    def getFrame(self):
+        temp = self.render()
+        print('getFrame()')
+        return temp
+
+    def startSimulation(self):
         self.unfreeze()
         self.worldNode = WorldNode(self.world, parent=self.viewBox.scene)
         self.freeze()

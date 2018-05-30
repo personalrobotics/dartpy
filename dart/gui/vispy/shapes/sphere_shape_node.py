@@ -4,15 +4,15 @@
 # Distributed under the BSD 2-Clause License. See LICENSE for more info.
 # -----------------------------------------------------------------------------
 
-from vispy.scene.visuals import Box
+from vispy.scene.visuals import Sphere
 
 from dart.gui.vispy.shapes.shape_node import ShapeNode
 
 
-class BoxShapeNode(ShapeNode):
-    def __init__(self, boxShape, parent=None):
-        super().__init__(shape=boxShape, parent=parent)
-        self.boxShape = boxShape
+class SphereShapeNode(ShapeNode):
+    def __init__(self, sphereShape, parent=None):
+        super().__init__(shape=sphereShape, parent=parent)
+        self.sphereShape = sphereShape
         self.shapeVisualNode = None
         self.refresh()
 
@@ -20,19 +20,14 @@ class BoxShapeNode(ShapeNode):
         if self.shapeVisualNode:
             pass
         else:
-            size = self.boxShape.getSize()
+            radius = self.sphereShape.getRadius()
             color = self.visualAspect.getRGBA().flat
 
-            self.shapeVisualNode = Box(
+            self.shapeVisualNode = Sphere(
                 parent=self,
-                width=size[0], height=size[2], depth=size[1],
-                width_segments=1,
-                height_segments=1,
-                depth_segments=1,
-                planes=None,
-                vertex_colors=None,
-                face_colors=None,
+                radius=radius,
                 color=color,
+                method='ico',
                 edge_color="black",
             )
 
