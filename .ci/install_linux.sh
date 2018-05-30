@@ -13,12 +13,12 @@ sudo apt-get install cmake libboost-dev libboost-python-dev libboost-python-nump
 sudo apt-get install python-dev python-numpy python-boost-numpy-eigen    # for Python 2
 sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for Python 3
 
+# Install Chimera
+sudo apt-get install chimera -y
+
 # Install dependencies for unittests
 sudo apt-get install python3-pip -y
 sudo pip3 install pytest -U
 
 # Install dartpy for running Python tests without building dartpy
 sudo apt-get install python3-dartpy
-
-# Install Chimera
-sudo apt-get install chimera -y
