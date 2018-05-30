@@ -1,3 +1,9 @@
+# -----------------------------------------------------------------------------
+# Copyright (c) 2015-2018, The dartpy development contributors
+# All Rights Reserved.
+# Distributed under the BSD 2-Clause License. See LICENSE for more info.
+# -----------------------------------------------------------------------------
+
 from collections import deque
 from dart.gui.vispy.refreshable_node import RefreshableNode
 from dart.gui.vispy.shape_frame_node import ShapeFrameNode

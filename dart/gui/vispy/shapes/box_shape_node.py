@@ -1,10 +1,10 @@
-#
+# -----------------------------------------------------------------------------
 # Copyright (c) 2015-2018, The dartpy development contributors
 # All Rights Reserved.
 # Distributed under the BSD 2-Clause License. See LICENSE for more info.
-#
+# -----------------------------------------------------------------------------
 
-from vispy.scene.visuals import Box, Sphere
+from vispy.scene.visuals import Box
 
 from dart.gui.vispy.shapes.shape_node import ShapeNode
 
@@ -23,16 +23,9 @@ class BoxShapeNode(ShapeNode):
             size = self.boxShape.getSize()
             color = self.visualAspect.getRGBA()
 
-            # self.shapeVisualNode = Sphere(
-            #     parent=self,
-            #     # width=size[0]*5, height=size[2]*5, depth=size[1]*5,
-            #     radius=size[0],
-            #     color=color.flat)
-            #     # edge_color="black")
-
             self.shapeVisualNode = Box(
                 parent=self,
-                width=size[0]*5, height=size[2]*5, depth=size[1]*5,
+                width=size[0], height=size[2], depth=size[1],
                 width_segments=1,
                 height_segments=1,
                 depth_segments=1,

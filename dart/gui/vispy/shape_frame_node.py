@@ -1,8 +1,8 @@
-#
+# -----------------------------------------------------------------------------
 # Copyright (c) 2015-2018, The dartpy development contributors
 # All Rights Reserved.
 # Distributed under the BSD 2-Clause License. See LICENSE for more info.
-#
+# -----------------------------------------------------------------------------
 
 from dartpy import dynamics
 from dart.gui.vispy.frame_node import FrameNode
