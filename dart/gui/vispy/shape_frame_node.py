@@ -4,9 +4,10 @@
 # Distributed under the BSD 2-Clause License. See LICENSE for more info.
 # -----------------------------------------------------------------------------
 
-from dartpy import dynamics
+from dart import dynamics
 from dart.gui.vispy.frame_node import FrameNode
 from dart.gui.vispy.shapes.box_shape_node import BoxShapeNode
+from dart.gui.vispy.shapes.mesh_shape_node import MeshShapeNode
 from vispy.visuals.transforms import MatrixTransform
 
 
@@ -56,7 +57,7 @@ class ShapeFrameNode(FrameNode):
         elif shapeType == dynamics.MultiSphereConvexHullShape.getStaticType():
             print(shapeType)
         elif shapeType == dynamics.MeshShape.getStaticType():
-            print(shapeType)
+            self.shapeNode = MeshShapeNode(shape, parent=self)
         elif shapeType == dynamics.SoftMeshShape.getStaticType():
             print(shapeType)
         elif shapeType == dynamics.LineSegmentShape.getStaticType():
