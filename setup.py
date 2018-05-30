@@ -46,6 +46,7 @@ setup(
     url='https://github.com/personalrobotics/dartpy',
     author='Michael Koval',
     author_email='mkoval@cs.cmu.edu',
+    packages=['dart'],
     license='BSD',
     keywords='dartsim robotics',
     classifiers=[

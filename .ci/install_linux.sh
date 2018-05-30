@@ -14,31 +14,10 @@ sudo apt-get install python-dev python-numpy python-boost-numpy-eigen    # for P
 sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for Python 3
 
 # Install dependencies for unittests
-#sudo apt-get install python3-pytest
 sudo pip3 install pytest -U
-sudo apt-get install python3-opengl
 
 # Install dartpy for running Python tests without building dartpy
-if [ ! $(lsb_release -sc) = "trusty" ]; then
-  sudo apt-get install python3-dartpy
-fi
+sudo apt-get install python3-dartpy
 
 # Install Chimera
-if [ $(lsb_release -sc) = "trusty" ]; then
-  sudo add-apt-repository 'deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main' -y
-  wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | sudo apt-key add -
-  sudo apt-get update -q
-  sudo apt-get install llvm-3.6-dev llvm-3.6-tools libclang-3.6-dev libedit-dev libyaml-cpp-dev libboost-dev -y
-
-  cd ..
-  git clone https://github.com/personalrobotics/chimera.git
-  cd chimera
-  mkdir build
-  cd build
-  cmake -DLLVM_DIR="/usr/share/llvm-3.6/cmake/" ..
-  make -j4
-  sudo make install
-  cd ../../dartpy
-else
-  sudo apt-get install chimera -y
-fi
+sudo apt-get install chimera -y
