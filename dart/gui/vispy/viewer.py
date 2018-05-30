@@ -21,8 +21,13 @@ class Viewer(scene.SceneCanvas):
 
         self.viewBox = self.central_widget.add_view()
         self.viewBox.bgcolor = '#efefef'
-        self.viewBox.camera = 'turntable'
+        self.viewBox.camera = 'arcball'
+        self.viewBox.camera.fov = 50
+        print('current distance: {}'.format(self.viewBox.camera.distance))
+        self.viewBox.camera.distance = 1
         self.viewBox.padding = 0
+
+        self.axis = scene.visuals.XYZAxis(parent=self.viewBox.scene)
 
         self.world = None
         self.worldNode = None
@@ -32,6 +37,8 @@ class Viewer(scene.SceneCanvas):
         self.setWorld(world)
 
         self.unfreeze()
+        self.events.key_press.connect(self.on_key_press)
+
         self.timer = app.Timer('auto', self.on_timer)
         self.timer.start()
         self.freeze()
@@ -43,6 +50,9 @@ class Viewer(scene.SceneCanvas):
         self._refreshWorldNode()
 
         super().on_draw(event=event)
+
+    def on_key_press(self, event):
+        print('a key pressed')
 
     def _refreshWorldNode(self):
         if not self.worldNode:
