@@ -6,7 +6,6 @@
 
 from vispy.scene.visuals import Box
 
-import dartpy
 from dart.gui.vispy.shapes.shape_node import ShapeNode
 
 
@@ -34,6 +33,7 @@ class BoxShapeNode(ShapeNode):
                 vertex_colors=None,
                 face_colors=None,
                 color=color.flat,
-                edge_color="black")
+                edge_color="black",
+            )
 
         self.markFresh()

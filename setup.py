@@ -55,5 +55,5 @@ setup(
         'Intended Audience :: Developers',
     ],
     # cmdclass={'build_ext': cmake_build_ext},
-    install_requires=['numpy', 'vispy', 'PyQt5']
+    install_requires=['numpy', 'vispy', 'PyQt5', 'pyassimp']
 )

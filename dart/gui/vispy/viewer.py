@@ -22,7 +22,7 @@ class Viewer(scene.SceneCanvas):
         self.viewBox = self.central_widget.add_view()
         self.viewBox.bgcolor = '#efefef'
         self.viewBox.camera = 'arcball'
-        self.viewBox.camera.fov = 30
+        self.viewBox.camera.fov = 50
         # self.viewBox.camera.distance = 1
         self.viewBox.padding = 0
 

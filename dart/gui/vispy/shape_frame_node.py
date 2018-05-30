@@ -32,7 +32,7 @@ class ShapeFrameNode(FrameNode):
     def _refreshShapeNode(self, shape):
         if self.shapeNode:
             # vispy uses row-major matrix while Eigen uses column-major matrix.
-            self.shapeNode.transform.reset()
+            # self.shapeNode.transform.reset()
             self.shapeNode.transform.matrix = self.shapeFrame.getTransform().transpose()
             self.shapeNode.refresh()
         else:
