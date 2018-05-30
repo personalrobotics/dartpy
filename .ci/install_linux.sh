@@ -14,6 +14,10 @@ sudo apt-get install python-dev python-numpy python-boost-numpy-eigen    # for P
 sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for Python 3
 
 # Install Chimera
+if [ $(lsb_release -sc) = "trusty" ]; then
+  # For installing chimera dependencies: llvm-3.7, llvm-3.7-tools, and libclang-3.7-dev
+  sudo add-apt-repository ppa:renemilk/llvm
+fi
 sudo apt-get install chimera -y
 
 # Install dependencies for unittests
