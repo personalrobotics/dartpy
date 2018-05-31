@@ -41,6 +41,7 @@ set(DARTPY_TEST_FILES
 
 # Add custom target to run the tests
 add_custom_target(pytest
+  COMMAND ${CMAKE_COMMAND} -E echo "Running pytest by: ${PYTHON_EXECUTABLE} -m pytest [sources]"
   COMMAND ${PYTHON_EXECUTABLE} -m pytest ${DARTPY_TEST_FILES}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
 )
