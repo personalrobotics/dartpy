@@ -15,7 +15,7 @@ sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for P
 sudo apt-get install python3-pytest
 
 # Install dartpy for running Python tests without building dartpy
-sudo apt-get install python3-dartpy
+sudo apt-get install python-dartpy python3-dartpy
 
 # Install Chimera
 if [ `lsb_release -sc` = "trusty" ]; then
