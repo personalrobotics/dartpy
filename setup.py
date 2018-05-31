@@ -1,5 +1,6 @@
 import contextlib
 import os
+import platform
 from codecs import open  # To use a consistent encoding
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
@@ -11,6 +12,17 @@ here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 description = 'dartpy provides python bindings for DART.'
+
+# Set the dependencies depending on the platform
+system = platform.system()
+if system == 'Linux':
+    distro = platform.linux_distribution()[1]
+    if distro == '14.04':
+        install_requires = ['numpy', 'vispy', 'PySide', 'pyassimp']
+    else:
+        install_requires = ['numpy', 'vispy', 'PyQt5', 'pyassimp']
+else:
+    install_requires = ['numpy', 'vispy', 'PyQt5', 'pyassimp']
 
 
 # See: http://www.astropython.org/snippet/2009/10/chdir-context-manager
@@ -29,12 +41,14 @@ def chdir(dirname=None):
 # See: https://github.com/libdynd/dynd-python/blob/master/setup.py
 class cmake_build_ext(build_ext):
     """ Wrapper class that builds the extension using CMake. """
+
     def run(self):
         """ Build using CMake from the specified build directory. """
         self.mkpath(self.build_temp)
         with chdir(self.build_temp):
             self.spawn(['cmake', here])
             self.spawn(['make'])
+
 
 # Set up the python package wrapping this extension.
 setup(
@@ -55,5 +69,5 @@ setup(
         'Intended Audience :: Developers',
     ],
     # cmdclass={'build_ext': cmake_build_ext},
-    install_requires=['numpy', 'vispy', 'PyQt5', 'pyassimp']
+    install_requires=install_requires
 )
