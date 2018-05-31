@@ -17,3 +17,8 @@ fi
 
 # Run pytest for Python tests of dartpy
 make pytest
+
+cd $TRAVIS_BUILD_DIR
+
+# Install dartpy as package name "dart"
+pip3 install -e .

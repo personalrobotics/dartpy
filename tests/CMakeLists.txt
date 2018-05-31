@@ -35,17 +35,13 @@ else()
 endif()
 
 set(DARTPY_TEST_FILES
-  test_dart_loader.py
+  regression/test_get_shape.py
+  unit/test_dart_loader.py
 )
 
 # Add custom target to run the tests
-if(DARTPY_PYTEST_FOUND AND DARTPY_DARTPY_FOUND)
-  add_custom_target(pytest
-    COMMAND ${PYTHON_EXECUTABLE} -m pytest ${DARTPY_TEST_FILES}
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  )
-else()
-  add_custom_target(pytest
-    COMMAND echo "Testing is disabled."
-  )
-endif()
+add_custom_target(pytest
+  COMMAND ${CMAKE_COMMAND} -E echo "Running pytest by: ${PYTHON_EXECUTABLE} -m pytest [sources]"
+  COMMAND ${PYTHON_EXECUTABLE} -m pytest ${DARTPY_TEST_FILES}
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+)
