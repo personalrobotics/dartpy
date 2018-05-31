@@ -19,6 +19,7 @@ fi
 which pytest
 pytest --version
 find /usr -name pytest
+find /usr -name pytest.py
 make pytest
 
 cd $TRAVIS_BUILD_DIR
