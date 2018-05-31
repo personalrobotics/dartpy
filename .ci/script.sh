@@ -16,6 +16,9 @@ fi
 # $SUDO make install
 
 # Run pytest for Python tests of dartpy
-if [ ! $(lsb_release -sc) = "trusty" ]; then
-  make pytest
-fi
+make pytest
+
+cd $TRAVIS_BUILD_DIR
+
+# Install dartpy as package name "dart"
+pip3 install -e .
