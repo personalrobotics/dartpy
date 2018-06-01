@@ -23,4 +23,4 @@ make pytest
 cd $TRAVIS_BUILD_DIR
 
 # Install dartpy as package name "dart"
-pip3 install -e .
+$SUDO pip3 install -e .
