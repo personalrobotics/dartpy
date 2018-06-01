@@ -18,8 +18,6 @@ fi
 # Run pytest for Python tests of dartpy
 which pytest
 pytest --version
-find /usr -name pytest
-find /usr -name pytest.py
 make pytest
 
 cd $TRAVIS_BUILD_DIR
