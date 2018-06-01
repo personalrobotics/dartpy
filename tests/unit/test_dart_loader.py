@@ -1,4 +1,5 @@
-import distro
+import platform
+
 import pytest
 from dartpy.utils import DartLoader
 
@@ -57,7 +58,7 @@ def test_parse_joint_properties():
     assert joint2 is not None
     assert joint2.getPositionLowerLimit(0) == -float("inf")
     assert joint2.getPositionUpperLimit(0) == float("inf")
-    if not distro.linux_distribution()[1] == '14.04':
+    if not platform.linux_distribution()[1] == '14.04':
         assert joint2.isCyclic(0)
 
 

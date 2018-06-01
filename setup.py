@@ -18,11 +18,11 @@ system = platform.system()
 if system == 'Linux':
     distro = platform.linux_distribution()[1]
     if distro == '14.04':
-        install_requires = ['numpy', 'vispy', 'PySide', 'pyassimp', 'distro', 'pytest']
+        install_requires = ['numpy', 'vispy', 'PySide', 'pyassimp', 'pytest']
     else:
-        install_requires = ['numpy', 'vispy', 'PyQt5', 'pyassimp', 'distro', 'pytest']
+        install_requires = ['numpy', 'vispy', 'PyQt5', 'pyassimp', 'pytest']
 else:
-    install_requires = ['numpy', 'vispy', 'PyQt5', 'pyassimp', 'distro', 'pytest']
+    install_requires = ['numpy', 'vispy', 'PyQt5', 'pyassimp', 'pytest']
 
 
 # See: http://www.astropython.org/snippet/2009/10/chdir-context-manager
