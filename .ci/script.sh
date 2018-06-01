@@ -4,7 +4,7 @@ set -ex
 mkdir build
 cd build
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-  cmake .. -DDARTPY_PYTHON_VERSION=$TRAVIS_PYTHON_VERSION
+  cmake .. -DDARTPY_PYTHON_VERSION=$PYTHON_VERSION
 fi
 
 if [ "$TRAVIS_BRANCH" != "*-binding" ]; then
@@ -16,9 +16,11 @@ fi
 # $SUDO make install
 
 # Run pytest for Python tests of dartpy
+which pytest
+pytest --version
 make pytest
 
 cd $TRAVIS_BUILD_DIR
 
 # Install dartpy as package name "dart"
-pip3 install -e .
+$SUDO pip3 install -e .
