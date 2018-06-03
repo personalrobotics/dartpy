@@ -52,7 +52,7 @@ class cmake_build_ext(build_ext):
 
 # Set up the python package wrapping this extension.
 setup(
-    name='dart',
+    name='dartpy',
     version='0.0.1',
     description=description,
     long_description=long_description,
@@ -62,10 +62,10 @@ setup(
     author_email='mkoval@cs.cmu.edu',
     packages=['dart'],
     license='BSD',
-    keywords='dartsim robotics',
+    keywords=['dartsim', 'physics', 'robotics', 'simulation'],
     classifiers=[
         'Development Status :: 1 - Planning',
-        'License :: BSD',
+        'License :: OSI Approved :: BSD License',
         'Intended Audience :: Developers',
     ],
     # cmdclass={'build_ext': cmake_build_ext},
