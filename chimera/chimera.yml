@@ -1387,6 +1387,8 @@ classes:
   'dart::collision::detail::UnorderedPairs<dart::dynamics::BodyNode>': null
 
   # Collision
+  'dart::collision::CollisionDetector':
+    held_type: 'std::shared_ptr<dart::collision::CollisionDetector>'
   'dart::collision::BulletCollisionDetector':
     held_type: 'std::shared_ptr<dart::collision::BulletCollisionDetector>'
   'dart::collision::DARTCollisionDetector':
