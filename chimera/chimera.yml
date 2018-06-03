@@ -22,7 +22,6 @@ template:
       #include <dartpy/template_registry.h>
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
-      #include <dart/collision/ode/ode.hpp>
       #include <dart/optimizer/optimizer.hpp>
       #include <dart/optimizer/nlopt/nlopt.hpp>
       #include <dart/planning/planning.hpp>
@@ -46,7 +45,6 @@ template:
       #include <dartpy/util.h>
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
-      #include <dart/collision/ode/ode.hpp>
       #include <dart/optimizer/optimizer.hpp>
       #include <dart/optimizer/nlopt/nlopt.hpp>
       #include <dart/planning/planning.hpp>
@@ -1393,8 +1391,8 @@ classes:
     held_type: 'std::shared_ptr<dart::collision::DARTCollisionDetector>'
   'dart::collision::FCLCollisionDetector':
     held_type: 'std::shared_ptr<dart::collision::FCLCollisionDetector>'
-  'dart::collision::OdeCollisionDetector':
-    held_type: 'std::shared_ptr<dart::collision::OdeCollisionDetector>'
+  # 'dart::collision::OdeCollisionDetector':
+  #   held_type: 'std::shared_ptr<dart::collision::OdeCollisionDetector>'
 
   # Shapes
   'dart::dynamics::Shape':

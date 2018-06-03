@@ -48,6 +48,7 @@ endif()
 find_package(DART 6.3.0 REQUIRED
   COMPONENTS
     collision-bullet
+    # collision-ode
     optimizer-nlopt
     planning
     utils-urdf
