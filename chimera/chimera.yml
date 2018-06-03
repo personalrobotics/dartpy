@@ -22,6 +22,7 @@ template:
       #include <dartpy/template_registry.h>
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
+      // #include <dart/collision/ode/ode.hpp>
       #include <dart/optimizer/optimizer.hpp>
       #include <dart/optimizer/nlopt/nlopt.hpp>
       #include <dart/planning/planning.hpp>
@@ -45,6 +46,7 @@ template:
       #include <dartpy/util.h>
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
+      // #include <dart/collision/ode/ode.hpp>
       #include <dart/optimizer/optimizer.hpp>
       #include <dart/optimizer/nlopt/nlopt.hpp>
       #include <dart/planning/planning.hpp>
