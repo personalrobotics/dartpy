@@ -4,7 +4,8 @@
 > issues on [`dartpy`](https://github.com/personalrobotics/dartpy/issues) and
 > [Chimera](https://github.com/personalrobotics/chimera/issues) for insight
 > into the current state of the project. Please report any issues you
-> encounter on the appropriate repository.
+> encounter on the appropriate repository. This repo will be mreged into the
+> main repository of DART once becomes stable.
 
 Python bindings for [DART][dart], the Dynamic Animation and Robotics Toolkit.
 
@@ -14,16 +15,39 @@ Python bindings for [DART][dart], the Dynamic Animation and Robotics Toolkit.
 
 You can install `dartpy` using `apt-get` as:
 
+**14.04**
+
 ```shell
-# Only on Ubuntu 14.04
 $ sudo add-apt-repository ppa:libccd-debs/ppa
 $ sudo add-apt-repository ppa:fcl-debs/ppa
-
 $ sudo add-apt-repository ppa:dartsim/ppa
 $ sudo add-apt-repository ppa:personalrobotics/ppa
 $ sudo apt-get update
+
 $ sudo apt-get install python-dartpy  # for Python 2
 $ sudo apt-get install python3-dartpy # for Python 3
+$ sudo apt-get install qt4-default
+
+$ git clone https://github.com/personalrobotics/dartpy
+$ cd dartpy
+$ git checkout dart-6.5
+$ pip3 install -e .
+```
+
+**16.04 / 18.04**
+
+```shell
+$ sudo add-apt-repository ppa:dartsim/ppa
+$ sudo add-apt-repository ppa:personalrobotics/ppa
+$ sudo apt-get update
+
+$ sudo apt-get install python-dartpy  # for Python 2
+$ sudo apt-get install python3-dartpy # for Python 3
+
+$ git clone https://github.com/personalrobotics/dartpy
+$ cd dartpy
+$ git checkout dart-6.5
+$ pip3 install -e .
 ```
 
 All set! Import `dartpy` in Python and enjoy! Please see [Usage](#usage) section for more information.
