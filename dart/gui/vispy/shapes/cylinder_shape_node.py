@@ -25,10 +25,10 @@ class CylinderShapeNode(ShapeNode):
 
             self.shapeVisualNode = Cylinder(
                 parent=self,
-                radius=[radius, radius],
+                radius=radius,
                 length=length,
                 color=color,
-                edge_color="black",
+                # edge_color="black",
             )
 
         self.markFresh()

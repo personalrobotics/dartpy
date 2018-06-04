@@ -4,7 +4,7 @@
 # Distributed under the BSD 2-Clause License. See LICENSE for more info.
 # -----------------------------------------------------------------------------
 
-from dart.gui.vispy.shapes.visuals.cylinder_visual import Cylinder
+from dart.gui.vispy.shapes.visuals.capsule_visual import Capsule
 from dart.gui.vispy.shapes.shape_node import ShapeNode
 
 
@@ -24,12 +24,12 @@ class CapsuleShapeNode(ShapeNode):
             color = self.visualAspect.getRGBA().flat
 
             # TODO(JS): Change this to Capsule
-            self.shapeVisualNode = Cylinder(
+            self.shapeVisualNode = Capsule(
                 parent=self,
                 radius=[radius, radius],
                 length=length,
                 color=color,
-                edge_color="black",
+                # edge_color="black",
             )
 
         self.markFresh()

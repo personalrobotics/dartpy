@@ -23,7 +23,6 @@ class Viewer(scene.SceneCanvas):
         self.viewBox.bgcolor = '#efefef'
         self.viewBox.camera = 'arcball'
         self.viewBox.camera.fov = 50
-        # self.viewBox.camera.distance = 1
         self.viewBox.padding = 0
 
         self.axis = scene.visuals.XYZAxis(parent=self.viewBox.scene)
@@ -49,6 +48,10 @@ class Viewer(scene.SceneCanvas):
         self._refreshWorldNode()
 
         super().on_draw(event=event)
+
+    def on_close(self, event):
+        self.timer.stop()
+        super().on_close(event=event)
 
     def on_key_press(self, event):
         if event.key.name == 'S':

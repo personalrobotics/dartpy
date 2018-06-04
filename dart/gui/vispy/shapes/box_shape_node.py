@@ -33,7 +33,7 @@ class BoxShapeNode(ShapeNode):
                 vertex_colors=None,
                 face_colors=None,
                 color=color,
-                edge_color="black",
+                # edge_color="black",
             )
 
         self.markFresh()

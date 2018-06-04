@@ -28,7 +28,7 @@ class SphereShapeNode(ShapeNode):
                 radius=radius,
                 color=color,
                 method='ico',
-                edge_color="black",
+                # edge_color="black",
             )
 
         self.markFresh()

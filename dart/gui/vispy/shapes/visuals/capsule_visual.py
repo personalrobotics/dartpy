@@ -4,14 +4,14 @@
 # Distributed under the BSD 2-Clause License. See LICENSE for more info.
 # -----------------------------------------------------------------------------
 import numpy as np
-from dart.gui.vispy.shapes.visuals.generation import create_disk
+from dart.gui.vispy.shapes.visuals.generation import create_hemisphere
 from vispy.geometry import create_cylinder
 from vispy.scene.visuals import create_visual_node
 from vispy.visuals import CompoundVisual, MeshVisual
 from vispy.visuals.transforms import MatrixTransform
 
 
-class CylinderVisual(CompoundVisual):
+class CapsuleVisual(CompoundVisual):
     """Visual that displays a box.
 
     Parameters
@@ -21,9 +21,9 @@ class CylinderVisual(CompoundVisual):
     cols : int
         Number of columns.
     radius : tuple of float
-        Cylinder radii.
+        Capsule radii.
     length : float
-        Length of the cylinder.
+        Length of the capsule.
     offset : bool
         Rotate each row by half a column.
     vertex_colors : ndarray
@@ -41,11 +41,14 @@ class CylinderVisual(CompoundVisual):
                  vertex_colors=None, face_colors=None,
                  color=(0.5, 0.5, 1, 1), edge_color=None, **kwargs):
         if type(radius) is not list: radius = [radius, radius]
-
         cylinder_mesh_data = create_cylinder(
             rows, cols, radius, length, offset=False)
-        top_disk_mesh_data = create_disk(cols, radius=radius[1])
-        bottom_disk_mesh_data = create_disk(cols, radius=radius[0])
+        top_hemisphere_mesh_data = create_hemisphere(
+            rows, cols, radius[1], offset=False, flip_z=False
+        )
+        bottom_hemisphere_mesh_data = create_hemisphere(
+            rows, cols, radius[0], offset=False, flip_z=True
+        )
 
         self._cylinder_mesh = MeshVisual(
             cylinder_mesh_data.get_vertices() + np.array([0, 0, -length * 0.5]),
@@ -54,24 +57,23 @@ class CylinderVisual(CompoundVisual):
             face_colors,
             color
         )
-        self._top_disk_mesh = MeshVisual(
-            top_disk_mesh_data.get_vertices() + np.array([0, 0, length * 0.5]),
-            top_disk_mesh_data.get_faces(),
+        self._top_hemisphere_mesh = MeshVisual(
+            top_hemisphere_mesh_data.get_vertices() + np.array([0, 0, +length * 0.5]),
+            top_hemisphere_mesh_data.get_faces(),
             vertex_colors,
             face_colors,
             color
         )
-        self._bottom_disk_mesh = MeshVisual(
-            bottom_disk_mesh_data.get_vertices() + np.array([0, 0, -length * 0.5]),
-            bottom_disk_mesh_data.get_faces(),
+        self._bottom_hemisphere_mesh = MeshVisual(
+            bottom_hemisphere_mesh_data.get_vertices() + np.array([0, 0, -length * 0.5]),
+            bottom_hemisphere_mesh_data.get_faces(),
             vertex_colors,
             face_colors,
             color
         )
-
         if edge_color:
             self._border = MeshVisual(
-                cylinder_mesh_data.get_vertices() + np.array([0, 0, -length*0.5]),
+                cylinder_mesh_data.get_vertices() + np.array([0, 0, -length * 0.5]),
                 cylinder_mesh_data.get_faces(),
                 color=edge_color,
                 mode='lines'
@@ -79,7 +81,8 @@ class CylinderVisual(CompoundVisual):
         else:
             self._border = MeshVisual()
 
-        CompoundVisual.__init__(self, [self._top_disk_mesh, self._cylinder_mesh, self._bottom_disk_mesh, self._border], **kwargs)
+        CompoundVisual.__init__(self, [self._cylinder_mesh, self._top_hemisphere_mesh, self._bottom_hemisphere_mesh,
+                                       self._border], **kwargs)
         self.mesh.set_gl_state(polygon_offset_fill=True,
                                polygon_offset=(1, 1), depth_test=True)
 
@@ -104,4 +107,4 @@ class CylinderVisual(CompoundVisual):
         self._border = border
 
 
-Cylinder = create_visual_node(CylinderVisual)
+Capsule = create_visual_node(CapsuleVisual)
