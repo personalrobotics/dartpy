@@ -107,6 +107,10 @@ template:
       dart::python::util::collection_from_python<
         std::vector<dart::dynamics::BodyNode*> >();
 
+      dart::python::util::vector_to_python<dart::dynamics::Joint*>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::dynamics::Joint*> >();
+
       dart::python::util::vector_to_python<
         dart::dynamics::SoftBodyNode*, dart::dynamics::SoftBodyNodePtr>();
       dart::python::util::collection_from_python<
