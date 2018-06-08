@@ -561,6 +561,7 @@ types:
   # 'const dart::dynamics::TranslationalJoint2D::Aspect *': null
   # 'const dart::dynamics::EulerJoint::Aspect *': null
   'const dart::dynamics::Joint *': null
+  'std::vector<const dart::dynamics::Joint *>': null
   # 'const dart::dynamics::PlanarJoint *': null
   # 'const dart::dynamics::PrismaticJoint *': null
   # 'const dart::dynamics::UniversalJoint *': null
