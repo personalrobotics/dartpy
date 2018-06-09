@@ -107,6 +107,10 @@ template:
       dart::python::util::collection_from_python<
         std::vector<dart::dynamics::BodyNode*> >();
 
+      dart::python::util::vector_to_python<dart::dynamics::Joint*>();
+      dart::python::util::collection_from_python<
+        std::vector<dart::dynamics::Joint*> >();
+
       dart::python::util::vector_to_python<
         dart::dynamics::SoftBodyNode*, dart::dynamics::SoftBodyNodePtr>();
       dart::python::util::collection_from_python<
@@ -561,6 +565,7 @@ types:
   # 'const dart::dynamics::TranslationalJoint2D::Aspect *': null
   # 'const dart::dynamics::EulerJoint::Aspect *': null
   'const dart::dynamics::Joint *': null
+  'std::vector<const dart::dynamics::Joint *>': null
   # 'const dart::dynamics::PlanarJoint *': null
   # 'const dart::dynamics::PrismaticJoint *': null
   # 'const dart::dynamics::UniversalJoint *': null
