@@ -144,6 +144,7 @@ if(EXISTS "${SOURCES_TXT}")
   )
   set_target_properties("${PROJECT_NAME}" PROPERTIES
     PREFIX ""
+    SUFFIX ".so"  # python uses '.so' extension even on macOS
   )
   if(CMAKE_COMPILER_IS_GNUCXX)
     target_compile_options("${PROJECT_NAME}"
