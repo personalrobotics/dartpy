@@ -145,9 +145,11 @@ if(EXISTS "${SOURCES_TXT}")
   set_target_properties("${PROJECT_NAME}" PROPERTIES
     PREFIX ""
   )
-  target_compile_options("${PROJECT_NAME}"
-    PRIVATE -fabi-version=6
-  )
+  if(CMAKE_COMPILER_IS_GNUCXX)
+    target_compile_options("${PROJECT_NAME}"
+      PRIVATE -fabi-version=6
+    )
+  endif()
 
   install(TARGETS "${PROJECT_NAME}"
     LIBRARY DESTINATION "${PYTHON_SITE_PACKAGES}"
