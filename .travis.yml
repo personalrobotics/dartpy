@@ -24,6 +24,12 @@ matrix:
         - BUILD_NAME=BIONIC_PYTHON_36
         - DOCKER_FILE="ubuntu-bionic"
         - PYTHON_VERSION=3.6
+    - os: osx
+      osx_image: xcode9.3
+      compiler: clang
+      env:
+        - BUILD_NAME=OSX_PYTHON_37
+        - PYTHON_VERSION=3.7
 
 install:
   - if [ -n "$DOCKER_FILE" ]; then
