@@ -1,5 +1,6 @@
 #!/bin/sh
-set -ex
+set -x
+# e option is disabled for now
 
 brew update > /dev/null
 
