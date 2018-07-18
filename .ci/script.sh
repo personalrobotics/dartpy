@@ -11,7 +11,7 @@ if [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$TRAVIS_BRANCH" != "*-binding" ]; then
   make binding
 fi
 
-if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+if [ "$TRAVIS_OS_NAME" = "linux" ]; then;
   # Don't actually build dartpy because the build time exceeds Travis CI time limit.
   # make -j4
   # $SUDO make install
