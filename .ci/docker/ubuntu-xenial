@@ -1,0 +1,25 @@
+FROM ubuntu:xenial
+
+RUN apt-get -y update
+RUN apt-get install -y software-properties-common
+RUN add-apt-repository ppa:dartsim/ppa -y
+RUN add-apt-repository ppa:personalrobotics/ppa -y
+RUN apt-get -y update
+RUN apt-get install -y \
+    sudo \
+    build-essential \
+    cmake \
+    pkg-config \
+    wget \
+    git \
+    libboost-dev \
+    libboost-python-dev \
+    libboost-python-numpy-dev \
+    libdart6-all-dev \
+    python3-pip \
+    python3-dartpy \
+    python3-dev \
+    python3-numpy \
+    python3-boost-numpy-eigen \
+    chimera
+RUN pip3 install -U pytest

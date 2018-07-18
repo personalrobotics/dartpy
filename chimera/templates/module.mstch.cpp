@@ -32,6 +32,6 @@ BOOST_PYTHON_MODULE({{module.name}})
   }
 
 {{/module.bindings}}
-}
 {{{postcontent}}}
+}
 {{{footer}}}
