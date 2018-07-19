@@ -54,6 +54,12 @@ All set! Import `dartpy` in Python and enjoy! Please see [Usage](#usage) section
 
 If you want to build `dartpy` from source, please see this [wiki page](https://github.com/personalrobotics/dartpy/wiki/Building-from-Source).
 
+### On macOS
+
+```shell
+$ brew install personalrobotics/tap/dartpy
+```
+
 ## Usage
 
 Once `dartpy` is installed, you should be able to open a Python terminal and
