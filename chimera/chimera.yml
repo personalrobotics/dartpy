@@ -20,6 +20,7 @@ template:
     header: |
       #include <dartpy/pointers.h>
       #include <dartpy/template_registry.h>
+
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
       // #include <dart/collision/ode/ode.hpp>
@@ -35,15 +36,15 @@ template:
       '/* postinclude */'
     footer:
       '/* footer */'
-    # TODO: Put this at the bottom of the module:
-    # dart::python::JointTemplateRegistry::register_default_types();
-    # dart::python::JointAndNodeTemplateRegistry::register_default_types();
   main:
     header: |
       #include <vector>
-      #include <dartpy/pointers.h>
+
+      #include <dartpy/pointers.h> // should be included before any other non-STL headers
       #include <dartpy/collections.h>
+      #include <dartpy/template_registry.h>
       #include <dartpy/util.h>
+
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
       // #include <dart/collision/ode/ode.hpp>
@@ -133,6 +134,9 @@ template:
       ::boost::python::scope().attr("utils").attr("skel") = ::boost::python::object(::boost::python::handle<>(::boost::python::borrowed(::PyImport_AddModule("dartpy.utils.skel"))));
       void skel_parser();
       skel_parser();
+      
+      dart::python::JointTemplateRegistry::register_default_types();
+      dart::python::JointAndNodeTemplateRegistry::register_default_types();
     footer: |
       // main footer
 
