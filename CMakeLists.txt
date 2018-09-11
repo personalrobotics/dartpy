@@ -37,7 +37,7 @@ else() # LINUX assumed
   endif()
 endif()
 
-find_package(DART 6.3.0 REQUIRED
+find_package(DART 6.6.0 REQUIRED
   COMPONENTS
     collision-bullet
     # collision-ode
