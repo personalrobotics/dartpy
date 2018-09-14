@@ -3,19 +3,19 @@ arguments:
   - "-extra-arg"
   - "-I/usr/lib/clang/3.6/include"
 
-binding: "boost_python"
+binding: "pybind11"
 
 template:
-  module: !file
-    'templates/module.mstch.cpp'
-  class: !file
-    'templates/cxx_record.mstch.cpp'
-  enum: !file
-    'templates/enum.mstch.cpp'
-  function: !file
-    'templates/function.mstch.cpp'
-  variable: !file
-    'templates/variable.mstch.cpp'
+  # module: !file
+  #   'templates/module.mstch.cpp'
+  # class: !file
+  #   'templates/cxx_record.mstch.cpp'
+  # enum: !file
+  #   'templates/enum.mstch.cpp'
+  # function: !file
+  #   'templates/function.mstch.cpp'
+  # variable: !file
+  #   'templates/variable.mstch.cpp'
   file:
     header: |
       #include <dartpy/pointers.h>
@@ -144,103 +144,103 @@ namespaces:
 # Selected types that need special handling.
 types:
   'const bool &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const double &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::string&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const Eigen::Vector3i &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const Eigen::Vector2d&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const Eigen::Vector3d&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const Eigen::Vector4d&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const Eigen::Vector6d &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const Eigen::VectorXd &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const Eigen::Isometry3d &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const Eigen::Matrix6d &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const Eigen::MatrixXd &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'Eigen::VectorXd &':
     return_value_policy: copy_non_const_reference
   'std::vector<Eigen::VectorXd> &':
     return_value_policy: copy_non_const_reference
   'const Eigen::aligned_vector<Eigen::Vector2i> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::math::Jacobian &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::Inertia &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::Skeleton::Properties &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::ArrowShape::Properties &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::Joint::Properties &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::shared_ptr<dart::optimizer::Function> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::shared_ptr<dart::optimizer::Problem> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::shared_ptr<dart::optimizer::Solver> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::shared_ptr<dart::dynamics::InverseKinematics> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::shared_ptr<dart::dynamics::Shape> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::shared_ptr<dart::dynamics::WholeBodyIK> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::vector<Eigen::MatrixXd> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::vector<dart::dynamics::InverseKinematics::Analytical::Solution> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::pair<Eigen::Vector6d, Eigen::Vector6d> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::math::BoundingBox &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::math::SupportPolygon &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::optimizer::Solver::Properties &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::PlaneType &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::AxisOrder &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::CompositeIK::ModuleSet &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::IKHierarchy &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::vector<Eigen::VectorXd> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space>::BoolArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space>::BoolArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space>::BoolArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space>::BoolArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space>::BoolArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space>::StringArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space>::StringArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space>::StringArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space>::StringArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space>::StringArray &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'dart::dynamics::PointMass::State &':
     return_value_policy: copy_non_const_reference
   'const dart::dynamics::PointMass::State &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
 
    # Aspects
   'dart::dynamics::DynamicsAspect *':
@@ -277,65 +277,65 @@ types:
     return_value_policy: reference_existing_object
 
   'const dart::common::detail::EmbeddedStateAspect<dart::common::CompositeTrackingAspect<dart::dynamics::BodyNode>, dart::common::EmbeddedStateAndPropertiesAspect<dart::dynamics::BodyNode, dart::dynamics::detail::BodyNodeState, dart::dynamics::detail::BodyNodeAspectProperties>, dart::dynamics::detail::BodyNodeState, dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::BodyNodeState>, &dart::common::detail::DefaultSetEmbeddedState, &dart::common::detail::DefaultGetEmbeddedState>::State &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::BodyNodeState>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::R1Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::R2Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::R3Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::SO3Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::GenericJointState<dart::math::SE3Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::State, dart::dynamics::detail::SoftBodyNodeUniqueState>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::JointProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ShapeFrameProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::EntityNodeProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::FixedFrameProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::EndEffectorProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::MarkerProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::SkeletonAspectProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::BodyNodeAspectProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R1Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R2Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::R3Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SO3Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::GenericJointUniqueProperties<dart::math::SE3Space> >&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::EulerJointUniqueProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::PlanarJointUniqueProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::PrismaticJointUniqueProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::RevoluteJointUniqueProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::UniversalJointUniqueProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::ScrewJointUniqueProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::TranslationalJoint2DUniqueProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::MakeCloneable<dart::common::Aspect::Properties, dart::dynamics::detail::SoftBodyNodeUniqueProperties>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const dart::common::detail::AspectWithState<dart::common::CompositeTrackingAspect<dart::dynamics::EndEffector>, dart::dynamics::Support, dart::dynamics::detail::SupportStateData, dart::dynamics::EndEffector, &dart::dynamics::detail::SupportUpdate>::State &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
 
   # Disable const pointers
   'const dart::common::Aspect::State *': null
@@ -418,23 +418,23 @@ types:
 
   # collections
   'const std::vector<dart::dynamics::BodyNode*>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::vector<dart::dynamics::DegreeOfFreedom*>&':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::vector<std::size_t> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::vector<dart::dynamics::ShapePtr> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::set<dart::dynamics::Entity *> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::set<dart::dynamics::Frame *> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::pair<Eigen::Vector3d, Eigen::Vector3d> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::vector<int> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
   'const std::vector<Eigen::Vector3d> &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
 
   # allow unsafe access
   # TODO: Are there smart pointers for these?
@@ -548,7 +548,7 @@ types:
   'std::mutex &': null
 
   'const dart::common::Uri &':
-    return_value_policy: copy_const_reference
+    return_value_policy: reference
 
   # suppressed because they don't make sense in Python
   'dart::gui::GlutWindow *': null
