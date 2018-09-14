@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
 project(dartpy)
 
+option(USE_INTERNAL_BOOST_NUMPY_EIGEN "Enable generation of Chimera build tests." OFF)
+if(USE_INTERNAL_BOOST_NUMPY_EIGEN)
+  add_subdirectory(external/boost_numpy_eigen)
+endif()
+
 if(NOT DARTPY_PYTHON_VERSION)
   set(DARTPY_PYTHON_VERSION 3.4 CACHE STRING "Choose the target Python version (e.g., 3.4, 2.7)" FORCE)
 endif()
