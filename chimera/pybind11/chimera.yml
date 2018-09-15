@@ -6,16 +6,16 @@ arguments:
 binding: "pybind11"
 
 template:
-  # module: !file
-  #   'templates/module.mstch.cpp'
-  # class: !file
-  #   'templates/cxx_record.mstch.cpp'
-  # enum: !file
-  #   'templates/enum.mstch.cpp'
-  # function: !file
-  #   'templates/function.mstch.cpp'
-  # variable: !file
-  #   'templates/variable.mstch.cpp'
+  module: !file
+    'templates/module.mstch.cpp'
+  class: !file
+    'templates/class.mstch.cpp'
+  enum: !file
+    'templates/enum.mstch.cpp'
+  function: !file
+    'templates/function.mstch.cpp'
+  variable: !file
+    'templates/variable.mstch.cpp'
   file:
     header: |
       #include <dartpy/pointers.h>
@@ -1754,6 +1754,10 @@ functions:
   'tinyxml2::XMLElement *dart::utils::getElement(tinyxml2::XMLElement *, const std::string &)': null
   'std::ostream &dart::common::colorMsg(const std::string &, int)': null
   'std::ostream &dart::common::colorErr(const std::string &, const std::string &, unsigned int, int)': null
+
+  # Ignore functions taking std::unique_ptr reference for now: https://pybind11.readthedocs.io/en/master/advanced/smart_ptrs.html
+  #'void dart::dynamics::Node::copyNodeStateTo(std::unique_ptr<dart::dynamics::Node::State>&) const': null
+  #'void dart::dynamics::Node::copyNodePropertiesTo(std::unique_ptr<dart::dynamics::Node::Properties>&) const': null
 
   # Incompete argument types.
   'void dart::gui::RenderInterface::readFrameBuffer(dart::gui::DecoBufferType, dart::gui::DecoColorChannel, void*)': null
