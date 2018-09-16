@@ -28,5 +28,9 @@ if [ "$TRAVIS_OS_NAME" = "linux" ]; then
   cd $TRAVIS_BUILD_DIR
 
   # Install dartpy as package name "dart"
-  $SUDO pip3 install -e .
+  if [ $PYTHON_VERSION = 3.* ]; then
+    $SUDO pip3 install -e .
+  else
+    $SUDO pip install -e .
+  fi
 fi
