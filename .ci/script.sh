@@ -11,8 +11,10 @@ if [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$TRAVIS_BRANCH" != "*-binding" ]; then
   make binding
 fi
 
-make -j4
-$SUDO make install
+if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+  make -j4
+  $SUDO make install
+fi
 
 # Install dartpy for running Python tests without building dartpy
 # sudo apt-get install python3-dartpy
