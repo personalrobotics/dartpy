@@ -107,3 +107,6 @@ target/
 Session.vim
 .netrwhist
 *~
+
+# Visual Studio Code
+.vscode/
