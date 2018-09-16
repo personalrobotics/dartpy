@@ -8,3 +8,4 @@ brew update > /dev/null
 brew install dartsim
 brew install boost
 brew install boost-python3
+brew install pybind11
