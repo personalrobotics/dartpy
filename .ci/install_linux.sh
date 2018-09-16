@@ -21,6 +21,19 @@ if [ $(lsb_release -sc) = "trusty" ]; then
 fi
 sudo apt-get install chimera -y
 
+# Install Eigen 3.2.7 only for Trusty
+if [ $(lsb_release -sc) = "trusty" ]; then
+  git clone https://github.com/eigenteam/eigen-git-mirror
+  cd eigen-git-mirror
+  git checkout tags/3.2.7
+  mkdir build
+  cd build
+  cmake ..
+  make -j4
+  sudo make install
+  cd ../..
+fi
+
 # Install pybind11 from source (we need pybind11 (>=2.2.0))
 git clone https://github.com/pybind/pybind11.git
 cd pybind11
