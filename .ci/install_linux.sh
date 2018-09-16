@@ -33,5 +33,10 @@ sudo make install
 cd ../..
 
 # Install dependencies for unittests
-sudo apt-get install python3-pip -y
-sudo pip3 install pytest -U
+if [ $PYTHON_VERSION = 3.* ]; then
+  sudo apt-get install python3-pip -y
+  sudo pip3 install pytest -U
+ else
+  sudo apt-get install python-pip -y
+  sudo pip install pytest -U
+ fi
