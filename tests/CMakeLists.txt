@@ -50,9 +50,10 @@ else()
 endif()
 
 set(DARTPY_TEST_FILES
-  comprehensive/test_collision_detector.py
-  regression/test_get_shape.py
-  unit/test_dart_loader.py
+  # comprehensive/test_collision_detector.py
+  # regression/test_get_shape.py
+  # unit/utils/test_dart_loader.py
+  unit/common/test_uri.py
 )
 
 # Add custom target to run the tests

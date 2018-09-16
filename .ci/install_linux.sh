@@ -35,6 +35,3 @@ cd ../..
 # Install dependencies for unittests
 sudo apt-get install python3-pip -y
 sudo pip3 install pytest -U
-
-# Install dartpy for running Python tests without building dartpy
-sudo apt-get install python3-dartpy
