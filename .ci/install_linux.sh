@@ -9,9 +9,9 @@ fi
 sudo apt-add-repository ppa:dartsim -y
 sudo apt-add-repository ppa:personalrobotics -y
 sudo apt-get update -q
-sudo apt-get install cmake libboost-dev libboost-python-dev libboost-python-numpy-dev libdart6-all-dev
-sudo apt-get install python-dev python-numpy python-boost-numpy-eigen    # for Python 2
-sudo apt-get install python3-dev python3-numpy python3-boost-numpy-eigen # for Python 3
+sudo apt-get install cmake libboost-dev libdart6-all-dev -y
+sudo apt-get install python-dev python-numpy -y   # for Python 2
+sudo apt-get install python3-dev python3-numpy -y # for Python 3
 
 # Install Chimera
 if [ $(lsb_release -sc) = "trusty" ]; then

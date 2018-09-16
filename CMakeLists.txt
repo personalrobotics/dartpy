@@ -16,27 +16,6 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
   OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-# Find boost with python components. The name of python component varies
-# depending on the platform, boost version, and python version.
-if(APPLE)
-  find_package(Boost REQUIRED
-    COMPONENTS
-      python${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} thread
-  )
-else() # LINUX assumed
-  if(${PYTHON_VERSION_MAJOR} EQUAL 3)
-    find_package(Boost
-      COMPONENTS
-        python-py${PYTHON_VERSION_MAJOR}${PYTHON_VERSION_MINOR} thread
-    )
-    if(NOT Boost_FOUND)
-      find_package(Boost REQUIRED COMPONENTS python3 thread)
-    endif()
-  else() # Python 2 assumed
-    find_package(Boost REQUIRED COMPONENTS python thread)
-  endif()
-endif()
-
 find_package(DART 6.3.0 REQUIRED
   COMPONENTS
     collision-bullet
@@ -51,34 +30,16 @@ find_package(DART 6.3.0 REQUIRED
 find_package(PythonLibs ${DARTPY_PYTHON_VERSION} REQUIRED)
 find_package(chimera QUIET)
 
+# Find pybind11
+# Needs to set PYBIND11_PYTHON_VERSION before finding pybind11
+set(PYBIND11_PYTHON_VERSION ${DARTPY_PYTHON_VERSION})
+find_package(pybind11 2.2.0 REQUIRED)
+
 include_directories(SYSTEM
-  ${Boost_INCLUDE_DIRS}
   ${DART_INCLUDE_DIRS}
   ${PYTHON_INCLUDE_DIRS}
+  ${pybind11_INCLUDE_DIRS}
 )
-
-# Check whether the CXX compiler and boost::python support get_pointer for
-# std::shared_ptr<T> references.
-include(CheckCXXSourceCompiles)
-set(CMAKE_REQUIRED_INCLUDES
-  ${Boost_INCLUDE_DIRS}
-  ${PYTHON_INCLUDE_DIRS}
-)
-set(CMAKE_REQUIRED_LIBRARIES
-  ${Boost_LIBRARIES}
-  ${PYTHON_LIBRARIES}
-)
-check_cxx_source_compiles(
-  "
-  #include <memory>
-  #include <boost/python.hpp>
-  int main() { std::shared_ptr<int> ptr; int *p = boost::get_pointer(ptr); }
-  "
-  DARTPY_HAS_STD_SHARED_GET_POINTER
-)
-
-unset(CMAKE_REQUIRED_INCLUDES)
-unset(CMAKE_REQUIRED_LIBRARIES)
 
 # Generate a header file for the DARTPY_HAS_STD_SHARED_GET_POINTER flag.
 configure_file("cmake/config.h.in"
@@ -101,7 +62,6 @@ if(chimera_FOUND)
     DEBUG EXCLUDE_FROM_ALL
   )
   target_link_libraries("${PROJECT_NAME}_CHIMERA"
-    ${Boost_LIBRARIES}
     ${DART_LIBRARIES}
     ${PYTHON_LIBRARIES}
   )
@@ -131,7 +91,6 @@ if(EXISTS "${SOURCES_TXT}")
     src/template_registry.cpp
   )
   target_link_libraries("${PROJECT_NAME}"
-    ${Boost_LIBRARIES}
     ${DART_LIBRARIES}
     ${PYTHON_LIBRARIES}
   )
