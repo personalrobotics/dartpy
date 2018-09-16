@@ -3,21 +3,21 @@ set -ex
 
 # Install DART
 if [ $(lsb_release -sc) = "trusty" ]; then
-  sudo apt-add-repository ppa:libccd-debs -y
-  sudo apt-add-repository ppa:fcl-debs -y
+  $SUDO apt-add-repository ppa:libccd-debs -y
+  $SUDO apt-add-repository ppa:fcl-debs -y
 fi
-sudo apt-add-repository ppa:dartsim -y
-sudo apt-add-repository ppa:personalrobotics -y
-sudo apt-get update -q
-sudo apt-get install cmake libboost-dev libdart6-all-dev -y
-sudo apt-get install python-dev python-numpy -y   # for Python 2
-sudo apt-get install python3-dev python3-numpy -y # for Python 3
+$SUDO apt-add-repository ppa:dartsim -y
+$SUDO apt-add-repository ppa:personalrobotics -y
+$SUDO apt-get update -q
+$SUDO apt-get install cmake libboost-dev libdart6-all-dev -y
+$SUDO apt-get install python-dev python-numpy -y   # for Python 2
+$SUDO apt-get install python3-dev python3-numpy -y # for Python 3
 
 # Install Chimera
 if [ $(lsb_release -sc) = "trusty" ]; then
   # For installing chimera dependencies: llvm-3.7, llvm-3.7-tools, and libclang-3.7-dev
-  sudo add-apt-repository ppa:renemilk/llvm -y
-  sudo apt-get update -q
+  $SUDO add-apt-repository ppa:renemilk/llvm -y
+  $SUDO apt-get update -q
 fi
 sudo apt-get install chimera -y
 
@@ -29,14 +29,14 @@ mkdir build
 cd build
 cmake .. -DPYBIND11_TEST=OFF -DPYBIND11_PYTHON_VERSION=$PYTHON_VERSION
 make -j4
-sudo make install
+$SUDO make install
 cd ../..
 
 # Install dependencies for unittests
 if [ $PYTHON_VERSION = 3.* ]; then
-  sudo apt-get install python3-pip -y
-  sudo pip3 install pytest -U
+  $SUDO apt-get install python3-pip -y
+  $SUDO pip3 install pytest -U
 else
-  sudo apt-get install python-pip -y
-  sudo pip install pytest -U
+  $SUDO apt-get install python-pip -y
+  $SUDO pip install pytest -U
 fi
