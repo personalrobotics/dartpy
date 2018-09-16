@@ -36,7 +36,7 @@ cd ../..
 if [ $PYTHON_VERSION = 3.* ]; then
   sudo apt-get install python3-pip -y
   sudo pip3 install pytest -U
- else
+else
   sudo apt-get install python-pip -y
   sudo pip install pytest -U
- fi
+fi
