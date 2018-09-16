@@ -32,8 +32,8 @@ template:
     'templates/variable.mstch.cpp'
   file:
     header: |
-      #include <dartpy/pointers.h>
-      #include <dartpy/template_registry.h>
+      // #include <dartpy/pointers.h>
+      // #include <dartpy/template_registry.h>
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
       // #include <dart/collision/ode/ode.hpp>
@@ -55,9 +55,9 @@ template:
   main:
     header: |
       #include <vector>
-      #include <dartpy/pointers.h>
-      #include <dartpy/collections.h>
-      #include <dartpy/util.h>
+      // #include <dartpy/pointers.h>
+      // #include <dartpy/collections.h>
+      // #include <dartpy/util.h>
       #include <dart/dart.hpp>
       #include <dart/collision/bullet/bullet.hpp>
       // #include <dart/collision/ode/ode.hpp>

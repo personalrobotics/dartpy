@@ -85,10 +85,10 @@ if(EXISTS "${SOURCES_TXT}")
 
   add_library("${PROJECT_NAME}" MODULE
     ${SOURCES_GENERATED}
-    src/BodyNode.cpp
-    src/Skeleton.cpp
-    src/skel_parser.cpp
-    src/template_registry.cpp
+    # src/BodyNode.cpp
+    # src/Skeleton.cpp
+    # src/skel_parser.cpp
+    # src/template_registry.cpp
   )
   target_link_libraries("${PROJECT_NAME}"
     ${DART_LIBRARIES}
