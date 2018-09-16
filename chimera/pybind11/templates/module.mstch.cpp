@@ -7,6 +7,7 @@
 {{/sources}}
 {{precontent}}
 #include <pybind11/pybind11.h>
+#include <pybind11/eigen.h>
 {{postinclude}}
 
 PYBIND11_MODULE({{module.name}}, m)

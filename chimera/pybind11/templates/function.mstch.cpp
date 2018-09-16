@@ -7,6 +7,7 @@
 {{/sources}}
 {{precontent}}
 #include <pybind11/pybind11.h>
+#include <pybind11/eigen.h>
 {{postinclude}}
 
 void {{function.mangled_name}}(pybind11::module& m)
