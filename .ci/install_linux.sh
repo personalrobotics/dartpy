@@ -21,6 +21,17 @@ if [ $(lsb_release -sc) = "trusty" ]; then
 fi
 sudo apt-get install chimera -y
 
+# Install pybind11 from source (we need pybind11 (>=2.2.0))
+git clone https://github.com/pybind/pybind11.git
+cd pybind11
+git checkout tags/v2.2.3
+mkdir build
+cd build
+cmake .. -DPYBIND11_TEST=OFF -DPYBIND11_PYTHON_VERSION=$PYTHON_VERSION
+make -j4
+sudo make install
+cd ../..
+
 # Install dependencies for unittests
 sudo apt-get install python3-pip -y
 sudo pip3 install pytest -U

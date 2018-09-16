@@ -11,9 +11,8 @@ if [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$TRAVIS_BRANCH" != "*-binding" ]; then
   make binding
 fi
 
-# Don't actually build dartpy because the build time exceeds Travis CI time limit.
-# make -j4
-# $SUDO make install
+make -j4
+$SUDO make install
 
 if [ "$TRAVIS_OS_NAME" = "linux" ]; then
   # Run pytest for Python tests of dartpy
