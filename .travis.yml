@@ -4,12 +4,19 @@ dist: trusty
 
 matrix:
   include:
+    # - os: linux
+    #   language: cpp
+    #   env: 
+    #     - BUILD_NAME=TRUSTY_PYTHON_34
+    #     - SUDO=sudo
+    #     - PYTHON_VERSION=3.4
     - os: linux
       language: cpp
-      env: 
-        - BUILD_NAME=TRUSTY_PYTHON_34
-        - SUDO=sudo
-        - PYTHON_VERSION=3.4
+      services: docker
+      env:
+        - BUILD_NAME=XENIAL_PYTHON_27
+        - DOCKER_FILE="ubuntu-xenial"
+        - PYTHON_VERSION=2.7
     - os: linux
       language: cpp
       services: docker
@@ -17,6 +24,13 @@ matrix:
         - BUILD_NAME=XENIAL_PYTHON_35
         - DOCKER_FILE="ubuntu-xenial"
         - PYTHON_VERSION=3.5
+    - os: linux
+      language: cpp
+      services: docker
+      env:
+        - BUILD_NAME=BIONIC_PYTHON_27
+        - DOCKER_FILE="ubuntu-bionic"
+        - PYTHON_VERSION=2.7
     - os: linux
       language: cpp
       services: docker
