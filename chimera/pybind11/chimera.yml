@@ -85,13 +85,28 @@ namespaces:
 
 #==============================================================================
 #
+# Variable: Selected variables that need special handling.
+#
+#==============================================================================
+variables:
+
+  #----------------------------------------------------------------------------
+  # dart::math::
+  #----------------------------------------------------------------------------
+
+  # Not used
+  'dart::math::CR': null
+
+
+#==============================================================================
+#
 # Types: Selected types that need special handling.
 #
 #==============================================================================
 types:
 
   #----------------------------------------------------------------------------
-  # dart::common
+  # dart::common::
   #----------------------------------------------------------------------------
 
   # Disable const pointers
@@ -101,17 +116,11 @@ types:
   'dart::common::UriComponent::reference_type':
     return_value_policy: reference
 
-  # 'dart::common::UriComponent::reference_const_type':
-  #   return_value_policy: reference
-
-  # 'dart::common::UriComponent::reference_type':
-  #   return_value_policy: 
-
-  # 'dart::common::UriComponent::reference_type':
-  #   return_value_policy: 
-
-  # 'dart::common::UriComponent::reference_type':
-  #   return_value_policy: 
+  #----------------------------------------------------------------------------
+  # Eigen::
+  #----------------------------------------------------------------------------
+  'const Eigen::Vector3d&':
+    return_value_policy: reference
 
 #==============================================================================
 #
@@ -121,7 +130,7 @@ types:
 classes:
 
   #----------------------------------------------------------------------------
-  # dart::common
+  # dart::common::
   #----------------------------------------------------------------------------
 
   # Hide details
@@ -134,7 +143,7 @@ classes:
   'dart::common::LocalResourceRetriever':
     held_type: std::shared_ptr<dart::common::LocalResourceRetriever>
 
-  # Name mangling
+  # Name
   'dart::common::Cloneable<dart::common::Aspect::Properties>':
     name: CloneableAspectProperties
   'dart::common::Cloneable<dart::common::Aspect::State>':
@@ -144,12 +153,36 @@ classes:
   'dart::common::detail::CompositeData<std::map<std::type_index, std::unique_ptr<dart::common::Aspect::Properties, std::default_delete<dart::common::Aspect::Properties> >, std::less<std::type_index>, std::allocator<std::pair<const std::type_index, std::unique_ptr<dart::common::Aspect::Properties, std::default_delete<dart::common::Aspect::Properties> > > > >, dart::common::detail::GetProperties>':
     name: CompositeData_Map_TypeIndex_AspectProperties
 
-  # TODO(JS)
-  # 'dart::common::UriComponent': null
-
   # TODO(JS): Disabled until nested enumeration issue is resolved.
   # See: https://github.com/personalrobotics/chimera/issues/202
   'dart::common::SharedLibrary': null
+
+  #----------------------------------------------------------------------------
+  # dart::math::
+  #----------------------------------------------------------------------------
+
+  # Hide details
+  'dart::math::detail::toEuclideanPointImpl<dart::math::RealVectorSpace<1> >': null
+  'dart::math::detail::toEuclideanPointImpl<dart::math::RealVectorSpace<3> >': null
+  'dart::math::detail::toEuclideanPointImpl<dart::math::RealVectorSpace<2> >': null
+  'dart::math::detail::toEuclideanPointImpl<dart::math::SO3Space>': null
+  'dart::math::detail::toEuclideanPointImpl<dart::math::SE3Space>': null
+  'dart::math::detail::toManifoldPointImpl<dart::math::RealVectorSpace<1> >': null
+  'dart::math::detail::toManifoldPointImpl<dart::math::RealVectorSpace<3> >': null
+  'dart::math::detail::toManifoldPointImpl<dart::math::RealVectorSpace<2> >': null
+  'dart::math::detail::toManifoldPointImpl<dart::math::SO3Space>': null
+  'dart::math::detail::toManifoldPointImpl<dart::math::SE3Space>': null
+  'dart::math::detail::integratePositionImpl<dart::math::RealVectorSpace<1> >': null
+  'dart::math::detail::integratePositionImpl<dart::math::RealVectorSpace<3> >': null
+  'dart::math::detail::integratePositionImpl<dart::math::RealVectorSpace<2> >': null
+  'dart::math::detail::integratePositionImpl<dart::math::SO3Space>': null
+  'dart::math::detail::integratePositionImpl<dart::math::SE3Space>': null
+
+  # Name
+  'dart::math::constants<double>':
+    name: constantsd
+  'dart::math::constants<long double>':
+    name: constantsld
 
 #==============================================================================
 #
@@ -159,7 +192,7 @@ classes:
 functions:
 
   #----------------------------------------------------------------------------
-  # dart::common
+  # dart::common::
   #----------------------------------------------------------------------------
 
   # rvalue
@@ -177,3 +210,17 @@ functions:
   # TODO(JS): Disabled until nested enumeration issue is resolved.
   # See: https://github.com/personalrobotics/chimera/issues/202
   'bool dart::common::Resource::seek(ptrdiff_t, dart::common::Resource::SeekType)': null
+
+  # TODO(JS): implicit declaration
+  # Warning: Skipped function 'dart::common::UriComponent::UriComponent' because the parameter at index 0 is an rvalue reference of type 'dart::common::UriComponent &&'.
+  # 'dart::common::UriComponent::UriComponent(dart::common::UriComponent&&)': null
+
+  #----------------------------------------------------------------------------
+  # dart::math::
+  #----------------------------------------------------------------------------
+
+  # rvalue
+
+  # TODO(JS): implicit declaration
+  # Warning: Skipped function 'dart::math::BoundingBox::BoundingBox' because the parameter at index 0 is an rvalue reference of type 'dart::math::BoundingBox &&'.
+  # 'dart::math::BoundingBox::BoundingBox(dart::math::BoundingBox::BoundingBox&&)': null

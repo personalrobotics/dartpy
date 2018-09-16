@@ -3,7 +3,7 @@
 //
 
 #include <dart/common/common.hpp>
-// #include <dart/math/math.hpp>
+#include <dart/math/math.hpp>
 
 // #include <dart/dart.hpp>
 // #include <dart/collision/bullet/bullet.hpp>
