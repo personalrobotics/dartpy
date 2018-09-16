@@ -94,7 +94,8 @@ include_directories(
 if(chimera_FOUND)
   add_chimera_binding(TARGET "${PROJECT_NAME}_CHIMERA"
     MODULE "${PROJECT_NAME}"
-    CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.yml"
+    # TODO(JS): Make option to use Boost.Python optionally
+    CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera/pybind11/chimera.yml"
     SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.cpp"
     DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/src/generated"
     DEBUG EXCLUDE_FROM_ALL
