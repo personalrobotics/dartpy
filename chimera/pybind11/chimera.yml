@@ -97,6 +97,29 @@ namespaces:
 types:
 
   #----------------------------------------------------------------------------
+  # std::
+  #----------------------------------------------------------------------------
+  'const std::string &':
+    return_value_policy: reference_internal
+
+  #----------------------------------------------------------------------------
+  # Assimp::
+  #----------------------------------------------------------------------------
+
+  # Disable const pointers
+  'const aiScene *': null
+  'const aiMesh *': null
+  'Assimp::IOStream *':
+    return_value_policy: reference_internal
+
+  #----------------------------------------------------------------------------
+  # Eigen::
+  #----------------------------------------------------------------------------
+
+  'const Eigen::Vector3d&':
+    return_value_policy: reference_internal
+
+  #----------------------------------------------------------------------------
   # dart::common::
   #----------------------------------------------------------------------------
 
@@ -104,18 +127,27 @@ types:
   'const dart::common::Aspect::State *': null
   'const dart::common::Aspect::Properties *': null
 
+  # Return value policy
+  'const dart::common::Uri &':
+    return_value_policy: reference_internal
   'dart::common::UriComponent::reference_type':
-    return_value_policy: reference
+    return_value_policy: reference_internal
 
   #----------------------------------------------------------------------------
   # dart::math::
   #----------------------------------------------------------------------------
 
+  # Return value policy
+  'const dart::math::BoundingBox &':
+    return_value_policy: reference_internal
+
   #----------------------------------------------------------------------------
-  # Eigen::
+  # dart::dynamics::
   #----------------------------------------------------------------------------
-  'const Eigen::Vector3d&':
-    return_value_policy: reference
+  
+  # Return value policy
+  'const dart::dynamics::ArrowShape::Properties &':
+    return_value_policy: reference_internal
 
 #==============================================================================
 #
@@ -180,6 +212,13 @@ classes:
   'dart::math::constants<long double>':
     name: constantsld
 
+  # Test
+  # 'dart::dynamics::AssimpInputResourceRetrieverAdaptor': null
+  # 'dart::dynamics::ArrowShape::Properties': null
+  # 'dart::dynamics::AssimpInputResourceRetrieverAdaptor': null
+  'Assimp::IOStream': null
+  # 'dart::dynamics::AssimpInputResourceAdaptor': null
+
 #==============================================================================
 #
 # Functions
@@ -208,6 +247,10 @@ functions:
   'bool dart::common::Resource::seek(ptrdiff_t, dart::common::Resource::SeekType)': null
 
   # TODO(JS): implicit declaration
+  # Warning: Skipped function 'dart::common::Uri::Uri' because the parameter at index 0 is an rvalue reference of type 'dart::common::Uri &&'.
+  # 'dart::common::Uri::Uri(dart::common::Uri &&)': null
+
+  # TODO(JS): implicit declaration
   # Warning: Skipped function 'dart::common::UriComponent::UriComponent' because the parameter at index 0 is an rvalue reference of type 'dart::common::UriComponent &&'.
   # 'dart::common::UriComponent::UriComponent(dart::common::UriComponent&&)': null
 
@@ -220,3 +263,8 @@ functions:
   # TODO(JS): implicit declaration
   # Warning: Skipped function 'dart::math::BoundingBox::BoundingBox' because the parameter at index 0 is an rvalue reference of type 'dart::math::BoundingBox &&'.
   # 'dart::math::BoundingBox::BoundingBox(dart::math::BoundingBox::BoundingBox&&)': null
+
+  #----------------------------------------------------------------------------
+  # dart::dynamics::
+  #----------------------------------------------------------------------------
+

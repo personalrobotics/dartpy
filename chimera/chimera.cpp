@@ -5,6 +5,9 @@
 #include <dart/common/common.hpp>
 #include <dart/math/math.hpp>
 
+#include "dart/dynamics/ArrowShape.hpp"
+#include "dart/dynamics/AssimpInputResourceAdaptor.hpp"
+
 // #include <dart/dart.hpp>
 // #include <dart/collision/bullet/bullet.hpp>
 // // #include <dart/collision/ode/ode.hpp>
