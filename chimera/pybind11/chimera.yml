@@ -67,12 +67,18 @@ template:
       #include <dart/utils/utils.hpp>
       #include <dart/utils/urdf/urdf.hpp>
       #include <dart/gui/gui.hpp>
+
+      #include <dartpy/eigen_pybind.h>
+      #include <dartpy/eigen_geometry_pybind.h>
     postinclude:
       '/* main postinclude */'
     prebody:
       '/* main prebody */'
     precontent:
       '/* main precontent */'
+    postcontent: |
+      void eigen(pybind11::module& m);
+      eigen(m);
 
 #==============================================================================
 #
@@ -100,6 +106,10 @@ types:
 
   'dart::common::UriComponent::reference_type':
     return_value_policy: reference
+
+  #----------------------------------------------------------------------------
+  # dart::math::
+  #----------------------------------------------------------------------------
 
   #----------------------------------------------------------------------------
   # Eigen::
@@ -162,6 +172,7 @@ classes:
   'dart::math::detail::integratePositionImpl<dart::math::RealVectorSpace<2> >': null
   'dart::math::detail::integratePositionImpl<dart::math::SO3Space>': null
   'dart::math::detail::integratePositionImpl<dart::math::SE3Space>': null
+  'dart::math::MapsToManifoldPoint': null
 
   # Name
   'dart::math::constants<double>':

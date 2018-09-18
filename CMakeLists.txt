@@ -6,7 +6,7 @@ if(NOT DARTPY_PYTHON_VERSION)
 endif()
 
 # TODO: This should be set by DART.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wno-deprecated -Wno-deprecated-declarations")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Wno-deprecated -Wno-deprecated-declarations")
 
 find_package(PythonInterp ${DARTPY_PYTHON_VERSION} REQUIRED)
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
@@ -85,6 +85,7 @@ if(EXISTS "${SOURCES_TXT}")
 
   add_library("${PROJECT_NAME}" MODULE
     ${SOURCES_GENERATED}
+    src/eigen_geometry_py.cpp
     # src/BodyNode.cpp
     # src/Skeleton.cpp
     # src/skel_parser.cpp
