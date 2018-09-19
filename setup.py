@@ -56,11 +56,10 @@ setup(
     version='0.0.1',
     description=description,
     long_description=long_description,
-    ext_modules=[Extension('dart', sources=[])],
     url='https://github.com/personalrobotics/dartpy',
     author='Michael Koval',
     author_email='mkoval@cs.cmu.edu',
-    packages=['dart'],
+    packages=['dartpy'],
     license='BSD',
     keywords=['dartsim', 'physics', 'robotics', 'simulation'],
     classifiers=[
