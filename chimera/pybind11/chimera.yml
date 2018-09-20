@@ -43,6 +43,9 @@ template:
       #include <dart/utils/utils.hpp>
       #include <dart/utils/urdf/urdf.hpp>
       #include <dart/gui/gui.hpp>
+
+      #include <pybind11/pybind11.h>
+      #include <pybind11/eigen.h>
     precontent:
       '/* precontent */'
     postinclude:
@@ -67,6 +70,9 @@ template:
       #include <dart/utils/utils.hpp>
       #include <dart/utils/urdf/urdf.hpp>
       #include <dart/gui/gui.hpp>
+
+      #include <pybind11/pybind11.h>
+      #include <pybind11/eigen.h>
 
       #include <dartpy/eigen_pybind.h>
       #include <dartpy/eigen_geometry_pybind.h>

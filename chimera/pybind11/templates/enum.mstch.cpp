@@ -7,7 +7,6 @@
 {{/sources}}
 {{{precontent}}}
 #include <pybind11/pybind11.h>
-#include <pybind11/eigen.h>
 {{postinclude}}
 
 void {{enum.mangled_name}}(pybind11::module& m)
