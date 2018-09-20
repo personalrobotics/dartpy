@@ -36,14 +36,17 @@ namespace {
 void {{class.mangled_name}}(pybind11::module& m)
 {
     auto sm = m{{!
-        }}{{#class.scope}}{{#name}}.def_submodule("{{name}}"){{/name}}{{/class.scope}};
+        }}{{#class.namespace}}{{#name}}.def_submodule("{{name}}"){{/name}}{{/class.namespace}};
+
+    auto attr = sm{{!
+        }}{{#class.scope_without_namespace}}{{#name}}.attr("{{name}}"){{/name}}{{/class.scope_without_namespace}};
 
     ::pybind11::class_<{{class.type}}{{!
         }}{{#class.held_type}}, {{!
         }}{{.}}{{/class.held_type}}{{#class.bases?}}, {{!
         }}{{!
             }}{{#class.bases}}{{qualified_name}}{{^last}}, {{/last}}{{/class.bases}}{{!
-        }}{{/class.bases?}} >(sm, "{{class.name}}"{{!
+        }}{{/class.bases?}} >(attr, "{{class.name}}"{{!
         }}{{#class.comment?}}, {{class.mangled_name}}_docstring{{/class.comment?}}{{!
         }}){{!
 
@@ -88,13 +91,12 @@ void {{class.mangled_name}}(pybind11::module& m)
     }}("{{name}}", &{{qualified_name}})
 {{/class.fields}}{{!
 
-/* TODO(JS): Enable static fields */
 /* static fields */}}
-/* {{#class.static_fields}}{{! */
-/*     }}{{#is_assignable}}        .def_readwrite_static{{/is_assignable}}{{! */
-/*     }}{{^is_assignable}}        .def_readonly_static{{/is_assignable}}{{! */
-/*     }}("{{name}}", &{{qualified_name}}) */
-/* {{/class.static_fields}} */
+{{#class.static_fields}}{{!
+    }}{{#is_assignable}}        .def_readwrite_static{{/is_assignable}}{{!
+    }}{{^is_assignable}}        .def_readonly_static{{/is_assignable}}{{!
+    }}("{{name}}", &{{qualified_name}})
+{{/class.static_fields}}
     ;
 }
 {{postcontent}}
