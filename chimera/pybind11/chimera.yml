@@ -274,3 +274,6 @@ functions:
   # dart::dynamics::
   #----------------------------------------------------------------------------
 
+  # Disable std::unique_ptr<T>& parameter
+  'void dart::dynamics::Node::copyNodeStateTo(std::unique_ptr<dart::dynamics::Node::State> &) const': null
+  'void dart::dynamics::Node::copyNodePropertiesTo(std::unique_ptr<dart::dynamics::Node::Properties> &) const': null
