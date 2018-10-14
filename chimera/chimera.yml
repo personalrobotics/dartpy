@@ -1422,7 +1422,8 @@ classes:
     held_type: 'std::shared_ptr<dart::dynamics::PlaneShape>'
   'dart::dynamics::SoftMeshShape':
     held_type: 'std::shared_ptr<dart::dynamics::SoftMeshShape>'
-  'dart::dynamics::VoxelGridShape': null
+  'dart::dynamics::VoxelGridShape':
+    held_type: 'std::shared_ptr<dart::dynamics::VoxelGridShape>'
 
   # MetaSkeletons
   'dart::dynamics::Skeleton':
@@ -1761,6 +1762,10 @@ functions:
   'void dart::gui::OpenGLRenderInterface::readFrameBuffer(dart::gui::DecoBufferType, dart::gui::DecoColorChannel, void*)': null
   'size_t dart::common::Resource::read(void *, size_t, size_t)': null
   'size_t dart::common::LocalResource::read(void *, size_t, size_t)': null
+  'dart::dynamics::VoxelGridShape::VoxelGridShape(fcl_shared_ptr<octomap::OcTree>)': null
+  'void dart::dynamics::VoxelGridShape::setOctree(fcl_shared_ptr<octomap::OcTree>)': null
+  'fcl_shared_ptr<octomap::OcTree> dart::dynamics::VoxelGridShape::getOctree()': null
+  'fcl_shared_ptr<const octomap::OcTree> dart::dynamics::VoxelGridShape::getOctree() const': null
 
   #'bool dart::gui::osg::DefaultEventHandler::handle(const osgGA::GUIEventAdapter &, osgGA::GUIActionAdapter &)': null
   #'void dart::gui::osg::DefaultEventHandler::pick(std::vector<dart::gui::osg::PickInfo> &, const osgGA::GUIEventAdapter &)': null
