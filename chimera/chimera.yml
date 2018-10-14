@@ -1422,6 +1422,7 @@ classes:
     held_type: 'std::shared_ptr<dart::dynamics::PlaneShape>'
   'dart::dynamics::SoftMeshShape':
     held_type: 'std::shared_ptr<dart::dynamics::SoftMeshShape>'
+  'dart::dynamics::VoxelGridShape': null
 
   # MetaSkeletons
   'dart::dynamics::Skeleton':
