@@ -18,11 +18,11 @@ system = platform.system()
 if system == 'Linux':
     distro = platform.linux_distribution()[1]
     if distro == '14.04':
-        install_requires = ['numpy', 'vispy', 'pyassimp', 'pytest']
+        install_requires = ['numpy', 'pyassimp', 'pytest']
     else:
-        install_requires = ['numpy', 'vispy', 'PyQt5', 'pyassimp', 'pytest']
+        install_requires = ['numpy', 'pyassimp', 'pytest']
 else:
-    install_requires = ['numpy', 'vispy', 'PyQt5', 'pyassimp', 'pytest']
+    install_requires = ['numpy', 'pyassimp', 'pytest']
 
 
 # See: http://www.astropython.org/snippet/2009/10/chdir-context-manager
@@ -56,11 +56,12 @@ setup(
     version='0.0.1',
     description=description,
     long_description=long_description,
-    ext_modules=[Extension('dart', sources=[])],
+    ext_modules=[Extension('dartpy', sources=[])],
     url='https://github.com/personalrobotics/dartpy',
     author='Michael Koval',
     author_email='mkoval@cs.cmu.edu',
-    packages=['dart'],
+    maintainer='Jeongseok Lee',
+    maintainer_email='jslee02@cs.uw.edu',
     license='BSD',
     keywords=['dartsim', 'physics', 'robotics', 'simulation'],
     classifiers=[
