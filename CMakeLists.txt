@@ -37,7 +37,7 @@ else() # LINUX assumed
   endif()
 endif()
 
-find_package(DART 6.3.0 REQUIRED
+find_package(DART 6.6.1 REQUIRED
   COMPONENTS
     collision-bullet
     # collision-ode
@@ -46,6 +46,25 @@ find_package(DART 6.3.0 REQUIRED
     utils-urdf
     gui-osg
   CONFIG
+)
+
+# Check if DART is built with octomap so that it supports VoxelGridShape
+include(CheckCXXSourceCompiles)
+set(CMAKE_REQUIRED_DEFINITIONS "")
+set(CMAKE_REQUIRED_FLAGS "-std=c++11")
+set(CMAKE_REQUIRED_INCLUDES ${DART_INCLUDE_DIRS})
+set(CMAKE_REQUIRED_LIBRARIES ${DART_LIBRARIES})
+check_cxx_source_compiles(
+"
+#include <dart/dart.hpp>
+int main()
+{
+  auto voxel = new dart::dynamics::VoxelGridShape();
+  delete voxel;
+  return 0;
+}
+"
+DART_HAS_VOXELGRIDSHAPE
 )
 
 find_package(PythonLibs ${DARTPY_PYTHON_VERSION} REQUIRED)
@@ -91,10 +110,15 @@ include_directories(
 )
 
 # If chimera is available on this system, create a target to build bindings.
+if(DART_HAS_VOXELGRIDSHAPE)
+  set(CHIMERA_CONFIG "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.yml")
+else()
+  set(CHIMERA_CONFIG "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera_without_voxel.yml")
+endif()
 if(chimera_FOUND)
   add_chimera_binding(TARGET "${PROJECT_NAME}_CHIMERA"
     MODULE "${PROJECT_NAME}"
-    CONFIGURATION "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.yml"
+    CONFIGURATION "${CHIMERA_CONFIG}"
     SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/chimera/chimera.cpp"
     DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/src/generated"
     DEBUG EXCLUDE_FROM_ALL
