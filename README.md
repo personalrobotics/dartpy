@@ -30,7 +30,7 @@ $ sudo apt-get install qt4-default
 
 $ git clone https://github.com/personalrobotics/dartpy
 $ cd dartpy
-$ git checkout dart-6.5
+$ git checkout dart-6.6
 $ pip3 install -e .
 ```
 
@@ -46,7 +46,7 @@ $ sudo apt-get install python3-dartpy # for Python 3
 
 $ git clone https://github.com/personalrobotics/dartpy
 $ cd dartpy
-$ git checkout dart-6.5
+$ git checkout dart-6.6
 $ pip3 install -e .
 ```
 
