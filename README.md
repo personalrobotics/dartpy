@@ -26,12 +26,6 @@ $ sudo apt-get update
 
 $ sudo apt-get install python-dartpy  # for Python 2
 $ sudo apt-get install python3-dartpy # for Python 3
-$ sudo apt-get install qt4-default
-
-$ git clone https://github.com/personalrobotics/dartpy
-$ cd dartpy
-$ git checkout dart-6.6
-$ pip3 install -e .
 ```
 
 **16.04 / 18.04**
@@ -43,11 +37,6 @@ $ sudo apt-get update
 
 $ sudo apt-get install python-dartpy  # for Python 2
 $ sudo apt-get install python3-dartpy # for Python 3
-
-$ git clone https://github.com/personalrobotics/dartpy
-$ cd dartpy
-$ git checkout dart-6.6
-$ pip3 install -e .
 ```
 
 All set! Import `dartpy` in Python and enjoy! Please see [Usage](#usage) section for more information.
